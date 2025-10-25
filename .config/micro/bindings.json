@@ -1,0 +1,12 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "CtrlUnderscore": "lua:comment.comment",
+    "Ctrl-9": "JumpToMatchingBrace",
+    "Alt-Delete": "DeleteWordRight",
+    "Alt-L": "DeleteLine",
+    "Alt-l": "SelectLine",
+    "Alt-Shift-Down": "DuplicateLine",
+    "Ctrl-Alt-Up": "SpawnMultiCursorUp",
+    "Ctrl-Alt-Down": "SpawnMultiCursorDown",
+    "Esc": "RemoveAllMultiCursors",
+}
