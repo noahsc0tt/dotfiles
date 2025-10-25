@@ -1,0 +1,4 @@
+--color=always
+--tabs=4
+--style=header-filename,rule,snip
+--set-terminal-title
