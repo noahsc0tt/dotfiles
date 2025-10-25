@@ -1,0 +1,234 @@
+return {
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true })()
+        end,
+        event = { "BufReadPost", "BufNewFile" }
+    },
+
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        "nvim-telescope/telescope-ui-select.nvim",
+        cond = not vim.g.started_by_firenvim,
+    },
+
+    {
+        "mbbill/undotree",
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+    {
+        "theprimeagen/harpoon",
+        cmd = "Harpoon",
+        cond = not vim.g.started_by_firenvim,
+    },
+
+    {
+        "tpope/vim-fugitive",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        "mason-org/mason.nvim",
+        cmd = "Mason",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        "neovim/nvim-lspconfig",
+        lazy = true,
+        event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        "kylechui/nvim-surround",
+        lazy = true,
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup()
+        end
+    },
+
+    {
+        "bkad/CamelCaseMotion",
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+--    {
+--        "windwp/nvim-autopairs",
+--        event = "InsertEnter",
+--    },
+
+    {
+        "github/copilot.vim",
+        event = "InsertEnter"
+    },
+
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim", branch = "master" },
+        },
+        build = "make tiktoken",
+        cmd = { "CopilotChat", "CopilotChatToggle" },
+        opts = {
+            {
+                model = 'gpt-4.1',
+                temperature = 0.1,
+                window = {
+                    layout = 'vertical',
+                    width = 0.3,
+                },
+                auto_insert_mode = true,
+            }
+        },
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        'mrjones2014/smart-splits.nvim',
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        lazy = true,
+        event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        'dhruvasagar/vim-table-mode',
+        cmd = { "TableModeToggle", "TableModeEnable" },
+        config = function()
+            vim.g.table_mode_corner = '|'
+        end
+    },
+
+    --    {
+    --        "nvim-zh/colorful-winsep.nvim",
+    --        config = true,
+    --        event = { "WinLeave" },
+    --    },
+
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ft = { "markdown" },
+        ---@module 'render-markdown'
+        cmd = { "RenderMarkdown" },
+    },
+
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    },
+
+    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+
+
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,    -- make sure it loads immediately
+        priority = 1000, -- load before other plugins
+        opts = {
+            style = "night",
+            on_highlights = function(hl, c)
+                local prompt = c.bg
+                hl.TelescopeNormal = { bg = c.bg, fg = c.fg }
+                hl.TelescopeBorder = { bg = c.bg, fg = c.bg }
+                hl.TelescopePromptNormal = { bg = prompt }
+                hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
+                hl.TelescopePromptTitle = { bg = c.bg_highlight, fg = c.fg }
+                hl.TelescopePreviewTitle = { bg = c.bg, fg = c.bg }
+                hl.TelescopeResultsTitle = { bg = c.bg, fg = c.bg }
+                hl.NoiceCmdlinePopupBorder = { bg = c.bg, fg = c.bg }
+            end,
+        },
+        config = function(_, opts)
+            require("tokyonight").setup(opts)
+            vim.cmd.colorscheme("tokyonight-night")
+            vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#82A1F1" })
+            vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#82A1F1" })
+            vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#af6be0", bold = true })
+        end,
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        'romariorobby/taskell.nvim',
+        lazy = true,
+        event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
+
+    },
+
+    {
+        'rcarriga/nvim-notify',
+        lazy = true,
+        event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
+    },
+
+    --    {
+    --        "folke/noice.nvim",
+    --        event = "VeryLazy",
+    --        dependencies = {
+    --            "MunifTanjim/nui.nvim",
+    --            "rcarriga/nvim-notify",
+    --        }
+    --    },
+
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        cond = not vim.g.started_by_firenvim,
+    },
+
+    {
+        "aznhe21/actions-preview.nvim",
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+
+    {
+        'chomosuke/typst-preview.nvim',
+        ft = 'typst',
+    }
+}
