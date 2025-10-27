@@ -92,7 +92,7 @@
 
     launch (tap-hold-press $tap-time $hold-time (multi @launchmod nubs) @launchmod)
     shift (tap-hold-press $tap-time 250 bspc lsft)
-    shift2 (tap-hold-press $tap-time 250 lsft)
+    shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
     cmd (tap-hold-press $tap-time $hold-time del lmet)
     alt (tap-hold-press $tap-time $hold-time caps lalt)
@@ -122,8 +122,17 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  (layer-switch base)  1    2    3    4    5    6    7    8    9    0    -    =    bspc
  tab q    w    e    r    t    y    u    i    o    p    [    ]
  caps   a    s    d    f    g    h    j    k    l    ;    '    \   ret
- lsft   @shift2   z    x    c    v    b    n    m    ,    .    /    up   rsft
+ lsft   `   z    x    c    v    b    n    m    ,    .    /    up   rsft
  fn   lctl  lalt lmet           spc             rmet ralt left    down    right
+ )
+
+(deflayer sym
+ _    _   _   _   _   _   _   _   _   _   _  _  _
+ _   _    _    _    _    _    _    _    _    _    _    _    _    _
+ _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
+ _   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
+ _   `   S-`    _    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
+ _   _  _ _           _             _ _ _    _    _
  )
 
 (deflayer app
