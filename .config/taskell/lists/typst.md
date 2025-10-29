@@ -1,7 +1,13 @@
 ## To Do
 
-- nvim autosave on everything (for preview update)
-- preview follow cursor
+- markview
+    * [ ] gx
+    * [ ] code blocks hide filetype
+    * [ ] render basic `code` obviously somehow
+- code blocks hide filetype
+- min preview
+    * [ ] follow cursor
+    * [ ] autosave on everything (for refresh)
 - default font
     * [ ] jetbrains for code, something else nice for text
     * [ ] size

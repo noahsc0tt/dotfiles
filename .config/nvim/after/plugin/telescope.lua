@@ -33,6 +33,7 @@ telescope.setup {
         previewer = true,
         initial_mode = "insert",
         path_display = { truncate = 1, shorten = 1, "smart" },
+        follow = true,
     },
     extensions = {
         file_browser = {
@@ -360,7 +361,7 @@ vim.keymap.set({ "n", "v" }, "<leader>at", function()
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>a=", function()
+vim.keymap.set({ "n", "v", "i" }, "<C-=>", function()
     builtin.spell_suggest()
 end)
 

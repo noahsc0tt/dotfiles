@@ -273,3 +273,5 @@ alias cpl="copilot"
 alias tc="typst compile"
 
 alias dot="cd ~/dotfiles"
+
+alias batn="bat --style=header-filename,rule,snip,numbers"

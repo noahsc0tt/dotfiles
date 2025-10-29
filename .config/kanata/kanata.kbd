@@ -95,14 +95,13 @@
     shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
     cmd (tap-hold-press $tap-time $hold-time del lmet)
-    alt (tap-hold-press $tap-time $hold-time caps lalt)
 
     srcly (tap-hold-press $tap-time $hold-time lrld (layer-toggle src))
-    win (tap-hold-press $tap-time $hold-time del @winmod)
+    win (tap-hold-press $tap-time $hold-time _ @winmod)
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
     apply (tap-hold-press $tap-time $hold-time C-c (layer-toggle app))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
-    medialy (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
+    medialy (tap-hold-press $tap-time $hold-time caps (layer-toggle media))
     numly (tap-hold-press $tap-time $hold-time ret (layer-toggle num))
 )
 
@@ -113,7 +112,7 @@
   (layer-switch src)   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
   @cmd   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
-  @alt   @ctrl    z    x    c    v    b    n    m    ,    .    /    up   rsft
+  @medialy   @ctrl    z    x    c    v    b    n    m    ,    .    /    up   rsft
   fn     @shift2  @win    @symly        spc             @numly @medialy left    down    right
 )
 
@@ -196,4 +195,5 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 
 
 (defchordsv2
+  (lmet rmet) lalt $chord-time all-released ()
 )

@@ -41,13 +41,6 @@ vim.keymap.set("n", "<leader>e", function()
         vim.cmd("qa!")
     end
 end)
-vim.keymap.set("n", "<leader>e", function()
-    if vim.bo.modifiable then
-        vim.cmd("wqa")
-    else
-        vim.cmd("qa!")
-    end
-end)
 vim.keymap.set("n", "<leader>E", function() vim.cmd("qa!") end)
 
 -- Moving selected text
@@ -61,22 +54,14 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
 
 -- Cursor Jump
-vim.keymap.set({ "n", "v" }, "<S-Tab>", "<C-o>zz", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<Tab>", "<Tab>zz", { noremap = true, silent = true })
-vim.keymap.set("i", "<Tab>", "<C-v><Tab>", { noremap = true, silent = true })
-
+vim.keymap.set("n", "<C-S-o>", "<C-i>", { noremap = true, silent = true })
 
 -- Using _ for start of line
-vim.keymap.set("n", "y_", "y^")
-vim.keymap.set("n", "d_", "d^")
-vim.keymap.set("n", "c_", "c^")
+vim.keymap.set('o', '_', '^', { noremap = true })
 
 -- Splitting and joining lines
 vim.keymap.set("n", "J", "a<Cr><Esc>k$")
 vim.keymap.set("n", "K", "J")
-
--- Insert <br>
-vim.keymap.set("n", "<leader>b", "o<br><Esc>")
 
 -- Undo and Redo
 vim.keymap.set("n", "U", "<C-r>")
@@ -93,20 +78,20 @@ vim.keymap.set("c", "<C-a>", "<C-b>")
 vim.keymap.set("c", "<C-g>h", "<Left>")
 vim.keymap.set("c", "<C-g>l", "<Right>")
 
--- Copy to clipboard
-vim.keymap.set("n", "<D-c>", "\"+y")
-vim.keymap.set("n", "<M-c>", "\"+y")
-
-
 -- Vim stuff
 vim.keymap.set("n", "<leader>vn", "<cmd>set nohlsearch<CR>")
 vim.keymap.set("n", "<leader>vh", "<cmd>set hlsearch<CR>")
 vim.keymap.set("n", "<leader>vz", "<cmd>Lazy<CR>")
-vim.keymap.set("n", "<leader>vs", ":so<CR>")
+vim.keymap.set("n", "<leader>vs", function()
+    vim.cmd("so")
+    vim.notify("Sourced file")
+end, { desc = "Source file and echo message" })
 vim.keymap.set("n", "<leader>vl", ":Ld<CR>")
-vim.keymap.set("n", "<leader>vp", ":TypstPreview<CR>")
 vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
 
+-- Scrolling
+vim.keymap.set("n", "<C-n>", "2<C-e>")
+vim.keymap.set("n", "<C-p>", "2<C-y>")
 
 -- FREE:
 -- <S-Cr>

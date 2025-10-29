@@ -1,5 +1,6 @@
 ## To Do
 
+- logo
 - adblock
 - tab colors
 - grey theme, vivaldi too

@@ -78,10 +78,10 @@ return {
         event = "VeryLazy",
     },
 
---    {
---        "windwp/nvim-autopairs",
---        event = "InsertEnter",
---    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+    },
 
     {
         "github/copilot.vim",
@@ -205,14 +205,15 @@ return {
         cond = not vim.g.started_by_firenvim,
     },
 
-    --    {
-    --        "folke/noice.nvim",
-    --        event = "VeryLazy",
-    --        dependencies = {
-    --            "MunifTanjim/nui.nvim",
-    --            "rcarriga/nvim-notify",
-    --        }
-    --    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        cond = not vim.g.started_by_firenvim,
+    },
 
     {
         'nvim-lualine/lualine.nvim',
@@ -224,11 +225,28 @@ return {
         "aznhe21/actions-preview.nvim",
         lazy = true,
         event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
     },
 
 
     {
         'chomosuke/typst-preview.nvim',
         ft = 'typst',
-    }
+    },
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+    },
+
+    {
+        "NStefan002/screenkey.nvim",
+        lazy = false,
+        branch = "main",
+    },
+
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+    },
 }

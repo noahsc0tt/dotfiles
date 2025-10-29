@@ -1,25 +1,6 @@
-require('render-markdown').setup({
-    completions = { lsp = { enabled = true } },
-    latex = {
-        enabled = true,
-        -- Additional modes to render latex.
-        render_modes = true,
-        -- Executable used to convert latex formula to rendered unicode.
-        converter = 'latex2text',
-        -- Highlight for latex blocks.
-        highlight = 'RenderMarkdownMath',
-        -- Determines where latex formula is rendered relative to block.
-        -- | above | above latex block |
-        -- | below | below latex block |
-        position = 'above',
-        -- Number of empty lines above latex blocks.
-        top_pad = 0,
-        -- Number of empty lines below latex blocks.
-        bottom_pad = 0,
-        -- Always use virtual lines for rendering instead of attempting to inline.
-        virtual = false,
-    },
-})
+--require('render-markdown').setup({
+--    completions = { lsp = { enabled = true } },
+--})
 
 
 vim.g.mkdp_auto_start = 0

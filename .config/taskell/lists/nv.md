@@ -1,24 +1,35 @@
 ## To Do
 
-- scroll page
-- tab hanging
+- wrap line indicator
+- tab hanging in insert
+- get copilot to write descriptions for all my keybinds for whichkey
+- custom harpoon letter marks
 - split keybinds. modal rather than modded?
-- ctrl f for accept completion
-    * [ ] map ctrl f to something cool (consider t and d)
 - folds manager
+    * [ ] pretty-fold
+    * [ ] origami
+    * [ ] ufo
+    * [ ] pretty+origami (looks+functionality)
+- merge and diff tools. check fugitive
 - notes
-- telescope
-    * [ ] visual mode prefills search
-    * [ ] keybinds (0:27)
-    * [ ] env (sylvan)
-    * [ ] reloader
-    * [ ] resume
-    * [ ] symbols
-    * [ ] builtin.pickers, look for other cool pickers. how do you write them
+    * [ ] zk.nvim
+    * [ ] telekasten.nvim
 - leader v keymaps
     * [ ] make
     * [ ] new/enew
-- copilot chat zsh function
+- copilot chat zsh function (?)
+- lualine
+    * [ ] bufferline integration
+    * [ ] path trimming
+    * [ ] operator pending mode showing keys
+- fugitive
+    * [ ] keybinds
+    * [ ] no enter to continue
+- fb
+    * [ ] enter to confirm (no y)
+    * [ ] open multiple files
+    * [ ] binds
+    * [ ] media prev (see telescope-media-files
 - clients
     * [ ] neovide for neovim app
     * [ ] firenvim
@@ -26,20 +37,16 @@
     * [ ] neohub
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
-- lualine
-    * [ ] bufferline integration
-    * [ ] path trimming
-    * [ ] operator pending mode
-- fugitive
-    * [ ] keybinds
-    * [ ] no enter to continue
-- fb
-    * [ ] enter to confirm (no y)
-    * [ ] changing cd in term (have to mimic y)
-    * [ ] open multiple files
-    * [ ] binds
-    * [ ] media prev (see telescope-media-files
-- wrap line indicator
+- telescope
+    * [ ] path display
+    * [ ] visual mode prefills search
+    * [ ] keybinds (0:27)
+    * [ ] env (sylvan)
+    * [ ] reloader
+    * [ ] resume
+    * [ ] symbols
+    * [ ] builtin.pickers, look for other cool pickers. how do you write them
+- reg manager
 - surround
     * [ ] functions
     * [ ] surround line
@@ -49,16 +56,13 @@
     * [ ] scaling
     * [ ] clients
 - plugins
-    * [ ] whichkey
-    * [ ] sayonara
-    * [ ] vim.diff
-    * [ ] coc/coq
+    * [ ] coc for lsp
+    * [ ] coq for completion
     * [ ] fzf-lua
+    * [ ] sayonara
     * [ ] nvim silicon
-- telescope paths
 - tags
 - tabs, split view vs split window
-- reg manager
 - use zellij edit for neovim app
 - smartsplits zellij nvim integration stuff
 

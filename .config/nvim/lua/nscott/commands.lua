@@ -4,7 +4,7 @@ vim.api.nvim_create_user_command("Ld", function()
     dofile(f)
   end
   dofile("/Users/nscott/.config/nvim/init.lua")
-  vim.notify("Neovim full config reloaded")
+  vim.notify("Neovim config reloaded")
 end, {})
 
 
