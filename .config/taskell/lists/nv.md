@@ -1,6 +1,8 @@
 ## To Do
 
-- wrap line indicator
+- whitespace
+    * [ ] virt-column
+    * [ ] hlslens
 - tab hanging in insert
 - get copilot to write descriptions for all my keybinds for whichkey
 - custom harpoon letter marks
