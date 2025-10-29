@@ -1,6 +1,7 @@
 ## To Do
 
 - markview
+    * [ ] presets (check wiki)
     * [ ] gx
     * [ ] code blocks hide filetype
     * [ ] render basic `code` obviously somehow

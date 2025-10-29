@@ -37,6 +37,13 @@
     * [ ] neohub
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
+- plugins
+    * [ ] indent blankline
+    * [ ] coc for lsp
+    * [ ] coq for completion
+    * [ ] fzf-lua
+    * [ ] sayonara
+    * [ ] nvim silicon
 - telescope
     * [ ] path display
     * [ ] visual mode prefills search
@@ -55,12 +62,6 @@
     * [ ] default
     * [ ] scaling
     * [ ] clients
-- plugins
-    * [ ] coc for lsp
-    * [ ] coq for completion
-    * [ ] fzf-lua
-    * [ ] sayonara
-    * [ ] nvim silicon
 - tags
 - tabs, split view vs split window
 - use zellij edit for neovim app

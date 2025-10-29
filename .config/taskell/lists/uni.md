@@ -3,7 +3,7 @@
 - local llm
     * [ ] ollama
     * [ ] huggingface
-    * [ ] see what else graham referencesD
+    * [ ] see what else graham referenced
 
 ## Doing
 
