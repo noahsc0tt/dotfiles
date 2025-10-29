@@ -273,5 +273,7 @@ alias cpl="copilot"
 alias tc="typst compile"
 
 alias dot="cd ~/dotfiles"
+alias restow='(cd ~/dotfiles && stow -R .)'
 
 alias batn="bat --style=header-filename,rule,snip,numbers"
+
