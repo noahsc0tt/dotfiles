@@ -371,9 +371,4 @@ vim.keymap.set({ "n", "v" }, "<leader>a<leader>", function()
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>a<leader>", function()
-    builtin.resume()
-end)
-
-
 -- lsp_definitions, git
