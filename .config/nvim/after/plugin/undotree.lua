@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+../../../../dotfiles/.config/nvim/after/plugin/undotree.lua
