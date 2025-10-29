@@ -140,8 +140,8 @@ require("markview").setup({
         math_spans = {
             enable = true,
 
-            padding_left = " ",
-            padding_right = " ",
+            padding_left = "",
+            padding_right = "",
 
             hl = "MarkviewInlineCode"
         },

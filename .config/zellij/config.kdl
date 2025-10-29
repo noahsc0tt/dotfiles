@@ -28,6 +28,7 @@ keybinds clear-defaults=true {
         bind "i" { TogglePanePinned; SwitchToMode "normal"; }
         bind "n" { NewPane; SwitchToMode "normal"; }
         bind "Ctrl t" { SwitchToMode "tab"; }
+        bind "Ctrl r" { SwitchToMode "resize"; }
         bind "Ctrl m" { SwitchToMode "move"; }
         bind "Ctrl f" { ToggleFloatingPanes; SwitchToMode "normal";  }
         bind "Ctrl s" { SwitchToMode "normal"; }
@@ -228,9 +229,6 @@ keybinds clear-defaults=true {
     // }
     shared_except "locked" "pane" {
         bind "Ctrl s" { SwitchToMode "pane"; }
-    }
-    shared_except "locked" "resize" {
-        bind "Ctrl r" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }

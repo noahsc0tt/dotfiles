@@ -1,7 +1,7 @@
 ## To Do
 
 - move stuff to .config/tokyonight and stow
-- lsp diagnostic windows
+- nvim popup borders
 - lsd
 
 ## Doing

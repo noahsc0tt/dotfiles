@@ -1,3 +1,13 @@
+-- FREE:
+-- <S-Cr>
+-- <S-space>
+-- <BS>
+-- <S-BS>
+-- <Del>
+-- <Tab>
+-- <S-Tab>
+-- 0
+
 vim.g.mapleader = " "
 
 -- Centre after page navigation
@@ -93,12 +103,6 @@ vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
 vim.keymap.set("n", "<C-n>", "2<C-e>")
 vim.keymap.set("n", "<C-p>", "2<C-y>")
 
--- FREE:
--- <S-Cr>
--- <S-space>
--- <BS>
--- <S-BS>
--- <Del>
--- <Tab>
--- <S-Tab>
--- 0
+-- Visual -> Insert mode
+vim.keymap.set("v", "i", "<Esc>i")
+vim.keymap.set("v", "a", "<Esc>a")

@@ -1,5 +1,6 @@
 ## To Do
 
+- default U behaviour (undo this line)
 - whitespace
     * [ ] virt-column
     * [ ] hlslens
@@ -7,11 +8,6 @@
 - get copilot to write descriptions for all my keybinds for whichkey
 - custom harpoon letter marks
 - split keybinds. modal rather than modded?
-- folds manager
-    * [ ] pretty-fold
-    * [ ] origami
-    * [ ] ufo
-    * [ ] pretty+origami (looks+functionality)
 - merge and diff tools. check fugitive
 - notes
     * [ ] zk.nvim
@@ -40,6 +36,8 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] fold-preview
+    * [ ] gitsigns
     * [ ] indent blankline
     * [ ] coc for lsp
     * [ ] coq for completion
