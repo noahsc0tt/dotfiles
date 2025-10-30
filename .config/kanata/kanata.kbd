@@ -179,6 +179,22 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   k A-S-volu
 )
 
+(deflayermap fn
+  a f1
+  s f2
+  d f3
+  f f4
+  g f5
+  h f6
+  j f7
+  k f8
+  l f9
+  ; f10
+  ' f11
+  caps f12
+)
+
+
 (deflayermap num
   a 1
   s 2

@@ -83,6 +83,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups 
 setopt hist_find_no_dups
+setopt pipefail
 
 
 zstyle ':completion:*' menu no
@@ -124,6 +125,8 @@ eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
+eval "$(atuin init zsh)"
+
 flip() {
   eval "$(thefuck --alias flip)"
   flip "$@"
@@ -151,6 +154,9 @@ eval "$(pyenv virtualenv-init -)"
 
 export COLORTERM=truecolor
 export TERM=xterm-256color
+
+export CLICOLOR_FORCE=1
+export FORCE_COLOR=1
 
 # export JAVA_HOME="/opt/homebrew/opt/openjdk"
 # export PATH="$JAVA_HOME/bin:$PATH"

@@ -14,7 +14,7 @@ require("which-key").setup({
             text_objects = false,
         },
     },
-    delay = 500,
+    delay = 400,
     defer = function(ctx)
         if vim.list_contains({ "d", "y", "c", }, ctx.operator) then
             return true

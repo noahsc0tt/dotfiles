@@ -5,6 +5,7 @@
     * [ ] passpie
     * [ ] lastpass-cli
     * [ ] bitwarden
+- simplebar
 - navigate menu bar and cc with keyboard
 - tiling window manager
     * [ ] yabai

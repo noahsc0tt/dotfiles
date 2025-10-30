@@ -45,6 +45,7 @@ alias grm="git rm --cached"
 alias gus="git restore --staged"
 alias gs="git status"
 alias gsw="git switch"
+alias gd="git diff | delta"
 
 function ignore_local() {
   if [ -z "$1" ]; then
@@ -237,7 +238,7 @@ function fb() {
 }
 
  function fh() {
-   fc -lr | awk '{$1=""; print substr($0,2)}' | fzf --preview-window hidden
+   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
  }
 
 alias clfzf='print -z -- "$(fzf)"'
@@ -277,3 +278,48 @@ alias restow='(cd ~/dotfiles && stow -R .)'
 
 alias batn="bat --style=header-filename,rule,snip,numbers"
 
+alias lc="lolcat -f"
+alias lbat="lolcat -f | bat"
+alias lbatn="lolcat -f | bat --style=header-filename,rule,snip,numbers "
+function lbatf() {
+  lolcat -f "$*" | bat
+}
+function lbatnf() {
+  lolcat -f "$*" | bat --style=header-filename,rule,snip,numbers
+}
+function lh() {
+  "$*" -h | lolcat -f | bat
+}
+unalias l
+function l() {
+  "$*" | lolcat -f
+}
+
+alias disk="dust -rC"
+alias diski="ncdu"
+
+alias bonsai="cbonsai -S --life=60 -w 1"
+alias matrix="cmatrix -b"
+alias glitch="cmatrix -b -c"
+alias pipes="pipes.sh"
+alias aqua="asciiquarium"
+alias ghss="gh screensaver"
+# tarts, ttysvr, 
+
+alias text="figlet"
+function ltext() {
+  figlet "$*" | lolcat -f
+}
+
+alias send="croc"
+
+alias jr="jrnl"
+alias jre="jrnl --edit"
+alias jrt="jrnl -on today --format short | tac"
+alias jry="jrnl -on yesterday --format short | tac"
+alias jrl="jrnl -n 100000 --format short | tac | bat"
+
+alias weather="curl wttr.in/\?F1"
+alias weathera="curl wttr.in/\?F"
+
+alias system="fastfetch"

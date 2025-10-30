@@ -261,9 +261,13 @@ return {
         end,
     },
 
---     {
---         'anuvyklack/pretty-fold.nvim',
---         lazy = true,
---         event = "VeryLazy",
---     },
+    {
+        "xzbdmw/colorful-menu.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        config = function()
+            require("colorful-menu").setup()
+        end
+    }
+
 }

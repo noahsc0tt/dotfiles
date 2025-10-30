@@ -1,6 +1,8 @@
 ## To Do
 
 - default U behaviour (undo this line)
+- whichkey in insert mode
+- able to add  zf
 - whitespace
     * [ ] virt-column
     * [ ] hlslens
@@ -8,10 +10,15 @@
 - get copilot to write descriptions for all my keybinds for whichkey
 - custom harpoon letter marks
 - split keybinds. modal rather than modded?
+- menu
 - merge and diff tools. check fugitive
 - notes
+    * [ ] inline image rendering (image, img-clip)
+    * [ ] marksman
+    * [ ] outline.nv
     * [ ] zk.nvim
     * [ ] telekasten.nvim
+    * [ ] skittynotes
 - leader v keymaps
     * [ ] make
     * [ ] new/enew
@@ -36,9 +43,12 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
+    * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] fold-preview
     * [ ] gitsigns
     * [ ] indent blankline
+    * [ ] telescope-menu
     * [ ] coc for lsp
     * [ ] coq for completion
     * [ ] fzf-lua

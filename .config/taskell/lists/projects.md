@@ -1,6 +1,7 @@
 ## To Do
 
-- cli scramble in bash
+- screensaver randomiser in bash
+- cli scramble in ruby
     > see chat for randint
 - sudoku
     * [ ] deploy

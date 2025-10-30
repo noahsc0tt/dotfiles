@@ -102,7 +102,3 @@ vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
 -- Scrolling
 vim.keymap.set("n", "<C-n>", "2<C-e>")
 vim.keymap.set("n", "<C-p>", "2<C-y>")
-
--- Visual -> Insert mode
-vim.keymap.set("v", "i", "<Esc>i")
-vim.keymap.set("v", "a", "<Esc>a")

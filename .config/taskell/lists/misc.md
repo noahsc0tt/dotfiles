@@ -10,6 +10,7 @@
     * [ ] premium subsidy data public?
 - lettucemeet
 - keybr audio alternative (dictation rather than looking at the words)
+- newsboat for rss feeds
 
 ## Doing
 

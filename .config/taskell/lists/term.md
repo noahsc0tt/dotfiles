@@ -1,5 +1,6 @@
 ## To Do
 
+- atuin vs fc -lr vs history
 - make gr work with stdin
 - bat vs man vs less vs nvimpager
 - comment keymap
@@ -7,25 +8,21 @@
     * [ ] fd
     * [ ] rg
     * [ ] lsd
-- dotfile manager
-    * [ ] nix
-    * [ ] stow
-- cli chat
-    * [ ] windsurf
-    * [ ] copilot
-    * [ ] warp cli
+    * [ ] fastfetch
+- nix pm
 - zathura
     * [ ] typst sylvan stuff (inc lsp)
     * [ ] previewing (bat, fzf)
     * [ ] theme
 - fzf
+    * [ ] follow symlinks
     * [ ] zi layout
     * [ ] tab preview
     * [ ] strip home path
     * [ ] omz plugin
     * [ ] ** completion
 - zsh plugin keybinds/aliases
-- sed
+- sed/sd
 - a way to pipe output of z/telescope or use as args
 - headless/bg stuff (ps aux, nohup &, etc)
 - clean up pseudotelescope zsh functions (awk)
@@ -33,6 +30,7 @@
     * [ ] man sections
     * [ ] clean up preview/search column awk stuff
 - monocle
+- doppler
 - lazygit tutorial, especially edit
 - yazi plugins
 - kalker
