@@ -43,6 +43,7 @@
 - browser in nv
 - custom harpoon letter marks
 - split keybinds. modal rather than modded?
+- plugin archive dir? for things like winsep
 - menu
 - merge and diff tools. check fugitive
 - notes
