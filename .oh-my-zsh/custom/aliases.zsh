@@ -32,13 +32,19 @@ alias gca="git commit --amend -m"
 alias gcm="git commit -m"
 alias gcam="git add -A && git commit -m"
 alias gch="git checkout"
-alias gl="git log --oneline --graph --decorate"
+alias gl="git log --oneline --graph --decorate --show-signature"
+alias glv="git log --graph --decorate --show-signature"
 alias gpsh="git push"
 alias gpl="git pull"
 alias grm="git rm --cached"
 alias gus="git restore --staged"
 alias gusa="git restore --staged ."
 function gs() {
+  local root
+  root=$(git rev-parse --show-toplevel)
+  git -C "$root" status -sb -M
+}
+function gsv() {
   local root
   root=$(git rev-parse --show-toplevel)
   git -C "$root" status
@@ -329,6 +335,15 @@ alias cpl="copilot"
 alias dot="cd ~/dotfiles"
 alias restow='(cd ~/dotfiles && stow -R .)'
 
+function bat() {
+  if [ -t 0 ]; then
+    # stdin is not connected, arguments are files
+    command bat --style=header-filename,rule,snip "$@"
+  else
+    # stdin is being piped in
+    command bat --style=rule,snip
+  fi
+}
 alias batn="bat --style=header-filename,rule,snip,numbers"
 
 alias lc="lolcat -f"
@@ -395,3 +410,5 @@ alias weathera="curl wttr.in/\?F"
 alias wtha="curl wttr.in/\?F"
 
 alias system="fastfetch"
+
+alias wh="whence"

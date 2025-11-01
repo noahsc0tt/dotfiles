@@ -1,6 +1,8 @@
 ## To Do
 
 - aliases for fzf (gaf)
+- status --column=
+- config pull.rebase persistent?
 - tig
 - function to see files throughout history in a preview? using fzf???
 - describe
