@@ -1,5 +1,37 @@
 ## To Do
 
+- accept coq with <C-space>
+- highlight matching braces different colors? like vscode
+- completions colored? check colorful-menu
+- think about what keybinds to expose to terminal mode
+- tk thirdparty built-ins
+- debugging
+    * [ ] dap
+- bufferline go to start/end/num
+- regex vs fixed string search/sub keymaps
+- turn off cursor line highlight for notes and terminal
+- switch to terminal keybind
+- folke/snacks
+    * [ ] indent
+    * [ ] dashboard
+    * [ ] input
+    * [ ] quickfile
+    * [ ] scratch
+    * [ ] toggle
+    * [ ] notifier/notify
+    * [ ] zen
+    * [ ] bufdelete
+    * [ ] debug
+    * [ ] image
+    * [ ] terminal (for oc)
+    * [ ] statuscolumn
+    * [ ] win
+- session manager
+    * [ ] persistence
+    * [ ] persisted
+    * [ ] neovim-session-manager
+    * [ ] posession
+    * [ ] mini.sessions
 - default U behaviour (undo this line)
 - whichkey in insert mode
 - able to add  zf
@@ -8,6 +40,7 @@
     * [ ] hlslens
 - tab hanging in insert
 - get copilot to write descriptions for all my keybinds for whichkey
+- browser in nv
 - custom harpoon letter marks
 - split keybinds. modal rather than modded?
 - menu
@@ -15,6 +48,7 @@
 - notes
     * [ ] inline image rendering (image, img-clip)
     * [ ] marksman
+    * [ ] skittynotes
     * [ ] outline.nv
     * [ ] zk.nvim
     * [ ] telekasten.nvim
@@ -31,6 +65,7 @@
     * [ ] keybinds
     * [ ] no enter to continue
 - fb
+    * [ ] see symlinks
     * [ ] enter to confirm (no y)
     * [ ] open multiple files
     * [ ] binds
@@ -43,6 +78,7 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] dadbod-completion
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
     * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] fold-preview
@@ -50,7 +86,6 @@
     * [ ] indent blankline
     * [ ] telescope-menu
     * [ ] coc for lsp
-    * [ ] coq for completion
     * [ ] fzf-lua
     * [ ] sayonara
     * [ ] nvim silicon

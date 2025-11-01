@@ -6,7 +6,7 @@ require("origami").setup {
 		padding = 3,
 		lineCount = {
 			template = "%d lines folded", -- `%d` is replaced with the number of folded lines
-			hlgroup = "FoldCountPurple",
+			hlgroup = "FoldText",
 		},
 		diagnosticsCount = true, -- uses hlgroups and icons from `vim.diagnostic.config().signs`
 		gitsignsCount = true, -- requires `gitsigns.nvim`

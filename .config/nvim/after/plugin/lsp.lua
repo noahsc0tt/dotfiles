@@ -1,17 +1,18 @@
 require("mason").setup()
+local coq = require "coq" -- add this
 
 vim.lsp.enable('lua_ls')
-vim.lsp.config('lua_ls', {
+vim.lsp.config('lua_ls', coq.lsp_ensure_capabilities({
     settings = {
-    Lua = {
+        Lua = {
             diagnostics = {
                 globals = { "vim", "require", "_G", },
             },
         },
     },
-})
+}))
 vim.lsp.enable('basedpyright')
-vim.lsp.config('basedpyright', {
+vim.lsp.config('basedpyright', coq.lsp_ensure_capabilities({
     settings = {
         basedpyright = {
             python = {
@@ -25,16 +26,16 @@ vim.lsp.config('basedpyright', {
             },
         }
     }
-})
+}))
 vim.lsp.enable('jdtls')
-vim.lsp.config('jdtls', {
-cmd_env = {
-    JAVA_HOME = "/opt/homebrew/opt/openjdk",
-    PATH = "/opt/homebrew/opt/openjdk/bin:" .. vim.env.PATH,
-  },
-})
+vim.lsp.config('jdtls', coq.lsp_ensure_capabilities({
+    cmd_env = {
+        JAVA_HOME = "/opt/homebrew/opt/openjdk",
+        PATH = "/opt/homebrew/opt/openjdk/bin:" .. vim.env.PATH,
+    },
+}))
 vim.lsp.enable('bashls')
-vim.lsp.config('bashls', { filetypes = { "sh", "zsh", "bash" } })
+vim.lsp.config('bashls', coq.lsp_ensure_capabilities({ filetypes = { "sh", "zsh", "bash" } }))
 vim.lsp.enable('eslint')
 vim.lsp.enable('clangd')
 vim.lsp.enable('hls')

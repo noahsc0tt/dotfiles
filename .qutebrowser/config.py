@@ -480,6 +480,8 @@ c.fonts.web.family.sans_serif = 'Cantarell'
 c.fonts.default_family = ['JetBrains Mono']
 c.fonts.default_size = "14px"
 
+c.editor.command = [ "/opt/homebrew/bin/neovide", "--frame", "buttonless", "--title-hidden", "{file}" ]
+
 # Bindings for normal mode
 config.bind('<Ctrl-c>', 'clear-keychain ;; search')
 config.bind('x', 'tab-close')

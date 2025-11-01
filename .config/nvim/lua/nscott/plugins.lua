@@ -56,14 +56,6 @@ return {
     },
 
     {
-        "neovim/nvim-lspconfig",
-        lazy = true,
-        event = "VeryLazy",
-        cond = not vim.g.started_by_firenvim,
-
-    },
-
-    {
         "kylechui/nvim-surround",
         lazy = true,
         event = "VeryLazy",
@@ -88,27 +80,27 @@ return {
         event = "InsertEnter"
     },
 
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-            { "nvim-lua/plenary.nvim", branch = "master" },
-        },
-        build = "make tiktoken",
-        cmd = { "CopilotChat", "CopilotChatToggle" },
-        opts = {
-            {
-                model = 'gpt-4.1',
-                temperature = 0.1,
-                window = {
-                    layout = 'vertical',
-                    width = 0.3,
-                },
-                auto_insert_mode = true,
-            }
-        },
-        cond = not vim.g.started_by_firenvim,
-
-    },
+    -- {
+    --     "CopilotC-Nvim/CopilotChat.nvim",
+    --     dependencies = {
+    --         { "nvim-lua/plenary.nvim", branch = "master" },
+    --     },
+    --     build = "make tiktoken",
+    --     cmd = { "CopilotChat", "CopilotChatToggle" },
+    --     opts = {
+    --         {
+    --             model = 'gpt-4.1',
+    --             temperature = 0.1,
+    --             window = {
+    --                 layout = 'vertical',
+    --                 width = 0.3,
+    --             },
+    --             auto_insert_mode = true,
+    --         }
+    --     },
+    --     cond = not vim.g.started_by_firenvim,
+    --
+    -- },
 
     {
         'mrjones2014/smart-splits.nvim',
@@ -123,7 +115,6 @@ return {
         lazy = true,
         event = "VeryLazy",
         cond = not vim.g.started_by_firenvim,
-
     },
 
     {
@@ -140,13 +131,13 @@ return {
     --        event = { "WinLeave" },
     --    },
 
-    {
-        'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        ft = { "markdown" },
-        ---@module 'render-markdown'
-        cmd = { "RenderMarkdown" },
-    },
+    -- {
+    --     'MeanderingProgrammer/render-markdown.nvim',
+    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    --     ft = { "markdown" },
+    --     ---@module 'render-markdown'
+    --     cmd = { "RenderMarkdown" },
+    -- },
 
     {
         "iamcco/markdown-preview.nvim",
@@ -190,13 +181,12 @@ return {
 
     },
 
-    {
-        'romariorobby/taskell.nvim',
-        lazy = true,
-        event = "VeryLazy",
-        cond = not vim.g.started_by_firenvim,
-
-    },
+    -- {
+    --     'romariorobby/taskell.nvim',
+    --     lazy = true,
+    --     event = "VeryLazy",
+    --     cond = not vim.g.started_by_firenvim,
+    -- },
 
     {
         'rcarriga/nvim-notify',
@@ -248,6 +238,7 @@ return {
     {
         "OXY2DEV/markview.nvim",
         lazy = false,
+        ft = { "markdown", "typst" },
     },
 
     {
@@ -261,13 +252,58 @@ return {
         end,
     },
 
-    {
-        "xzbdmw/colorful-menu.nvim",
-        lazy = true,
-        event = "VeryLazy",
-        config = function()
-            require("colorful-menu").setup()
-        end
-    }
+    -- {
+    --     "xzbdmw/colorful-menu.nvim",
+    --     lazy = true,
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("colorful-menu").setup()
+    --     end
+    -- },
 
+    {
+        "NickvanDyke/opencode.nvim",
+        dependencies = {
+            { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+        },
+        cond = not vim.g.started_by_firenvim,
+    },
+
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        dependencies = {
+            { "ms-jpq/coq_nvim",       branch = "coq" },
+            { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+
+            -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+            { 'ms-jpq/coq.thirdparty', branch = "3p" }
+            -- - shell repl
+            -- - nvim lua api
+            -- - scientific calculator
+            -- - comment banner
+            -- - etc
+
+        },
+        init = function()
+            vim.g.coq_settings = {
+                auto_start = 'shut-up',
+                completion = {
+                    always = false,
+                    sticky_manual = false,
+
+                },
+                display = {
+                    preview = {
+                        border = { "", "", "", "", "", "", "", "" }
+                    },
+                    statusline = { helo = false }
+                },
+                keymap = {
+                    pre_select = true,
+                    jump_to_mark = '<c-m>',
+                },
+            }
+        end,
+    }
 }

@@ -1,12 +1,13 @@
 ## To Do
 
-- logo
-- adblock
 - tab colors
-- grey theme, vivaldi too
-- copy confirm
+- scroll instantly like vimium
+- logo
+- nerdfonts
+- adblock
+- grey theme
+- copy confirm remove
 - statusbar
-- font
 
 ## Doing
 

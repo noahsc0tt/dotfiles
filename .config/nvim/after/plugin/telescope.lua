@@ -284,14 +284,10 @@ vim.keymap.set({ "n", "v" }, "<leader>ab", function()
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>/", function()
-    builtin.current_buffer_fuzzy_find()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>/", function() builtin.current_buffer_fuzzy_find() end)
 
 
-vim.keymap.set("n", "<leader>aw", function()
-    builtin.grep_string()
-end)
+vim.keymap.set("n", "<leader>aw", function() builtin.grep_string() end)
 
 
 vim.keymap.set("v", "<leader>aw", function()
@@ -301,74 +297,46 @@ vim.keymap.set("v", "<leader>aw", function()
 end, { noremap = true, silent = true })
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ag", function()
-    builtin.git_files()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>ag", function() builtin.git_files() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ao", function()
-    builtin.oldfiles()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>af", function()
-    builtin.lsp_references()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>af", function() builtin.lsp_references() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ae", function()
-    builtin.diagnostics()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>ae", function() builtin.diagnostics() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>an", function()
-    telescope.extensions.notify.notify()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>an", function() telescope.extensions.notify.notify() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>c", function()
-    builtin.command_history()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>c", function() builtin.command_history() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>aj", function()
-    builtin.jumplist()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>aj", function() builtin.jumplist() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ah", function()
-    builtin.search_history()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>ah", function() builtin.search_history() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>`", function()
-    builtin.marks()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>`", function() builtin.marks() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ap", function()
-    builtin.registers()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>ap", function() builtin.registers() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>:", function()
-    builtin.commands()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>:", function() builtin.commands() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>at", function()
-    builtin.builtin()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>at", function() builtin.builtin() end)
 
 
-vim.keymap.set({ "n", "v", "i" }, "<C-=>", function()
-    builtin.spell_suggest()
-end)
+vim.keymap.set({ "n", "v", "i" }, "<C-=>", function() builtin.spell_suggest() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>a<leader>", function()
-    builtin.resume()
-end)
+vim.keymap.set({ "n", "v" }, "<leader>a<leader>", function() builtin.resume() end)
 
 
 -- lsp_definitions, git

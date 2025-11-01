@@ -17,6 +17,7 @@ keybinds clear-defaults=true {
         bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "x" { CloseFocus; }
+        bind "Ctrl d" { CloseFocus; SwitchToMode "normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         // bind "f" { LaunchOrFocusPlugin "ff" {
@@ -30,6 +31,7 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "tab"; }
         bind "Ctrl r" { SwitchToMode "resize"; }
         bind "Ctrl m" { SwitchToMode "move"; }
+        bind "Ctrl /" { SwitchToMode "scroll"; }
         bind "Ctrl f" { ToggleFloatingPanes; SwitchToMode "normal";  }
         bind "Ctrl s" { SwitchToMode "normal"; }
     }
@@ -56,6 +58,7 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "normal"; }
         bind "tab" { ToggleTab; }
         bind "d" { CloseTab; SwitchToMode "normal"; }
+        bind "Ctrl d" { CloseTab; SwitchToMode "normal"; }
         bind "x" { CloseTab; }
     }
     resize {
@@ -102,6 +105,7 @@ keybinds clear-defaults=true {
     }
     session {
         bind "Ctrl z" { SwitchToMode "normal"; }
+        // bind "Ctrl u" { ToggleUi }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 kiosk true
@@ -200,7 +204,6 @@ keybinds clear-defaults=true {
     }
     // global bindings
     shared_except "locked" {
-        bind "Ctrl Shift d" { CloseFocus; }
         // bind "Ctrl f" {
         //     LaunchOrFocusPlugin "ff" {
         //         kiosk true
@@ -221,9 +224,9 @@ keybinds clear-defaults=true {
     shared_except "locked" "session" {
         bind "Ctrl z" { SwitchToMode "session"; }
     }
-    shared_except "locked" "scroll" "search" {
-        bind "Ctrl /" { SwitchToMode "scroll"; }
-    }
+    // shared_except "locked" "scroll" "search" {
+    //     bind "Ctrl /" { SwitchToMode "scroll"; }
+    // }
     // shared_except "locked" "tab" {
     //     bind "Ctrl t" { SwitchToMode "tab"; }
     // }
@@ -365,12 +368,12 @@ theme "tokyonight_night"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-default_layout "template"
+default_layout "clean"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/tmp"
+ layout_dir "/Users/nscott/dotfiles/.config/zellij/layouts"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)

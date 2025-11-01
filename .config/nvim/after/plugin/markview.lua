@@ -23,10 +23,10 @@ require("markview").setup({
         code_spans = {
             enable = true,
 
-            corner_left = "⎡",
-            corner_right = "⎤",
-            padding_left = "`",
-            padding_right = "`",
+            corner_left = "",
+            corner_right = "",
+            padding_left = "",
+            padding_right = "",
 
             hl = "MarkviewCode"
         },
@@ -41,7 +41,7 @@ require("markview").setup({
 
             heading_1 = {
                 style = "icon",
-                sign = "󰌖 ",
+                sign = "󰌕 ",
                 sign_hl = "MarkviewHeading1Sign",
 
                 icon = "",
@@ -52,33 +52,33 @@ require("markview").setup({
                 sign = "󰌖 ",
                 sign_hl = "MarkviewHeading2Sign",
 
-                icon = " ",
+                icon = "  ",
                 hl = "MarkviewHeading2",
             },
             heading_3 = {
                 style = "icon",
-                sign = "󰌖 ",
+                sign = "",
                 sign_hl = "MarkviewHeading3Sign",
 
-                icon = "  ",
+                icon = "    ",
                 hl = "MarkviewHeading3",
             },
             heading_4 = {
                 style = "icon",
 
-                icon = "󰎲  ",
+                icon = "󰎲       ",
                 hl = "MarkviewHeading4",
             },
             heading_5 = {
                 style = "icon",
 
-                icon = "󰼓  ",
+                icon = "󰼓         ",
                 hl = "MarkviewHeading5",
             },
             heading_6 = {
                 style = "icon",
 
-                icon = "󰎴  ",
+                icon = "󰎴          ",
                 hl = "MarkviewHeading6",
             }
         },
@@ -110,7 +110,7 @@ require("markview").setup({
             marker_minus = {
                 add_padding = true,
 
-                text = "●",
+                text = "⁃",
                 hl = "MarkviewListItemMinus"
             },
 
@@ -289,13 +289,6 @@ require("markview").setup({
                 hl = "MarkviewPalette0Fg"
             },
 
-            ["developer%.mozilla%.org"] = {
-                priority = -9999,
-
-                icon = "󰖟 ",
-                hl = "MarkviewPalette5Fg"
-            },
-
             ["w3schools%.com"] = {
                 priority = -9999,
 
@@ -331,32 +324,11 @@ require("markview").setup({
                 hl = "MarkviewPalette2Fg"
             },
 
-            ["dev%.to"] = {
-                priority = -9999,
-
-                icon = "󱁴 ",
-                hl = "MarkviewPalette0Fg"
-            },
-
-            ["codepen%.io"] = {
-                priority = -9999,
-
-                icon = " ",
-                hl = "MarkviewPalette6Fg"
-            },
-
             ["replit%.com"] = {
                 priority = -9999,
 
                 icon = " ",
                 hl = "MarkviewPalette2Fg"
-            },
-
-            ["jsfiddle%.net"] = {
-                priority = -9999,
-
-                icon = " ",
-                hl = "MarkviewPalette5Fg"
             },
 
             ["npmjs%.com"] = {
@@ -380,25 +352,11 @@ require("markview").setup({
                 hl = "MarkviewPalette1Fg"
             },
 
-            ["medium%.com"] = {
-                priority = -9999,
-
-                icon = " ",
-                hl = "MarkviewPalette6Fg"
-            },
-
             ["linkedin%.com"] = {
                 priority = -9999,
 
                 icon = "󰌻 ",
                 hl = "MarkviewPalette5Fg"
-            },
-
-            ["news%.ycombinator%.com"] = {
-                priority = -9999,
-
-                icon = " ",
-                hl = "MarkviewPalette2Fg"
             },
         }
     },

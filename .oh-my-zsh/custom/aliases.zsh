@@ -1,10 +1,3 @@
-alias cdfzf='cd "$(fzf --walker dir,follow,hidden --no-preview)"'
-alias clfzf='print -z -- "$(fzf)"'
-alias hfzf='print -z -- "$(fc -lnr 1 | fzf --no-preview)"'
-alias dfzf="fzf --walker dir,follow,hidden"
-alias ffzf="fzf --walker file,follow,hidden"
-
-alias rd="rm -rf"
 alias rd="rm -rf"
 alias srd="sudo rm -rf"
 # alias del="trash"
@@ -12,13 +5,12 @@ alias srd="sudo rm -rf"
 # alias rmt="trash"
 alias cdtrash="cd /Users/nscott/Library/Mobile\ Documents/.Trash"
 
-alias calc="kalker"
-
 alias config="nvim ~/.zshrc"
 alias con="nvim ~/.zshrc"
 alias aliases="nvim $ZSH_CUSTOM/aliases.zsh"
 alias al="nvim $ZSH_CUSTOM/aliases.zsh"
 alias keybinds="nvim $ZSH_CUSTOM/keybinds.zsh"
+
 alias reload="exec zsh"
 alias rld="exec zsh"
 
@@ -26,11 +18,13 @@ alias uni="z ~/UCL-OneDrive/University/second-year"
 
 alias py="python"
 alias ipy="ipython -i"
+
 alias ts="ts-node"
 
 alias frg="rg -F"
+alias erg="rg -P"
+alias rgnc="rg --color=never"
 alias rgnr="rg -d 1"
-alias frgnr="rg -F -d 1"
 
 alias ga="git add"
 alias gA="git add -A"
@@ -43,27 +37,83 @@ alias gpsh="git push"
 alias gpl="git pull"
 alias grm="git rm --cached"
 alias gus="git restore --staged"
-alias gs="git status"
+alias gusa="git restore --staged ."
+function gs() {
+  local root
+  root=$(git rev-parse --show-toplevel)
+  git -C "$root" status
+}
 alias gsw="git switch"
 alias gd="git diff | delta"
 
-function ignore_local() {
-  if [ -z "$1" ]; then
-    echo "Usage: ignore_local <path>"
-    return 1
-  fi
-  echo "$1" >> .git/info/exclude
-  echo "Added '$1' to .git/info/exclude"
+function fzg() {
+  local root file
+  root=$(git rev-parse --show-toplevel)
+  file=$(
+    git -C "$root" ls-files \
+      | fzf --preview "bat --style=plain --color=always {}"
+  )
+  [ -n "$file" ] && echo "$root/$file"
 }
-alias gig="ignore_local"
+
+function gswf() {
+  local branch
+  branch=$(
+    git branch --all \
+      | grep -v HEAD \
+      | sed 's/^[* ]*//' \
+      | sed 's#remotes/[^/]*/##' \
+      | sort -u \
+      | fzf --preview-window hidden
+  )
+  [ -n "$branch" ] && git switch "$branch"
+}
+
+function grmf() {
+  local root file
+  root=$(git rev-parse --show-toplevel)
+  file=$(
+    git -C "$root" ls-files \
+      | fzf --preview "bat {}"
+  )
+  [ -n "$file" ] && git -C "$root" rm $file
+}
+
+function gaf() {
+  local root files
+  root=$(git rev-parse --show-toplevel)
+  files=$(
+    git -C "$root" ls-files -m \
+      | fzf -m --preview "git -C '$root' diff --color=always -- {} | delta"
+  )
+  [ -n "$files" ] && git -C "$root" add $files
+}
+
+function gdf() {
+  local root file
+  root=$(git rev-parse --show-toplevel)
+  file=$(
+    git -C "$root" diff --name-only \
+      | fzf --preview "git -C '$root' diff --color=always -- {} | delta"
+  )
+  [ -n "$file" ] && git -C "$root" diff $file | delta
+}
+
+function gusf() {
+  local root files
+  root=$(git rev-parse --show-toplevel)
+  files=$(
+    git -C "$root" diff --cached --name-only \
+      | fzf -m --preview "git -C '$root' diff --cached --color=always -- {} | delta"
+  )
+  [ -n "$files" ] && git -C "$root" restore --staged $files
+}
 
 alias rename="printf \"\033]0;%s\007\""
 
 alias speedtest="networkQuality"
 
-alias updatelocatedb="sudo /usr/libexec/locate.updatedb"
-
-function zn() {
+function zjn() {
   if [ $# -eq 0 ]; then
     zellij -l welcome
   else
@@ -71,8 +121,7 @@ function zn() {
   fi
 }
 alias zj="zellij"
-alias za="zellij a"
-alias zf="zellij a"
+alias zja="zellij a"
 alias zjl="zellij ls"
 alias zjk="zellij k"
 alias zjd="zellij d"
@@ -118,20 +167,12 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-alias nl="nightlight"
-
-# just use take
-function mcd() {
-  mkdir -p -- "$@" && cd -- "${@[-1]}"
-}
-
-
 alias kal="sudo launchctl load /Library/LaunchDaemons/com.example.kanata.plist"
 alias kau="sudo launchctl unload /Library/LaunchDaemons/com.example.kanata.plist"
 alias kac="/usr/local/bin/kanata -c /Users/nscott/.config/kanata/kanata.kbd --check"
 
 alias gy="ghostty"
-alias gyc="ghostty +show-config --docs --default"
+alias gydoc="ghostty +show-config --docs --default"
 
 alias tkl="ls $HOME/.config/taskell/lists/"
 function tk() {
@@ -200,12 +241,15 @@ alias zt="zathura"
 
 alias nv="nvim"
 alias nd="nvim ."
-alias nt="nvim +Telescope"
+alias nt="nvim -c 'terminal'"
 alias nf="nvim +Telescope\\ find_files"
 alias ng="nvim +Telescope\\ git_files"
 alias no="nvim +Telescope\\ oldfiles"
 alias ns="nvim +Telescope\\ live_grep"
-alias nm="nvim +Telescope\\ man_pages"
+alias nvd="neovide --frame buttonless --title-hidden"
+
+
+alias fzn="fzf --preview-window hidden"
 
 function c() {
   cd "$(fd -t d | fzf)" || return
@@ -215,8 +259,16 @@ function dh() {
   cd "$(dirs -pl | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {} || ls --color=always {}')" || return
 }
 
+function fa() {
+  alias | fzf --preview-window hidden
+}
+
 function ff() {
-  fd -t f | fzf --preview 'bat {}'
+  fd -t f | fzf
+}
+
+function fdir() {
+  fd -t d | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
 }
 
 function fm() {
@@ -233,18 +285,22 @@ function ft() {
   tldr -C "$sel" | bat
 }
 
-function fb() {
+function fk() {
   bindkey | fzf --preview-window hidden
 }
 
- function fh() {
-   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
- }
+function fb() {
+  brew search "" | fzf --preview 'brew info {}' | xargs brew install
+}
 
-alias clfzf='print -z -- "$(fzf)"'
-alias npfzf='fzf --preview-window hidden'
-alias fzfnp='fzf --preview-window hidden'
+function fh() {
+  atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
+}
 
+function ch() {
+  atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden | pbcopy
+}
+alias fzcl='print -z -- "$(fzf)"'
 
 alias osa="osascript -e"
 
@@ -256,8 +312,7 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" \
     --bind "start:reload:$RG_PREFIX {q}" \
     --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
     --delimiter : \
-    --preview 'bat --color=always {1} --highlight-line {2}' \
-    --bind 'enter:become(nvim {1} +{2})'
+    --preview 'bat --color=always {1} --highlight-line {2}'
 }
 
 alias quit="kill"
@@ -271,28 +326,16 @@ alias tp="tput reset"
 alias oc="opencode"
 alias cpl="copilot"
 
-alias tc="typst compile"
-
 alias dot="cd ~/dotfiles"
 alias restow='(cd ~/dotfiles && stow -R .)'
 
 alias batn="bat --style=header-filename,rule,snip,numbers"
 
 alias lc="lolcat -f"
-alias lbat="lolcat -f | bat"
-alias lbatn="lolcat -f | bat --style=header-filename,rule,snip,numbers "
-function lbatf() {
-  lolcat -f "$*" | bat
-}
-function lbatnf() {
-  lolcat -f "$*" | bat --style=header-filename,rule,snip,numbers
-}
+alias lb="lolcat -f | bat"
+alias lbn="lolcat -f | bat --style=header-filename,rule,snip,numbers "
 function lh() {
   "$*" -h | lolcat -f | bat
-}
-unalias l
-function l() {
-  "$*" | lolcat -f
 }
 
 alias disk="dust -rC"
@@ -300,16 +343,37 @@ alias diski="ncdu"
 
 alias bonsai="cbonsai -S --life=60 -w 1"
 alias matrix="cmatrix -b"
+alias rain="tarts matrix"
 alias glitch="cmatrix -b -c"
 alias pipes="pipes.sh"
 alias aqua="asciiquarium"
-alias ghss="gh screensaver"
-# tarts, ttysvr, 
+alias space="gh screensaver -s starfield -- --speed 10"
+alias fireworks="gh screensaver -s fireworks"
+alias bubbles="ttysvr -b 1a1b26 bubbles"
+alias dvd="ttysvr -b 1a1b26 logo dvd"
+alias fire="tarts fire"
+alias blank="tarts blank"
+alias donut="tarts donut"
+alias clock="termsaver clock" 
+
+alias lss="alias | rg -P '^(?!ssc|lss).*(cbonsai|cmatrix|tarts|pipes.sh|asciiquarium|screensaver|ttysvr)' | sd '=.*' ''"
+alias ssc="alias | rg -P --color=never '^(?!ssc|lss).*(cbonsai|cmatrix|tarts|pipes.sh|asciiquarium|screensaver|ttysvr)'"
+
+function typeout() {
+  termsaver programmer -p "$*"
+}
+
+function message() {
+  ghss -s marquee -- --message="$*"
+}
 
 alias text="figlet"
 function ltext() {
   figlet "$*" | lolcat -f
 }
+
+alias cow="cowsay -r"
+alias cowtext="figlet | cowsay -r -n"
 
 alias send="croc"
 
@@ -317,9 +381,17 @@ alias jr="jrnl"
 alias jre="jrnl --edit"
 alias jrt="jrnl -on today --format short | tac"
 alias jry="jrnl -on yesterday --format short | tac"
-alias jrl="jrnl -n 100000 --format short | tac | bat"
+alias jrl="jrnl -n 100000 --format short | tac"
+alias jrf="jrnl -n 100000 --format short | tac | fzf --preview-window hidden"
+function jrtg() {
+  jrnl -n 100000 --format short | rg "@$1"
+}
 
-alias weather="curl wttr.in/\?F1"
+alias weather="curl wttr.in/\?FQ0"
+alias wth="curl wttr.in/\?FQ0"
+alias weathert="curl wttr.in/\?F1"
+alias wtht="curl wttr.in/\?F1"
 alias weathera="curl wttr.in/\?F"
+alias wtha="curl wttr.in/\?F"
 
 alias system="fastfetch"

@@ -15,10 +15,10 @@ vim.keymap.set({ "n","i","v" }, "<C-j>", smart_splits.move_cursor_down)
 vim.keymap.set({ "n","i","v" }, "<C-k>", smart_splits.move_cursor_up)
 vim.keymap.set({ "n","i","v" }, "<C-l>", smart_splits.move_cursor_right)
 
-vim.keymap.set("n", "<M-S-h>", function() smart_splits.resize_left(4) end)
-vim.keymap.set("n", "<M-S-l>", function() smart_splits.resize_right(4) end)
-vim.keymap.set("n", "<M-S-j>", function() smart_splits.resize_down(4) end)
-vim.keymap.set("n", "<M-S-k>", function() smart_splits.resize_up(4) end)
+vim.keymap.set("n", "<M-C-h>", function() smart_splits.resize_left(4) end)
+vim.keymap.set("n", "<M-C-l>", function() smart_splits.resize_right(4) end)
+vim.keymap.set("n", "<M-C-j>", function() smart_splits.resize_down(4) end)
+vim.keymap.set("n", "<M-C-k>", function() smart_splits.resize_up(4) end)
 
 
 
@@ -36,10 +36,10 @@ local function swap_and_follow(dir)
     vim.api.nvim_win_set_cursor(0, pos)
 end
 
-vim.keymap.set("n", "<C-M-h>", function() swap_and_follow("left") end)
-vim.keymap.set("n", "<C-M-j>", function() swap_and_follow("down") end)
-vim.keymap.set("n", "<C-M-k>", function() swap_and_follow("up") end)
-vim.keymap.set("n", "<C-M-l>", function() swap_and_follow("right") end)
+vim.keymap.set("n", "<S-M-h>", function() swap_and_follow("left") end)
+vim.keymap.set("n", "<S-M-j>", function() swap_and_follow("down") end)
+vim.keymap.set("n", "<S-M-k>", function() swap_and_follow("up") end)
+vim.keymap.set("n", "<S-M-l>", function() swap_and_follow("right") end)
 
 
 
@@ -85,3 +85,13 @@ end)
 --     end
 -- end
 
+vim.keymap.set('n', '<C-w><C-f>', function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local cfg = vim.api.nvim_win_get_config(win)
+    if cfg.relative ~= '' then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+  vim.notify("No floating window found")
+end, { desc = "Focus floating window" })

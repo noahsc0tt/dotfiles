@@ -4,4 +4,4 @@ vim.cmd [[highlight CurSearch guibg='Magenta' guifg='Black']]
 vim.cmd [[highlight IncSearch guibg='Magenta' guifg='Black']]
 
 --vim.api.nvim_set_hl(0, "Folded", { bg = "#7555AE", fg = 'Purple', })
-vim.api.nvim_set_hl(0, "FoldText", { fg = "#CDD1D0", bg = "NONE", bold = true, italic = true, })
+vim.api.nvim_set_hl(0, "FoldText", { bold = true, italic = true, })

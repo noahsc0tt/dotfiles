@@ -1,14 +1,15 @@
 ## To Do
 
 - markview
+    * [ ] get rid of @ rendering
+    * [ ] inline code working when i do #ref, but not `code`
+    * [ ] sub-bullets use sideways caret
     * [ ] presets (check wiki)
     * [ ] gx
     * [ ] code blocks hide filetype
     * [ ] render basic `code` obviously somehow
+- folding not including bullet points
 - code blocks hide filetype
-- min preview
-    * [ ] follow cursor
-    * [ ] autosave on everything (for refresh)
 - default font
     * [ ] jetbrains for code, something else nice for text
     * [ ] size

@@ -1,7 +1,8 @@
 ## To Do
 
-- look at logic coursework
-- get mockito set up
+- washing
+- ask dad about octopus bills
+- book haircut
 
 ## Doing
 

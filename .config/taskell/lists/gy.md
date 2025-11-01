@@ -1,5 +1,6 @@
 ## To Do
 
+- renaming windows custom
 - weird pasting mouse stuff
 - text movement
 - no color on man pages unlike iterm

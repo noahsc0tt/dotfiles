@@ -1,5 +1,6 @@
 ## To Do
 
+- desktop raycast keybinds
 - password manager
     * [ ] pass/gopass
     * [ ] passpie

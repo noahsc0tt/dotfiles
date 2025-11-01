@@ -1,6 +1,7 @@
 ## To Do
 
 - chords
+- pgup/dn
 - homerowmods
 - window on top keybind (then config gy and pte)
 - karabiner
