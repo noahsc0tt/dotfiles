@@ -3,12 +3,27 @@ require("coq_3p")({
     {
         src = "repl",
         sh = "zsh",
-        shell = { p = "perl", n = "node", py = "python3" },
+        shell = { py = "python3" },
         max_lines = 99,
         deadline = 500,
-        unsafe = { "rm", "poweroff", "mv", "cp", "dd" },
+        unsafe = { "sudo", "rm", "poweroff", "mv", "cp", "dd" },
     },
-
-    { src = "bc",            short_name = "MATH", precision = 6 },
-
+    { src = "bc", short_name = "MATH", precision = 6 },
 })
+
+
+vim.keymap.set({'n', 'i' }, '<Esc>', [[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true })
+vim.keymap.set({'n', 'i' }, '<C-c>', [[pumvisible() ? "\<C-e><C-c>" : "\<C-c>"]], { expr = true, silent = true })
+vim.keymap.set({'n', 'i' }, '<BS>', [[pumvisible() ? "\<C-e><BS>" : "\<BS>"]], { expr = true, silent = true })
+vim.keymap.set({ "n", "i" }, "<C-Esc>", function()
+  if vim.fn.pumvisible() == 1 then
+    if vim.fn.complete_info().selected == -1 then
+      return vim.api.nvim_replace_termcodes("<C-e><CR>", true, true, true)
+    else
+      return vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
+    end
+  end
+  return vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+end, { expr = true, silent = true })
+vim.keymap.set({'n', 'i' }, '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true, silent = true })
+vim.keymap.set({'n', 'i' }, '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<BS>"]], { expr = true, silent = true })

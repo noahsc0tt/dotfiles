@@ -300,10 +300,19 @@ return {
                     statusline = { helo = false }
                 },
                 keymap = {
+                    recommended = true,
                     pre_select = true,
-                    jump_to_mark = '<c-m>',
+                    jump_to_mark = '<C-m>',
+                    manual_complete = '<C-Space>',
+                    bigger_preview = '<C-k>',
                 },
             }
         end,
+    },
+
+   {
+        "rmagatti/auto-session",
+        lazy = false,
     }
+
 }

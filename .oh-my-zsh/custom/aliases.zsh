@@ -344,13 +344,37 @@ function bat() {
     command bat --style=rule,snip
   fi
 }
-alias batn="bat --style=header-filename,rule,snip,numbers"
+function batn() {
+  if [ -t 0 ]; then
+    # stdin is not connected, arguments are files
+    command bat --style=header-filename,rule,snip,numbers "$@"
+  else
+    # stdin is being piped in
+    command bat --style=rule,snip,numbers
+  fi
+}
 
 alias lc="lolcat -f"
-alias lb="lolcat -f | bat"
-alias lbn="lolcat -f | bat --style=header-filename,rule,snip,numbers "
+function lb() {
+  if [ -t 0 ]; then
+    # stdin is not connected, arguments are files
+    bat --style=header-filename,rule,snip "$@" | lolcat -f | bat --style=header-filename,rule,snip
+  else
+    # stdin is being piped in
+     bat --style=rule,snip "$@" | lolcat -f | bat --style=rule,snip
+  fi
+}
+function lbn() {
+  if [ -t 0 ]; then
+    # stdin is not connected, arguments are files
+    bat --style=header-filename,rule,snip,numbers "$@" | lolcat -f | bat --style=header-filename,rule,snip,numbers
+  else
+    # stdin is being piped in
+     bat --style=rule,snip,numbers "$@" | lolcat -f | bat --style=rule,snip,numbers
+  fi
+}
 function lh() {
-  "$*" -h | lolcat -f | bat
+  "$*" -h | lolcat -f | bat --style=rule,snip
 }
 
 alias disk="dust -rC"
@@ -379,7 +403,7 @@ function typeout() {
 }
 
 function message() {
-  ghss -s marquee -- --message="$*"
+  gh screensaver -smarquee -- --message="$*"
 }
 
 alias text="figlet"

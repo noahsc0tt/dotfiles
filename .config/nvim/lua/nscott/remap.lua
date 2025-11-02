@@ -36,22 +36,32 @@ vim.keymap.set({ "n", "v" }, "<leader><leader>c", "\"+c")
 vim.keymap.set({ "n", "v" }, "<leader><leader>C", "\"+C")
 
 -- Writing and quitting
-vim.keymap.set("n", "<C-e>", function() vim.cmd("q!") end, { noremap = true })
-vim.keymap.set("n", "<leader>q", function() vim.cmd("q") end)
-
 vim.keymap.set("n", "<leader>w", function()
-    if vim.bo.modifiable then
+    if vim.bo.buftype == "" and vim.bo.modifiable and vim.bo.modified and not vim.bo.readonly then
         vim.cmd("w")
     end
 end)
+vim.keymap.set("n", "<leader>W", function()
+    if vim.bo.buftype == "" and vim.bo.modifiable and vim.bo.modified and not vim.bo.readonly then
+        vim.cmd("wq")
+    end
+end)
+vim.keymap.set("n", "<leader>q", function()
+    vim.cmd("q")
+end)
+vim.keymap.set("n", "<leader>Q", function()
+    vim.cmd("q!")
+end)
 vim.keymap.set("n", "<leader>e", function()
-    if vim.bo.modifiable then
+    if vim.bo.buftype == "" and vim.bo.modifiable and vim.bo.modified and not vim.bo.readonly then
         vim.cmd("wqa")
     else
         vim.cmd("qa!")
     end
 end)
-vim.keymap.set("n", "<leader>E", function() vim.cmd("qa!") end)
+vim.keymap.set("n", "<leader>E", function()
+    vim.cmd('qa!')
+end)
 
 -- Moving selected text
 vim.keymap.set("x", "J", ":move '>+1<CR>gv=gv")
@@ -117,13 +127,13 @@ end, { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<leader>t', ':terminal<CR>', { desc = 'Open terminal' })
 
 vim.keymap.set('n', '<leader>T', function()
-  local cur = vim.api.nvim_get_current_buf()
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
-      vim.api.nvim_set_current_buf(buf)
-      break
+    local cur = vim.api.nvim_get_current_buf()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
+            vim.api.nvim_set_current_buf(buf)
+            break
+        end
     end
-  end
 end, { silent = true })
 
 

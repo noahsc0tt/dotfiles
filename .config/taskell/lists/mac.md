@@ -1,6 +1,6 @@
 ## To Do
 
-- desktop raycast keybinds
+- a way to separate
 - password manager
     * [ ] pass/gopass
     * [ ] passpie
@@ -9,11 +9,10 @@
 - simplebar
 - navigate menu bar and cc with keyboard
 - tiling window manager
-    * [ ] yabai
     * [ ] autopilot
+    * [ ] yabai
     * [ ] rightzoom
 - launch apps without windows at startup
-- control centre fancy stuff
 - zoom differnet modes (check accesibility)
 - apptivate
 - launchctl manager for agents and daemons

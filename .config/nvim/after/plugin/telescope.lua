@@ -153,7 +153,9 @@ telescope.setup {
     }
 }
 telescope.load_extension "file_browser"
-telescope.load_extension "ui-select"
+vim.schedule(function()
+    telescope.load_extension("ui-select")
+end)
 telescope.load_extension "notify"
 
 
@@ -304,6 +306,7 @@ vim.keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
 
 
 vim.keymap.set({ "n", "v" }, "<leader>af", function() builtin.lsp_references() end)
+vim.keymap.set({ "n", "v" }, "<leader>ar", function() builtin.lsp_references() end)
 
 
 vim.keymap.set({ "n", "v" }, "<leader>ae", function() builtin.diagnostics() end)

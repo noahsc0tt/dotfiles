@@ -43,23 +43,38 @@ vim.keymap.set("n", "<S-M-l>", function() swap_and_follow("right") end)
 
 
 
-vim.keymap.set("n", "<Leader>sh", function()
+vim.keymap.set("n", "<leader>sh", function()
     vim.cmd.vsplit()
     swap_and_follow("left")
 end)
 
-vim.keymap.set("n", "<Leader>sj", function()
+vim.keymap.set("n", "<leader>sj", function()
     vim.cmd.split()
 end)
 
-vim.keymap.set("n", "<Leader>sk", function()
+vim.keymap.set("n", "<leader>sk", function()
     vim.cmd.split()
     swap_and_follow("up")
 end)
 
-vim.keymap.set("n", "<Leader>sl", function()
+vim.keymap.set("n", "<leader>sl", function()
     vim.cmd.vsplit()
 end)
+
+-- Tabs
+vim.keymap.set("n", "<leader>st", function()
+    vim.cmd("tab split")
+end)
+vim.keymap.set("n", "<leader>sT", function()
+    vim.cmd("tabclose")
+end)
+vim.keymap.set("n", "<leader>sH", function()
+    vim.cmd("tabmove -1")
+end)
+vim.keymap.set("n", "<leader>sL", function()
+    vim.cmd("tabmove +1")
+end)
+
 
 -- For filename completion for cd in cmd mode
 

@@ -501,6 +501,7 @@ config.bind('<Ctrl-u>', 'scroll-page 0 -0.5')
 config.bind(',dm', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('gr', 'spawn --userscript readability-js')
 config.bind('gw', 'tab-give')
+config.bind('go', 'scroll-to-perc 0')
 
 
 

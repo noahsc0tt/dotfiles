@@ -6,6 +6,7 @@
 - cpy echoes output
 - make gr work with stdin
 - bat vs man vs less vs nvimpager
+- bat --style=changes
 - comment keymap
 - awesome-cli
 - default config files

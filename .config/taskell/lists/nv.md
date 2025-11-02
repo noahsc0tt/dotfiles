@@ -1,6 +1,10 @@
 ## To Do
 
+- motion for inner/around function
+- fix fullscreen keybind breaking with tabs
+- that folke thing that does a spotlight on your current function
 - accept coq with <C-space>
+- bufferline renaming tabs and buffers
 - highlight matching braces different colors? like vscode
 - completions colored? check colorful-menu
 - think about what keybinds to expose to terminal mode
@@ -26,12 +30,7 @@
     * [ ] terminal (for oc)
     * [ ] statuscolumn
     * [ ] win
-- session manager
-    * [ ] persistence
-    * [ ] persisted
-    * [ ] neovim-session-manager
-    * [ ] posession
-    * [ ] mini.sessions
+- mini.nvim
 - default U behaviour (undo this line)
 - whichkey in insert mode
 - able to add  zf

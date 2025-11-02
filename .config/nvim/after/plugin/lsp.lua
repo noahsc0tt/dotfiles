@@ -155,6 +155,7 @@ vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
 vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
 -- vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
 vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
+vim.keymap.set("n", "<leader>lc", vim.lsp.buf.references, opts)
 vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, opts)
 
 -- vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
