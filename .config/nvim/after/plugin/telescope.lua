@@ -259,7 +259,7 @@ vim.keymap.set({ "n", "v" }, "<leader>as", function()
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ab", function()
+vim.keymap.set({ "n", "v" }, "<leader>af", function()
     local bufs = vim.fn.getbufinfo({ buflisted = 1 })
     local current = vim.api.nvim_get_current_buf()
     local index = 1
@@ -305,7 +305,6 @@ vim.keymap.set({ "n", "v" }, "<leader>ag", function() builtin.git_files() end)
 vim.keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>af", function() builtin.lsp_references() end)
 vim.keymap.set({ "n", "v" }, "<leader>ar", function() builtin.lsp_references() end)
 
 
@@ -333,7 +332,10 @@ vim.keymap.set({ "n", "v" }, "<leader>ap", function() builtin.registers() end)
 vim.keymap.set({ "n", "v" }, "<leader>:", function() builtin.commands() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>at", function() builtin.builtin() end)
+vim.keymap.set({ "n", "v" }, "<leader>A", function() builtin.builtin() end)
+
+
+vim.keymap.set({ "n", "v" }, "<leader>at", function() builtin.filetypes() end)
 
 
 vim.keymap.set({ "n", "v", "i" }, "<C-=>", function() builtin.spell_suggest() end)

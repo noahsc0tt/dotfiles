@@ -75,8 +75,7 @@ vim.keymap.set("n", "<leader>ld", function()
     end
 end, { noremap = true, silent = true })
 
--- Restart LSP
-vim.keymap.set("n", "<leader>r", restart_all_lsps, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>vr", restart_all_lsps, { noremap = true, silent = true })
 
 
 

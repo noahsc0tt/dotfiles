@@ -99,7 +99,7 @@ vim.keymap.set("c", "<C-g>h", "<Left>")
 vim.keymap.set("c", "<C-g>l", "<Right>")
 
 -- Vim stuff
-vim.keymap.set("n", "<leader>vn", "<cmd>set nohlsearch<CR>")
+vim.keymap.set("n", "<leader>vH", "<cmd>set nohlsearch<CR>")
 vim.keymap.set("n", "<leader>vh", "<cmd>set hlsearch<CR>")
 vim.keymap.set("n", "<leader>vz", "<cmd>Lazy<CR>")
 vim.keymap.set("n", "<leader>ve", "<cmd>edit<CR>")
@@ -109,6 +109,8 @@ vim.keymap.set("n", "<leader>vs", function()
 end, { desc = "Source file and echo message" })
 vim.keymap.set("n", "<leader>vl", ":Ld<CR>")
 vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
+vim.keymap.set("n", "<leader>vn", "<cmd>enew<CR>")
+vim.keymap.set("n", "<leader>vm", "<cmd>Markview enable<CR>")
 
 -- Scrolling
 vim.keymap.set({ "n", "v", "c" }, "<C-n>", "2<C-e>")
@@ -117,36 +119,6 @@ vim.keymap.set({ "n", "v", "c" }, "<C-p>", "2<C-y>")
 -- Incrementing
 vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
 vim.keymap.set('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
-
-
--- Terminal
-vim.keymap.set('t', '<C-Esc>', function()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
-end, { desc = 'Exit terminal mode' })
-
-vim.keymap.set('n', '<leader>t', ':terminal<CR>', { desc = 'Open terminal' })
-
-vim.keymap.set('n', '<leader>T', function()
-    local cur = vim.api.nvim_get_current_buf()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
-            vim.api.nvim_set_current_buf(buf)
-            break
-        end
-    end
-end, { silent = true })
-
-
--- Fullscreen
-vim.keymap.set("n", "<A-f>", function()
-    if vim.t.zoomed then
-        vim.cmd("tabclose")
-        vim.t.zoomed = false
-    else
-        vim.cmd("tab split")
-        vim.t.zoomed = true
-    end
-end, { desc = "Toggle fullscreen" })
 
 
 -- Folding

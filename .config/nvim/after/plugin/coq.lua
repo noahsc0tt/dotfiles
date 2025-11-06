@@ -12,9 +12,6 @@ require("coq_3p")({
 })
 
 
-vim.keymap.set({'n', 'i' }, '<Esc>', [[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true })
-vim.keymap.set({'n', 'i' }, '<C-c>', [[pumvisible() ? "\<C-e><C-c>" : "\<C-c>"]], { expr = true, silent = true })
-vim.keymap.set({'n', 'i' }, '<BS>', [[pumvisible() ? "\<C-e><BS>" : "\<BS>"]], { expr = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<C-Esc>", function()
   if vim.fn.pumvisible() == 1 then
     if vim.fn.complete_info().selected == -1 then
@@ -25,5 +22,3 @@ vim.keymap.set({ "n", "i" }, "<C-Esc>", function()
   end
   return vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
 end, { expr = true, silent = true })
-vim.keymap.set({'n', 'i' }, '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true, silent = true })
-vim.keymap.set({'n', 'i' }, '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<BS>"]], { expr = true, silent = true })

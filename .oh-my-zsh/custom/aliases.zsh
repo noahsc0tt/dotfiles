@@ -5,11 +5,11 @@ alias srd="sudo rm -rf"
 # alias rmt="trash"
 alias cdtrash="cd /Users/nscott/Library/Mobile\ Documents/.Trash"
 
-alias config="nvim ~/.zshrc"
-alias con="nvim ~/.zshrc"
-alias aliases="nvim $ZSH_CUSTOM/aliases.zsh"
-alias al="nvim $ZSH_CUSTOM/aliases.zsh"
-alias keybinds="nvim $ZSH_CUSTOM/keybinds.zsh"
+alias config="NO_AUTOSESSION=1 nvim ~/.zshrc"
+alias con="NO_AUTOSESSION=1 nvim ~/.zshrc"
+alias aliases='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/aliases.zsh'
+alias al='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/aliases.zsh'
+alias keybinds='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/keybinds.zsh'
 
 alias reload="exec zsh"
 alias rld="exec zsh"
@@ -34,7 +34,7 @@ alias gcam="git add -A && git commit -m"
 alias gch="git checkout"
 alias gl="git log --oneline --graph --decorate --show-signature"
 alias glv="git log --graph --decorate --show-signature"
-alias gpsh="git push"
+alias gpsu="git push --set-upstream origin $(git_current_branch)"
 alias gpl="git pull"
 alias grm="git rm --cached"
 alias gus="git restore --staged"
@@ -153,10 +153,6 @@ lsg() {
 	 else
 	 	ls . | command rg -i --color=auto "$@"
 	 fi	 
-}
-
-println() {
-	sed -n $1p $2
 }
 
 alias ghcp="gh copilot"
@@ -364,13 +360,14 @@ function lb() {
      bat --style=rule,snip "$@" | lolcat -f | bat --style=rule,snip
   fi
 }
+
 function lbn() {
   if [ -t 0 ]; then
-    # stdin is not connected, arguments are files
+    #stdin is not connected, arguments are files
     bat --style=header-filename,rule,snip,numbers "$@" | lolcat -f | bat --style=header-filename,rule,snip,numbers
   else
     # stdin is being piped in
-     bat --style=rule,snip,numbers "$@" | lolcat -f | bat --style=rule,snip,numbers
+     bat "$@" | lolcat -f | bat --style=rule,snip,numbers
   fi
 }
 function lh() {
@@ -436,3 +433,5 @@ alias wtha="curl wttr.in/\?F"
 alias system="fastfetch"
 
 alias wh="whence"
+
+alias kl="kalker"

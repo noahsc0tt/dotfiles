@@ -1,5 +1,6 @@
 ## To Do
 
+- square not rounded corners. same for neovide
 - slight transparency to desktop???
 - renaming windows custom
 - disable middle click paste

@@ -15,10 +15,22 @@ vim.keymap.set({ "n","i","v" }, "<C-j>", smart_splits.move_cursor_down)
 vim.keymap.set({ "n","i","v" }, "<C-k>", smart_splits.move_cursor_up)
 vim.keymap.set({ "n","i","v" }, "<C-l>", smart_splits.move_cursor_right)
 
-vim.keymap.set("n", "<M-C-h>", function() smart_splits.resize_left(4) end)
-vim.keymap.set("n", "<M-C-l>", function() smart_splits.resize_right(4) end)
-vim.keymap.set("n", "<M-C-j>", function() smart_splits.resize_down(4) end)
-vim.keymap.set("n", "<M-C-k>", function() smart_splits.resize_up(4) end)
+vim.keymap.set("n", "<M-C-h>", function()
+    smart_splits.resize_left(4)
+    vim.cmd("FocusDisableWindow")
+end)
+vim.keymap.set("n", "<M-C-l>", function()
+    smart_splits.resize_right(4)
+    vim.cmd("FocusDisableWindow")
+end)
+vim.keymap.set("n", "<M-C-j>", function()
+    smart_splits.resize_down(4)
+    vim.cmd("FocusDisableWindow")
+end)
+vim.keymap.set("n", "<M-C-k>", function()
+    smart_splits.resize_up(4)
+    vim.cmd("FocusDisableWindow")
+end)
 
 
 
@@ -36,43 +48,27 @@ local function swap_and_follow(dir)
     vim.api.nvim_win_set_cursor(0, pos)
 end
 
-vim.keymap.set("n", "<S-M-h>", function() swap_and_follow("left") end)
-vim.keymap.set("n", "<S-M-j>", function() swap_and_follow("down") end)
-vim.keymap.set("n", "<S-M-k>", function() swap_and_follow("up") end)
-vim.keymap.set("n", "<S-M-l>", function() swap_and_follow("right") end)
+vim.keymap.set("n", "<leader>swh", function() swap_and_follow("left") end)
+vim.keymap.set("n", "<leader>swj", function() swap_and_follow("down") end)
+vim.keymap.set("n", "<leader>swk", function() swap_and_follow("up") end)
+vim.keymap.set("n", "<leader>swl", function() swap_and_follow("right") end)
 
 
 
 vim.keymap.set("n", "<leader>sh", function()
-    vim.cmd.vsplit()
-    swap_and_follow("left")
+    vim.cmd("FocusSplitLeft")
 end)
 
 vim.keymap.set("n", "<leader>sj", function()
-    vim.cmd.split()
+    vim.cmd("FocusSplitDown")
 end)
 
 vim.keymap.set("n", "<leader>sk", function()
-    vim.cmd.split()
-    swap_and_follow("up")
+    vim.cmd("FocusSplitUp")
 end)
 
 vim.keymap.set("n", "<leader>sl", function()
-    vim.cmd.vsplit()
-end)
-
--- Tabs
-vim.keymap.set("n", "<leader>st", function()
-    vim.cmd("tab split")
-end)
-vim.keymap.set("n", "<leader>sT", function()
-    vim.cmd("tabclose")
-end)
-vim.keymap.set("n", "<leader>sH", function()
-    vim.cmd("tabmove -1")
-end)
-vim.keymap.set("n", "<leader>sL", function()
-    vim.cmd("tabmove +1")
+    vim.cmd("FocusSplitRight")
 end)
 
 

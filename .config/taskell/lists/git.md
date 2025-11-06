@@ -1,6 +1,7 @@
 ## To Do
 
 - aliases for fzf (gaf)
+- nicer looking delta (method indicators, not class)
 - status --column=
 - config pull.rebase persistent?
 - tig

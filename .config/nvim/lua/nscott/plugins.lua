@@ -243,8 +243,7 @@ return {
 
     {
         "chrisgrieser/nvim-origami",
-        lazy = true,
-        event = "VeryLazy",
+        lazy = false,
 
         init = function()
             vim.opt.foldlevel = 99
@@ -310,9 +309,27 @@ return {
         end,
     },
 
-   {
+    {
         "rmagatti/auto-session",
         lazy = false,
-    }
+        cond = not vim.g.started_by_firenvim,
+    },
 
+    {
+        'nvim-focus/focus.nvim',
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+    -- {
+    --     "folke/twilight.nvim",
+    --     lazy = true,
+    --     event = "VeryLazy",
+    -- },
+
+    {
+        "folke/zen-mode.nvim",
+        lazy = true,
+        event = "VeryLazy",
+    }
 }

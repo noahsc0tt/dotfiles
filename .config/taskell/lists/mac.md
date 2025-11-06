@@ -1,6 +1,6 @@
 ## To Do
 
-- a way to separate
+- youtube music background
 - password manager
     * [ ] pass/gopass
     * [ ] passpie

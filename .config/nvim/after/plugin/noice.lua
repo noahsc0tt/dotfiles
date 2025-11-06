@@ -96,8 +96,10 @@ require("noice").setup {
         -- Benefit of using Noice for this is the routing and consistent history view
         enabled = true,
         view = "notify",
+        replace = false,
+        merge = false,
         opts = {
-            level = vim.log.levels.WARN,
+            -- level = vim.log.levels.WARN,
             render = "wrapped-compact",
             stages = "fade",
             timeout = 500,

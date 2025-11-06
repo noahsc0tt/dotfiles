@@ -17,6 +17,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = false
 vim.opt.mouse = "a"
 vim.keymap.set({"n", "i", "v"}, "<MiddleMouse>", "<Nop>")
 
@@ -40,3 +41,4 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undo"
 vim.opt.undofile = true
 
+vim.opt.guifont = { "JetBrainsMonoNL Nerd Font", ":h16" }
