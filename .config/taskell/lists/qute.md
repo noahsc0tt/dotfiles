@@ -1,5 +1,7 @@
 ## To Do
 
+- load times
+- pdf viewer
 - dont flash cursor in normal mode
 - tab colors
 - scroll instantly like vimium

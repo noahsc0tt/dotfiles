@@ -85,6 +85,16 @@ function grmf() {
   [ -n "$file" ] && git -C "$root" rm $file
 }
 
+function grmcf() {
+  local root file
+  root=$(git rev-parse --show-toplevel)
+  file=$(
+    git -C "$root" ls-files \
+      | fzf --preview "bat {}"
+  )
+  [ -n "$file" ] && git -C "$root" rm --cached $file
+}
+
 function gaf() {
   local root files
   root=$(git rev-parse --show-toplevel)
@@ -139,13 +149,13 @@ alias unhide="chflags nohidden"
 
 alias ls="lsd --color=always --group-directories-first -1 --literal --no-symlink"
 alias lst="lsd --tree --color=always --group-directories-first --literal --no-symlink | less -R"
-alias lsc="lsd --color=always --group-directories-first --literal --no-symlink"
+alias lsf="lsd --color=always --group-directories-first --literal --no-symlink"
 alias lsa="lsd -A --color=always --group-directories-first -1 --literal --no-symlink | bat"
-alias lsac="lsd -A --color=always --group-directories-first --literal --no-symlink | bat"
+alias lsaf="lsd -A --color=always --group-directories-first --literal --no-symlink | bat"
 alias lsat="lsd -A --tree --color=always --group-directories-first --literal --no-symlink | less -R"
 alias lsi="lsd -l --date=relative --color=always --group-directories-first -1 --literal --no-symlink --blocks name,date,size,permission --header"
 alias lsai="lsd -A -l --date=relative --color=always --group-directories-first -1 --literal --no-symlink --blocks name,date,size,permission --header | bat"
-alias lsaic="lsd -A -l --date=relative --color=always --group-directories-first --literal --no-symlink --blocks name,date,size,permission --header | bat"
+alias lsaif="lsd -A -l --date=relative --color=always --group-directories-first --literal --no-symlink --blocks name,date,size,permission --header | bat"
 
 lsg() {
 	 if [[ $# -ge 2 && -d $1 ]] ; then

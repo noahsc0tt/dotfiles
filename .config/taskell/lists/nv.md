@@ -1,9 +1,17 @@
 ## To Do
 
+- lsp keybinds
+    * [ ] make lr save first
+    * [ ] merge <leader>l with g
+- break keybinds
+- stop double esc from leaving terminal mode
+- %s functions
+    * [ ] case insensitive replacing
+    * [ ] (ci) swapping
 - motion for inner/around function
+- make q: type buffers appear small (focus)
 - better comments
 - highlight matching braces different colors? like vscode
-- completions colored? check colorful-menu
 - coq
     * [ ] cmd mode
     * [ ] 3p builtins
@@ -62,6 +70,7 @@
 - lualine
     * [ ] path trimming
     * [ ] operator pending mode showing keys
+- bufferline allow different sizing if name of buffer is short
 - fugitive
     * [ ] no enter to continue
 - clients

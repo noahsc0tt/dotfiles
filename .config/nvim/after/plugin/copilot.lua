@@ -7,8 +7,8 @@ vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
     replace_keycodes = false
 })
 vim.g.copilot_no_tab_map = true
-vim.keymap.set({"n", "i"}, "<C-i>e", "<cmd>Copilot enable<CR>");
-vim.keymap.set({"n", "i"}, "<C-i>d", "<cmd>Copilot disable<CR>");
+vim.keymap.set("i", "<C-i><C-e>", "<cmd>Copilot enable<CR>");
+vim.keymap.set("i", "<C-i><C-d>", "<cmd>Copilot disable<CR>");
 vim.keymap.set("i", "<C-i><C-r>", "<Plug>(copilot-dismiss)");
 vim.keymap.set("i", "<C-i><C-s>", "<Plug>(copilot-suggest)");
 vim.keymap.set("i", "<C-i><C-n>", "<Plug>(copilot-next)");

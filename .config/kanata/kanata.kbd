@@ -130,7 +130,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
  _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
  _   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
- _   `   S-`    _    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
+ _   `   S-`    S-`    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
 

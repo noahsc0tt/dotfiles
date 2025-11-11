@@ -1,8 +1,8 @@
 ## To Do
 
 - washing
-- ask dad about octopus bills
-- book haircut
+- trim
 
 ## Doing
 
+- balsamiq unsubscribe

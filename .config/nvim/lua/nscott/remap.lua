@@ -111,16 +111,17 @@ vim.keymap.set("n", "<leader>vl", ":Ld<CR>")
 vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
 vim.keymap.set("n", "<leader>vn", "<cmd>enew<CR>")
 vim.keymap.set("n", "<leader>vm", "<cmd>Markview enable<CR>")
+vim.keymap.set("n", "<leader>vM", "<cmd>Markview disable<CR>")
 
 -- Scrolling
 vim.keymap.set({ "n", "v", "c" }, "<C-n>", "2<C-e>")
 vim.keymap.set({ "n", "v", "c" }, "<C-p>", "2<C-y>")
 
 -- Incrementing
-vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
-vim.keymap.set('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
+vim.keymap.set({ 'n', 'v' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
+vim.keymap.set({ 'n', 'v' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
 
 
 -- Folding
-vim.keymap.set("n", "<leader>z", "zM")
-vim.keymap.set("n", "<leader>Z", "zR")
+vim.keymap.set({ 'n', 'v' }, "<leader>z", "zM")
+vim.keymap.set({ 'n', 'v' }, "<leader>Z", "zR")

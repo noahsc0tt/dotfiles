@@ -140,6 +140,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export NODE_PATH=$NODE_PATH:$(npm root -g)
 
+export PATH="$HOME/.ghcup/bin:$PATH"
+
 export PATH=$PATH:/usr/local/go
 export PATH=$PATH:/Users/nscott/.cargo/bin
 

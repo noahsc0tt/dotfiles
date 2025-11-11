@@ -48,10 +48,10 @@ local function swap_and_follow(dir)
     vim.api.nvim_win_set_cursor(0, pos)
 end
 
-vim.keymap.set("n", "<leader>swh", function() swap_and_follow("left") end)
-vim.keymap.set("n", "<leader>swj", function() swap_and_follow("down") end)
-vim.keymap.set("n", "<leader>swk", function() swap_and_follow("up") end)
-vim.keymap.set("n", "<leader>swl", function() swap_and_follow("right") end)
+vim.keymap.set("n", "<leader>sH", function() swap_and_follow("left") end)
+vim.keymap.set("n", "<leader>sJ", function() swap_and_follow("down") end)
+vim.keymap.set("n", "<leader>sK", function() swap_and_follow("up") end)
+vim.keymap.set("n", "<leader>sL", function() swap_and_follow("right") end)
 
 
 

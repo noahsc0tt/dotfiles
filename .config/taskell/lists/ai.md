@@ -1,5 +1,8 @@
 ## To Do
 
+- oc not rendering. nvim thing, since doesnt work in term split either
+- tell oc to stop trying to do one million things when i asked it to do one
+- bring back cpl chat
 - tools
     * [ ] windsurf
     * [ ] tabby
@@ -11,8 +14,6 @@
     * [ ] opencode.json config
     * [ ] agents.md config
 - snyk mcp
-- cpl persistence
-- oc asking for confirmation
 - ollama code ai assistance for offline
 
 ## Doing
