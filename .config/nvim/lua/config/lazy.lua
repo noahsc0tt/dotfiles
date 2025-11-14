@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { import = "nscott.plugins" },
+    { import = "config.plugins" },
   },
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "tokyonight-night" } },

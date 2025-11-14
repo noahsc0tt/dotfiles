@@ -101,7 +101,7 @@ vim.keymap.set("c", "<C-g>l", "<Right>")
 -- Vim stuff
 vim.keymap.set("n", "<leader>vH", "<cmd>set nohlsearch<CR>")
 vim.keymap.set("n", "<leader>vh", "<cmd>set hlsearch<CR>")
-vim.keymap.set("n", "<leader>vz", "<cmd>Lazy<CR>")
+vim.keymap.set("n", "<leader>vz", "<cmd>Lazy sync<CR>")
 vim.keymap.set("n", "<leader>ve", "<cmd>edit<CR>")
 vim.keymap.set("n", "<leader>vs", function()
     vim.cmd("so")

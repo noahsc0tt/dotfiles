@@ -1,5 +1,6 @@
 ## To Do
 
+- yazi instead of telescope fb?
 - lsp keybinds
     * [ ] make lr save first
     * [ ] merge <leader>l with g

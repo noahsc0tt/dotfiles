@@ -1,1 +1,1 @@
-require("nscott")
+require("config")
