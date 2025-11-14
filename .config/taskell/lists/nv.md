@@ -81,11 +81,13 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] context-menu
+    * [ ] conform
+    * [ ] cd-project
     * [ ] gitsigns/vimgitgutter
-    * [ ] zen-mode
+    * [ ] bookmarks.nvim
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
     * [ ] luasnip, cmp_luasnip, friendly-snippet
-    * [ ] conform
     * [ ] fold-preview
     * [ ] indent blankline
     * [ ] telescope-menu

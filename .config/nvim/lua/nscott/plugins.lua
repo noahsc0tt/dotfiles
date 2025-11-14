@@ -262,9 +262,6 @@ return {
 
     {
         "NickvanDyke/opencode.nvim",
-        dependencies = {
-            { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-        },
         cond = not vim.g.started_by_firenvim,
     },
 
@@ -331,5 +328,17 @@ return {
         "folke/zen-mode.nvim",
         lazy = true,
         event = "VeryLazy",
-    }
+    },
+
+    {
+        "LintaoAmons/scratch.nvim",
+        lazy = true,
+        event = "VeryLazy",
+    },
+
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+    },
 }

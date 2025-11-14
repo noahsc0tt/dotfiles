@@ -69,8 +69,9 @@ require("auto-session").setup({
 })
 
 vim.keymap.set("n", "<leader>SF", "<cmd>AutoSession search<CR>", { desc = "Session search", })
-vim.keymap.set("n", "<leader>SJ", "<cmd>AutoSession deletePicker<CR>", { desc = "Delete search", })
+vim.keymap.set("n", "<leader>Sf", "<cmd>AutoSession deletePicker<CR>", { desc = "Delete search", })
 vim.keymap.set("n", "<leader>SD", "<cmd>AutoSession delete<CR>", { desc = "Delete current session", })
 vim.keymap.set("n", "<leader>SV", "<cmd>AutoSession save<CR>", { desc = "Save session", })
 vim.keymap.set("n", "<leader>SE", "<cmd>AutoSession enable<CR>", { desc = "Enable AutoSession", })
-vim.keymap.set("n", "<leader>ST", "<cmd>AutoSession disable<CR>", { desc = "Disable AutoSession", })
+vim.keymap.set("n", "<leader>Se", "<cmd>AutoSession disable<CR>", { desc = "Disable AutoSession", })
+vim.keymap.set("n", "<leader>Sd", "<cmd>AutoSession disable<CR>", { desc = "Disable AutoSession", })

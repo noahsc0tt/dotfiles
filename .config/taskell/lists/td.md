@@ -1,8 +1,6 @@
 ## To Do
 
-- washing
-- trim
+- balsamiq unsubscribe
 
 ## Doing
 
-- balsamiq unsubscribe

@@ -201,10 +201,10 @@ require("noice").setup {
             opts = { skip = true },
         },
         -- Hide search count messages (e.g. "3/5")
-        {
-            filter = { event = "msg_show", kind = "search_count" },
-            opts = { skip = true },
-        },
+        -- {
+        --     filter = { event = "msg_show", kind = "search_count" },
+        --     opts = { skip = true },
+        -- },
         -- Show macro recording notifications
         {
             view = "notify",

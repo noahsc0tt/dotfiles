@@ -447,24 +447,24 @@ c.window.hide_decoration = True
 
 c.content.blocking.enabled = True
 c.content.blocking.method = 'adblock'
-# c.content.blocking.adblock.lists = [
-#     # Ads & trackers
-#     "https://easylist.to/easylist/easylist.txt",
-#     "https://easylist.to/easylist/easyprivacy.txt",
-#     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
-#
-#     # Malware / phishing / resource abuse / crypto miners
-#     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
-#     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
-#
-#     # “Unbreak” fixes so sites don’t break unnecessarily
-#     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
-#
-#     # Annoyances (cookie banners, social widgets, popups)
-#     "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
-#     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
-#     "https://secure.fanboy.co.nz/fanboy-social.txt",
-# ]
+c.content.blocking.adblock.lists = [
+    # Ads & trackers
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
+
+    # Malware / phishing / resource abuse / crypto miners
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+
+    # “Unbreak” fixes so sites don’t break unnecessarily
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
+
+    # Annoyances (cookie banners, social widgets, popups)
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    "https://secure.fanboy.co.nz/fanboy-social.txt",
+]
 c.content.blocking.whitelist = ["github.com"]
 c.content.cookies.accept = "no-3rdparty"
 c.content.webrtc_ip_handling_policy = "disable-non-proxied-udp"

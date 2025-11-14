@@ -38,10 +38,15 @@ vim.lsp.enable('bashls')
 vim.lsp.config('bashls', coq.lsp_ensure_capabilities({ filetypes = { "sh", "zsh", "bash" } }))
 vim.lsp.enable('eslint')
 vim.lsp.enable('clangd')
+vim.lsp.enable('ruby-lsp')
+vim.lsp.config('ruby-lsp', coq.lsp_ensure_capabilities({
+    cmd = { "ruby-lsp" },
+    filetypes = { "ruby" },
+}))
 vim.lsp.enable('hls')
 vim.lsp.config('hls', coq.lsp_ensure_capabilities({
-  cmd = { "haskell-language-server-wrapper", "--lsp" },
-  filetypes = { "haskell", "lhaskell" },
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+    filetypes = { "haskell", "lhaskell" },
 }))
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('jsonls')

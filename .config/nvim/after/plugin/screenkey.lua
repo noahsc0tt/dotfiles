@@ -30,14 +30,14 @@ require("screenkey").setup({
     group_mappings = true,
     display_infront = {},
     display_behind = {},
-    filter = function(keys)
-        local ignore = { "h", "j", "k", "l" }
-        return vim.iter(keys)
-            :filter(function(k)
-                return not vim.tbl_contains(ignore, k.key)
-            end)
-            :totable()
-    end,
+    -- filter = function(keys)
+    --     local ignore = { "h", "j", "k", "l" }
+    --     return vim.iter(keys)
+    --         :filter(function(k)
+    --             return not vim.tbl_contains(ignore, k.key)
+    --         end)
+    --         :totable()
+    -- end,
     colorize = function(keys)
         return keys
     end,

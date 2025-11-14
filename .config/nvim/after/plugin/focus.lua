@@ -41,16 +41,24 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 
-local ignore_buftypes = { 'terminal', 'prompt', }
+-- local ignore_buftypes = { 'terminal', 'prompt', }
+--
+-- vim.api.nvim_create_autocmd('WinEnter', {
+--     callback = function(_)
+--         if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+--             vim.w.focus_disable = true
+--         else
+--             vim.w.focus_disable = false
+--         end
+--     end,
+--     desc = 'Disable focus autoresize for BufType',
+-- })
 
-vim.api.nvim_create_autocmd('WinEnter', {
-    callback = function(_)
-        if vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
-        then
-            vim.w.focus_disable = true
-        else
-            vim.w.focus_disable = false
-        end
-    end,
-    desc = 'Disable focus autoresize for BufType',
-})
+vim.keymap.set("n", "<M-q>", function() vim.cmd("FocusEqualise") end )
+vim.keymap.set("n", "<M-f>", function() vim.cmd("ZenMode") end)
+vim.keymap.set("n", "<M-e>", function() vim.cmd("FocusEnable") end)
+vim.keymap.set("n", "<M-S-e>", function() vim.cmd("FocusDisable") end)
+vim.keymap.set("n", "<M-r>", function()
+    vim.cmd("FocusEnable")
+    vim.cmd("FocusAutoresize")
+end)

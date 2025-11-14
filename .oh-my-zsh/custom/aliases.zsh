@@ -37,8 +37,13 @@ alias glv="git log --graph --decorate --show-signature"
 alias gpsu="git push --set-upstream origin $(git_current_branch)"
 alias gpl="git pull"
 alias grm="git rm --cached"
+alias grt="git reset"
+alias grts="git reset --soft"
+alias grth="git reset --hard"
+alias grtk="git reset --keep"
 alias gus="git restore --staged"
 alias gusa="git restore --staged ."
+alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
 function gs() {
   local root
   root=$(git rev-parse --show-toplevel)
@@ -99,7 +104,7 @@ function gaf() {
   local root files
   root=$(git rev-parse --show-toplevel)
   files=$(
-    git -C "$root" ls-files -m \
+    git -C "$root" ls-files -m -o --exclude-standard \
       | fzf -m --preview "git -C '$root' diff --color=always -- {} | delta"
   )
   [ -n "$files" ] && git -C "$root" add $files
@@ -147,17 +152,51 @@ alias exe="chmod +x"
 alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 
-alias ls="lsd --color=always --group-directories-first -1 --literal --no-symlink"
-alias lst="lsd --tree --color=always --group-directories-first --literal --no-symlink | less -R"
-alias lsf="lsd --color=always --group-directories-first --literal --no-symlink"
-alias lsa="lsd -A --color=always --group-directories-first -1 --literal --no-symlink | bat"
-alias lsaf="lsd -A --color=always --group-directories-first --literal --no-symlink | bat"
-alias lsat="lsd -A --tree --color=always --group-directories-first --literal --no-symlink | less -R"
-alias lsi="lsd -l --date=relative --color=always --group-directories-first -1 --literal --no-symlink --blocks name,date,size,permission --header"
-alias lsai="lsd -A -l --date=relative --color=always --group-directories-first -1 --literal --no-symlink --blocks name,date,size,permission --header | bat"
-alias lsaif="lsd -A -l --date=relative --color=always --group-directories-first --literal --no-symlink --blocks name,date,size,permission --header | bat"
+unalias ls
+function ls() {
+  lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
+}
 
-lsg() {
+function lst() {
+  lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
+}
+
+function lsf() {
+  lsd --color=always --group-directories-first --literal --no-symlink "$@" | bat
+}
+
+unalias lsa
+function lsa() {
+  lsd -A --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
+}
+
+function lsaf() {
+  lsd -A --color=always --group-directories-first --literal --no-symlink "$@" | bat
+}
+
+function lsat() {
+  lsd -A --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
+}
+
+function lsi() {
+  lsd -l --date=relative --color=always --group-directories-first -1 \
+      --literal --no-symlink --blocks name,date,size,permission --header \
+      "$@" | bat
+}
+
+function lsai() {
+  lsd -A -l --date=relative --color=always --group-directories-first -1 \
+       --literal --no-symlink --blocks name,date,size,permission --header \
+       "$@" | bat
+}
+
+function lsaif() {
+  lsd -A -l --date=relative --color=always --group-directories-first \
+       --literal --no-symlink --blocks name,date,size,permission --header \
+       "$@" | bat
+}
+
+function lsg() {
 	 if [[ $# -ge 2 && -d $1 ]] ; then
 	 	ls "$1" | command rg -i --color=auto "${@:2}"
 	 else
@@ -165,11 +204,15 @@ lsg() {
 	 fi	 
 }
 
-alias ghcp="gh copilot"
-
-count() {
-  "$@" | wc
+function lsag() {
+	 if [[ $# -ge 2 && -d $1 ]] ; then
+	 	ls -a "$1" | command rg -i --color=auto "${@:2}"
+	 else
+	 	ls -a . | command rg -i --color=auto "$@"
+	 fi	 
 }
+
+alias ghcp="gh copilot"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -252,12 +295,12 @@ alias d="web_search duckduckgo"
 alias zt="zathura"
 
 alias nv="nvim"
-alias nd="nvim ."
-alias nt="nvim -c 'terminal'"
-alias nf="nvim +Telescope\\ find_files"
-alias ng="nvim +Telescope\\ git_files"
-alias no="nvim +Telescope\\ oldfiles"
-alias ns="nvim +Telescope\\ live_grep"
+alias nd="NO_AUTOSESSION=1 nvim ."
+alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
+alias nf="NO_AUTOSESSION=1 nvim +Telescope\\ find_files"
+alias ng="NO_AUTOSESSION=1 nvim +Telescope\\ git_files"
+alias no="NO_AUTOSESSION=1 nvim +Telescope\\ oldfiles"
+alias ns="NO_AUTOSESSION=1 nvim +Telescope\\ live_grep"
 alias nvd="neovide --frame buttonless --title-hidden"
 
 
@@ -279,7 +322,7 @@ function ff() {
   fd -t f | fzf
 }
 
-function fdir() {
+function fdr() {
   fd -t d | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
 }
 
@@ -297,10 +340,6 @@ function ft() {
   tldr -C "$sel" | bat
 }
 
-function fk() {
-  bindkey | fzf --preview-window hidden
-}
-
 function fb() {
   brew search "" | fzf --preview 'brew info {}' | xargs brew install
 }
@@ -312,12 +351,11 @@ function fh() {
 function ch() {
   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden | pbcopy
 }
-alias fzcl='print -z -- "$(fzf)"'
+alias fcl='print -z -- "$(fzf)"'
 
 alias osa="osascript -e"
 
-unalias gr
-function gr() {
+function lrg() {
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 INITIAL_QUERY="${*:-}"
 fzf --ansi --disabled --query "$INITIAL_QUERY" \

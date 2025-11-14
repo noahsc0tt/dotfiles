@@ -105,7 +105,6 @@ else
 fi
 '"
 
-
 # Remove duplicate entries in $fpath, preserving order
 typeset -U fpath
 
@@ -118,6 +117,12 @@ autoload -U colors && colors
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export CARAPACE_BRIDGES='zsh,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+
 
 source $ZSH/oh-my-zsh.sh
 
