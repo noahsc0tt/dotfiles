@@ -80,7 +80,13 @@ require('snacks').keymap.set("n", "<leader>tl", function()
     vim.cmd("tabmove +1")
 end, { desc = "Move tab right" })
 
-require('snacks').keymap.set("n", "<leader>tr", ":BufferLineTabRename ", { desc = "Rename tab" })
+require('snacks').keymap.set("n", "<leader>tr", function()
+  require('snacks').input.input({ prompt = "Rename Tab: " }, function(value)
+    if value and value ~= "" then
+      vim.cmd("BufferLineTabRename " .. vim.fn.fnameescape(value))
+    end
+  end)
+end, { desc = "Rename tab" })
 
 require('snacks').keymap.set("n", "<leader>ts", "<cmd>BufferLineSortByTabs<CR>", { desc = "Sort buffers" })
 

@@ -1,3 +1,9 @@
-require('snacks').keymap.set('n', '<leader>vt', '<cmd>tabnew | terminal mvn compile test -f /Users/nscott/Library/CloudStorage/OneDrive-UniversityCollegeLondon/University/second-year/Work/software/coursework-d-25-t2-s-25-ap1-java_004/backend/pom.xml<CR>', { desc = 'Running tests...', ft = "java" })
-require('snacks').keymap.set('n', '<leader>vm', '<cmd>tabnew | terminal mvn compile test checkstyle:check spotbugs:check verify site -f /Users/nscott/Library/CloudStorage/OneDrive-UniversityCollegeLondon/University/second-year/Work/software/coursework-d-25-t2-s-25-ap1-java_004/backend/pom.xml<CR>', { desc = 'Running tests...', ft = "java" })
+require('snacks').keymap.set('n', '<leader>vt', function()
+    require('snacks').terminal.open(
+        'mvn compile test -f /Users/nscott/Library/CloudStorage/OneDrive-UniversityCollegeLondon/University/second-year/Work/software/coursework-d-25-t2-s-25-ap1-java_004/backend/pom.xml')
+end, { desc = 'Test', ft = "java" })
 
+require('snacks').keymap.set('n', '<leader>vm', function()
+    require('snacks').terminal.open(
+        'mvn compile test checkstyle:check spotbugs:check verify site -f /Users/nscott/Library/CloudStorage/OneDrive-UniversityCollegeLondon/University/second-year/Work/software/coursework-d-25-t2-s-25-ap1-java_004/backend/pom.xml')
+end, { desc = 'Build', ft = "java" })

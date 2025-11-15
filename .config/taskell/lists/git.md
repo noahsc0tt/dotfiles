@@ -1,6 +1,8 @@
 ## To Do
 
-- aliases for fzf (gaf)
+- fzf aliases
+    * [ ] include directories
+    * [ ] gusf
 - nicer looking delta (method indicators, not class)
 - status --column=
 - config pull.rebase persistent?

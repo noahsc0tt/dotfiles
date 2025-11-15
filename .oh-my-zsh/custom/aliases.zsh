@@ -296,7 +296,8 @@ alias d="web_search duckduckgo"
 
 alias zt="zathura"
 
-alias v="nvim"
+alias v="vim"
+alias n="nvim"
 alias nv="NO_AUTOSESSION=1 nvim"
 # alias nd='NO_AUTOSESSION=1 nvim "+lua Snacks.dashboard()"'
 alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
@@ -328,6 +329,7 @@ function ff() {
 function fdr() {
   fd -t d | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
 }
+alias fj=fdr
 
 function fm() {
   man -k . |

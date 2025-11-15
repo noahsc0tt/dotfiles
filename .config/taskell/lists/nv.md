@@ -1,6 +1,8 @@
 ## To Do
 
+- swap <leader>z and z (i dont need fold methods)
 - restructure plugins
+- dont load origami for text files
 - fold gutter indicators (snacks/statuscolumn but less fat)
 - lsp keybinds
     * [ ] make lr save first
@@ -30,7 +32,9 @@
 - regex vs fixed string search/sub keymaps
 - turn off cursor line highlight for notes and terminal
 - folke/snacks
+    * [ ] go through types for config
     * [ ] pickers
+    * [ ] zen fullscreen
     * [ ] gh
     * [ ] tree keybinds
     * [ ] layout
@@ -76,6 +80,7 @@
     * [ ] context-menu
     * [ ] todo-comments
     * [ ] conform
+    * [ ] edgy (snacks.terminal)
     * [ ] cd-project
     * [ ] gitsigns/vimgitgutter
     * [ ] bookmarks.nvim

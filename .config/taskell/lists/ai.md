@@ -1,8 +1,6 @@
 ## To Do
 
-- oc not rendering. nvim thing, since doesnt work in term split either
-- tell oc to stop trying to do one million things when i asked it to do one
-- bring back cpl chat
+- oc.nv stop popup permission
 - tools
     * [ ] windsurf
     * [ ] tabby
@@ -10,11 +8,11 @@
     * [ ] warp cli
 - oc
     * [ ] make it look not horrible? not even colors just grouping and headings and stuff
-    * [ ] exit oc.nv keymap
     * [ ] opencode.json config
     * [ ] agents.md config
-- snyk mcp
 - ollama code ai assistance for offline
+- bring back cpl chat
+- snyk mcp
 
 ## Doing
 

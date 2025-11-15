@@ -346,12 +346,42 @@ return {
                     -- Set your custom keymaps here.
                     -- When using a function, the `items` argument are the default keymaps.
                     keys = {
-                        -- { icon = "󰱽 ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-                        { icon = " ", key = "n", desc = "New Scratch File", action = ":ScratchWithName" },
-                        { icon = "󱘟 ", key = "/", desc = "Search Scratch Files", action = ":ScratchOpen" },
+                        -- { icon = "󱘟 ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+                        {
+                            icon = "󱞂 ",
+                            key = "n",
+                            desc = "New Note",
+                            action = function()
+                                require('snacks').input.input({ prompt = "Title: " }, function(value)
+                                    local name = os.date("%Y-%m-%d_%H-%M-%S") .. value
+                                    require("snacks").scratch.open({ name = name })
+                                end)
+                            end
+                        },
+                        {
+                            icon = "󱞂 ",
+                            key = "N",
+                            desc = "Search Notes",
+                            action = function()
+                                require('snacks').scratch.select()
+                            end
+                        },
+                        {
+                            icon = " ",
+                            key = "c",
+                            desc = "Create Scratch File",
+                            action = function()
+                                vim.cmd("Scratch")
+                                vim.defer_fn(function()
+                                    local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+                                    vim.api.nvim_feedkeys(keys, "t", false)
+                                end, 1)
+                            end
+                        },
+                        { icon = "󰱽 ", key = "C", desc = "Search Scratch Files", action = ":ScratchOpen" },
                         -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                        { icon = " ", key = "c", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = " ", key = "o", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                         { icon = "󰒲 ", key = "z", desc = "Lazy Sync", action = ":Lazy sync", enabled = package.loaded.lazy ~= nil },
                         {
                             icon = " ",
@@ -389,8 +419,8 @@ return {
                         height = 5,
                         padding = 3,
                     },
-                    { pane = 2, icon = "󰱽 ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
-                    { pane = 2, icon = "󰥩 ", title = "Projects", section = "projects", indent = 2, padding = 1, hl_current_line = false },
+                    { pane = 2, icon = "󱫓 ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
+                    { pane = 2, icon = " ", title = "Recent Directories", section = "projects", indent = 2, padding = 1, hl_current_line = false },
                     { pane = 2, section = "keys", gap = 0, padding = 1, hl_current_line = false },
                     {
                         pane = 1,
@@ -604,22 +634,22 @@ return {
                                 ["<BS>"] = "explorer_up",
                                 ["l"] = "confirm",
                                 ["h"] = "explorer_close", -- close directory
-                                ["a"] = "explorer_add",
+                                ["n"] = "explorer_add",
                                 ["d"] = "explorer_del",
                                 ["r"] = "explorer_rename",
                                 ["c"] = "explorer_copy",
                                 ["m"] = "explorer_move",
                                 ["o"] = "explorer_open", -- open with system application
-                                ["P"] = "toggle_preview",
+                                ["<space>"] = "toggle_preview",
                                 ["y"] = { "explorer_yank", mode = { "n", "x" } },
                                 ["p"] = "explorer_paste",
                                 ["u"] = "explorer_update",
                                 ["<c-c>"] = "tcd",
-                                ["<leader>/"] = "picker_grep",
-                                ["<c-t>"] = "terminal",
-                                ["."] = "explorer_focus",
+                                ["s"] = "picker_grep",
+                                ["t"] = "terminal",
+                                ["F"] = "explorer_focus",
                                 ["I"] = "toggle_ignored",
-                                ["H"] = "toggle_hidden",
+                                [""] = "toggle_hidden",
                                 ["Z"] = "explorer_close_all",
                                 ["]g"] = "explorer_git_next",
                                 ["[g"] = "explorer_git_prev",
@@ -635,13 +665,58 @@ return {
                 },
                 sources = {
                     explorer = {
-
                         layout = { layout = { position = "right" } },
                     }
                 }
             },
             quickfile = { enabled = true },
             scope = { enabled = true },
+            scratch = {
+                name = os.date("%Y-%m-%d_%H-%M-%S"),
+                content = {
+                    "= ",
+                    "",
+                },
+                cursor = {
+                    location = { 1, 3 },
+                    insert_mode = true,
+                },
+                ft = "typst",
+                ---@type string|string[]?
+                icon = nil,       -- `icon|{icon, icon_hl}`. defaults to the filetype icon
+                root = vim.fn.stdpath("data") .. "/notes",
+                autowrite = true, -- automatically write when the buffer is hidden
+                -- unique key for the scratch file is based on:
+                -- * name
+                -- * ft
+                -- * vim.v.count1 (useful for keymaps)
+                -- * cwd (optional)
+                -- * branch (optional)
+                filekey = {
+                    id = nil, ---@type string? unique id used instead of name for the filename hash
+                    cwd = true,    -- use current working directory
+                    branch = true, -- use current branch name
+                    count = true,  -- use vim.v.count1
+                },
+                win = { style = "scratch" },
+                ---@type table<string, snacks.win.Config>
+                win_by_ft = {
+                    lua = {
+                        keys = {
+                            ["source"] = {
+                                "<cr>",
+                                function(self)
+                                    local name = "scratch." ..
+                                        vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+                                    require('snacks').debug.run({ buf = self.buf, name = name })
+                                end,
+                                desc = "Source buffer",
+                                mode = { "n", "x" },
+                            },
+                        },
+                    },
+                },
+            },
             scroll = { enabled = false },
             statuscolumn = { enabled = false },
             --     left = {},  -- priority of signs on the left (high to low)
@@ -679,7 +754,7 @@ return {
                 },
             },
             toggle = { enabled = false },
-            win = { enabled = false },
+            win = { enabled = true },
             words = { enabled = true },
             styles = {
                 notification = {
@@ -690,7 +765,7 @@ return {
         keys = {
             { "<leader>n",   function() require('snacks').notifier.hide() end,                    desc = "Dismiss Notifications" },
             -- { "<leader>an",  function() require('snacks').notifier.show_history() end,            desc = "Notification History" },
-            { "<leader>d",  function() require('snacks').dashboard() end,                        desc = "Toggle Dashboard" },
+            { "<leader>d",   function() require('snacks').dashboard() end,                        desc = "Toggle Dashboard" },
             { "<leader>zd",  function() vim.cmd("DimToggle") end,                                 desc = "Toggle dim" },
             { "<leader>.",   function() require('snacks').explorer.open() end,                    desc = "Open File Tree" },
             -- git
@@ -701,8 +776,8 @@ return {
             { "<leader>go",  function() require('snacks').gitbrowse.open() end,                   desc = "Open GitHub Repo" },
             { "<leader>gz",  function() require('snacks').lazygit.open() end,                     desc = "Lazygit" },
             -- lsp reference jumping
-            { "<leader>k",  function() require('snacks').words.jump(-1) end,                     desc = "Previous LSP Reference" },
-            { "<leader>j",  function() require('snacks').words.jump() end,                     desc = "Next LSP Reference" },
+            { "<leader>k",   function() require('snacks').words.jump(-1) end,                     desc = "Previous LSP Reference" },
+            { "<leader>j",   function() require('snacks').words.jump() end,                       desc = "Next LSP Reference" },
         },
 
     }
