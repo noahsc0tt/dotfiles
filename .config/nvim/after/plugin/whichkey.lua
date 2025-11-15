@@ -23,4 +23,4 @@ require("which-key").setup({
     end,
 })
 
-vim.keymap.set({ "n", "o", "i", "v", }, "<C-S-/>", "<cmd>WhichKey<CR>")
+require('snacks').keymap.set({ "n", "o", "i", "v", }, "<C-S-/>", "<cmd>WhichKey<CR>")

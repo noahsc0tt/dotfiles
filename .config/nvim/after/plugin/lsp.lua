@@ -70,7 +70,7 @@ vim.api.nvim_create_user_command("LspRestart", restart_all_lsps, { force = true 
 
 
 -- Detach LSP
-vim.keymap.set("n", "<leader>ld", function()
+require('snacks').keymap.set("n", "<leader>ld", function()
     local bufnr = 0
     local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
 
@@ -84,7 +84,7 @@ vim.keymap.set("n", "<leader>ld", function()
     end
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>vr", restart_all_lsps, { noremap = true, silent = true })
+require('snacks').keymap.set("n", "<leader>vr", restart_all_lsps, { noremap = true, silent = true })
 
 
 
@@ -147,25 +147,25 @@ end
 local opts = { noremap = true, silent = true }
 
 -- Diagnostics config
-vim.keymap.set("n", "<leader>lew", disable_warnings, opts)
-vim.keymap.set("n", "<leader>lee", disable_errors, opts)
-vim.keymap.set("n", "<leader>let", disable_virtual_text, opts)
-vim.keymap.set("n", "<leader>ler", reset_diagnostics, opts)
+require('snacks').keymap.set("n", "<leader>lew", disable_warnings, opts)
+require('snacks').keymap.set("n", "<leader>lee", disable_errors, opts)
+require('snacks').keymap.set("n", "<leader>let", disable_virtual_text, opts)
+require('snacks').keymap.set("n", "<leader>ler", reset_diagnostics, opts)
 
 -- Diagnostic actions
-vim.keymap.set("n", "<leader>la", vim.diagnostic.setloclist)
-vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "<leader>lf", vim.diagnostic.open_float)
+require('snacks').keymap.set("n", "<leader>la", vim.diagnostic.setloclist)
+require('snacks').keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
+require('snacks').keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
+require('snacks').keymap.set("n", "<leader>lf", vim.diagnostic.open_float)
 
 -- Code actions
-vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
-vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
--- vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
-vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
-vim.keymap.set("n", "<leader>lc", vim.lsp.buf.references, opts)
-vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, opts)
+require('snacks').keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
+require('snacks').keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
+-- require('snacks').keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+require('snacks').keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
+require('snacks').keymap.set("n", "<leader>lc", vim.lsp.buf.references, opts)
+require('snacks').keymap.set("n", "<leader>lk", vim.lsp.buf.hover, opts)
 
--- vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+-- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+require('snacks').keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+require('snacks').keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)

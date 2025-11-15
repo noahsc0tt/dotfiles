@@ -54,11 +54,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --     desc = 'Disable focus autoresize for BufType',
 -- })
 
-vim.keymap.set("n", "<M-q>", function() vim.cmd("FocusEqualise") end )
-vim.keymap.set("n", "<M-f>", function() vim.cmd("ZenMode") end)
-vim.keymap.set("n", "<M-e>", function() vim.cmd("FocusEnable") end)
-vim.keymap.set("n", "<M-S-e>", function() vim.cmd("FocusDisable") end)
-vim.keymap.set("n", "<M-r>", function()
+require('snacks').keymap.set("n", "<M-f>", function()
+    vim.cmd("ZenMode")
+    vim.cmd("DimToggle")
+end)
+require('snacks').keymap.set("n", "<leader>zq", function() vim.cmd("FocusEqualise") end )
+require('snacks').keymap.set("n", "<leader>zF", function() vim.cmd("FocusDisable") end)
+require('snacks').keymap.set("n", "<leader>zf", function()
     vim.cmd("FocusEnable")
     vim.cmd("FocusAutoresize")
 end)
+
+-- Markview
+require('snacks').keymap.set("n", "<leader>zm", "<cmd>Markview enable<CR>")
+require('snacks').keymap.set("n", "<leader>zM", "<cmd>Markview disable<CR>")

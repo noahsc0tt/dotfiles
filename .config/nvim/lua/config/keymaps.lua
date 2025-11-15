@@ -18,22 +18,24 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "yp", "\"0p")
 vim.keymap.set("n", "yP", "\"0P")
 vim.keymap.set("v", "P", "\"0p")
-vim.keymap.set("v", "<leader>p", "\"_dP")
-vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
-vim.keymap.set({ "n", "v" }, "<leader>c", "\"_c")
-vim.keymap.set({ "n", "v" }, "<leader>x", "\"_x")
-vim.keymap.set({ "n", "v" }, "<leader>X", "\"_X")
-vim.keymap.set({ "n", "v" }, "<leader>s", "\"_s")
+vim.keymap.set({ "n", "v" }, "<leader>Cp", "\"_dP")
+vim.keymap.set({ "n", "v" }, "<leader>CD", "\"_d")
+vim.keymap.set({ "n", "v" }, "<leader>Cd", "\"_D")
+vim.keymap.set({ "n", "v" }, "<leader>CC", "\"_c")
+vim.keymap.set({ "n", "v" }, "<leader>Cc", "\"_C")
+vim.keymap.set({ "n", "v" }, "<leader>CX", "\"_x")
+vim.keymap.set({ "n", "v" }, "<leader>Cx", "\"_X")
+vim.keymap.set({ "n", "v" }, "<leader>CS", "\"_s")
 
--- Double space to use clipboard
+-- System clipboard
 vim.keymap.set({ "n", "v" }, "Y", "\"+y")
-vim.keymap.set({ "n", "v" }, "<leader><leader>y", "\"+y")
-vim.keymap.set({ "n", "v" }, "<leader><leader>p", "\"+p")
-vim.keymap.set({ "n", "v" }, "<leader><leader>P", "\"+P")
-vim.keymap.set({ "n", "v" }, "<leader><leader>d", "\"+d")
-vim.keymap.set({ "n", "v" }, "<leader><leader>D", "\"+D")
-vim.keymap.set({ "n", "v" }, "<leader><leader>c", "\"+c")
-vim.keymap.set({ "n", "v" }, "<leader><leader>C", "\"+C")
+vim.keymap.set({ "n", "v" }, "<leader>cy", "\"+y")
+vim.keymap.set({ "n", "v" }, "<leader>cp", "\"+p")
+vim.keymap.set({ "n", "v" }, "<leader>cP", "\"+P")
+vim.keymap.set({ "n", "v" }, "<leader>cd", "\"+d")
+vim.keymap.set({ "n", "v" }, "<leader>cD", "\"+D")
+vim.keymap.set({ "n", "v" }, "<leader>cc", "\"+c")
+vim.keymap.set({ "n", "v" }, "<leader>cC", "\"+C")
 
 -- Writing and quitting
 vim.keymap.set("n", "<leader>w", function()
@@ -54,10 +56,9 @@ vim.keymap.set("n", "<leader>Q", function()
 end)
 vim.keymap.set("n", "<leader>e", function()
     if vim.bo.buftype == "" and vim.bo.modifiable and vim.bo.modified and not vim.bo.readonly then
-        vim.cmd("wqa")
-    else
-        vim.cmd("qa!")
+        vim.cmd("w")
     end
+    vim.cmd("qa!")
 end)
 vim.keymap.set("n", "<leader>E", function()
     vim.cmd('qa!')
@@ -106,12 +107,9 @@ vim.keymap.set("n", "<leader>ve", "<cmd>edit<CR>")
 vim.keymap.set("n", "<leader>vs", function()
     vim.cmd("so")
     vim.notify("Sourced file")
-end, { desc = "Source file and echo message" })
+end, { desc = "Source file" })
 vim.keymap.set("n", "<leader>vl", ":Ld<CR>")
 vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
-vim.keymap.set("n", "<leader>vn", "<cmd>enew<CR>")
-vim.keymap.set("n", "<leader>vm", "<cmd>Markview enable<CR>")
-vim.keymap.set("n", "<leader>vM", "<cmd>Markview disable<CR>")
 
 -- Scrolling
 vim.keymap.set({ "n", "v", "c" }, "<C-n>", "2<C-e>")
@@ -121,7 +119,26 @@ vim.keymap.set({ "n", "v", "c" }, "<C-p>", "2<C-y>")
 vim.keymap.set({ 'n', 'v' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
 vim.keymap.set({ 'n', 'v' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
 
-
 -- Folding
-vim.keymap.set({ 'n', 'v' }, "<leader>z", "zM")
-vim.keymap.set({ 'n', 'v' }, "<leader>Z", "zR")
+vim.keymap.set({ 'n', 'v' }, "zm", "zM")
+vim.keymap.set({ 'n', 'v' }, "zr", "zR")
+vim.keymap.set({ 'n', 'v' }, "zM", "zm")
+vim.keymap.set({ 'n', 'v' }, "zR", "zr")
+
+-- Terminal
+vim.keymap.set('t', '<C-Esc>', function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
+end, { desc = 'Exit terminal mode' })
+
+vim.keymap.set('n', '<leader>st', function()
+    local cur = vim.api.nvim_get_current_buf()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
+            vim.api.nvim_set_current_buf(buf)
+            break
+        end
+    end
+end, { silent = true })
+
+vim.keymap.set({"n", "t"}, "<C-f>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t"}, "<C-S-f>",  function() require('snacks').terminal.open() end, { desc = "Toggle Terminal" })

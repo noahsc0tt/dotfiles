@@ -1,5 +1,5 @@
 require("notify").setup({
     render = "wrapped-compact",
-    stages = "fade",
-    timeout = 500,
+    stages = "static",
+    timeout = 3000,
 })

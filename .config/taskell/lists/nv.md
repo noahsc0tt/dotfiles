@@ -1,11 +1,10 @@
 ## To Do
 
-- yazi instead of telescope fb?
+- restructure plugins
+- fold gutter indicators (snacks/statuscolumn but less fat)
 - lsp keybinds
     * [ ] make lr save first
     * [ ] merge <leader>l with g
-- break keybinds
-- stop double esc from leaving terminal mode
 - %s functions
     * [ ] case insensitive replacing
     * [ ] (ci) swapping
@@ -31,19 +30,10 @@
 - regex vs fixed string search/sub keymaps
 - turn off cursor line highlight for notes and terminal
 - folke/snacks
-    * [ ] indent
-    * [ ] dashboard
-    * [ ] input
-    * [ ] quickfile
-    * [ ] scratch
-    * [ ] toggle
-    * [ ] notifier/notify
-    * [ ] zen
-    * [ ] bufdelete
-    * [ ] debug
-    * [ ] image
-    * [ ] terminal (for oc)
-    * [ ] statuscolumn
+    * [ ] pickers
+    * [ ] gh
+    * [ ] tree keybinds
+    * [ ] layout
     * [ ] win
 - default U behaviour (undo this line)
 - able to add  zf manually
@@ -82,7 +72,9 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] yazi.nvim
     * [ ] context-menu
+    * [ ] todo-comments
     * [ ] conform
     * [ ] cd-project
     * [ ] gitsigns/vimgitgutter

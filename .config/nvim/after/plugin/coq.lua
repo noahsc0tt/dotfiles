@@ -12,7 +12,7 @@ require("coq_3p")({
 })
 
 
-vim.keymap.set({ "n", "i" }, "<C-Esc>", function()
+require('snacks').keymap.set({ "n", "i" }, "<C-Esc>", function()
   if vim.fn.pumvisible() == 1 then
     if vim.fn.complete_info().selected == -1 then
       return vim.api.nvim_replace_termcodes("<C-e><CR>", true, true, true)

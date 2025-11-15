@@ -1,10 +1,9 @@
 ## To Do
 
-- square not rounded corners. same for neovide
-- slight transparency to desktop???
+- cursor free
 - renaming windows custom
 - disable middle click paste
-- text movement
+- text movement like nvim normal mode
 - no color on man pages unlike iterm
 - copy prompt and stdout on click like iterm
 - quick term

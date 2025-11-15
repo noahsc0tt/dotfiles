@@ -113,7 +113,7 @@
   @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
   @cmd   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
   @medialy   @ctrl    z    x    c    v    b    n    m    ,    .    /    up   rsft
-  fn     @shift2  @win    @symly        spc             @numly @medialy left    down    right
+  fn     @shift2  @win    @symly        spc             @numly ralt left    down    right
 )
 
 (deflayer src

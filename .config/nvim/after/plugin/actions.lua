@@ -9,4 +9,4 @@ require("actions-preview").setup {
         },
     },
 }
-vim.keymap.set({ "v", "n" }, "<leader>ac", require("actions-preview").code_actions)
+require('snacks').keymap.set({ "v", "n" }, "<leader>ac", require("actions-preview").code_actions)

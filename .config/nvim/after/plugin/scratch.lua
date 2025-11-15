@@ -42,14 +42,3 @@ require("scratch").setup({
     --     },
     -- },
 })
-
-vim.keymap.set("n", "<leader>sn", function()
-  vim.cmd("Scratch")
-  vim.defer_fn(function()
-    local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-    vim.api.nvim_feedkeys(keys, "t", false)  -- typeahead, not normal
-  end, 1)
-end)
-vim.keymap.set("n", "<leader>sN", "<cmd>ScratchWithName<cr>")
-vim.keymap.set("n", "<leader>sF", "<cmd>ScratchOpenFzf<cr>")
-vim.keymap.set("n", "<leader>sf", "<cmd>ScratchOpen<cr>")

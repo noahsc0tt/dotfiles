@@ -227,19 +227,19 @@ _G.open_file_browser = function(path, show_stat, flatten)
     --
     fb.file_browser(opts)
 end
-vim.keymap.set({ "n", "v" }, "<leader>.", open_file_browser)
+require('snacks').keymap.set({ "n", "v", "i" }, "<C-.>", open_file_browser)
 
 
 
 -- Mappings
 
 -- Files only
-vim.keymap.set({ "n", "v" }, "<leader>f", function()
+require('snacks').keymap.set({ "n", "v" }, "<leader>f", function()
     builtin.find_files()
 end)
 
 -- Directories only
-vim.keymap.set({ "n", "v" }, "<leader>ad", function()
+require('snacks').keymap.set({ "n", "v" }, "<leader>ad", function()
     builtin.find_files({
         find_command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--absolute-path" },
         attach_mappings = function(prompt_bufnr, map)
@@ -254,12 +254,12 @@ vim.keymap.set({ "n", "v" }, "<leader>ad", function()
 end)
 
 -- Grep
-vim.keymap.set({ "n", "v" }, "<leader>as", function()
+require('snacks').keymap.set({ "n", "v" }, "<leader>as", function()
     builtin.live_grep({ cwd = vim.fn.getcwd() })
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>af", function()
+require('snacks').keymap.set({ "n", "v" }, "<leader>af", function()
     local bufs = vim.fn.getbufinfo({ buflisted = 1 })
     local current = vim.api.nvim_get_current_buf()
     local index = 1
@@ -286,62 +286,62 @@ vim.keymap.set({ "n", "v" }, "<leader>af", function()
 end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>/", function() builtin.current_buffer_fuzzy_find() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>/", function() builtin.current_buffer_fuzzy_find() end)
 
 
-vim.keymap.set("n", "<leader>aw", function() builtin.grep_string() end)
+require('snacks').keymap.set("n", "<leader>aw", function() builtin.grep_string() end)
 
 
-vim.keymap.set("v", "<leader>aw", function()
+require('snacks').keymap.set("v", "<leader>aw", function()
     vim.cmd('normal! "vy')
     local text = vim.fn.getreg("v")
     builtin.grep_string({ search = text, initial_mode = "normal", })
 end, { noremap = true, silent = true })
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ag", function() builtin.git_files() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ag", function() builtin.git_files() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ar", function() builtin.lsp_references() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ar", function() builtin.lsp_references() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ae", function() builtin.diagnostics() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ae", function() builtin.diagnostics() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>an", function() telescope.extensions.notify.notify() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>an", function() telescope.extensions.notify.notify() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>c", function() builtin.command_history() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>c", function() builtin.command_history() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>aj", function() builtin.jumplist() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>aj", function() builtin.jumplist() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ah", function() builtin.search_history() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ah", function() builtin.search_history() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>`", function() builtin.marks() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>`", function() builtin.marks() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>ap", function() builtin.registers() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>ap", function() builtin.registers() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>:", function() builtin.commands() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>:", function() builtin.commands() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>A", function() builtin.builtin() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>A", function() builtin.builtin() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>at", function() builtin.filetypes() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>at", function() builtin.filetypes() end)
 
 
-vim.keymap.set({ "n", "v", "i" }, "<C-=>", function() builtin.spell_suggest() end)
+require('snacks').keymap.set({ "n", "v", "i" }, "<C-=>", function() builtin.spell_suggest() end)
 
 
-vim.keymap.set({ "n", "v" }, "<leader>a<leader>", function() builtin.resume() end)
+require('snacks').keymap.set({ "n", "v" }, "<leader>a<leader>", function() builtin.resume() end)
 
 
 -- lsp_definitions, git

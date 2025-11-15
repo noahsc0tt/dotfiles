@@ -1,2 +1,4 @@
-vim.keymap.set("n", "<leader>vp", ":MarkdownPreview<CR>")
-vim.keymap.set("n", "<leader>lb", "o<br><Esc>")
+require('snacks').keymap.set("n", "<leader>vp", ":MarkdownPreview<CR>", { desc = "Preview markdown", ft = "markdown" })
+require('snacks').keymap.set("n", "<leader>lb", "o<br><Esc>", { desc = "Insert line break in markdown", ft = "markdown" })
+
+vim.cmd("Markview enable")

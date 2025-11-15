@@ -98,12 +98,6 @@ require("noice").setup {
         view = "notify",
         replace = false,
         merge = false,
-        opts = {
-            -- level = vim.log.levels.WARN,
-            render = "wrapped-compact",
-            stages = "fade",
-            timeout = 500,
-        },
     },
     lsp = {
         progress = {
@@ -218,10 +212,10 @@ require("noice").setup {
     format = {}, --- @see section on formatting
 }
 
-vim.keymap.set("n", "<leader>n", function()
+require('snacks').keymap.set("n", "<leader>n", function()
     vim.cmd("Noice dismiss")
 end, { desc = "Close all Noice notify popups" })
 
-vim.keymap.set("c", "<S-Enter>", function()
+require('snacks').keymap.set("c", "<S-Enter>", function()
     require("noice").redirect(vim.fn.getcmdline())
 end, { desc = "Redirect Cmdline" })

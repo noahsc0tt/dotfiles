@@ -23,7 +23,7 @@ local opts = {
 }
 require("origami").setup(opts)
 
--- vim.keymap.set("n", "<leader>vf", function()
+-- require('snacks').keymap.set("n", "<leader>vf", function()
 --     require("origami").setup(opts)
 --     vim.notify("Reloaded Origami")
 -- end, { desc = "Reapply Origami folding", silent = false })

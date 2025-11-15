@@ -2,7 +2,6 @@
 
 - cat <(cmd1) <(cmd2) | alias
 - set up daily dotfiles pushes
-- atuin vs fc -lr vs history
 - cpy echoes output
 - make gr work with stdin
 - bat vs man vs less vs nvimpager

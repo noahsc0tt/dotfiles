@@ -29,10 +29,10 @@ vim.api.nvim_create_user_command("Gb", "Git branch", {});
 -- end, { nargs = 1 })
 --
 --
--- vim.keymap.set("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
--- vim.keymap.set("n", "<leader>gl", ":Gl<CR>", { desc = "Git log" })
--- vim.keymap.set("n", "<leader>go", ":Glo<CR>", { desc = "Git log oneline" })
--- vim.keymap.set("n", "<leader>gp", ":Gpsh<CR>", { desc = "Git push" })
--- vim.keymap.set("n", "<leader>ga", ":Ga ")
--- vim.keymap.set("n", "<leader>gm<leader>", ":Gcm \"")
--- vim.keymap.set("n", "<leader>gma", ":Gcam \"")
+-- require('snacks').keymap.set("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
+-- require('snacks').keymap.set("n", "<leader>gl", ":Gl<CR>", { desc = "Git log" })
+-- require('snacks').keymap.set("n", "<leader>go", ":Glo<CR>", { desc = "Git log oneline" })
+-- require('snacks').keymap.set("n", "<leader>gp", ":Gpsh<CR>", { desc = "Git push" })
+-- require('snacks').keymap.set("n", "<leader>ga", ":Ga ")
+-- require('snacks').keymap.set("n", "<leader>gm<leader>", ":Gcm \"")
+-- require('snacks').keymap.set("n", "<leader>gma", ":Gcam \"")

@@ -242,7 +242,9 @@ function tk() {
 alias cpd="cp -R"
 alias cph="copypath"
 alias cpf="copyfile"
-alias cpy="pbcopy"
+function cpy() {
+  tee >(pbcopy)
+}
 alias pst="pbpaste"
 
 alias ip="ipconfig getifaddr en0"
@@ -295,12 +297,13 @@ alias d="web_search duckduckgo"
 alias zt="zathura"
 
 alias v="nvim"
-alias vd="NO_AUTOSESSION=1 nvim ."
-alias vt="NO_AUTOSESSION=1 nvim -c 'terminal'"
-alias vf="NO_AUTOSESSION=1 nvim +Telescope\\ find_files"
-alias vg="NO_AUTOSESSION=1 nvim +Telescope\\ git_files"
-alias vo="NO_AUTOSESSION=1 nvim +Telescope\\ oldfiles"
-alias vs="NO_AUTOSESSION=1 nvim +Telescope\\ live_grep"
+alias nv="NO_AUTOSESSION=1 nvim"
+# alias nd='NO_AUTOSESSION=1 nvim "+lua Snacks.dashboard()"'
+alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
+alias nf="NO_AUTOSESSION=1 nvim +Telescope\\ find_files"
+alias ng="NO_AUTOSESSION=1 nvim +Telescope\\ git_files"
+alias no="NO_AUTOSESSION=1 nvim +Telescope\\ oldfiles"
+alias ns="NO_AUTOSESSION=1 nvim +Telescope\\ live_grep"
 alias nvd="neovide --frame buttonless --title-hidden"
 
 
@@ -480,6 +483,6 @@ alias wtha="curl wttr.in/\?F"
 
 alias system="fastfetch"
 
-alias wh="whence"
-
 alias kl="kalker"
+
+alias rbk="rubiks -clsti"
