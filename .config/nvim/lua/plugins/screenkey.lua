@@ -1,4 +1,10 @@
-require("screenkey").setup({
+return {
+    {
+        "NStefan002/screenkey.nvim",
+        lazy = true,
+        command = "Screenkey",
+        branch = "main",
+opts = {
     win_opts = {
         row = vim.o.lines - vim.o.cmdheight - 1,
         col = vim.o.columns - 1,
@@ -81,4 +87,6 @@ require("screenkey").setup({
         min_level = vim.log.levels.OFF,
         filepath = vim.fn.stdpath("data") .. "/screenkey_log",
     },
-})
+}
+    },
+}

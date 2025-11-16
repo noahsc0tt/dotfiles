@@ -1,4 +1,13 @@
-require("noice").setup {
+return {
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        cond = not vim.g.started_by_firenvim,
+        opts = {
     cmdline = {
         enabled = true,         -- enables the Noice cmdline UI
         view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
@@ -210,12 +219,12 @@ require("noice").setup {
     },
     status = {}, --- @see section on statusline components
     format = {}, --- @see section on formatting
+},
+keys = {
+
+{ "<leader>n", function() vim.cmd("Noice dismiss") end, { desc = "Close all Noice notify popups" }, mode = "n"},
+
+{ "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, { desc = "Redirect Cmdline" }, mode = "c"},
+    },
 }
-
-require('snacks').keymap.set("n", "<leader>n", function()
-    vim.cmd("Noice dismiss")
-end, { desc = "Close all Noice notify popups" })
-
-require('snacks').keymap.set("c", "<S-Enter>", function()
-    require("noice").redirect(vim.fn.getcmdline())
-end, { desc = "Redirect Cmdline" })
+}

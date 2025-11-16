@@ -1,4 +1,8 @@
-require("which-key").setup({
+return {
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+opts = {
     preset = "helix",
     win = {
         no_overlap = true,
@@ -21,6 +25,10 @@ require("which-key").setup({
         end
         return vim.list_contains({ "<C-V>", "V", "v" }, ctx.mode)
     end,
-})
+},
 
-require('snacks').keymap.set({ "n", "o", "i", "v", }, "<C-S-/>", "<cmd>WhichKey<CR>")
+keys = {
+{ "<C-S-/>", "<cmd>WhichKey<CR>", mode = { "n", "o", "i", "v", } },
+}
+}
+}

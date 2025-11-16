@@ -1,6 +1,11 @@
-local presets = require("markview.presets");
+return {
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        ft = { "markdown", "typst" },
 
-require("markview").setup({
+
+        opts = {
     typst = {
         enable = true,
 
@@ -360,4 +365,10 @@ require("markview").setup({
             },
         }
     },
-});
+},
+keys = {
+{ "<leader>zm", "<cmd>Markview enable<CR>", mode = "n", desc = "Enable Markview"},
+{ "<leader>zM", "<cmd>Markview disable<CR>", mode = "n", desc = "Disable Markview"},
+}
+    },
+}

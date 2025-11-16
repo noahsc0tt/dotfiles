@@ -45,3 +45,7 @@ vim.opt.guifont = { "JetBrainsMonoNL Nerd Font", ":h16" }
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+
+-- for opencode
+vim.o.autoread = true

@@ -1,5 +1,6 @@
 ## To Do
 
+- macro recording in lualine
 - swap <leader>z and z (i dont need fold methods)
 - restructure plugins
 - dont load origami for text files

@@ -1,10 +1,10 @@
-local function getdir()
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
-end
-
-
-require('lualine').setup {
-    options = {
+return {
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        cond = not vim.g.started_by_firenvim,
+        opts = {
+options = {
         icons_enabled = true,
         theme = 'auto',
         component_separators = { left = '', right = '' },
@@ -41,7 +41,7 @@ require('lualine').setup {
         lualine_b = { 'filename' },
         lualine_c = { 'diagnostics' },
         lualine_x = { 'diff', 'progress',  },
-        lualine_y = { getdir, 'branch' },
+        lualine_y = { function() return vim.fn.fnamemodify(vim.fn.getcwd(), ':t') end, 'branch' },
         lualine_z = { 'filetype' },
     },
     inactive_sections = {
@@ -56,4 +56,6 @@ require('lualine').setup {
     winbar = {},
     inactive_winbar = {},
     extensions = {}
+}
+}
 }

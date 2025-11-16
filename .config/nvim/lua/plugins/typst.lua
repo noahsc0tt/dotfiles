@@ -1,4 +1,8 @@
-require 'typst-preview'.setup {
+return {
+    {
+        'chomosuke/typst-preview.nvim',
+        ft = 'typst',
+opts = {
   debug = false,
 
   -- Custom format string to open the output link provided with %s
@@ -47,4 +51,6 @@ require 'typst-preview'.setup {
   get_main_file = function(path_of_buffer)
     return path_of_buffer
   end,
+}
+}
 }

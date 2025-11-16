@@ -1,8 +1,0 @@
-require('snacks').keymap.set("n", "'", "<Nop>")
-require('snacks').keymap.set({ "n", "v", "o" }, "'w", "<Plug>CamelCaseMotion_w", { silent = true })
-require('snacks').keymap.set({ "n", "v", "o"}, "'b", "<Plug>CamelCaseMotion_b", {silent = true})
-require('snacks').keymap.set({ "n", "v", "o"}, "'e", "<Plug>CamelCaseMotion_e", {silent = true})
-require('snacks').keymap.set({ "n", "v", "o"}, "'ge", "<Plug>CamelCaseMotion_ge", {silent = true})
-require('snacks').keymap.set({ "v", "o"}, "'iw", "<Plug>CamelCaseMotion_iw", {silent = true})
-require('snacks').keymap.set({ "v", "o"}, "'ib", "<Plug>CamelCaseMotion_ib", {silent = true})
-require('snacks').keymap.set({ "v", "o"}, "'ie", "<Plug>CamelCaseMotion_ie", {silent = true})

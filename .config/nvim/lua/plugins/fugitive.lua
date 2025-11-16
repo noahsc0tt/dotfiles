@@ -1,3 +1,8 @@
+return {
+    {
+        "tpope/vim-fugitive",
+        cond = not vim.g.started_by_firenvim,
+        config = function()
 vim.g.fugitive_mergediff = 1
 
 vim.api.nvim_create_user_command("Ga", "Git add <args>", { nargs = "+", complete = "file" });
@@ -36,3 +41,6 @@ vim.api.nvim_create_user_command("Gb", "Git branch", {});
 -- require('snacks').keymap.set("n", "<leader>ga", ":Ga ")
 -- require('snacks').keymap.set("n", "<leader>gm<leader>", ":Gcm \"")
 -- require('snacks').keymap.set("n", "<leader>gma", ":Gcam \"")
+end,
+    },
+}

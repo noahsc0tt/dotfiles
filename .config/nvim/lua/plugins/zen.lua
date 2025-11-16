@@ -1,5 +1,9 @@
-require("zen-mode").setup(
-{
+return {
+    {
+        "folke/zen-mode.nvim",
+        lazy = true,
+        event = "VeryLazy",
+opts = {
   window = {
     backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
     -- height and width can be:
@@ -57,4 +61,13 @@ require("zen-mode").setup(
   -- callback where you can add custom code when the Zen window closes
   -- on_close = function()
   -- end,
-})
+},
+keys = {
+{ "<M-f>", function()
+    vim.cmd("ZenMode")
+    vim.cmd("DimToggle")
+end, mode = "n", desc = "Toggle Focus Mode"},
+}
+    },
+}
+

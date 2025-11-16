@@ -5,15 +5,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
     },
 
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = function()
-            require("nvim-treesitter.install").update({ with_sync = true })()
-        end,
-        event = { "BufReadPost", "BufNewFile" }
-    },
-
-    {
+        {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
         event = "VeryLazy",
@@ -30,23 +22,7 @@ return {
         cond = not vim.g.started_by_firenvim,
     },
 
-    {
-        "mbbill/undotree",
-        lazy = true,
-        event = "VeryLazy",
-    },
 
-    {
-        "theprimeagen/harpoon",
-        cmd = "Harpoon",
-        cond = not vim.g.started_by_firenvim,
-    },
-
-    {
-        "tpope/vim-fugitive",
-        cond = not vim.g.started_by_firenvim,
-
-    },
 
     {
         "mason-org/mason.nvim",
@@ -64,16 +40,6 @@ return {
         end
     },
 
-    {
-        "bkad/CamelCaseMotion",
-        lazy = true,
-        event = "VeryLazy",
-    },
-
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-    },
 
     {
         "github/copilot.vim",
@@ -102,20 +68,7 @@ return {
     --
     -- },
 
-    {
-        'mrjones2014/smart-splits.nvim',
-        lazy = true,
-        event = "VeryLazy",
-    },
 
-    {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        lazy = true,
-        event = "VeryLazy",
-        cond = not vim.g.started_by_firenvim,
-    },
 
     {
         'dhruvasagar/vim-table-mode',
@@ -125,31 +78,8 @@ return {
         end
     },
 
-    --    {
-    --        "nvim-zh/colorful-winsep.nvim",
-    --        config = true,
-    --        event = { "WinLeave" },
-    --    },
 
-    -- {
-    --     'MeanderingProgrammer/render-markdown.nvim',
-    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    --     ft = { "markdown" },
-    --     ---@module 'render-markdown'
-    --     cmd = { "RenderMarkdown" },
-    -- },
-
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-        build = "cd app && npm install",
-        init = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
-        ft = { "markdown" },
-    },
-
-    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+        { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
 
 
     {
@@ -188,28 +118,6 @@ return {
     --     cond = not vim.g.started_by_firenvim,
     -- },
 
-    {
-        'rcarriga/nvim-notify',
-        lazy = true,
-        event = "VeryLazy",
-        cond = not vim.g.started_by_firenvim,
-    },
-
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
-        cond = not vim.g.started_by_firenvim,
-    },
-
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        cond = not vim.g.started_by_firenvim,
-    },
 
     {
         "aznhe21/actions-preview.nvim",
@@ -219,37 +127,8 @@ return {
     },
 
 
-    {
-        'chomosuke/typst-preview.nvim',
-        ft = 'typst',
-    },
 
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-    },
 
-    {
-        "NStefan002/screenkey.nvim",
-        lazy = false,
-        branch = "main",
-    },
-
-    {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
-        ft = { "markdown", "typst" },
-    },
-
-    {
-        "chrisgrieser/nvim-origami",
-        lazy = false,
-
-        init = function()
-            vim.opt.foldlevel = 99
-            vim.opt.foldlevelstart = 99
-        end,
-    },
 
     -- {
     --     "xzbdmw/colorful-menu.nvim",
@@ -260,72 +139,9 @@ return {
     --     end
     -- },
 
-    {
-        "NickvanDyke/opencode.nvim",
-        cond = not vim.g.started_by_firenvim,
-    },
-
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        dependencies = {
-            { "ms-jpq/coq_nvim",       branch = "coq" },
-            { "ms-jpq/coq.artifacts",  branch = "artifacts" },
-
-            -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-            { 'ms-jpq/coq.thirdparty', branch = "3p" }
-            -- - shell repl
-            -- - nvim lua api
-            -- - scientific calculator
-            -- - comment banner
-            -- - etc
-
-        },
-        init = function()
-            vim.g.coq_settings = {
-                auto_start = 'shut-up',
-                completion = {
-                    always = false,
-                    sticky_manual = false,
-
-                },
-                display = {
-                    preview = {
-                        border = { "", "", "", "", "", "", "", "" }
-                    },
-                    statusline = { helo = false }
-                },
-                keymap = {
-                    recommended = true,
-                    pre_select = true,
-                    jump_to_mark = '<C-m>',
-                    manual_complete = '<C-Space>',
-                    bigger_preview = '<C-k>',
-                },
-            }
-        end,
-    },
-
-    {
-        "rmagatti/auto-session",
-        lazy = false,
-        cond = not vim.g.started_by_firenvim,
-    },
 
     {
         'nvim-focus/focus.nvim',
-        lazy = true,
-        event = "VeryLazy",
-    },
-
-    {
-        "folke/zen-mode.nvim",
-        lazy = true,
-        event = "VeryLazy",
-    },
-
-    {
-        "LintaoAmons/scratch.nvim",
         lazy = true,
         event = "VeryLazy",
     },

@@ -1,4 +1,9 @@
-require("focus").setup({
+return {
+    {
+        'nvim-focus/focus.nvim',
+        lazy = true,
+        event = "VeryLazy",
+        opts = {
     enable = true,                   -- Enable module
     commands = true,                 -- Create Focus commands
     autoresize = {
@@ -23,48 +28,21 @@ require("focus").setup({
 
         cursorline = false,                -- Display a cursorline in the focussed window only
     }
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-    callback = function()
-        vim.wo.cursorline = true
-        vim.wo.cursorcolumn = false
-
-        if vim.bo.buftype ~= "terminal" and vim.bo.buftype ~= "prompt" then
-            vim.wo.number = true
-            vim.wo.relativenumber = true
-        else
-            vim.wo.number = false
-            vim.wo.relativenumber = false
-        end
-    end,
-})
+},
 
 
--- local ignore_buftypes = { 'terminal', 'prompt', }
---
--- vim.api.nvim_create_autocmd('WinEnter', {
---     callback = function(_)
---         if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
---             vim.w.focus_disable = true
---         else
---             vim.w.focus_disable = false
---         end
---     end,
---     desc = 'Disable focus autoresize for BufType',
--- })
-
-require('snacks').keymap.set("n", "<M-f>", function()
-    vim.cmd("ZenMode")
-    vim.cmd("DimToggle")
-end)
-require('snacks').keymap.set("n", "<leader>zq", function() vim.cmd("FocusEqualise") end )
-require('snacks').keymap.set("n", "<leader>zF", function() vim.cmd("FocusDisable") end)
-require('snacks').keymap.set("n", "<leader>zf", function()
+keys = {
+{ "<leader>zq", function() vim.cmd("FocusEqualise") end , mode = "n", desc = "Equalise Splits"},
+{ "<leader>zF", function() vim.cmd("FocusDisable") end, mode = "n", desc = "Disable Focus"},
+{ "<leader>zf", function()
     vim.cmd("FocusEnable")
     vim.cmd("FocusAutoresize")
-end)
+end, mode = "n", desc = "Enable Focus and Resize"},
+{ "<leader>sh", function() vim.cmd("FocusSplitLeft") end, mode = "n"},
+{ "<leader>sj", function() vim.cmd("FocusSplitDown") end, mode = "n"},
+{ "<leader>sk", function() vim.cmd("FocusSplitUp") end, mode = "n"},
+{ "<leader>sl", function() vim.cmd("FocusSplitRight") end, mode = "n"},
 
--- Markview
-require('snacks').keymap.set("n", "<leader>zm", "<cmd>Markview enable<CR>")
-require('snacks').keymap.set("n", "<leader>zM", "<cmd>Markview disable<CR>")
+}
+    },
+}

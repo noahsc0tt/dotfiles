@@ -1,4 +1,9 @@
-require("scratch").setup({
+return {
+    {
+        "LintaoAmons/scratch.nvim",
+        lazy = true,
+        event = "VeryLazy",
+opts = {
     scratch_file_dir = "/Users/nscott/.scratch/scratch.nvim",   -- where your scratch files will be put
     window_cmd = "edit",                                -- 'vsplit' | 'split' | 'edit' | 'tabedit' | 'rightbelow vsplit'
     use_telescope = true,
@@ -41,15 +46,7 @@ require("scratch").setup({
     --         end,
     --     },
     -- },
-})
+}
+    },
+}
 
-vim.keymap.set("n", "<leader>sn", function()
-  vim.cmd("Scratch")
-  vim.defer_fn(function()
-    local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-    vim.api.nvim_feedkeys(keys, "t", false)  -- typeahead, not normal
-  end, 1)
-end)
-vim.keymap.set("n", "<leader>sN", "<cmd>ScratchWithName<cr>")
-vim.keymap.set("n", "<leader>sF", "<cmd>ScratchOpenFzf<cr>")
-vim.keymap.set("n", "<leader>sf", "<cmd>ScratchOpen<cr>")
