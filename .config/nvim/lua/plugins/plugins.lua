@@ -20,38 +20,32 @@ config = true,
         "kylechui/nvim-surround",
         lazy = true,
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup()
-        end
+        config = true
     },
 
 
     {
-        "github/copilot.vim",
-        event = "InsertEnter"
-    },
+        "CopilotC-Nvim/CopilotChat.nvim",
+        enabled = false,
+        dependencies = {
+            { "nvim-lua/plenary.nvim", branch = "master" },
+        },
+        build = "make tiktoken",
+        cmd = { "CopilotChat", "CopilotChatToggle" },
+        opts = {
+            {
+                model = 'gpt-5.1',
+                temperature = 0.1,
+                window = {
+                    layout = 'vertical',
+                    width = 0.3,
+                },
+                auto_insert_mode = true,
+            }
+        },
+        cond = not vim.g.started_by_firenvim,
 
-    -- {
-    --     "CopilotC-Nvim/CopilotChat.nvim",
-    --     dependencies = {
-    --         { "nvim-lua/plenary.nvim", branch = "master" },
-    --     },
-    --     build = "make tiktoken",
-    --     cmd = { "CopilotChat", "CopilotChatToggle" },
-    --     opts = {
-    --         {
-    --             model = 'gpt-4.1',
-    --             temperature = 0.1,
-    --             window = {
-    --                 layout = 'vertical',
-    --                 width = 0.3,
-    --             },
-    --             auto_insert_mode = true,
-    --         }
-    --     },
-    --     cond = not vim.g.started_by_firenvim,
-    --
-    -- },
+    },
 
 
 
@@ -152,8 +146,8 @@ config = true,
                         -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-{ icon = "󱄌 ", key = "l", desc = "Restart LSP", action = ":LspRestart", },
-                        { icon = "󰒲 ", key = "z", desc = "Lazy Sync", action = ":Lazy sync", enabled = package.loaded.lazy ~= nil },
+{ icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
+                        { icon = " ", key = "y", desc = "Screenkey", action = ":Screenkey", },
                         {
                             icon = " ",
                             key = "s",

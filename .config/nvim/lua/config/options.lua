@@ -49,3 +49,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- for opencode
 vim.o.autoread = true
+
+-- for autosession
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

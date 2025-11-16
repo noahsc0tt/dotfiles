@@ -3,10 +3,6 @@ return {
         "rmagatti/auto-session",
         lazy = false,
         cond = not vim.g.started_by_firenvim,
-        config = function()
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-end,
-
 opts = {
     -- Saving / restoring
     enabled = vim.env.NO_AUTOSESSION ~= "1",
@@ -73,6 +69,10 @@ opts = {
             control_filename = "session_control.json",                -- File name of the session control file
         },
     },
-}
+},
+--         config = function()
+-- 
+-- end,
+
 }
 }
