@@ -63,3 +63,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --         vim.cmd(cmd)
 --     end
 -- end
+
+
+vim.api.nvim_create_user_command("LspRestart", function()
+    for _, client in ipairs(vim.lsp.get_active_clients()) do
+        client.stop()
+    end
+
+    -- reload lsp.lua configuration:help cterm-colors
+    local ok, _ = pcall(dofile, vim.fn.stdpath("config") .. "/after/plugin/lsp.lua")
+    if not ok then
+        print("Failed to reload lsp.lua")
+    else
+        print("LSP restarted")
+    end
+end, { force = true })

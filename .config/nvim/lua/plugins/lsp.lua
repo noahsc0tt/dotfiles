@@ -1,5 +1,45 @@
-require("mason").setup()
-local coq = require "coq" -- add this
+return {
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        dependencies = {
+            { "ms-jpq/coq_nvim",       branch = "coq" },
+            { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+
+            -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+            { 'ms-jpq/coq.thirdparty', branch = "3p" }
+            -- - shell repl
+            -- - nvim lua api
+            -- - scientific calculator
+            -- - comment banner
+            -- - etc
+
+        },
+        init = function()
+            vim.g.coq_settings = {
+                auto_start = 'shut-up',
+                completion = {
+                    always = false,
+                    sticky_manual = false,
+
+                },
+                display = {
+                    preview = {
+                        border = { "", "", "", "", "", "", "", "" }
+                    },
+                    statusline = { helo = false }
+                },
+                keymap = {
+                    recommended = true,
+                    pre_select = true,
+                    jump_to_mark = '<C-m>',
+                    manual_complete = '<C-Space>',
+                    bigger_preview = '<C-k>',
+                },
+            }
+        end,
+        config = function()
+    local coq = require "coq" -- add this
 
 vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', coq.lsp_ensure_capabilities({
@@ -51,26 +91,31 @@ vim.lsp.config('hls', coq.lsp_ensure_capabilities({
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('jsonls')
 
-local function restart_all_lsps()
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
-        client.stop()
-    end
+vim.diagnostic.config(default_diagnostic_config)
+end,
+keys = {
 
-    -- reload lsp.lua configuration:help cterm-colors
-    local ok, _ = pcall(dofile, vim.fn.stdpath("config") .. "/after/plugin/lsp.lua")
-    if not ok then
-        print("Failed to reload lsp.lua")
-    else
-        print("LSP restarted")
-    end
-end
 
--- Override :LspRestart globally
-vim.api.nvim_create_user_command("LspRestart", restart_all_lsps, { force = true })
+-- Diagnostic actions
+{ "<leader>la", vim.diagnostic.setloclist, mode = "n"},
+{ "<leader>lp", vim.diagnostic.goto_prev, mode = "n"},
+{ "<leader>ln", vim.diagnostic.goto_next, mode = "n"},
+{ "<leader>lf", vim.diagnostic.open_float, mode = "n"},
 
+-- Code actions
+{ "<leader>ld", vim.lsp.buf.definition, mode = "n"},
+{ "<leader>lD", vim.lsp.buf.declaration, mode = "n"},
+-- require('snacks').keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+{ "<leader>lR", vim.lsp.buf.references, mode = "n"},
+{ "<leader>lc", vim.lsp.buf.references, mode = "n"},
+{ "<leader>lk", vim.lsp.buf.hover, mode = "n"},
+
+-- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+{ "<leader>lr", vim.lsp.buf.rename, mode = "n"},
+{ "<leader>li", "<cmd>LspInfo<CR>", mode = "n"},
 
 -- Detach LSP
-require('snacks').keymap.set("n", "<leader>ld", function()
+{ "<leader>ld", function()
     local bufnr = 0
     local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
 
@@ -82,90 +127,66 @@ require('snacks').keymap.set("n", "<leader>ld", function()
     else
         print("No LSP attached")
     end
-end, { noremap = true, silent = true })
+end, mode = "n",},
 
-require('snacks').keymap.set("n", "<leader>vr", restart_all_lsps, { noremap = true, silent = true })
+{ "<leader>vr", "<cmd>LspRestart<CR>", mode = "n", desc = "Restart LSP" },
 
 
-
--- Diagnostics
-local default_diagnostic_config = {
-    virtual_text = true,
-    signs = true,
-    underline = true,
-    update_in_insert = false,
+{ "<leader>lew", function()
+    vim.diagnostic.config({
+        virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
+        underline = { severity = { min = vim.diagnostic.severity.ERROR } },
+        signs = { severity = { min = vim.diagnostic.severity.ERROR } },
+        update_in_insert = false,
     float = {
         border = "rounded",
         prefix = " • ",
         severity_sort = true,
     },
-}
-vim.diagnostic.config(default_diagnostic_config)
-
-local function disable_warnings()
-    vim.diagnostic.config({
-        virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
-        underline = { severity = { min = vim.diagnostic.severity.ERROR } },
-        signs = { severity = { min = vim.diagnostic.severity.ERROR } },
-        update_in_insert = default_diagnostic_config.update_in_insert,
-        float = default_diagnostic_config.float,
     })
     print("Warnings disabled")
-end
+end, mode = "n"},
 
-local function disable_errors()
+{ "<leader>lee", function()
     vim.diagnostic.config({
         virtual_text = false,
         underline = false,
         signs = false,
         update_in_insert = false,
-        float = default_diagnostic_config.float
+    float = {
+        border = "rounded",
+        prefix = " • ",
+        severity_sort = true,
+    },
     })
     print("All diagnostics disabled")
-end
+end, mode = "n"},
 
-local function disable_virtual_text()
+{ "<leader>let", function()
     vim.diagnostic.config({
         virtual_text = false,
-        underline = default_diagnostic_config.underline,
-        signs = default_diagnostic_config.signs,
-        update_in_insert = default_diagnostic_config.update_in_insert,
-        float = default_diagnostic_config.float,
+        underline = true,
+        signs = true,
+        update_in_insert = false,
+    float = {
+        border = "rounded",
+        prefix = " • ",
+        severity_sort = true,
+    },
     })
     print("Virtual text disabled")
-end
+end, mode = "n"},
 
-local function reset_diagnostics()
-    vim.diagnostic.config(default_diagnostic_config)
+{ "<leader>ler", function()
+    vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+})
     print("Diagnostics reset to default")
-end
+end, mode = "n"},
 
-
-
--- Keymaps
-
-local opts = { noremap = true, silent = true }
-
--- Diagnostics config
-require('snacks').keymap.set("n", "<leader>lew", disable_warnings, opts)
-require('snacks').keymap.set("n", "<leader>lee", disable_errors, opts)
-require('snacks').keymap.set("n", "<leader>let", disable_virtual_text, opts)
-require('snacks').keymap.set("n", "<leader>ler", reset_diagnostics, opts)
-
--- Diagnostic actions
-require('snacks').keymap.set("n", "<leader>la", vim.diagnostic.setloclist)
-require('snacks').keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
-require('snacks').keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
-require('snacks').keymap.set("n", "<leader>lf", vim.diagnostic.open_float)
-
--- Code actions
-require('snacks').keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
-require('snacks').keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
--- require('snacks').keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
-require('snacks').keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
-require('snacks').keymap.set("n", "<leader>lc", vim.lsp.buf.references, opts)
-require('snacks').keymap.set("n", "<leader>lk", vim.lsp.buf.hover, opts)
-
--- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-require('snacks').keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-require('snacks').keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+    },
+}
+}

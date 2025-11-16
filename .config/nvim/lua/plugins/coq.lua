@@ -1,6 +1,7 @@
 return {
     {
          'ms-jpq/coq.thirdparty',
+         enabled = false,
 opts = {
     { src = "builtin/syntax" },
     {

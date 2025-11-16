@@ -1,14 +1,15 @@
 return {
 {
     'akinsho/bufferline.nvim',
+enabled = true,
     version = '*',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = 'VeryLazy',
     cond = not vim.g.started_by_firenvim,
-        opts = function() 
-		return {
+        opts = {
+            options = {
           mode = 'buffers',
-          style_preset = require('bufferline').style_preset.minimal,
+          style_preset = function() require('bufferline').style_preset.minimal() end,
           indicator = { style = 'none' },
           always_show_bufferline = false,
           auto_toggle_bufferline = true,
@@ -29,7 +30,8 @@ return {
               return ''
             end
           end,
-        } end,
+        },
+},
     keys = {
       { '<M-j>', function() require('bufferline').cycle(1) end, desc = 'Next buffer' },
       { '<M-k>', function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },

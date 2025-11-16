@@ -2,7 +2,7 @@ return {
     {
         "NStefan002/screenkey.nvim",
         lazy = true,
-        command = "Screenkey",
+        event = "VeryLazy",
         branch = "main",
 opts = {
     win_opts = {

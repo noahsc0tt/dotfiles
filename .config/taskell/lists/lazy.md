@@ -1,11 +1,11 @@
 ## To Do
 
-- lazy sync on launch
+- lsprestart keybind or dashboard
 - lsp
 - no leader vz (dashboard enough)
-- mason
-- tokyonight duplicate
 - screenkey
+- autopairs
+- lsp descs
 - config = true
 - copilot <C-f>
 

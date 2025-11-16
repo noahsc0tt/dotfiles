@@ -85,6 +85,7 @@
     * [ ] cd-project
     * [ ] gitsigns/vimgitgutter
     * [ ] bookmarks.nvim
+    * [ ] oil
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
     * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] fold-preview

@@ -1,7 +1,6 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.9",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
     defaults = {
@@ -15,7 +14,7 @@ return {
             preview_cutoff = 1,
             flex = { flip_columns = 120, }
         },
-        file_sorter = require("telescope.sorters").get_fzf_sorter,
+        file_sorter = function() require("telescope.sorters").get_fzf_sorter() end,
         previewer = true,
         initial_mode = "insert",
         path_display = { truncate = 1, shorten = 1, "smart" },
@@ -49,7 +48,7 @@ return {
             },
             mappings = {
                 ["n"] = {
-                    ["n"] = require("telescope.extensions.file_browser.actions").create,
+                    ["n"] = function() require("telescope.extensions.file_browser.actions").create() end,
                     ["l"] = function(prompt_bufnr)
                         local entry = require("telescope.actions.state").get_selected_entry()
                         local path = entry.path or entry.value
@@ -58,17 +57,23 @@ return {
                             require("telescope.actions").select_default(prompt_bufnr)
                         end
                     end,
-                    ["a"] = require("telescope.extensions.file_browser.actions").toggle_all,
+                    ["a"] = function() require("telescope.extensions.file_browser.actions").toggle_all() end,
                     ["A"] = function(prompt_bufnr)
                         open_file_browser(require("telescope.actions.state").get_current_picker(prompt_bufnr).finder.path,
                             showing_stat, flat)
                     end,
-                    ["K"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_better,
-                    ["J"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_worse,
-                    ["z"] = require("telescope.extensions.file_browser.actions").goto_home_dir,
-                    ["w"] = require("telescope.extensions.file_browser.actions").goto_cwd,
-                    ["h"] = require("telescope.extensions.file_browser.actions").goto_parent_dir,
-                    ["."] = require("telescope.extensions.file_browser.actions").toggle_hidden,
+                    ["K"] = function()
+                        require("telescope.actions").toggle_selection()
+                        require("telescope.actions").move_selection_better()
+                    end,
+                    ["J"] = function()
+                        require("telescope.actions").toggle_selection()
+                        require("telescope.actions").move_selection_worse()
+                    end,
+                    ["z"] = function() require("telescope.extensions.file_browser.actions").goto_home_dir() end,
+                    ["w"] = function() require("telescope.extensions.file_browser.actions").goto_cwd() end,
+                    ["h"] = function() require("telescope.extensions.file_browser.actions").goto_parent_dir() end,
+                    ["."] = function() require("telescope.extensions.file_browser.actions").toggle_hidden() end,
                     ["Y"] = copy_file_path,
                     ["c"] = function(prompt_bufnr)
                         local entry = require("telescope.actions.state").get_selected_entry()
@@ -144,7 +149,7 @@ local function copy_file_path()
         print("Copied: " .. entry.path)
     end
 end
-telescope.load_extension "file_browser"
+require('telescope').load_extension "file_browser"
 require('telescope').load_extension "notify"
 
 

@@ -12,6 +12,7 @@ return {
         "mason-org/mason.nvim",
         cmd = "Mason",
         cond = not vim.g.started_by_firenvim,
+config = true,
 
     },
 
@@ -65,37 +66,7 @@ return {
 
         { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
 
-
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,    -- make sure it loads immediately
-        priority = 1000, -- load before other plugins
-        opts = {
-            style = "night",
-            on_highlights = function(hl, c)
-                local prompt = c.bg
-                hl.TelescopeNormal = { bg = c.bg, fg = c.fg }
-                hl.TelescopeBorder = { bg = c.bg, fg = c.bg }
-                hl.TelescopePromptNormal = { bg = prompt }
-                hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
-                hl.TelescopePromptTitle = { bg = c.bg_highlight, fg = c.fg }
-                hl.TelescopePreviewTitle = { bg = c.bg, fg = c.bg }
-                hl.TelescopeResultsTitle = { bg = c.bg, fg = c.bg }
-                hl.NoiceCmdlinePopupBorder = { bg = c.bg, fg = c.bg }
-            end,
-        },
-        config = function(_, opts)
-            require("tokyonight").setup(opts)
-            vim.cmd.colorscheme("tokyonight-night")
-            vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#82A1F1" })
-            vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#82A1F1" })
-            vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#af6be0", bold = true })
-        end,
-        cond = not vim.g.started_by_firenvim,
-
-    },
-
-    -- {
+-- {
     --     'romariorobby/taskell.nvim',
     --     lazy = true,
     --     event = "VeryLazy",
@@ -114,14 +85,13 @@ return {
 
 
 
-    -- {
-    --     "xzbdmw/colorful-menu.nvim",
-    --     lazy = true,
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("colorful-menu").setup()
-    --     end
-    -- },
+    {
+        "xzbdmw/colorful-menu.nvim",
+        enabled = false,
+        lazy = true,
+        event = "VeryLazy",
+        config = true,
+    },
 
 
     {
@@ -159,7 +129,7 @@ return {
                             end
                         },
                         {
-                            icon = "󱞂 ",
+                            icon = "󱙔 ",
                             key = "N",
                             desc = "Search Notes",
                             action = function()
@@ -168,7 +138,7 @@ return {
                         },
                         {
                             icon = " ",
-                            key = "c",
+                            key = "f",
                             desc = "Create Scratch File",
                             action = function()
                                 vim.cmd("Scratch")
@@ -178,13 +148,14 @@ return {
                                 end, 1)
                             end
                         },
-                        { icon = "󰱽 ", key = "C", desc = "Search Scratch Files", action = ":ScratchOpen" },
+                        { icon = "󰱽 ", key = "F", desc = "Search Scratch Files", action = ":ScratchOpen" },
                         -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                        { icon = " ", key = "o", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+{ icon = "󱄌 ", key = "l", desc = "Restart LSP", action = ":LspRestart", },
                         { icon = "󰒲 ", key = "z", desc = "Lazy Sync", action = ":Lazy sync", enabled = package.loaded.lazy ~= nil },
                         {
-                            icon = " ",
+                            icon = " ",
                             key = "s",
                             desc = "Search Sessions",
                             action = function()
@@ -200,7 +171,7 @@ return {
                             end
                         },
                         {
-                            icon = "󰧧 ",
+                            icon = "󱕗 ",
                             key = "q",
                             desc = "Quit and Delete Session",
                             action = function()
@@ -219,8 +190,8 @@ return {
                         height = 5,
                         padding = 3,
                     },
-                    { pane = 2, icon = "󱫓 ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
-                    { pane = 2, icon = " ", title = "Recent Directories", section = "projects", indent = 2, padding = 1, hl_current_line = false },
+                    { pane = 2, icon = "󱋢 ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
+                    { pane = 2, icon = "󰪻 ", title = "Recent Directories", section = "projects", indent = 2, padding = 1, hl_current_line = false },
                     { pane = 2, section = "keys", gap = 0, padding = 1, hl_current_line = false },
                     {
                         pane = 1,
@@ -252,7 +223,7 @@ return {
                         padding = 1,
                         hl_current_line = false
                     },
-                    { pane = 2, section = "startup" },
+                    { pane = 1, section = "startup" },
                 },
             },
             dim = {
@@ -531,7 +502,6 @@ return {
             --         patterns = { "GitSign", "MiniDiffSign" },
             --     },
             --     refresh = 50, -- refresh at most every 50ms
-            -- },
             terminal = {
                 bo = {
                     filetype = "snacks_terminal",
@@ -580,5 +550,5 @@ return {
             { "<leader>j",   function() require('snacks').words.jump() end,                       desc = "Next LSP Reference" },
         },
 
-    }
+    },
 }
