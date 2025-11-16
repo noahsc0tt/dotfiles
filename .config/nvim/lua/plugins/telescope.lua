@@ -1,23 +1,9 @@
-local telescope = require("telescope")
-local actions = require("telescope.actions")
-local state = require("telescope.actions.state")
-local builtin = require("telescope.builtin")
-local fb = telescope.extensions.file_browser
-local fb_actions = fb.actions
-local fb_utils = require("telescope._extensions.file_browser.utils")
-
-local showing_stat = false
-local flat = false
-
-local function copy_file_path()
-    local entry = state.get_selected_entry()
-    if entry and entry.path then
-        vim.fn.setreg("+", entry.path) -- copy absolute path to clipboard
-        print("Copied: " .. entry.path)
-    end
-end
-
-telescope.setup {
+return {
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.9",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
     defaults = {
         color_devicons = true,
         sorting_strategy = "ascending",
@@ -63,29 +49,29 @@ telescope.setup {
             },
             mappings = {
                 ["n"] = {
-                    ["n"] = fb_actions.create,
+                    ["n"] = require("telescope.extensions.file_browser.actions").create,
                     ["l"] = function(prompt_bufnr)
-                        local entry = state.get_selected_entry()
+                        local entry = require("telescope.actions.state").get_selected_entry()
                         local path = entry.path or entry.value
 
                         if vim.fn.isdirectory(path) == 1 then
-                            actions.select_default(prompt_bufnr)
+                            require("telescope.actions").select_default(prompt_bufnr)
                         end
                     end,
-                    ["a"] = fb_actions.toggle_all,
+                    ["a"] = require("telescope.extensions.file_browser.actions").toggle_all,
                     ["A"] = function(prompt_bufnr)
-                        open_file_browser(state.get_current_picker(prompt_bufnr).finder.path,
+                        open_file_browser(require("telescope.actions.state").get_current_picker(prompt_bufnr).finder.path,
                             showing_stat, flat)
                     end,
-                    ["K"] = actions.toggle_selection + actions.move_selection_better,
-                    ["J"] = actions.toggle_selection + actions.move_selection_worse,
-                    ["z"] = fb_actions.goto_home_dir,
-                    ["w"] = fb_actions.goto_cwd,
-                    ["h"] = fb_actions.goto_parent_dir,
-                    ["."] = fb_actions.toggle_hidden,
+                    ["K"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_better,
+                    ["J"] = require("telescope.actions").toggle_selection + require("telescope.actions").move_selection_worse,
+                    ["z"] = require("telescope.extensions.file_browser.actions").goto_home_dir,
+                    ["w"] = require("telescope.extensions.file_browser.actions").goto_cwd,
+                    ["h"] = require("telescope.extensions.file_browser.actions").goto_parent_dir,
+                    ["."] = require("telescope.extensions.file_browser.actions").toggle_hidden,
                     ["Y"] = copy_file_path,
                     ["c"] = function(prompt_bufnr)
-                        local entry = state.get_selected_entry()
+                        local entry = require("telescope.actions.state").get_selected_entry()
                         local dir = entry.path
                         local uv = vim.loop.fs_stat(dir)
                         if not (uv and uv.type == "directory") then
@@ -95,10 +81,10 @@ telescope.setup {
                         os.execute("cd " .. dir_esc)
                     end,
                     ["o"] = function(prompt_bufnr)
-                        local quiet = state.get_current_picker(prompt_bufnr).finder.quiet
-                        local selections = fb_utils.get_selected_files(prompt_bufnr, true)
+                        local quiet = require("telescope.actions.state").get_current_picker(prompt_bufnr).finder.quiet
+                        local selections = require("telescope._extensions.file_browser.utils").get_selected_files(prompt_bufnr, true)
                         if vim.tbl_isempty(selections) then
-                            fb_utils.notify("actions.open",
+                            require("telescope._extensions.file_browser.utils").notify("actions.open",
                                 { msg = "No selection to be opened!", level = "INFO", quiet = quiet })
                             return
                         end
@@ -114,21 +100,21 @@ telescope.setup {
                         end
                     end,
                     ["s"] = function(prompt_bufnr)
-                        local picker = state.get_current_picker(prompt_bufnr)
-                        actions.close(prompt_bufnr)
+                        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+                        require("telescope.actions").close(prompt_bufnr)
                         local show_stat = not showing_stat
                         showing_stat = not showing_stat
                         open_file_browser(picker.finder.path, show_stat, flat)
                     end,
                     ["F"] = function(prompt_bufnr)
-                        local picker = state.get_current_picker(prompt_bufnr)
-                        actions.close(prompt_bufnr)
+                        local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+                        require("telescope.actions").close(prompt_bufnr)
                         local flatten = not flat
                         flat = not flat
                         open_file_browser(picker.finder.path, showing_stat, flatten)
                     end,
                     ["t"] = function()
-                        local entry = state.get_selected_entry()
+                        local entry = require("telescope.actions.state").get_selected_entry()
 
                         local dir = entry.path
                         local uv = vim.loop.fs_stat(dir)
@@ -145,18 +131,21 @@ telescope.setup {
                 }
             }
         },
-        ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-                layout_strategy = "flex",
-            }
-        }
     }
-}
+},
+config = function()
+local showing_stat = false
+local flat = false
+
+local function copy_file_path()
+    local entry = require("telescope.actions.state").get_selected_entry()
+    if entry and entry.path then
+        vim.fn.setreg("+", entry.path) -- copy absolute path to clipboard
+        print("Copied: " .. entry.path)
+    end
+end
 telescope.load_extension "file_browser"
-vim.schedule(function()
-    telescope.load_extension("ui-select")
-end)
-telescope.load_extension "notify"
+require('telescope').load_extension "notify"
 
 
 -- keeps track of current `tabline` and `statusline`, so we can restore it after closing telescope
@@ -207,13 +196,13 @@ _G.open_file_browser = function(path, show_stat, flatten)
         depth = depth,
         attach_mappings = function(prompt_bufnr, map)
             map('n', 'c', function()
-                fb_actions.goto_cwd(prompt_bufnr)
+                require("telescope.extensions.file_browser.actions").goto_cwd(prompt_bufnr)
             end, { nowait = true })
             map('n', 'd', function()
-                fb_actions.remove(prompt_bufnr)
+                require("telescope.extensions.file_browser.actions").remove(prompt_bufnr)
             end, { nowait = true })
             map('n', 'y', function()
-                fb_actions.copy(prompt_bufnr)
+                require("telescope.extensions.file_browser.actions").copy(prompt_bufnr)
             end, { nowait = true })
             return true
         end,
@@ -225,41 +214,37 @@ _G.open_file_browser = function(path, show_stat, flatten)
     --        opts.layout_strategy = "horizontal"
     --    end
     --
-    fb.file_browser(opts)
+    
+    require('telescope').extensions.file_browser.file_browser(opts)
 end
-require('snacks').keymap.set({ "n", "v", "i" }, "<C-.>", open_file_browser)
 
-
-
--- Mappings
+end,
+keys = {
+{ "<C-.>", function() open_file_browser() end, mode = { "n", "v", "i" } },
 
 -- Files only
-require('snacks').keymap.set({ "n", "v" }, "<leader>f", function()
-    builtin.find_files()
-end)
+{ "<leader>f", function() require("telescope.builtin").find_files() end, mode = { "n", "v" } },
 
 -- Directories only
-require('snacks').keymap.set({ "n", "v" }, "<leader>ad", function()
-    builtin.find_files({
+{ "<leader>ad", function()
+    require("telescope.builtin").find_files({
         find_command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--absolute-path" },
         attach_mappings = function(prompt_bufnr, map)
-            actions.select_default:replace(function()
-                actions.close(prompt_bufnr)
-                local dir = state.get_selected_entry().path
+            require("telescope.actions").select_default:replace(function()
+                require("telescope.actions").close(prompt_bufnr)
+                local dir = require("telescope.actions.state").get_selected_entry().path
                 open_file_browser(dir)
             end)
             return true
         end,
     })
-end)
+end, mode = { "n", "v" } },
 
 -- Grep
-require('snacks').keymap.set({ "n", "v" }, "<leader>as", function()
-    builtin.live_grep({ cwd = vim.fn.getcwd() })
-end)
+{ "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>af", function()
+{ "<leader>af", function()
     local bufs = vim.fn.getbufinfo({ buflisted = 1 })
     local current = vim.api.nvim_get_current_buf()
     local index = 1
@@ -283,65 +268,76 @@ require('snacks').keymap.set({ "n", "v" }, "<leader>af", function()
             return true
         end,
     })
-end)
+end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>/", function() builtin.current_buffer_fuzzy_find() end)
+{ "<leader>/", function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set("n", "<leader>aw", function() builtin.grep_string() end)
+{ "<leader>aw", function() require("telescope.builtin").grep_string() end, mode = "n"},
 
 
-require('snacks').keymap.set("v", "<leader>aw", function()
+{ "<leader>aw", function()
     vim.cmd('normal! "vy')
     local text = vim.fn.getreg("v")
-    builtin.grep_string({ search = text, initial_mode = "normal", })
-end, { noremap = true, silent = true })
+    require("telescope.builtin").grep_string({ search = text, initial_mode = "normal", })
+end, mode = "v"},
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ag", function() builtin.git_files() end)
+{ "<leader>ag", function() require("telescope.builtin").git_files() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ao", function() builtin.oldfiles() end)
+{ "<leader>ao", function() require("telescope.builtin").oldfiles() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ar", function() builtin.lsp_references() end)
+{ "<leader>ar", function() require("telescope.builtin").lsp_references() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ae", function() builtin.diagnostics() end)
+{ "<leader>ae", function() require("telescope.builtin").diagnostics() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>an", function() telescope.extensions.notify.notify() end)
+{ "<leader>an", function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>c", function() builtin.command_history() end)
+{ "<leader>c", function() require("telescope.builtin").command_history() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>aj", function() builtin.jumplist() end)
+{ "<leader>aj", function() require("telescope.builtin").jumplist() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ah", function() builtin.search_history() end)
+{ "<leader>ah", function() require("telescope.builtin").search_history() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>`", function() builtin.marks() end)
+{ "<leader>`", function() require("telescope.builtin").marks() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>ap", function() builtin.registers() end)
+{ "<leader>ap", function() require("telescope.builtin").registers() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>:", function() builtin.commands() end)
+{ "<leader>:", function() require("telescope.builtin").commands() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>A", function() builtin.builtin() end)
+{ "<leader>A", function() require("telescope.builtin").builtin() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>at", function() builtin.filetypes() end)
+{ "<leader>at", function() require("telescope.builtin").filetypes() end, mode = { "n", "v" } },
 
 
-require('snacks').keymap.set({ "n", "v", "i" }, "<C-=>", function() builtin.spell_suggest() end)
+{ "<C-=>", function() require("telescope.builtin").spell_suggest() end, mode = { "n", "v", "i" } },
 
 
-require('snacks').keymap.set({ "n", "v" }, "<leader>a<leader>", function() builtin.resume() end)
+{ "<leader>a<leader>", function() require("telescope.builtin").resume() end, mode = { "n", "v" } },
 
+}
+},
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        cond = not vim.g.started_by_firenvim,
 
--- lsp_definitions, git
+    },
+    {
+        "nvim-telescope/telescope-ui-select.nvim",
+        cond = not vim.g.started_by_firenvim,
+        enabled = false,
+    },
+}

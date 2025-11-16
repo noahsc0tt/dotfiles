@@ -5,8 +5,8 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = 'VeryLazy',
     cond = not vim.g.started_by_firenvim,
-        opts = function()
-            return {
+        opts = function() 
+		return {
           mode = 'buffers',
           style_preset = require('bufferline').style_preset.minimal,
           indicator = { style = 'none' },
@@ -29,8 +29,7 @@ return {
               return ''
             end
           end,
-        },
-    end,
+        } end,
     keys = {
       { '<M-j>', function() require('bufferline').cycle(1) end, desc = 'Next buffer' },
       { '<M-k>', function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },

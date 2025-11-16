@@ -77,19 +77,19 @@
     * [ ] ghosttext
     * [ ] check out tridactyl vs vimium
 - plugins
+    * [ ] folke/trouble
     * [ ] yazi.nvim
     * [ ] context-menu
     * [ ] todo-comments
     * [ ] conform
-    * [ ] edgy (snacks.terminal)
     * [ ] cd-project
     * [ ] gitsigns/vimgitgutter
     * [ ] bookmarks.nvim
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
     * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] fold-preview
+    * [ ] edgy (snacks.terminal)
     * [ ] indent blankline
-    * [ ] telescope-menu
     * [ ] coc for lsp
     * [ ] mini.nvim
     * [ ] sayonara

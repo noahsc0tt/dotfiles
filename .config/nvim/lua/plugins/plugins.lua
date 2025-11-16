@@ -1,9 +1,4 @@
 return {
-    {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
 
         {
         "nvim-tree/nvim-web-devicons",
@@ -11,20 +6,9 @@ return {
         event = "VeryLazy",
     },
 
-    {
-        "nvim-telescope/telescope-file-browser.nvim",
-        cond = not vim.g.started_by_firenvim,
-
-    },
-
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-        cond = not vim.g.started_by_firenvim,
-    },
 
 
-
-    {
+{
         "mason-org/mason.nvim",
         cmd = "Mason",
         cond = not vim.g.started_by_firenvim,
