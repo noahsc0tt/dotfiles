@@ -3,7 +3,6 @@
   "actions-preview.nvim": { "branch": "master", "commit": "cb938c25edaac38d362555f19244a9cb85d561e8" },
   "auto-session": { "branch": "main", "commit": "292492ab7af4bd8b9e37e28508bc8ce995722fd5" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
-  "copilot-lsp": { "branch": "main", "commit": "884034b23c3716d55b417984ad092dc2b011115b" },
   "copilot.lua": { "branch": "master", "commit": "e919876a5523b06406f0bc7285477da87a338a61" },
   "coq.artifacts": { "branch": "artifacts", "commit": "ef5f21d638ccc456cfa5b8d0ab37093cefe48c8b" },
   "coq.thirdparty": { "branch": "3p", "commit": "2bd969a2bcd2624f9c260b1000957c7e665e308e" },
@@ -39,5 +38,6 @@
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vim-table-mode": { "branch": "master", "commit": "e156dbbedce0bbf61c0919db7678fa246fabd616" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
+  "yazi.nvim": { "branch": "main", "commit": "3f81faf0cf838acb312f0f0d75ac1a8ac69166ed" },
   "zen-mode.nvim": { "branch": "main", "commit": "8564ce6d29ec7554eb9df578efa882d33b3c23a7" }
 }

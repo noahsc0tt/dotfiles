@@ -41,15 +41,15 @@ return {
       accept_line = "<C-i><C-l>",
       next = "<C-i><C-n>",
       prev = "<C-i><C-p>",
-        dismiss = "<C-Esc>",
+        dismiss = "<C-S-f>",
     },
   },
   nes = {
     enabled = false,
     keymap = {
-      accept_and_goto = "<C-S-f>",
+      accept_and_goto = false,
       accept = false,
-      dismiss = "<C-S-Esc>",
+      dismiss = false,
     },
   },
   auth_provider_url = nil, -- URL to authentication provider, if not "https://github.com/"
@@ -87,7 +87,6 @@ return {
   },
   server_opts_overrides = {},
 },
-        
         keys = {
         { "<C-i><C-t>", function() require("copilot.suggestion").toggle_auto_trigger() end, mode = "i"},
         },

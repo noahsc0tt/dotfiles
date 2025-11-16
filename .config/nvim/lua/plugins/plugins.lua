@@ -1,6 +1,6 @@
 return {
 
-        {
+    {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
         event = "VeryLazy",
@@ -8,11 +8,11 @@ return {
 
 
 
-{
+    {
         "mason-org/mason.nvim",
         cmd = "Mason",
         cond = not vim.g.started_by_firenvim,
-config = true,
+        config = true,
 
     },
 
@@ -58,9 +58,9 @@ config = true,
     },
 
 
-        { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+    { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
 
--- {
+    -- {
     --     'romariorobby/taskell.nvim',
     --     lazy = true,
     --     event = "VeryLazy",
@@ -146,7 +146,26 @@ config = true,
                         -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-{ icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
+                        { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
+                        {
+                            icon = "󰒑 ",
+                            key = "x",
+                            desc = "Detach LSP",
+                            action = function()
+                                local bufnr = 0
+                                local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+
+                                if #clients > 0 then
+                                    for _, client in ipairs(clients) do
+                                        client.stop()
+                                    end
+                                    print("LSP detached")
+                                else
+                                    print("No LSP attached")
+                                end
+                            end,
+                        },
+                        { icon = "󰒒 ", key = "i", desc = "LSP Info", action = ":LspInfo", },
                         { icon = " ", key = "y", desc = "Screenkey", action = ":Screenkey", },
                         {
                             icon = " ",

@@ -8,5 +8,5 @@
     "Alt-Shift-Down": "DuplicateLine",
     "Ctrl-Alt-Up": "SpawnMultiCursorUp",
     "Ctrl-Alt-Down": "SpawnMultiCursorDown",
-    "Esc": "RemoveAllMultiCursors",
+    "Esc": "RemoveAllMultiCursors"
 }

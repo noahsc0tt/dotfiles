@@ -70,9 +70,6 @@ opts = {
         },
     },
 },
---         config = function()
--- 
--- end,
 
 }
 }

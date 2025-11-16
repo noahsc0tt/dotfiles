@@ -21,6 +21,26 @@ keys = {
 { "<M-C-l>", function() require('smart-splits').resize_right(4) end, mode = "n"},
 { "<M-C-j>", function() require('smart-splits').resize_down(4) end, mode = "n"},
 { "<M-C-k>", function() require('smart-splits').resize_up(4) end, mode = "n"},
+    { "<leader>sH", function()
+        local pos = vim.api.nvim_win_get_cursor(0)
+        require("smart-splits").swap_buf_left()
+        vim.api.nvim_win_set_cursor(0, pos)
+    end, mode = "n" },
+    { "<leader>sJ", function()
+        local pos = vim.api.nvim_win_get_cursor(0)
+        require("smart-splits").swap_buf_down()
+        vim.api.nvim_win_set_cursor(0, pos)
+    end, mode = "n" },
+    { "<leader>sK", function()
+        local pos = vim.api.nvim_win_get_cursor(0)
+        require("smart-splits").swap_buf_up()
+        vim.api.nvim_win_set_cursor(0, pos)
+    end, mode = "n" },
+    { "<leader>sL", function()
+        local pos = vim.api.nvim_win_get_cursor(0)
+        require("smart-splits").swap_buf_right()
+        vim.api.nvim_win_set_cursor(0, pos)
+    end, mode = "n" },
 }
 
     },

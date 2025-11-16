@@ -28,7 +28,7 @@ keymap = [
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
+	{ on = [ "g", "o" ], run = "arrow top", desc = "Go to top" },
 	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
 
 	# Navigation
@@ -60,18 +60,16 @@ keymap = [
 	{ on = "<Space>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "o",         run = "open",                        desc = "Open selected files" },
-	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "<Enter>",   run = "enter",                        desc = "Open selected files" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
+	{ on = "<Enter>",         run = "open",                        desc = "Open selected files" },
+	{ on = "o",         run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "y",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
-{ on = "Y",         run = "yank",                        desc = "Yank selected files (copy)" },
+{ on = "x",         run = "yank",                        desc = "Yank selected files (copy)" },
 	{ on = "p",         run = "paste",                       desc = "Paste yanked files" },
 	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
 	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
 	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
 	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
-	{ on = "P",         run = "unyank",                      desc = "Cancel the yank status" },
+	{ on = "Y",         run = "unyank",                      desc = "Cancel the yank status" },
 	{ on = "d",         run = "remove",                      desc = "Trash selected files" },
 	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
 	{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
@@ -80,19 +78,19 @@ keymap = [
 	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
 	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
 	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
+	{ on = "S",         run = "search --via=fd",             desc = "Search by fd" },
+	{ on = "s",         run = "search --via=rg",             desc = "Search by ripgrep" },
 	{ on = "<Esc>",     run = "escape --search",             desc = "Cancel the ongoing search" },
 	{ on = "f",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Linemode
-	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
-	{ on = [ "m", "p" ], run = "linemode permissions", desc = "Linemode: permissions" },
-	{ on = [ "m", "b" ], run = "linemode btime",       desc = "Linemode: btime" },
-	{ on = [ "m", "m" ], run = "linemode mtime",       desc = "Linemode: mtime" },
-	{ on = [ "m", "o" ], run = "linemode owner",       desc = "Linemode: owner" },
-	{ on = [ "m", "n" ], run = "linemode none",        desc = "Linemode: none" },
+	{ on = [ "m", "s" ], run = "linemode size",        desc = "Show size" },
+	{ on = [ "m", "p" ], run = "linemode permissions", desc = "Show permissions" },
+	{ on = [ "m", "b" ], run = "linemode btime",       desc = "Show created" },
+	{ on = [ "m", "m" ], run = "linemode mtime",       desc = "Show modified" },
+	{ on = [ "m", "o" ], run = "linemode owner",       desc = "Show owner" },
+	{ on = [ "m", "n" ], run = "linemode none",        desc = "Show none" },
 
 	# Copy
 	{ on = [ "c", "p" ], run = "copy path",             desc = "Copy the file path" },
@@ -101,7 +99,7 @@ keymap = [
 	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
 
 	# Filter
-	{ on = "i", run = "filter --smart", desc = "Filter files" },
+	{ on = "i", run = ["filter --smart", "arrow top"], desc = "Filter files" },
 
 	# Find
 	{ on = "/", run = "find --smart",            desc = "Find next file" },
@@ -155,7 +153,7 @@ keymap = [
 	{ on = "w", run = "tasks:show", desc = "Show task manager" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "?",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
@@ -174,7 +172,7 @@ keymap = [
 	{ on = "<Down>", run = "arrow next", desc = "Next task" },
 
 	{ on = "<Enter>", run = "inspect", desc = "Inspect the task" },
-	{ on = "x",       run = "cancel",  desc = "Cancel the task" },
+	{ on = "X",       run = "cancel",  desc = "Cancel the task" },
 
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },
@@ -296,10 +294,10 @@ keymap = [
 
 	# Undo/Redo
 	{ on = "u",     run = "undo", desc = "Undo the last operation" },
-	{ on = "<C-r>", run = "redo", desc = "Redo the last operation" },
+	{ on = "U", run = "redo", desc = "Redo the last operation" },
 
 	# Help
-	{ on = "~",    run = "help", desc = "Open help" },
+	{ on = "?",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 

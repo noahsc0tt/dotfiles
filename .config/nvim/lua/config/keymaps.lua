@@ -146,25 +146,6 @@ vim.keymap.set({"n", "t"}, "<C-S-f>",  function() require('snacks').terminal.ope
 
 -- Windows
 
-local function swap_and_follow(dir)
-    local pos = vim.api.nvim_win_get_cursor(0)
-    if dir == "left" then
-        smart_splits.swap_buf_left()
-    elseif dir == "right" then
-        smart_splits.swap_buf_right()
-    elseif dir == "up" then
-        smart_splits.swap_buf_up()
-    elseif dir == "down" then
-        smart_splits.swap_buf_down()
-    end
-    vim.api.nvim_win_set_cursor(0, pos)
-end
-
-vim.keymap.set("n", "<leader>sH", function() swap_and_follow("left") end)
-vim.keymap.set("n", "<leader>sJ", function() swap_and_follow("down") end)
-vim.keymap.set("n", "<leader>sK", function() swap_and_follow("up") end)
-vim.keymap.set("n", "<leader>sL", function() swap_and_follow("right") end)
-
 vim.keymap.set('n', '<C-w><C-f>', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local cfg = vim.api.nvim_win_get_config(win)
@@ -176,3 +157,5 @@ vim.keymap.set('n', '<C-w><C-f>', function()
   vim.notify("No floating window found")
 end, { desc = "Focus floating window" })
 
+
+vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })

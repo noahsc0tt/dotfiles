@@ -39,10 +39,14 @@ return {
             }
         end,
         config = function()
+vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/mason/bin:" .. vim.env.PATH
     local coq = require "coq" -- add this
 
 vim.lsp.enable('lua_ls')
 vim.lsp.config('lua_ls', coq.lsp_ensure_capabilities({
+-- root_dir = require('lspconfig.util').root_pattern(
+--         '.luarc.json', '.luacheckrc', '.stylua.toml', 'lua/', '.git'
+--     ),
     settings = {
         Lua = {
             diagnostics = {
@@ -91,48 +95,44 @@ vim.lsp.config('hls', coq.lsp_ensure_capabilities({
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('jsonls')
 
-vim.diagnostic.config(default_diagnostic_config)
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    float = {
+        border = "rounded",
+        prefix = " • ",
+        severity_sort = true,
+    },
+})
 end,
 keys = {
 
 
 -- Diagnostic actions
-{ "<leader>la", vim.diagnostic.setloclist, mode = "n"},
-{ "<leader>lp", vim.diagnostic.goto_prev, mode = "n"},
-{ "<leader>ln", vim.diagnostic.goto_next, mode = "n"},
-{ "<leader>lf", vim.diagnostic.open_float, mode = "n"},
+{ "<leader>ld", vim.diagnostic.setloclist, mode = "n", desc = "Open diagnostics" },
+{ "gp", vim.diagnostic.goto_prev, mode = "n", desc = "Previous diagnostic" },
+{ "gn", vim.diagnostic.goto_next, mode = "n", desc = "Next diagnostic" },
+{ "<leader>lf", vim.diagnostic.open_float, mode = "n", desc = "Open diagnostic float" },
 
 -- Code actions
-{ "<leader>ld", vim.lsp.buf.definition, mode = "n"},
-{ "<leader>lD", vim.lsp.buf.declaration, mode = "n"},
+{ "gd", vim.lsp.buf.definition, mode = "n", desc = "Go to definition" },
+{ "gD", vim.lsp.buf.declaration, mode = "n", desc = "Go to declaration" },
+{ "gt", vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
+{ "<leader>li", vim.lsp.buf.implementation, mode = "n", desc = "Go to implementation" },
 -- require('snacks').keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
-{ "<leader>lR", vim.lsp.buf.references, mode = "n"},
-{ "<leader>lc", vim.lsp.buf.references, mode = "n"},
-{ "<leader>lk", vim.lsp.buf.hover, mode = "n"},
+{ "<leader>lr", vim.lsp.buf.references, mode = "n", desc = "List references" },
+{ "<leader>lk", vim.lsp.buf.hover, mode = "n", desc = "Hover documentation" },
 
 -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
-{ "<leader>lr", vim.lsp.buf.rename, mode = "n"},
-{ "<leader>li", "<cmd>LspInfo<CR>", mode = "n"},
-
--- Detach LSP
-{ "<leader>ld", function()
-    local bufnr = 0
-    local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
-
-    if #clients > 0 then
-        for _, client in ipairs(clients) do
-            client.stop()
-        end
-        print("LSP detached")
-    else
-        print("No LSP attached")
-    end
-end, mode = "n",},
-
-{ "<leader>vr", "<cmd>LspRestart<CR>", mode = "n", desc = "Restart LSP" },
+{ "gr", function()
+    vim.cmd("w")
+    vim.lsp.buf.rename()
+end, mode = "n", desc = "Rename symbol" },
 
 
-{ "<leader>lew", function()
+{ "<leader>lw", function()
     vim.diagnostic.config({
         virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
         underline = { severity = { min = vim.diagnostic.severity.ERROR } },
@@ -145,9 +145,9 @@ end, mode = "n",},
     },
     })
     print("Warnings disabled")
-end, mode = "n"},
+end, mode = "n", desc = "Disable warning diagnostics"},
 
-{ "<leader>lee", function()
+{ "<leader>le", function()
     vim.diagnostic.config({
         virtual_text = false,
         underline = false,
@@ -160,9 +160,9 @@ end, mode = "n"},
     },
     })
     print("All diagnostics disabled")
-end, mode = "n"},
+end, mode = "n", desc = "Disable all diagnostics"},
 
-{ "<leader>let", function()
+{ "<leader>lt", function()
     vim.diagnostic.config({
         virtual_text = false,
         underline = true,
@@ -175,17 +175,22 @@ end, mode = "n"},
     },
     })
     print("Virtual text disabled")
-end, mode = "n"},
+end, mode = "n", desc = "Disable virtual text diagnostics"},
 
-{ "<leader>ler", function()
+{ "<leader>la", function()
     vim.diagnostic.config({
     virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = false,
+    float = {
+        border = "rounded",
+        prefix = " • ",
+        severity_sort = true,
+    },
 })
     print("Diagnostics reset to default")
-end, mode = "n"},
+end, mode = "n", desc = "Show all diagnostics"},
 
     },
 }
