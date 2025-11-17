@@ -1,11 +1,13 @@
 ## To Do
 
-- cwd in nvim
+- nv
+    * [ ] cwd
+    * [ ] <C-s> bind (see gh)
+    * [ ] <C-g> bind (see gh)
 - splits
 - general nicer layout, see gh
 - bigger font?
 - preview? what is space doing
-- grep for yazi.nvim
 - eazyjump
 - starship.yazi
 

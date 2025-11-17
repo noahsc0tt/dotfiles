@@ -276,7 +276,7 @@ return {
             },
 
 
-            { "<leader>/",  function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
+            { "/",  function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
 
 
             { "<leader>aw", function() require("telescope.builtin").grep_string() end,               mode = "n" },

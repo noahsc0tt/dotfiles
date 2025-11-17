@@ -8,11 +8,11 @@ if vim.g.neovide then
     -- vim.g.neovide_cursor_vfx_opacity = 0.0
     vim.g.neovide_scale_factor = 1.0
 
-    require('snacks').keymap.set("n", "<C-+>", function()
+    vim.keymap.set("n", "<C-+>", function()
         vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
     end)
 
-    require('snacks').keymap.set("n", "<C-->", function()
+    vim.keymap.set("n", "<C-->", function()
         vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.1
     end)
 end

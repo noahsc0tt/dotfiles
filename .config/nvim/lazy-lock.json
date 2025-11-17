@@ -8,6 +8,7 @@
   "coq.thirdparty": { "branch": "3p", "commit": "2bd969a2bcd2624f9c260b1000957c7e665e308e" },
   "coq_nvim": { "branch": "coq", "commit": "a63d28a9aa59c20a503ce38608fb6bc7cb3842f4" },
   "firenvim": { "branch": "master", "commit": "a18ef908ac06b52ad9333b70e3e630b0a56ecb3d" },
+  "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "focus.nvim": { "branch": "master", "commit": "26a755c363284547196ceb258a83f92608d7979b" },
   "harpoon": { "branch": "master", "commit": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3" },
   "lazy.nvim": { "branch": "main", "commit": "85c7ff3711b730b4030d03144f6db6375044ae82" },

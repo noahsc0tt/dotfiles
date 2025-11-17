@@ -47,7 +47,7 @@ alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
 function gs() {
   local root
   root=$(git rev-parse --show-toplevel)
-  git -C "$root" status -sb -M
+  git -C "$root" status -sb --renames --find-renames
 }
 function gsv() {
   local root
@@ -488,3 +488,4 @@ alias system="fastfetch"
 alias kl="kalker"
 
 alias rbk="rubiks -clsti"
+

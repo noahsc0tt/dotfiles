@@ -1,7 +1,12 @@
 ## To Do
 
+- flash
+    * [ ] highlight
+    * [ ] rainbow
+    * [ ] incremental
 - plugins
     * [ ] grug-far
+    * [ ] cloak
     * [ ] folke/trouble
     * [ ] yazi.nvim
     * [ ] context-menu
@@ -22,19 +27,13 @@
     * [ ] sayonara
     * [ ] nvim silicon
 - folke/snacks
-    * [ ] go through types for config
     * [ ] pickers
-    * [ ] explore explorer
-    * [ ] zen fullscreen
     * [ ] gh
+    * [ ] notes errors (typst related)
+    * [ ] explore explorer
+    * [ ] dashboard sections
+    * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds
-    * [ ] layout
-    * [ ] win
-- dashboard
-    * [ ] have section for opening files in cwd
-    * [ ] ger rid of (or sort out) recent directories
-    * [ ] see default sections
-- swap <leader>z and z (i dont need fold methods)
 - dont load origami for text files
 - fold gutter indicators (snacks/statuscolumn but less fat)
 - %s functions
@@ -46,8 +45,7 @@
 - highlight matching braces different colors? like vscode
 - proper reload config plugin/function that avoids ftplugin problems
 - regex vs fixed string search/sub keymaps
-- turn off cursor line highlight for notes and terminal
-- default U behaviour (undo this line)
+- local vs global marks
 - able to add  zf manually
 - whitespace
     * [ ] virt-column

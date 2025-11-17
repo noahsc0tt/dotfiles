@@ -79,6 +79,7 @@ vim.keymap.set("n", "<C-S-o>", "<C-i>", { noremap = true, silent = true })
 
 -- Using _ for start of line
 vim.keymap.set('o', '_', '^', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'g_', 'g^', { noremap = true })
 
 -- Splitting and joining lines
 vim.keymap.set("n", "J", "a<Cr><Esc>k$")
@@ -100,16 +101,16 @@ vim.keymap.set("c", "<C-g>h", "<Left>")
 vim.keymap.set("c", "<C-g>l", "<Right>")
 
 -- Vim stuff
-vim.keymap.set("n", "<leader>vH", "<cmd>set nohlsearch<CR>")
-vim.keymap.set("n", "<leader>vh", "<cmd>set hlsearch<CR>")
-vim.keymap.set("n", "<leader>vz", "<cmd>Lazy sync<CR>")
-vim.keymap.set("n", "<leader>ve", "<cmd>edit<CR>")
-vim.keymap.set("n", "<leader>vs", function()
+vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>")
+vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>")
+vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>")
+vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>")
+vim.keymap.set("n", "<leader>os", function()
     vim.cmd("so")
     vim.notify("Sourced file")
 end, { desc = "Source file" })
-vim.keymap.set("n", "<leader>vl", ":Ld<CR>")
-vim.keymap.set("n", "<leader>vy", ":%y+<CR>")
+vim.keymap.set("n", "<leader>ol", ":Ld<CR>")
+vim.keymap.set("n", "<leader>oy", ":%y+<CR>")
 
 -- Scrolling
 vim.keymap.set({ "n", "v", "c" }, "<C-n>", "2<C-e>")
@@ -118,19 +119,22 @@ vim.keymap.set({ "n", "v", "c" }, "<C-p>", "2<C-y>")
 -- Incrementing
 vim.keymap.set({ 'n', 'v' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
 vim.keymap.set({ 'n', 'v' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<S-+>', 'g<C-a>',{ desc = 'Sequential Increment', noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<S-->', 'g<C-x>', { desc = 'Sequential Decrement', noremap = true })
 
 -- Folding
-vim.keymap.set({ 'n', 'v' }, "zm", "zM")
-vim.keymap.set({ 'n', 'v' }, "zr", "zR")
-vim.keymap.set({ 'n', 'v' }, "zM", "zm")
-vim.keymap.set({ 'n', 'v' }, "zR", "zr")
+vim.keymap.set({ 'n', 'v' }, "zm", "zM", { desc = "Close all folds" })
+vim.keymap.set({ 'n', 'v' }, "zM", "zm", { desc = "Fold more" })
+vim.keymap.set({ 'n', 'v' }, "zr", "zR", { desc = "Open all folds" })
+vim.keymap.set({ 'n', 'v' }, "zR", "zr", { desc = "Fold less" })
+vim.keymap.set({ 'n', 'v' }, "zu", "zx", { desc = "Update folds" })
 
 -- Terminal
 vim.keymap.set('t', '<C-Esc>', function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
 end, { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', '<leader>st', function()
+vim.keymap.set('n', 'zt', function()
     local cur = vim.api.nvim_get_current_buf()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
@@ -140,7 +144,7 @@ vim.keymap.set('n', '<leader>st', function()
     end
 end, { silent = true })
 
-vim.keymap.set({"n", "t"}, "<C-f>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t"}, "<C-s>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
 vim.keymap.set({"n", "t"}, "<C-S-f>",  function() require('snacks').terminal.open() end, { desc = "Toggle Terminal" })
 
 
@@ -158,4 +162,5 @@ vim.keymap.set('n', '<C-w><C-f>', function()
 end, { desc = "Focus floating window" })
 
 
+vim.keymap.set({'n', 'x'}, '<leader>/', '/', { desc = "Search" })
 vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })
