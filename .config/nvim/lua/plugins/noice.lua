@@ -223,7 +223,7 @@ return {
         },
         keys = {
 
-            { "<leader>n", function() vim.cmd("Noice dismiss") end, desc = "Close all notifications", mode = "n" },
+            { "<leader>N", function() vim.cmd("Noice dismiss") end, desc = "Close all notifications", mode = "n" },
 
             { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, desc = "Execute in command mode", mode = "c" },
         },

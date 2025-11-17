@@ -8,7 +8,7 @@ return {
 
             { "<leader>op", function() require('opencode').select() end, desc = "Execute opencode action…", mode = { "n", "x" } },
 
-            { "ga", function() require('opencode').prompt("@this") end, desc = "Add to opencode", mode = { "n", "x" } },
+            { "gO", function() require('opencode').prompt("@this") end, desc = "Add to opencode", mode = { "n", "x" } },
 
             { "<leader>oc", function() require('opencode').toggle() end, desc = "Toggle opencode", mode = "n" },
 

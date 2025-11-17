@@ -20,8 +20,11 @@
     * [ ] mini.nvim
     * [ ] sayonara
     * [ ] nvim silicon
+- pickers
+    * [ ] fullscreen
+    * [ ] no border, keep text
+    * [ ] scroll preview
 - folke/snacks
-    * [ ] pickers
     * [ ] gh
     * [ ] notes errors (typst related)
     * [ ] explore explorer

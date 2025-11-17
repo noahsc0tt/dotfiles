@@ -115,11 +115,11 @@ return {
             { "<leader>ld", vim.diagnostic.open_float,   mode = "n", desc = "Open diagnostic float" },
 
             -- Code actions
-            { "gd",         vim.lsp.buf.definition,      mode = "n", desc = "Go to definition" },
-            { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
-            { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
-            { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
-            { "<leader>ls", vim.lsp.buf.signature_help,  mode = "n", desc = "Signature help" },
+            -- { "gd",         vim.lsp.buf.definition,      mode = "n", desc = "Go to definition" },
+            -- { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
+            -- { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
+            -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
+            { "<leader>lh", vim.lsp.buf.signature_help,  mode = "n", desc = "Signature help" },
             { "<leader>lk", vim.lsp.buf.hover,           mode = "n", desc = "Hover documentation" },
             { "<C-k>",      vim.lsp.buf.hover,           mode = "i", desc = "Hover documentation" },
 

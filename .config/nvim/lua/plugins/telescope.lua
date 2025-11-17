@@ -2,6 +2,8 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
+        lazy = true,
+        event = "VeryLazy",
         opts = {
             defaults = {
                 color_devicons = true,
@@ -228,7 +230,7 @@ return {
             -- { "<C-.>", function() open_file_browser() end, mode = { "n", "v", "i" } },
 
             -- Files only
-            { "<leader>f",  function() require("telescope.builtin").find_files() end,                         mode = { "n", "v" } },
+            -- { "<leader>f",  function() require("telescope.builtin").find_files() end,                         mode = { "n", "v" } },
 
             -- Directories only
             {
@@ -242,91 +244,91 @@ return {
             },
 
             -- Grep
-            { "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "v" } },
+            -- { "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "v" } },
 
 
-            {
-                "<leader>af",
-                function()
-                    local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-                    local current = vim.api.nvim_get_current_buf()
-                    local index = 1
-                    for i, buf in ipairs(bufs) do
-                        if buf.bufnr == current then
-                            index = i
-                            break
-                        end
-                    end
-
-                    require("telescope.builtin").buffers({
-                        initial_mode = "insert",
-                        default_selection_index = index,
-                        attach_mappings = function(prompt_bufnr, map)
-                            map("n", "d", function()
-                                require("telescope.actions").delete_buffer(prompt_bufnr)
-                            end, { nowait = true })
-                            map("i", "<C-d>", function()
-                                require("telescope.actions").delete_buffer(prompt_bufnr)
-                            end, { nowait = true })
-                            return true
-                        end,
-                    })
-                end,
-                mode = { "n", "v" }
-            },
-
-
-            { "/",  function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
+            -- {
+            --     "<leader>af",
+            --     function()
+            --         local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+            --         local current = vim.api.nvim_get_current_buf()
+            --         local index = 1
+            --         for i, buf in ipairs(bufs) do
+            --             if buf.bufnr == current then
+            --                 index = i
+            --                 break
+            --             end
+            --         end
+            --
+            --         require("telescope.builtin").buffers({
+            --             initial_mode = "insert",
+            --             default_selection_index = index,
+            --             attach_mappings = function(prompt_bufnr, map)
+            --                 map("n", "d", function()
+            --                     require("telescope.actions").delete_buffer(prompt_bufnr)
+            --                 end, { nowait = true })
+            --                 map("i", "<C-d>", function()
+            --                     require("telescope.actions").delete_buffer(prompt_bufnr)
+            --                 end, { nowait = true })
+            --                 return true
+            --             end,
+            --         })
+            --     end,
+            --     mode = { "n", "v" }
+            -- },
 
 
-            { "<leader>aw", function() require("telescope.builtin").grep_string() end,               mode = "n" },
+            -- { "/",  function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
 
 
-            {
-                "<leader>aw",
-                function()
-                    vim.cmd('normal! "vy')
-                    local text = vim.fn.getreg("v")
-                    require("telescope.builtin").grep_string({ search = text, initial_mode = "normal", })
-                end,
-                mode = "v"
-            },
+            -- { "<leader>aw", function() require("telescope.builtin").grep_string() end,               mode = "n" },
 
 
-            { "<leader>ag",        function() require("telescope.builtin").git_files() end,        mode = { "n", "v" } },
+            -- {
+            --     "<leader>aw",
+            --     function()
+            --         vim.cmd('normal! "vy')
+            --         local text = vim.fn.getreg("v")
+            --         require("telescope.builtin").grep_string({ search = text, initial_mode = "normal", })
+            --     end,
+            --     mode = "v"
+            -- },
 
 
-            { "<leader>ao",        function() require("telescope.builtin").oldfiles() end,         mode = { "n", "v" } },
+            -- { "<leader>ag",        function() require("telescope.builtin").git_files() end,        mode = { "n", "v" } },
 
 
-            { "<leader>ar",        function() require("telescope.builtin").lsp_references() end,   mode = { "n", "v" } },
+            -- { "<leader>ao",        function() require("telescope.builtin").oldfiles() end,         mode = { "n", "v" } },
 
 
-            { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "v" } },
+            -- { "<leader>ar",        function() require("telescope.builtin").lsp_references() end,   mode = { "n", "v" } },
 
 
-            { "<leader>an",        function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
+            -- { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "v" } },
 
 
-            { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "v" } },
+            -- { "<leader>an",        function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
 
 
-            { "<leader>aj",        function() require("telescope.builtin").jumplist() end,         mode = { "n", "v" } },
+            -- { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "v" } },
 
 
-            { "<leader>ah",        function() require("telescope.builtin").search_history() end,   mode = { "n", "v" } },
+            -- { "<leader>aj",        function() require("telescope.builtin").jumplist() end,         mode = { "n", "v" } },
 
 
-            { "<leader>`",         function() require("telescope.builtin").marks() end,            mode = { "n", "v" } },
+            -- { "<leader>ah",        function() require("telescope.builtin").search_history() end,   mode = { "n", "v" } },
 
 
-            { "<leader>ap",        function() require("telescope.builtin").registers() end,        mode = { "n", "v" } },
+            -- { "<leader>`",         function() require("telescope.builtin").marks() end,            mode = { "n", "v" } },
 
 
-            { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
+            -- { "<leader>ap",        function() require("telescope.builtin").registers() end,        mode = { "n", "v" } },
 
 
-            { "<leader>A",         function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
+            -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
+
+
+            { "<leader>t",         function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
 
 
             -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },

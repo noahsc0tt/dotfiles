@@ -275,7 +275,7 @@ return {
                 desc = "Select with treesitter"
             },
             { "<C-f>",   mode = { "n", "x", "i" }, function() require("flash").jump() end,                    desc = "Flash jump" },
-            { "<C-S-f>",   mode = { "n", "x", "i" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
+            { "<C-S-/>",   mode = { "n", "x", "i" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
             { "<C-S-Space>", mode = { "n", "x", "i" }, function() require("flash").jump({ continue = true }) end, desc = "Flash continue" },
             {
                 "<C-S-w>",

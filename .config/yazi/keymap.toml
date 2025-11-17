@@ -134,7 +134,7 @@ keymap = [
     { on = "w", run = "cd --working", desc = "Go to current working directory" },
 
 	# Tabs
-	{ on = "o", run = "tab_create --current", desc = "New tab" },
+	{ on = "N", run = "tab_create --current", desc = "New tab" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
