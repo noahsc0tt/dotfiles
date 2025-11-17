@@ -36,6 +36,7 @@ vim.keymap.set({ "n", "v" }, "<leader>cd", "\"+d")
 vim.keymap.set({ "n", "v" }, "<leader>cD", "\"+D")
 vim.keymap.set({ "n", "v" }, "<leader>cc", "\"+c")
 vim.keymap.set({ "n", "v" }, "<leader>cC", "\"+C")
+vim.keymap.set({ "n", "v" }, "<leader>cs", "\"+S")
 
 -- Writing and quitting
 vim.keymap.set("n", "<leader>w", function()
@@ -89,7 +90,9 @@ vim.keymap.set("n", "K", "J")
 vim.keymap.set("n", "U", "<C-r>")
 vim.keymap.set("n", "<C-r>", "U")
 
--- Indenting in visual mode
+-- Indenting
+vim.keymap.set("n", "<leader><", "<<")
+vim.keymap.set("n", "<leader>>", ">>")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
@@ -134,7 +137,7 @@ vim.keymap.set('t', '<C-Esc>', function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-\\><C-n>', true, false, true), 'n', false)
 end, { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', 'zt', function()
+vim.keymap.set('n', 'zT', function()
     local cur = vim.api.nvim_get_current_buf()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if buf ~= cur and vim.api.nvim_buf_get_option(buf, "buftype") == "terminal" then
@@ -145,7 +148,7 @@ vim.keymap.set('n', 'zt', function()
 end, { silent = true })
 
 vim.keymap.set({"n", "t"}, "<C-s>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
-vim.keymap.set({"n", "t"}, "<C-S-f>",  function() require('snacks').terminal.open() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "Toggle Terminal" })
 
 
 -- Windows
@@ -164,3 +167,5 @@ end, { desc = "Focus floating window" })
 
 vim.keymap.set({'n', 'x'}, '<leader>/', '/', { desc = "Search" })
 vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })
+
+vim.keymap.set('n', '<leader>z', 'zz', { desc = "Centre this line" })

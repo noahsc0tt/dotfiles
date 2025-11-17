@@ -1,16 +1,10 @@
 ## To Do
 
-- flash
-    * [ ] highlight
-    * [ ] rainbow
-    * [ ] incremental
 - plugins
     * [ ] grug-far
+    * [ ] vim-visual-multi
     * [ ] cloak
-    * [ ] folke/trouble
-    * [ ] yazi.nvim
     * [ ] context-menu
-    * [ ] todo-comments
     * [ ] hop
     * [ ] conform
     * [ ] cd-project
@@ -31,9 +25,9 @@
     * [ ] gh
     * [ ] notes errors (typst related)
     * [ ] explore explorer
-    * [ ] dashboard sections
     * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds
+- noice search populates n/N nav
 - dont load origami for text files
 - fold gutter indicators (snacks/statuscolumn but less fat)
 - %s functions
@@ -41,15 +35,11 @@
     * [ ] (ci) swapping
 - motion for inner/around function
 - make q: type buffers appear small (focus)
-- better comments
 - highlight matching braces different colors? like vscode
 - proper reload config plugin/function that avoids ftplugin problems
 - regex vs fixed string search/sub keymaps
 - local vs global marks
 - able to add  zf manually
-- whitespace
-    * [ ] virt-column
-    * [ ] hlslens
 - tab hanging in insert
 - browser in nv
 - custom harpoon letter marks

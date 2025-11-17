@@ -108,22 +108,20 @@ return {
             })
         end,
         keys = {
-
-
             -- Diagnostic actions
-            { "<leader>ld", vim.diagnostic.setloclist,   mode = "n",          desc = "Open diagnostics" },
-            { "gp",         vim.diagnostic.goto_prev,    mode = "n",          desc = "Previous diagnostic" },
-            { "gn",         vim.diagnostic.goto_next,    mode = "n",          desc = "Next diagnostic" },
-            { "<leader>lf", vim.diagnostic.open_float,   mode = "n",          desc = "Open diagnostic float" },
+            -- { "<leader>ld", vim.diagnostic.setloclist,   mode = "n", desc = "Open diagnostics" },
+            { "gp",         vim.diagnostic.goto_prev,    mode = "n", desc = "Previous diagnostic" },
+            { "gn",         vim.diagnostic.goto_next,    mode = "n", desc = "Next diagnostic" },
+            { "<leader>ld", vim.diagnostic.open_float,   mode = "n", desc = "Open diagnostic float" },
 
             -- Code actions
-            { "gd",         vim.lsp.buf.definition,      mode = "n",          desc = "Go to definition" },
-            { "gD",         vim.lsp.buf.declaration,     mode = "n",          desc = "Go to declaration" },
-            { "gt",         vim.lsp.buf.type_definition, mode = "n",          desc = "Go to type definition" },
-            { "<leader>li", vim.lsp.buf.implementation,  mode = "n",          desc = "Go to implementation" },
-            { "<C-S-s>",    vim.lsp.buf.signature_help,  mode = { "n", "i" }, desc = "Signature help" },
-            { "<leader>lr", vim.lsp.buf.references,      mode = "n",          desc = "List references" },
-            { "<leader>lk", vim.lsp.buf.hover,           mode = "n",          desc = "Hover documentation" },
+            { "gd",         vim.lsp.buf.definition,      mode = "n", desc = "Go to definition" },
+            { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
+            { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
+            { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
+            { "<leader>ls", vim.lsp.buf.signature_help,  mode = "n", desc = "Signature help" },
+            { "<leader>lk", vim.lsp.buf.hover,           mode = "n", desc = "Hover documentation" },
+            { "<C-k>",      vim.lsp.buf.hover,           mode = "i", desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {
@@ -198,7 +196,7 @@ return {
             },
 
             {
-                "<leader>la",
+                "<leader>lr",
                 function()
                     vim.diagnostic.config({
                         virtual_text = true,

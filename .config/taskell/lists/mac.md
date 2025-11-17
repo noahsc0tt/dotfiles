@@ -6,6 +6,7 @@
     * [ ] passpie
     * [ ] lastpass-cli
     * [ ] bitwarden
+- raycast open in min
 - simplebar
 - navigate menu bar and cc with keyboard
 - tiling window manager
@@ -16,7 +17,6 @@
 - zoom differnet modes (check accesibility)
 - apptivate
 - launchctl manager for agents and daemons
-- menubar color of win
 - virtual pip display
 
 ## Doing

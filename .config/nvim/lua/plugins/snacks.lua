@@ -293,6 +293,36 @@ return {
                 enabled = false,
             },
             picker = {
+                win = {
+                    input = {
+                        keys = {
+                            ["<M-s>"] = { "flash", mode = { "n", "i" } },
+                            ["s"] = { "flash" },
+                        },
+                    },
+                },
+                actions = {
+                    flash = function(picker)
+                        require("flash").jump({
+                            pattern = "^",
+                            label = { after = { 0, 0 } },
+                            search = {
+                                mode = "search",
+                                exclude = {
+                                    function(win)
+                                        return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~=
+                                            "snacks_picker_list"
+                                    end,
+                                },
+                            },
+                            action = function(match)
+                                local idx = picker.list:row2idx(match.pos[1])
+                                picker.list:_move(idx, true, true)
+                            end,
+                        })
+                    end,
+                },
+
                 explorer = {
                     finder = "explorer",
                     sort = { fields = { "sort" } },
@@ -356,7 +386,7 @@ return {
                 },
                 sources = {
                     explorer = {
-                        layout = { layout = { position = "right" } },
+                        layout = { position = "right" },
                     }
                 }
             },
@@ -432,7 +462,7 @@ return {
                     gf = function(self)
                         local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
                         if f == "" then
-                            vim.notify.warn("No file under cursor")
+                            vim.notify("No file under cursor", vim.log.levels.WARN)
                         else
                             self:hide()
                             vim.schedule(function()
@@ -497,13 +527,13 @@ return {
                 -- ---@field stack? boolean When enabled, multiple split windows with the same position will be stacked together (useful for terminals)
             },
             words = {
-                debounce = 100, -- time in ms to wait before updating
-                notify_jump = false, -- show a notification when jumping
-                notify_end = true, -- show a notification when reaching the end
-                foldopen = true, -- open folds after jumping
-                jumplist = true, -- set jump point before jumping
+                debounce = 100,                 -- time in ms to wait before updating
+                notify_jump = false,            -- show a notification when jumping
+                notify_end = true,              -- show a notification when reaching the end
+                foldopen = true,                -- open folds after jumping
+                jumplist = true,                -- set jump point before jumping
                 modes = { "n", "i", "c", "v" }, -- modes to show references
-                filter = function(buf) -- what buffers to enable `snacks.words`
+                filter = function(buf)          -- what buffers to enable `snacks.words`
                     return vim.g.snacks_words ~= false and vim.b[buf].snacks_words ~= false
                 end,
             },

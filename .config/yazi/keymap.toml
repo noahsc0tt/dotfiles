@@ -15,6 +15,7 @@ keymap = [
 	{ on = "<Backspace>",     run = "quit --no-cwd-file",               desc = "Quit without cd" },
 	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
 	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
+	{ on = "<C-S-d>", run = "close",              desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
 	# Hopping
@@ -130,9 +131,10 @@ keymap = [
 	{ on = "<A-d>",       run = "cd ~/Documents" },
 	{ on = "<A-w>",       run = "cd ~/Downloads" },
 	{ on = "\\", run = "cd --interactive", desc = "Jump interactively" },
+    { on = "w", run = "cd --working", desc = "Go to current working directory" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
+	{ on = "o", run = "tab_create --current", desc = "New tab" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
@@ -144,14 +146,14 @@ keymap = [
 	{ on = "8", run = "tab_switch 7", desc = "Switch to eighth tab" },
 	{ on = "9", run = "tab_switch 8", desc = "Switch to ninth tab" },
 
-	{ on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
-	{ on = "]", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
+	{ on = "<C-k>", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
+	{ on = "<C-j>", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
 
-	{ on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
-	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
+	{ on = "<C-h>", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
+	{ on = "<C-l>", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
 
 	# Tasks
-	{ on = "w", run = "tasks:show", desc = "Show task manager" },
+	{ on = "t", run = "tasks:show", desc = "Show task manager" },
 
 	# Help
 	{ on = "?",    run = "help", desc = "Open help" },
@@ -277,8 +279,8 @@ keymap = [
 	{ on = "<Delete>",    run = "backspace --under", desc = "Delete the character under the cursor" },
 
 	# Kill
-	{ on = "<C-u>", run = "kill bol",      desc = "Kill backwards to the BOL" },
-	{ on = "<C-k>", run = "kill eol",      desc = "Kill forwards to the EOL" },
+	{ on = "<C-S-b>", run = "kill bol",      desc = "Kill backwards to the BOL" },
+	{ on = "<C-S-f>", run = "kill eol",      desc = "Kill forwards to the EOL" },
 	{ on = "<C-w>", run = "kill backward", desc = "Kill backwards to the start of the current word" },
 	{ on = "<A-d>", run = "kill forward",  desc = "Kill forwards to the end of the current word" },
 
@@ -336,9 +338,6 @@ keymap = [
 
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous item" },
 	{ on = "<Down>", run = "arrow next", desc = "Next item" },
-
-	{ on = "H", run = "arrow prev", desc = "Previous item" },
-	{ on = "L", run = "arrow next", desc = "Next item" },
 
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },

@@ -44,7 +44,7 @@ return {
             { '<M-BS>',  '<cmd>BufferLinePickClose<CR>',                     desc = 'Close buffer picker' },
             { '<C-S-p>', '<C-^>',                                            desc = 'Most recent buffer' },
             -- Tabs
-            { '<M-n>',   function() vim.cmd('tabnew') end,                   desc = 'New tab' },
+            { '<M-s>',   function() vim.cmd('tab split') end,                   desc = 'New tab' },
             { '<M-d>',   function() vim.cmd('tabclose') end,                 desc = 'Close tab' },
             { '<M-h>',   function() vim.cmd('tabmove -1') end,               desc = 'Move tab left' },
             { '<M-l>',   function() vim.cmd('tabmove +1') end,               desc = 'Move tab right' },
@@ -61,7 +61,7 @@ return {
                 end,
                 desc = 'Rename tab'
             },
-            { '<M-s>', '<cmd>BufferLineSortByTabs<CR>', desc = 'Sort buffers by tabs' },
+            { '<M-b>', '<cmd>BufferLineSortByTabs<CR>', desc = 'Sort buffers by tabs' },
         },
     }
 }

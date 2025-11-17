@@ -329,7 +329,7 @@ return {
             { "<leader>A",         function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
 
 
-            { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },
+            -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },
 
 
             { "<C-=>",             function() require("telescope.builtin").spell_suggest() end,    mode = { "n", "v", "i" } },
@@ -341,6 +341,7 @@ return {
     },
     {
         "nvim-telescope/telescope-file-browser.nvim",
+        enabled = false,
         cond = not vim.g.started_by_firenvim,
 
     },
