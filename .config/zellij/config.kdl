@@ -349,7 +349,7 @@ web_client {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //  
-theme "tokyonight_night"
+theme "tokyonight_storm"
  
 // Choose the base input mode of zellij.
 // Default: normal

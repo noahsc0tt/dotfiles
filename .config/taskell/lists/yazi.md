@@ -1,5 +1,6 @@
 ## To Do
 
+- hints (like c-f)
 - nv
     * [ ] match binds to snacks picker
     * [ ] <C-s> bind (see gh)

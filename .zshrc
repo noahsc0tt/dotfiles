@@ -167,3 +167,5 @@ export FORCE_COLOR=1
 
 # export JAVA_HOME="/opt/homebrew/opt/openjdk"
 # export PATH="$JAVA_HOME/bin:$PATH"
+
+export XDG_CONFIG_HOME="$HOME/.config"
