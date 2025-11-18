@@ -274,9 +274,9 @@ return {
                 mode = { "n", "x", "o" },
                 desc = "Select with treesitter"
             },
-            { "<C-f>",   mode = { "n", "x", "i" }, function() require("flash").jump() end,                    desc = "Flash jump" },
-            { "<C-S-/>",   mode = { "n", "x", "i" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
-            { "<C-S-Space>", mode = { "n", "x", "i" }, function() require("flash").jump({ continue = true }) end, desc = "Flash continue" },
+            { "<C-f>",   mode = { "n", "x", "i", "o" }, function() require("flash").jump() end,                    desc = "Flash jump" },
+            { "<C-S-/>",   mode = { "n", "x", "i", "o" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
+            { "<C-S-Space>", mode = { "n", "x", "i", "o" }, function() require("flash").jump({ continue = true }) end, desc = "Flash continue" },
             {
                 "<C-S-w>",
                 function()
@@ -330,13 +330,13 @@ return {
                         end,
                     })
                 end,
-                mode = { "n", "x", "i" },
+                mode = { "n", "x", "i", "o" },
                 desc = "Flash double jump"
             },
-            { "<C-S-v>", mode = { "n", "x", "i" }, function() require("flash").treesitter_search() end, desc = "Flash treesitter search" },
+            { "<C-S-v>", mode = { "n", "x", "i", "o" }, function() require("flash").treesitter_search() end, desc = "Flash treesitter search" },
             {
                 "<C-a>",
-                mode = { "n", "x", "i" },
+                mode = { "n", "x", "i", "o" },
                 function()
                     require("flash").jump({
                         pattern = vim.fn.expand("<cWORD>"),

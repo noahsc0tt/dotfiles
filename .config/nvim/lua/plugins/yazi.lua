@@ -30,18 +30,20 @@ return {
         keys = {
             {
                 "<leader>j",
-                mode = { "n", "v", "i" },
                 "<cmd>Yazi<cr>",
+                mode = { "n", "v", },
                 desc = "Open yazi",
             },
             {
                 "<leader>J",
                 "<cmd>Yazi cwd<cr>",
+                mode = { "n", "v", },
                 desc = "Open yazi at cwd",
             },
             {
                 "<C-.>",
                 "<cmd>Yazi toggle<cr>",
+                mode = { "n", "v", },
                 desc = "Resume yazi",
             },
         },

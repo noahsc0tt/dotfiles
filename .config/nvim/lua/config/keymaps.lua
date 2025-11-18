@@ -9,6 +9,7 @@
 -- 0
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Centre after page navigation
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -69,7 +70,7 @@ vim.keymap.set("x", "J", ":move '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":move '<-2<CR>gv=gv")
 
 -- Keep cursor in the same place after J
-vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "J", "mzJ`z")
 
 -- Format whole file
 vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
@@ -79,11 +80,11 @@ vim.keymap.set("n", "<C-S-o>", "<C-i>", { noremap = true, silent = true })
 
 -- Using _ for start of line
 vim.keymap.set('o', '_', '^', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, 'g_', 'g^', { noremap = true })
+vim.keymap.set({ 'n', 'x' }, 'g_', 'g^', { noremap = true })
 
 -- Splitting and joining lines
-vim.keymap.set("n", "J", "a<Cr><Esc>k$")
-vim.keymap.set("n", "K", "J")
+vim.keymap.set("n", "<leader>j", "a<Cr><Esc>k$")
+vim.keymap.set("n", "<leader>k", "J")
 
 -- Undo and Redo
 vim.keymap.set("n", "U", "<C-r>")
@@ -119,15 +120,15 @@ vim.keymap.set({ "n", "v", "c" }, "<C-n>", "2<C-e>")
 vim.keymap.set({ "n", "v", "c" }, "<C-p>", "2<C-y>")
 
 -- Incrementing
-vim.keymap.set({ 'n', 'v' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
-vim.keymap.set({ 'n', 'v' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<S-+>', 'g<C-a>',{ desc = 'Sequential Increment', noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<S-->', 'g<C-x>', { desc = 'Sequential Decrement', noremap = true })
+vim.keymap.set({ 'n', 'x' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
+vim.keymap.set({ 'n', 'x' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
+vim.keymap.set({ 'n', 'x' }, '<S-+>', 'g<C-a>',{ desc = 'Sequential Increment', noremap = true })
+vim.keymap.set({ 'n', 'x' }, '<S-->', 'g<C-x>', { desc = 'Sequential Decrement', noremap = true })
 
 -- Folding
-vim.keymap.set({ 'n', 'v' }, "<leader>z", "zM", { desc = "Close all folds" })
-vim.keymap.set({ 'n', 'v' }, "<leader>Z", "zR", { desc = "Open all folds" })
-vim.keymap.set({ 'n', 'v' }, "zu", "zx", { desc = "Update folds" })
+vim.keymap.set({ 'n', 'x' }, "<leader>z", "zM", { desc = "Close all folds" })
+vim.keymap.set({ 'n', 'x' }, "<leader>Z", "zR", { desc = "Open all folds" })
+vim.keymap.set({ 'n', 'x' }, "zu", "zx", { desc = "Update folds" })
 
 -- Terminal
 vim.keymap.set('t', '<C-Esc>', function()

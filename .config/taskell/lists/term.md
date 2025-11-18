@@ -1,7 +1,7 @@
 ## To Do
 
+- ast grep
 - cat <(cmd1) <(cmd2) | alias
-- set up daily dotfiles pushes
 - cpy echoes output
 - make gr work with stdin
 - bat vs man vs less vs nvimpager
@@ -28,8 +28,6 @@
     * [ ] omz plugin
     * [ ] ** completion
 - zsh plugin keybinds/aliases
-- sed/sd
-- a way to pipe output of z/telescope or use as args
 - headless/bg stuff (ps aux, nohup &, etc)
 - clean up pseudotelescope zsh functions (awk)
     * [ ] ps aux
@@ -37,15 +35,10 @@
     * [ ] clean up preview/search column awk stuff
 - monocle
 - doppler
-- lazygit tutorial, especially edit
-- yazi plugins
-- kalker
-- btop
 - quake/visor term dedicated apps
     * [ ] tabby
     * [ ] screen
 - println alias
-- iterm browser
 - awk and regex
 - pandoc, entr
 - preview code highlight in various different tools
@@ -55,7 +48,6 @@
     * [ ] layout/md
     * [ ] swapping between files
     * [ ] date format
-- tokyonight lazygit
 - clean up alias - flags
 
 ## Doing

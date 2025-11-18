@@ -29,5 +29,19 @@ return {
             hOnlyOpensOnFirstColumn = false,
         },
     }
+},
+
+{
+    'anuvyklack/fold-preview.nvim',
+    lazy = true,
+    event = 'VeryLazy',
+    opts = {
+        auto = false,
+        default_keybindings = false,
+        -- border = single,
+        },
+        keys = {
+            { 'zo', function() require('fold-preview').show_preview() end, desc = 'Open fold preview' },
+    }
 }
 }

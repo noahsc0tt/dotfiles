@@ -11,7 +11,7 @@ return {
                 mode = 'buffers',
                 style_preset = function() require('bufferline').style_preset.minimal() end,
                 indicator = { style = 'none' },
-                always_show_bufferline = false,
+                always_show_bufferline = true,
                 auto_toggle_bufferline = true,
                 custom_filter = function(buf_number)
                     return vim.api.nvim_buf_get_name(buf_number) ~= ''

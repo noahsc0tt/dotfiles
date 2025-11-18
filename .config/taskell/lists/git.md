@@ -3,6 +3,7 @@
 - fzf aliases
     * [ ] include directories
     * [ ] gusf
+- merge tool
 - worktrees
 - nicer looking delta (method indicators, not class)
 - tig

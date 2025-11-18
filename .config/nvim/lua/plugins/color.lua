@@ -3,17 +3,91 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,    -- make sure it loads immediately
         priority = 1000, -- load before other plugins
-        opts = {
-            style = "storm", },
         config = function()
             vim.cmd.colorscheme("tokyonight-storm")
             -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
             -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
             -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#24283b", })
 
             vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#82A1F1" })
             vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#82A1F1" })
             vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#af6be0", bold = true })
+
+            -- local transparent_groups = {
+            --     "BufferLineFill",
+            --     "BufferLineBuffer",
+            --     "BufferLineModified",
+            --     "BufferLineBackground",
+            --     "BufferLineDiagnostic",
+            --     "BufferLineWarning",
+            --     "BufferLineOffsetSeparator",
+            --     "BufferLineIndicator",
+            --     "BufferLineHint",
+            --     "BufferLineInfo",
+            --     "BufferLineError",
+            --
+            --     "BufferLineFillVisible",
+            --     "BufferLineBufferVisible",
+            --     "BufferLineModifiedVisible",
+            --     "BufferLineBackgroundVisible",
+            --     "BufferLineDiagnosticVisible",
+            --     "BufferLineWarningVisible",
+            --     "BufferLineOffsetSeparatorVisible",
+            --     "BufferLineIndicatorVisible",
+            --     "BufferLineHintVisible",
+            --     "BufferLineInfoVisible",
+            --     "BufferLineErrorVisible",
+            --
+            -- }
+            -- for _, group in ipairs(transparent_groups) do
+            --     local current = vim.api.nvim_get_hl(0, { name = group })
+            --     current.bg = 0x24283b
+            --     vim.api.nvim_set_hl(0, group, current)
+            -- end
+            --
+            -- local dark_groups = {
+            --     "BufferLineFillSelected",
+            --     "BufferLineBufferSelected",
+            --     "BufferLineBackgroundSelected",
+            --     "BufferLineDiagnosticSelected",
+            --     "BufferLineGroupLabelSelected",
+            --     "BufferLineCloseButtonSelected",
+            --     "BufferLineTruncMarkerSelected",
+            --     "BufferLineGroupSeparatorSelected",
+            --     "BufferLineWarningSelected",
+            --     "BufferLineOffsetSeparatorSelected",
+            --     "BufferLineIndicatorSelected",
+            --     "BufferLineHintSelected",
+            --     "BufferLineInfoSelected",
+            --     "BufferLineErrorSelected",
+            --     -- "BufferLineDiagnosticSelected",
+            --     -- "BufferLineInfoDiagnosticSelected",
+            --     -- "BufferLineHintDiagnosticSelected",
+            --     -- "BufferLineWarningDiagnosticSelected",
+            --     -- "BufferLineErrorDiagnosticSelected",
+            -- }
+            -- for _, group in ipairs(dark_groups) do
+            --     local current = vim.api.nvim_get_hl(0, { name = group })
+            --     current.bg = 0x1B1E2C -- use decimal or hex
+            --     vim.api.nvim_set_hl(0, group, current)
+            -- end
+            vim.api.nvim_set_hl(0, "BufferlineFill", {
+                bg = "#212436",
+                default = true,
+                fg = "#565F89"
+            })
+            vim.api.nvim_set_hl(0, "BufferlineBufferSelected", {
+                bg = "#24283B",
+                bold = true,
+                cterm = {
+                    bold = true,
+                    italic = true
+                },
+                default = true,
+                fg = "#0DB9D7",
+                italic = true
+            })
 
             vim.cmd [[highlight Visual guibg='Grey' guifg='White']]
 
@@ -21,45 +95,6 @@ return {
             vim.cmd [[highlight CurSearch guibg='Magenta' guifg='Black']]
             vim.cmd [[highlight IncSearch guibg='Magenta' guifg='Black']]
 
-            -- local groups = {
-            --     "NotifyINFOIcon",
-            --     "NotifyWARNIcon",
-            --     "NotifyDEBUGIcon",
-            --     "NotifyERRORIcon",
-            --     "NotifyINFOTitle",
-            --     "NotifyTRACEIcon",
-            --     "NotifyWARNTitle",
-            --     "NotifyDEBUGTitle",
-            --     "NotifyERRORTitle",
-            --     "NotifyTRACETitle",
-            --     "NotifyINFOBorder",
-            --     "NotifyWARNBorder",
-            --     "NotifyDEBUGBorder",
-            --     "NotifyERRORBorder",
-            --     "NotifyTRACEBorder",
-            --     "NotifyINFOBody",
-            --     "NotifyWARNBody",
-            --     "NotifyDEBUGBody",
-            --     "NotifyERRORBody",
-            --     "NotifyTRACEBody",
-            --     "NotifyBackground",
-            --     "NotifyLogTitle",
-            --     "NotifyINFOIcon3",
-            --     "NotifyINFOIcon9",
-            --     "NotifyINFOTitle3",
-            --     "NotifyINFOTitle9",
-            --     -- "NotifyINFOBorder3",
-            --     -- "NotifyINFOBorder9",
-            --     "NotifyLogTime",
-            --     "NotifyINF0Body3", -- keeping your spelling
-            --     "NotifyINFOBody9",
-            -- }
-            --
-            -- for _, g in ipairs(groups) do
-            --     vim.api.nvim_set_hl(0, g, { bg = "none" })
-            -- end
-
-            --vim.api.nvim_set_hl(0, "Folded", { bg = "#7555AE", fg = 'Purple', })
             vim.api.nvim_set_hl(0, "FoldText", { bold = true, italic = true, })
         end,
         cond = not vim.g.started_by_firenvim,

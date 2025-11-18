@@ -4,6 +4,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         lazy = true,
         event = "VeryLazy",
+        cond = not vim.g.started_by_firenvim,
         opts = {
             defaults = {
                 color_devicons = true,
@@ -152,7 +153,7 @@ return {
             --     end
             -- end
             -- require('telescope').load_extension "file_browser"
-            require('telescope').load_extension "notify"
+            -- require('telescope').load_extension "notify"
 
 
             -- keeps track of current `tabline` and `statusline`, so we can restore it after closing telescope
@@ -307,7 +308,7 @@ return {
             -- { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "v" } },
 
 
-            { "<leader>an",        function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
+            -- { "<leader>an", function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
 
 
             -- { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "v" } },
@@ -328,7 +329,7 @@ return {
             -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
 
 
-            { "<leader>at",        function() require("telescope.builtin").builtin() end, desc = "Telescope Pickers",         mode = { "n", "v" } },
+            { "<leader>at", function() require("telescope.builtin").builtin() end,          desc = "Telescope Pickers", mode = { "n", "v" } },
 
 
             -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },
