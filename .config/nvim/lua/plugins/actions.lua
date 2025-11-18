@@ -16,7 +16,7 @@ return {
         },
     },
     keys = {
-        { "<leader>lc", function() require("actions-preview").code_actions() end, mode = {"n", "v"}, desc = "Code Actions" },
+        { "<leader>la", function() require("actions-preview").code_actions() end, mode = {"n", "v"}, desc = "Code Actions" },
     }
 },
 }

@@ -4,7 +4,7 @@ return {
         lazy = true,
         event = "VeryLazy",
         keys = {
-        { '<leader>u', vim.cmd.UndotreeToggle, mode = 'n'},
+        { '<leader>U', vim.cmd.UndotreeToggle, mode = 'n'},
     }
     },
 }

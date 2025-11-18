@@ -210,18 +210,17 @@ return {
         },
         keys = {
             {
-                "<leader>la",
+                "gL",
                 "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Open all diagnostics",
             },
             {
-                "<leader>lf",
+                "gl",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
                 desc = "Open file diagnostics",
             },
             {
-                -- FIX: broken and not even sure what it does
-                "<leader>lj",
+                "<leader>lf",
                 "<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
                 desc = "LSP Definitions / references / ... (Trouble)",
             },

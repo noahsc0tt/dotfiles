@@ -113,6 +113,17 @@ return {
             { "gp",         vim.diagnostic.goto_prev,    mode = "n", desc = "Previous diagnostic" },
             { "gn",         vim.diagnostic.goto_next,    mode = "n", desc = "Next diagnostic" },
             { "<leader>ld", vim.diagnostic.open_float,   mode = "n", desc = "Open diagnostic float" },
+            { "gd",          function() require('snacks').picker.lsp_definitions() end,       desc = "Goto Definition" },
+            { "gD",          function() require('snacks').picker.lsp_declarations() end,      desc = "Goto Declaration" },
+            { "gr",   function() require('snacks').picker.lsp_references() end,        nowait = true,                     desc = "References" },
+            { "<leader>li",  function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
+            { "gI",  function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
+            { "gt",          function() require('snacks').picker.lsp_type_definitions() end,  desc = "Goto Type Definition" },
+            { "gc",         function() require('snacks').picker.lsp_incoming_calls() end,    desc = "Calls Incoming" },
+            { "gC",         function() require('snacks').picker.lsp_outgoing_calls() end,    desc = "Calls Outgoing" },
+            { "<leader>ls",  function() require('snacks').picker.lsp_symbols() end,           desc = "LSP Symbols" },
+            { "<leader>lS",  function() require('snacks').picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+            { "<leader>l,",  function() require('snacks').picker.lsp_config() end, desc = "LSP Info" },
 
             -- Code actions
             -- { "gd",         vim.lsp.buf.definition,      mode = "n", desc = "Go to definition" },
@@ -125,7 +136,7 @@ return {
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {
-                "gr",
+                "<leader>r",
                 function()
                     vim.cmd("w")
                     vim.lsp.buf.rename()
@@ -152,7 +163,7 @@ return {
                     print("Warnings disabled")
                 end,
                 mode = "n",
-                desc = "Disable warning diagnostics"
+                desc = "Disable warnings"
             },
 
             {
@@ -169,10 +180,10 @@ return {
                             severity_sort = true,
                         },
                     })
-                    print("All diagnostics disabled")
+                    print("Errors disabled")
                 end,
                 mode = "n",
-                desc = "Disable all diagnostics"
+                desc = "Disable errors"
             },
 
             {
@@ -192,7 +203,7 @@ return {
                     print("Virtual text disabled")
                 end,
                 mode = "n",
-                desc = "Disable virtual text diagnostics"
+                desc = "Disable virtual text"
             },
 
             {
@@ -212,7 +223,7 @@ return {
                     print("Diagnostics reset to default")
                 end,
                 mode = "n",
-                desc = "Show all diagnostics"
+                desc = "Reset diagnostics"
             },
 
         },

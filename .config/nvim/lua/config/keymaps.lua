@@ -168,4 +168,11 @@ end, { desc = "Focus floating window" })
 vim.keymap.set({'n', 'x'}, '<leader>/', '/', { desc = "Search" })
 vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })
 
-vim.keymap.set('n', '<leader>z', 'zz', { desc = "Centre this line" })
+vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
+
+-- Removing lsp defaults
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'grr')
+vim.keymap.del({ 'n', 'x'}, 'gra')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grt')

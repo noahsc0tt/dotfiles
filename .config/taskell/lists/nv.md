@@ -20,12 +20,14 @@
     * [ ] mini.nvim
     * [ ] sayonara
     * [ ] nvim silicon
+- change all 'v' keymaps to 'x'
 - pickers
-    * [ ] fullscreen
     * [ ] no border, keep text
     * [ ] scroll preview
 - folke/snacks
     * [ ] gh
+    * [ ] notify working (so that picker works)
+    * [ ] flash f hints
     * [ ] notes errors (typst related)
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)

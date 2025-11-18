@@ -278,7 +278,7 @@ return {
             -- },
 
 
-            -- { "/",  function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
+            -- { "<C-/>",                 function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
 
 
             -- { "<leader>aw", function() require("telescope.builtin").grep_string() end,               mode = "n" },
@@ -307,7 +307,7 @@ return {
             -- { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "v" } },
 
 
-            -- { "<leader>an",        function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
+            { "<leader>an",        function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
 
 
             -- { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "v" } },
@@ -328,7 +328,7 @@ return {
             -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
 
 
-            { "<leader>t",         function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
+            { "<leader>at",        function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
 
 
             -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },

@@ -19,8 +19,9 @@
     * [ ] previewing (bat, fzf)
     * [ ] theme
 - fzf
+    * [ ] different fzf-tab key
+    * [ ] snacks binds
     * [ ] follow symlinks
-    * [ ] <C-d> and <C-u>
     * [ ] zi layout
     * [ ] tab preview
     * [ ] strip home path
