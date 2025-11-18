@@ -1,5 +1,6 @@
 ## To Do
 
+- square corners
 - cursor free
 - renaming windows custom
 - disable middle click paste

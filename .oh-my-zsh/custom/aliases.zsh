@@ -55,7 +55,7 @@ function gsv() {
   git -C "$root" status
 }
 alias gsw="git switch"
-alias gd="git diff | delta"
+alias gd="git diff"
 
 function fzg() {
   local root file
@@ -117,7 +117,7 @@ function gdf() {
     git -C "$root" diff --name-only \
       | fzf --preview "git -C '$root' diff --color=always -- {} | delta"
   )
-  [ -n "$file" ] && git -C "$root" diff $file | delta
+  [ -n "$file" ] && git -C "$root" diff $file
 }
 
 function gusf() {

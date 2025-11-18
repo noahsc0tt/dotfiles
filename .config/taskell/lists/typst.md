@@ -2,6 +2,7 @@
 
 - markview
     * [ ] render in qute neovide
+    * [ ] not activating markview automatically
     * [ ] :Markview commands
     * [ ] not hiding any text anymore? something funky happens with folding
     * [ ] change color of heading3 so it doesnt match code

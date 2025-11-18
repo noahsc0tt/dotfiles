@@ -3,7 +3,9 @@
 - fzf aliases
     * [ ] include directories
     * [ ] gusf
+- worktrees
 - nicer looking delta (method indicators, not class)
+- tig
 - status --column=
 - config pull.rebase persistent?
 - tig

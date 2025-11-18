@@ -126,10 +126,8 @@ vim.keymap.set({ 'n', 'v' }, '<S-+>', 'g<C-a>',{ desc = 'Sequential Increment', 
 vim.keymap.set({ 'n', 'v' }, '<S-->', 'g<C-x>', { desc = 'Sequential Decrement', noremap = true })
 
 -- Folding
-vim.keymap.set({ 'n', 'v' }, "zm", "zM", { desc = "Close all folds" })
-vim.keymap.set({ 'n', 'v' }, "zM", "zm", { desc = "Fold more" })
-vim.keymap.set({ 'n', 'v' }, "zr", "zR", { desc = "Open all folds" })
-vim.keymap.set({ 'n', 'v' }, "zR", "zr", { desc = "Fold less" })
+vim.keymap.set({ 'n', 'v' }, "<leader>z", "zM", { desc = "Close all folds" })
+vim.keymap.set({ 'n', 'v' }, "<leader>Z", "zR", { desc = "Open all folds" })
 vim.keymap.set({ 'n', 'v' }, "zu", "zx", { desc = "Update folds" })
 
 -- Terminal

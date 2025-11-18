@@ -438,8 +438,7 @@ return {
                             ["<c-esc>"] = { "focus_list", mode = { "n", "i" } },
                             ["<c-q>"] = { "qflist", mode = { "i", "n" } },
                             ["<c-d>"] = { "edit_split", mode = { "i", "n" } },
-                            ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
-                            ["<c-t>"] = { "tab", mode = { "n", "i" } },
+                            ["<c-s>"] = { "tab", mode = { "n", "i" } },
                             ["<c-s-u>"] = { "list_scroll_up", mode = { "i", "n" } },
                             ["<c-l>"] = { "edit_vsplit", mode = { "i", "n" } },
                             ["<c-r>#"] = { "insert_alt", mode = "i" },
@@ -494,8 +493,7 @@ return {
                             ["<c-q>"] = "qflist",
                             ["<c-g>"] = "print_path",
                             ["<c-d>"] = "edit_split",
-                            ["<c-s>"] = "edit_split",
-                            ["<c-t>"] = "tab",
+                            ["<c-s>"] = "tab",
                             ["<c-s-u>"] = "list_scroll_up",
                             ["<c-l>"] = "edit_vsplit",
                             ["<c-w>H"] = "layout_left",
@@ -947,23 +945,23 @@ return {
             },
         },
         keys = {
-            { "<leader>d",  function() require('snacks').dashboard() end,      desc = "Toggle Dashboard" },
-            { "zs",         function() vim.cmd("DimToggle") end,               desc = "Toggle dim" },
-            { "<leader>.",  function() require('snacks').explorer.open() end,  desc = "Open File Tree" },
+            { "<leader>d",  function() require('snacks').dashboard() end,                                     desc = "Toggle Dashboard" },
+            { "zs",         function() vim.cmd("DimToggle") end,                                              desc = "Toggle dim" },
+            { "<leader>.",  function() require('snacks').explorer.open() end,                                 desc = "Open File Tree" },
 
             -- git
-            { "gh", function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
-            { "<leader>go", function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
-            { "<leader>gz",         function() require('snacks').lazygit.open() end,   desc = "Lazygit" },
+            { "gh",         function() require('snacks').gitbrowse.open() end,                                desc = "Open GitHub Repo" },
+            { "<leader>go", function() require('snacks').gitbrowse.open() end,                                desc = "Open GitHub Repo" },
+            { "<leader>gz", function() require('snacks').lazygit.open({ layout = { fullscreen = true, } }) end, desc = "Lazygit" },
 
             -- lsp reference jumping
-            { "<leader>k",  function() require('snacks').words.jump(-1) end,   desc = "Previous LSP Reference" },
-            { "<leader>j",  function() require('snacks').words.jump() end,     desc = "Next LSP Reference" },
+            { "<leader>k",  function() require('snacks').words.jump(-1) end,                                  desc = "Previous LSP Reference" },
+            { "<leader>j",  function() require('snacks').words.jump() end,                                    desc = "Next LSP Reference" },
 
-            { "<C-S-f>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
+            { "<C-S-f>",    function() require('snacks').zen.zoom() end,                                      desc = "Toggle fullscreen" },
 
             --            -- Top Pickers & Explorer
-            { "<leader>af", function() require('snacks').picker.smart() end,   desc = "Smart Find Files" },
+            { "<leader>af", function() require('snacks').picker.smart() end,                                  desc = "Smart Find Files" },
             {
                 "<leader>F",
                 function()
@@ -986,11 +984,11 @@ return {
                 end,
                 desc = "Buffers"
             },
-            { "<leader>s", function() require('snacks').picker.grep() end,            desc = "Grep" },
-            { "<leader>c", function() require('snacks').picker.command_history() end, desc = "Command History" },
-            { "<leader>n", function() require('snacks').picker.notifications() end,   desc = "Notification History" },
+            { "<leader>s",  function() require('snacks').picker.grep() end,                                                    desc = "Grep" },
+            { "<leader>c",  function() require('snacks').picker.command_history() end,                                         desc = "Command History" },
+            { "<leader>n",  function() require('snacks').picker.notifications() end,                                           desc = "Notification History" },
             -- find
-            { "<leader>f", function() require('snacks').picker.files() end,           desc = "Find Files" },
+            { "<leader>f",  function() require('snacks').picker.files() end,                                                   desc = "Find Files" },
             -- {
             --     "<leader>ad",
             --     function()
@@ -1002,33 +1000,43 @@ return {
             --     end,
             --     desc = "Find directories",
             -- },
-            { "<leader>a,",  function() require('snacks').picker.files({ cwd = vim.fn.stdpath("config") }) end,                 desc = "Find Config File" },
-            { "<leader>a.",  function() require('snacks').picker.files({ hidden = true, ignored = true, follow = false, }) end, desc = "Find Hidden Files" },
-            { "<leader>ag",  function() require('snacks').picker.git_files() end,                                               desc = "Find Git Files" },
+            { "<leader>a,", function() require('snacks').picker.files({ cwd = vim.fn.stdpath("config") }) end,                 desc = "Find Config File" },
+            { "<leader>a.", function() require('snacks').picker.files({ hidden = true, ignored = true, follow = false, }) end, desc = "Find Hidden Files" },
+            { "<leader>ag", function() require('snacks').picker.git_files() end,                                               desc = "Find Git Files" },
             -- { "<leader>fp",      function() require('snacks').picker.projects() end,                                desc = "Projects" },
-            { "<leader>ao",  function() require('snacks').picker.recent() end,                                                  desc = "Recent" },
+            { "<leader>ao", function() require('snacks').picker.recent() end,                                                  desc = "Recent" },
             -- git
-            { "<leader>gb",  function() require('snacks').picker.git_branches({
+            {
+                "<leader>gb",
+                function()
+                    require('snacks').picker.git_branches({
 
                         win = {
                             input = {
                                 keys = {
                                     ["<c-bs>"] = { "git_branch_del", mode = { "n", "i" } },
+                                    ["<bs>"] = { "git_branch_del", mode = { "n", } },
                                     ["<c-n>"] = { "git_branch_add", mode = { "n", "i" } },
-                                }}}
-            }) end,                                            desc = "Git Branches" },
-            { "<leader>gl",  function() require('snacks').picker.git_log() end,                                                 desc = "Git Log" },
-            { "<leader>gL",  function() require('snacks').picker.git_log_line() end,                                            desc = "Git Log Line" },
-            { "<leader>gs",  function() require('snacks').picker.git_status() end,                                              desc = "Git Status" },
-            { "<leader>gS",  function() require('snacks').picker.git_stash() end,                                               desc = "Git Stash" },
-            { "<leader>gd",  function() require('snacks').picker.git_diff() end,                                                desc = "Git Diff (Hunks)" },
-            { "<leader>gf",  function() require('snacks').picker.git_log_file() end,                                            desc = "Git Log File" },
-            { "<leader>gr",  function() require('snacks').picker.git_grep() end,                                                desc = "Git Grep" },
+                                    ["n"] = { "git_branch_add", mode = { "n", } },
+                                }
+                            }
+                        }
+                    })
+                end,
+                desc = "Git Branches"
+            },
+            { "<leader>gl",  function() require('snacks').picker.git_log() end,                   desc = "Git Log" },
+            { "<leader>gL",  function() require('snacks').picker.git_log_line() end,              desc = "Git Log Line" },
+            { "<leader>gs",  function() require('snacks').picker.git_status() end,                desc = "Git Status" },
+            { "<leader>gS",  function() require('snacks').picker.git_stash() end,                 desc = "Git Stash" },
+            { "<leader>gd",  function() require('snacks').picker.git_diff() end,                  desc = "Git Diff (Hunks)" },
+            { "<leader>gf",  function() require('snacks').picker.git_log_file() end,              desc = "Git Log File" },
+            { "<leader>gr",  function() require('snacks').picker.git_grep() end,                  desc = "Git Grep" },
             -- gh
-            { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                                                desc = "GitHub Issues (open)" },
-            { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end,                               desc = "GitHub Issues (all)" },
-            { "<leader>gp",  function() require('snacks').picker.gh_pr() end,                                                   desc = "GitHub Pull Requests (open)" },
-            { "<leader>gap", function() require('snacks').picker.gh_pr({ state = "all" }) end,                                  desc = "GitHub Pull Requests (all)" },
+            { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                  desc = "GitHub Issues (open)" },
+            { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+            { "<leader>gp",  function() require('snacks').picker.gh_pr() end,                     desc = "GitHub Pull Requests (open)" },
+            { "<leader>gap", function() require('snacks').picker.gh_pr({ state = "all" }) end,    desc = "GitHub Pull Requests (all)" },
             -- Grep
             {
                 "/",

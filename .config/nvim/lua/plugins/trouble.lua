@@ -215,6 +215,11 @@ return {
                 desc = "Open all diagnostics",
             },
             {
+                "ga",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Open all diagnostics",
+            },
+            {
                 "gl",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
                 desc = "Open file diagnostics",

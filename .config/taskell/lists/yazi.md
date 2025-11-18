@@ -1,6 +1,7 @@
 ## To Do
 
 - nv
+    * [ ] match binds to snacks picker
     * [ ] <C-s> bind (see gh)
     * [ ] <C-g> bind (see gh)
 - general nicer layout, check gh

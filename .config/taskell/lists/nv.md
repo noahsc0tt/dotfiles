@@ -1,5 +1,6 @@
 ## To Do
 
+- typst
 - plugins
     * [ ] grug-far
     * [ ] vim-visual-multi
@@ -20,15 +21,17 @@
     * [ ] mini.nvim
     * [ ] sayonara
     * [ ] nvim silicon
+- prime worktrees
 - change all 'v' keymaps to 'x'
 - pickers
     * [ ] no border, keep text
-    * [ ] scroll preview
+    * [ ] incoming/outcoming calls
+    * [ ] lazygit fullscreen
 - folke/snacks
     * [ ] gh
     * [ ] notify working (so that picker works)
     * [ ] flash f hints
-    * [ ] notes errors (typst related)
+    * [ ] delete scratch notes? maybe just an alias to the dir
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds
