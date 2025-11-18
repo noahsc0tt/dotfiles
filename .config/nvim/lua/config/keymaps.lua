@@ -29,14 +29,13 @@ vim.keymap.set({ "n", "v" }, "<leader>CS", "\"_s")
 
 -- System clipboard
 vim.keymap.set({ "n", "v" }, "Y", "\"+y")
-vim.keymap.set({ "n", "v" }, "<leader>cy", "\"+y")
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"+p")
 vim.keymap.set({ "n", "v" }, "<leader>P", "\"+P")
-vim.keymap.set({ "n", "v" }, "<leader>cd", "\"+d")
-vim.keymap.set({ "n", "v" }, "<leader>cD", "\"+D")
-vim.keymap.set({ "n", "v" }, "<leader>cc", "\"+c")
-vim.keymap.set({ "n", "v" }, "<leader>cC", "\"+C")
-vim.keymap.set({ "n", "v" }, "<leader>cs", "\"+S")
+-- vim.keymap.set({ "n", "v" }, "<leader>cd", "\"+d")
+-- vim.keymap.set({ "n", "v" }, "<leader>cD", "\"+D")
+-- vim.keymap.set({ "n", "v" }, "<leader>cc", "\"+c")
+-- vim.keymap.set({ "n", "v" }, "<leader>cC", "\"+C")
+-- vim.keymap.set({ "n", "v" }, "<leader>cs", "\"+S")
 
 -- Writing and quitting
 vim.keymap.set("n", "<leader>w", function()

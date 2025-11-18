@@ -315,7 +315,7 @@ return {
                     -- row = 0,
                     -- col = 0,
                     preset = function()
-                        return vim.o.columns >= 120 and "default" or "vertical"
+                        return vim.o.columns >= 120 and "ivy" or "vertical"
                     end,
                 },
                 ---@class snacks.picker.matcher.Config
@@ -409,7 +409,7 @@ return {
                     -- input window
                     input = {
                         keys = {
-                            ["<C-c>"] = { "cancel", mode = "i" },
+                            ["<C-c>"] = { "cancel", mode = { "n", "i"}, },
                             ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
                             ["<CR>"] = { "confirm", mode = { "n", "i" } },
                             ["<c-space>"] = { "confirm", mode = { "n", "i" } },
@@ -426,6 +426,7 @@ return {
                             ["<c-x>"] = { "toggle_regex", mode = { "i", "n" } },
                             ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
                             ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
+                            ["<a-g>"] = { "picker_grep", mode = { "i", "n" } },
                             ["<a-w>"] = { "cycle_win", mode = { "i", "n" } },
                             ["<c-a>"] = { "select_all", mode = { "n", "i" } },
                             -- ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
@@ -945,25 +946,25 @@ return {
             },
         },
         keys = {
-            { "<leader>d",  function() require('snacks').dashboard() end,                                     desc = "Toggle Dashboard" },
-            { "zs",         function() vim.cmd("DimToggle") end,                                              desc = "Toggle dim" },
-            { "<leader>.",  function() require('snacks').explorer.open() end,                                 desc = "Open File Tree" },
+            { "zd",         function() require('snacks').dashboard() end,                                       desc = "Toggle Dashboard" },
+            { "zs",         function() vim.cmd("DimToggle") end,                                                desc = "Toggle dim" },
+            { "<leader>.",  function() require('snacks').explorer.open() end,                                   desc = "Open File Tree" },
 
             -- git
-            { "gh",         function() require('snacks').gitbrowse.open() end,                                desc = "Open GitHub Repo" },
-            { "<leader>go", function() require('snacks').gitbrowse.open() end,                                desc = "Open GitHub Repo" },
+            { "gh",         function() require('snacks').gitbrowse.open() end,                                  desc = "Open GitHub Repo" },
+            { "<leader>go", function() require('snacks').gitbrowse.open() end,                                  desc = "Open GitHub Repo" },
             { "<leader>gz", function() require('snacks').lazygit.open({ layout = { fullscreen = true, } }) end, desc = "Lazygit" },
 
             -- lsp reference jumping
-            { "<leader>k",  function() require('snacks').words.jump(-1) end,                                  desc = "Previous LSP Reference" },
-            { "<leader>j",  function() require('snacks').words.jump() end,                                    desc = "Next LSP Reference" },
+            { "<M-S-k>",  function() require('snacks').words.jump(-1) end,                                    desc = "Previous LSP Reference" },
+            { "<M-S-j>",  function() require('snacks').words.jump() end,                                      desc = "Next LSP Reference" },
 
-            { "<C-S-f>",    function() require('snacks').zen.zoom() end,                                      desc = "Toggle fullscreen" },
+            { "<C-S-f>",    function() require('snacks').zen.zoom() end,                                        desc = "Toggle fullscreen" },
 
             --            -- Top Pickers & Explorer
-            { "<leader>af", function() require('snacks').picker.smart() end,                                  desc = "Smart Find Files" },
+            { "<leader>aF", function() require('snacks').picker.smart() end,                                    desc = "Smart Find Files" },
             {
-                "<leader>F",
+                "<leader>af",
                 function()
                     require('snacks').picker.buffers({
                         finder = "buffers",
@@ -976,6 +977,7 @@ return {
                             input = {
                                 keys = {
                                     ["<c-bs>"] = { "bufdelete", mode = { "n", "i" } },
+                                    ["<bs>"] = { "bufdelete", mode = { "n", } },
                                 },
                             },
                             list = { keys = { ["d"] = "bufdelete" } },
@@ -984,27 +986,27 @@ return {
                 end,
                 desc = "Buffers"
             },
-            { "<leader>s",  function() require('snacks').picker.grep() end,                                                    desc = "Grep" },
-            { "<leader>c",  function() require('snacks').picker.command_history() end,                                         desc = "Command History" },
-            { "<leader>n",  function() require('snacks').picker.notifications() end,                                           desc = "Notification History" },
+            { "<leader>s", function() require('snacks').picker.grep({ layout = { preset = "vertical", } }) end, desc = "Grep" },
+            { "<leader>c", function() require('snacks').picker.command_history() end,                          desc = "Command History" },
+            { "<leader>n", function() require('snacks').picker.notifications() end,                            desc = "Notification History" },
             -- find
-            { "<leader>f",  function() require('snacks').picker.files() end,                                                   desc = "Find Files" },
-            -- {
-            --     "<leader>ad",
-            --     function()
-            --         require("snacks").picker.files({
-            --             cmd = "fd",
-            --             args = { "-t", "d" },
-            --             format = "file",
-            --         })
-            --     end,
-            --     desc = "Find directories",
-            -- },
+            { "<leader>f", function() require("snacks").picker.files() end, desc = "Find Files", },
+            {
+                "<leader>ad",
+                function()
+                    require("snacks").picker.files({
+                        cmd = "fd",
+                        args = { "-t", "d", "-E", "*.*" },
+                        format = "file",
+                    })
+                end,
+                desc = "Find Directories",
+            },
             { "<leader>a,", function() require('snacks').picker.files({ cwd = vim.fn.stdpath("config") }) end,                 desc = "Find Config File" },
             { "<leader>a.", function() require('snacks').picker.files({ hidden = true, ignored = true, follow = false, }) end, desc = "Find Hidden Files" },
             { "<leader>ag", function() require('snacks').picker.git_files() end,                                               desc = "Find Git Files" },
             -- { "<leader>fp",      function() require('snacks').picker.projects() end,                                desc = "Projects" },
-            { "<leader>ao", function() require('snacks').picker.recent() end,                                                  desc = "Recent" },
+            { "<leader>ao", function() require('snacks').picker.recent() end,                                                  desc = "Old Files" },
             -- git
             {
                 "<leader>gb",
@@ -1031,7 +1033,7 @@ return {
             { "<leader>gS",  function() require('snacks').picker.git_stash() end,                 desc = "Git Stash" },
             { "<leader>gd",  function() require('snacks').picker.git_diff() end,                  desc = "Git Diff (Hunks)" },
             { "<leader>gf",  function() require('snacks').picker.git_log_file() end,              desc = "Git Log File" },
-            { "<leader>gr",  function() require('snacks').picker.git_grep() end,                  desc = "Git Grep" },
+            { "<leader>gr",  function() require('snacks').picker.git_grep({ layout = { preset = "vertical", } }) end,                  desc = "Git Grep" },
             -- gh
             { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                  desc = "GitHub Issues (open)" },
             { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
@@ -1045,9 +1047,9 @@ return {
                         finder = "lines",
                         format = "lines",
                         layout = {
-                            fullscreen = false,
-                            preview = "main",
-                            preset = "ivy_split",
+                            fullscreen = true,
+                            preview = "top",
+                            preset = "vertical",
                         },
                         jump = { match = true },
                         -- allow any window to be used as the main window
@@ -1063,28 +1065,30 @@ return {
                 end,
                 desc = "Fuzzy search"
             },
-            { "<leader>S",  function() require('snacks').picker.grep_buffers() end,    desc = "Grep Open Buffers" },
-            { "<leader>as", function() require('snacks').picker.grep_word() end,       desc = "Visual selection or word", mode = { "n", "x" } },
+            { "<leader>S",         function() require('snacks').picker.grep_buffers({ layout = { preset = "vertical", } }) end,    desc = "Grep Open Buffers" },
+            { "<leader>as",        function() require('snacks').picker.grep_word({ layout = { preset = "vertical", } }) end,       desc = "Visual selection or word", mode = { "n", "x" } },
             -- search
-            { '<leader>ap', function() require('snacks').picker.registers() end,       desc = "Registers" },
-            { '<leader>a/', function() require('snacks').picker.search_history() end,  desc = "Search History" },
-            { "<leader>aa", function() require('snacks').picker.autocmds() end,        desc = "Autocmds" },
-            { "<leader>c",  function() require('snacks').picker.command_history() end, desc = "Command History" },
-            { "<leader>:",  function() require('snacks').picker.commands() end,        desc = "Commands" },
+            { '<leader>ap',        function() require('snacks').picker.registers() end,       desc = "Registers" },
+            { '<leader>a/',        function() require('snacks').picker.search_history() end,  desc = "Search History" },
+            { "<leader>aa",        function() require('snacks').picker.autocmds() end,        desc = "Autocmds" },
+            { "<leader>c",         function() require('snacks').picker.command_history() end, desc = "Command History" },
+            { "<leader>:",         function() require('snacks').picker.commands() end,        desc = "Commands" },
             -- { "<leader>sd",      function() require('snacks').picker.diagnostics() end,                             desc = "Diagnostics" },
             -- { "<leader>sD",      function() require('snacks').picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
-            { "<leader>ah", function() require('snacks').picker.help() end,            desc = "Help Pages" },
-            { "<leader>aH", function() require('snacks').picker.highlights() end,      desc = "Highlights" },
-            { "<leader>ae", function() require('snacks').picker.icons() end,           desc = "Icons" },
-            { "<leader>aj", function() require('snacks').picker.jumps() end,           desc = "Jumps" },
-            { "<leader>ak", function() require('snacks').picker.keymaps() end,         desc = "Keymaps" },
-            { "<leader>al", function() require('snacks').picker.loclist() end,         desc = "Location List" },
-            { "<leader>`",  function() require('snacks').picker.marks() end,           desc = "Marks" },
-            { "<leader>am", function() require('snacks').picker.man() end,             desc = "Man Pages" },
-            { "<leader>az", function() require('snacks').picker.lazy() end,            desc = "Search for Plugin Spec" },
-            { "<leader>aq", function() require('snacks').picker.qflist() end,          desc = "Quickfix List" },
-            { "<leader>A",  function() require('snacks').picker.resume() end,          desc = "Resume" },
-            { "<leader>u",  function() require('snacks').picker.undo() end,            desc = "Undo History" },
+            { "<leader>ah",        function() require('snacks').picker.help() end,            desc = "Help Pages" },
+            { "<leader>aH",        function() require('snacks').picker.highlights() end,      desc = "Highlights" },
+            { "<leader>ae",        function() require('snacks').picker.icons() end,           desc = "Icons" },
+            { "<leader>aj",        function() require('snacks').picker.jumps() end,           desc = "Jumps" },
+            { "<leader>ak",        function() require('snacks').picker.keymaps() end,         desc = "Keymaps" },
+            { "<leader>al",        function() require('snacks').picker.loclist() end,         desc = "Location List" },
+            { "<leader>`",         function() require('snacks').picker.marks() end,           desc = "Marks" },
+            { "<leader>am",        function() require('snacks').picker.man() end,             desc = "Man Pages" },
+            { "<leader>az",        function() require('snacks').picker.zoxide() end,            desc = "Search for Plugin Spec" },
+            { "<leader>aq",        function() require('snacks').picker.qflist() end,          desc = "Quickfix List" },
+            { "<leader>A",         function() require('snacks').picker.resume() end,          desc = "Resume" },
+            { "<leader>u",         function() require('snacks').picker.undo() end,            desc = "Undo History" },
+            { "<leader>a<leader>", function() require('snacks').picker.pickers() end,         desc = "Snacks Pickers" },
+            { "<C-=>", function() require('snacks').picker.spelling() end,         desc = "Snacks Pickers" },
         },
 
     },

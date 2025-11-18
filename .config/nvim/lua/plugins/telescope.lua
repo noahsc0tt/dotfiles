@@ -233,15 +233,15 @@ return {
             -- { "<leader>f",  function() require("telescope.builtin").find_files() end,                         mode = { "n", "v" } },
 
             -- Directories only
-            {
-                "<leader>ad",
-                function()
-                    require("telescope.builtin").find_files({
-                        find_command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--absolute-path" },
-                    })
-                end,
-                mode = { "n", "v" }
-            },
+            -- {
+            --     "<leader>ad",
+            --     function()
+            --         require("telescope.builtin").find_files({
+            --             find_command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--absolute-path" },
+            --         })
+            --     end,
+            --     mode = { "n", "v" }
+            -- },
 
             -- Grep
             -- { "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "v" } },
@@ -328,16 +328,16 @@ return {
             -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
 
 
-            { "<leader>at",        function() require("telescope.builtin").builtin() end,          mode = { "n", "v" } },
+            { "<leader>at",        function() require("telescope.builtin").builtin() end, desc = "Telescope Pickers",         mode = { "n", "v" } },
 
 
             -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },
 
 
-            { "<C-=>",             function() require("telescope.builtin").spell_suggest() end,    mode = { "n", "v", "i" } },
+            -- { "<C-=>",             function() require("telescope.builtin").spell_suggest() end,    mode = { "n", "v", "i" } },
 
 
-            { "<leader>a<leader>", function() require("telescope.builtin").resume() end,           mode = { "n", "v" } },
+            -- { "<leader>a<leader>", function() require("telescope.builtin").resume() end,           mode = { "n", "v" } },
 
         }
     },

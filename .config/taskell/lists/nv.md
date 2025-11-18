@@ -1,10 +1,9 @@
 ## To Do
 
-- typst
+- bufferline background color
 - plugins
     * [ ] grug-far
     * [ ] vim-visual-multi
-    * [ ] cloak
     * [ ] context-menu
     * [ ] hop
     * [ ] conform
@@ -19,18 +18,20 @@
     * [ ] edgy (snacks.terminal)
     * [ ] coc for lsp
     * [ ] mini.nvim
+    * [ ] cloak
     * [ ] sayonara
     * [ ] nvim silicon
 - prime worktrees
 - change all 'v' keymaps to 'x'
 - pickers
-    * [ ] no border, keep text
+    * [ ] background color
+    * [ ] dont show bufferline
+    * [ ] command history exe vs go to cmdline vs go to q:
     * [ ] incoming/outcoming calls
     * [ ] lazygit fullscreen
 - folke/snacks
     * [ ] gh
     * [ ] notify working (so that picker works)
-    * [ ] flash f hints
     * [ ] delete scratch notes? maybe just an alias to the dir
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)

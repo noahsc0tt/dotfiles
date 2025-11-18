@@ -4,6 +4,7 @@
     * [ ] match binds to snacks picker
     * [ ] <C-s> bind (see gh)
     * [ ] <C-g> bind (see gh)
+- go to cwd
 - general nicer layout, check gh
 - splits
 - bigger font?
