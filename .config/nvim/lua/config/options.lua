@@ -19,7 +19,7 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 vim.opt.mouse = "a"
-vim.keymap.set({"n", "i", "v"}, "<MiddleMouse>", "<Nop>")
+vim.keymap.set({"n", "i", "x"}, "<MiddleMouse>", "<Nop>")
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

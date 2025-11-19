@@ -228,10 +228,10 @@ return {
         end,
 
         keys = {
-            -- { "<C-.>", function() open_file_browser() end, mode = { "n", "v", "i" } },
+            -- { "<C-.>", function() open_file_browser() end, mode = { "n", "x", "i" } },
 
             -- Files only
-            -- { "<leader>f",  function() require("telescope.builtin").find_files() end,                         mode = { "n", "v" } },
+            -- { "<leader>f",  function() require("telescope.builtin").find_files() end,                         mode = { "n", "x" } },
 
             -- Directories only
             -- {
@@ -241,11 +241,11 @@ return {
             --             find_command = { "fd", "--type", "d", "--hidden", "--no-ignore", "--absolute-path" },
             --         })
             --     end,
-            --     mode = { "n", "v" }
+            --     mode = { "n", "x" }
             -- },
 
             -- Grep
-            -- { "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "v" } },
+            -- { "<leader>as", function() require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() }) end, mode = { "n", "x" } },
 
 
             -- {
@@ -275,11 +275,11 @@ return {
             --             end,
             --         })
             --     end,
-            --     mode = { "n", "v" }
+            --     mode = { "n", "x" }
             -- },
 
 
-            -- { "<C-/>",                 function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "v" } },
+            -- { "<C-/>",                 function() require("telescope.builtin").current_buffer_fuzzy_find() end, mode = { "n", "x" } },
 
 
             -- { "<leader>aw", function() require("telescope.builtin").grep_string() end,               mode = "n" },
@@ -289,56 +289,56 @@ return {
             --     "<leader>aw",
             --     function()
             --         vim.cmd('normal! "vy')
-            --         local text = vim.fn.getreg("v")
+            --         local text = vim.fn.getreg("x")
             --         require("telescope.builtin").grep_string({ search = text, initial_mode = "normal", })
             --     end,
-            --     mode = "v"
+            --     mode = "x"
             -- },
 
 
-            -- { "<leader>ag",        function() require("telescope.builtin").git_files() end,        mode = { "n", "v" } },
+            -- { "<leader>ag",        function() require("telescope.builtin").git_files() end,        mode = { "n", "x" } },
 
 
-            -- { "<leader>ao",        function() require("telescope.builtin").oldfiles() end,         mode = { "n", "v" } },
+            -- { "<leader>ao",        function() require("telescope.builtin").oldfiles() end,         mode = { "n", "x" } },
 
 
-            -- { "<leader>ar",        function() require("telescope.builtin").lsp_references() end,   mode = { "n", "v" } },
+            -- { "<leader>ar",        function() require("telescope.builtin").lsp_references() end,   mode = { "n", "x" } },
 
 
-            -- { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "v" } },
+            -- { "<leader>ae",        function() require("telescope.builtin").diagnostics() end,      mode = { "n", "x" } },
 
 
-            -- { "<leader>an", function() require('telescope').extensions.notify.notify() end, mode = { "n", "v" } },
+            -- { "<leader>an", function() require('telescope').extensions.notify.notify() end, mode = { "n", "x" } },
 
 
-            -- { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "v" } },
+            -- { "<leader>c",         function() require("telescope.builtin").command_history() end,  mode = { "n", "x" } },
 
 
-            -- { "<leader>aj",        function() require("telescope.builtin").jumplist() end,         mode = { "n", "v" } },
+            -- { "<leader>aj",        function() require("telescope.builtin").jumplist() end,         mode = { "n", "x" } },
 
 
-            -- { "<leader>ah",        function() require("telescope.builtin").search_history() end,   mode = { "n", "v" } },
+            -- { "<leader>ah",        function() require("telescope.builtin").search_history() end,   mode = { "n", "x" } },
 
 
-            -- { "<leader>`",         function() require("telescope.builtin").marks() end,            mode = { "n", "v" } },
+            -- { "<leader>`",         function() require("telescope.builtin").marks() end,            mode = { "n", "x" } },
 
 
-            -- { "<leader>ap",        function() require("telescope.builtin").registers() end,        mode = { "n", "v" } },
+            -- { "<leader>ap",        function() require("telescope.builtin").registers() end,        mode = { "n", "x" } },
 
 
-            -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "v" } },
+            -- { "<leader>:",         function() require("telescope.builtin").commands() end,         mode = { "n", "x" } },
 
 
-            { "<leader>at", function() require("telescope.builtin").builtin() end,          desc = "Telescope Pickers", mode = { "n", "v" } },
+            { "<leader>at", function() require("telescope.builtin").builtin() end,          desc = "Telescope Pickers", mode = { "n", "x" } },
 
 
-            -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "v" } },
+            -- { "<leader>at",        function() require("telescope.builtin").filetypes() end,        mode = { "n", "x" } },
 
 
-            -- { "<C-=>",             function() require("telescope.builtin").spell_suggest() end,    mode = { "n", "v", "i" } },
+            -- { "<C-=>",             function() require("telescope.builtin").spell_suggest() end,    mode = { "n", "x", "i" } },
 
 
-            -- { "<leader>a<leader>", function() require("telescope.builtin").resume() end,           mode = { "n", "v" } },
+            -- { "<leader>a<leader>", function() require("telescope.builtin").resume() end,           mode = { "n", "x" } },
 
         }
     },

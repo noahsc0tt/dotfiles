@@ -62,7 +62,7 @@ return {
                 ["{"] = "prev",
                 d = {
                     action = "delete",
-                    mode = { "n", "v" },
+                    mode = { "n", "x" },
                 },
                 i = "inspect",
                 p = "preview",

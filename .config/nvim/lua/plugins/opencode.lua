@@ -12,9 +12,9 @@ return {
 
             { "<leader>oc", function() require('opencode').toggle() end, desc = "Toggle opencode", mode = "n" },
 
-            { "<M-C-u>", function() require('opencode').command("messages_half_page_up") end, desc = "opencode half page up", mode = { "t", "n", "v", "i" } },
+            { "<M-C-u>", function() require('opencode').command("messages_half_page_up") end, desc = "opencode half page up", mode = { "t", "n", "x", "i" } },
 
-            { "<M-C-d>", function() require('opencode').command("messages_half_page_down") end, desc = "opencode half page down", mode = { "t", "n", "v", "i" } },
+            { "<M-C-d>", function() require('opencode').command("messages_half_page_down") end, desc = "opencode half page down", mode = { "t", "n", "x", "i" } },
         }
     },
 }

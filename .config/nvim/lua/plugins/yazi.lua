@@ -29,21 +29,21 @@ return {
         },
         keys = {
             {
-                "<leader>j",
+                "J",
                 "<cmd>Yazi<cr>",
-                mode = { "n", "v", },
+                mode = { "n", "x", },
                 desc = "Open yazi",
             },
             {
-                "<leader>J",
+                "<C-,>",
                 "<cmd>Yazi cwd<cr>",
-                mode = { "n", "v", },
+                mode = { "n", "x", },
                 desc = "Open yazi at cwd",
             },
             {
                 "<C-.>",
                 "<cmd>Yazi toggle<cr>",
-                mode = { "n", "v", },
+                mode = { "n", "x", },
                 desc = "Resume yazi",
             },
         },

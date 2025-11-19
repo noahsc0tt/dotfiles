@@ -5,9 +5,9 @@
     * [ ] gitsigns/vimgitgutter
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
     * [ ] luasnip, cmp_luasnip, friendly-snippet
-    * [ ] arrow
     * [ ] dap (debugging)
-    * [ ] fold-preview
+    * [ ] arrow
+    * [ ] keymap amend
     * [ ] edgy (snacks.terminal)
     * [ ] coc for lsp
     * [ ] mini.nvim
@@ -15,9 +15,7 @@
     * [ ] cloak
     * [ ] sayonara
     * [ ] nvim silicon
-- grug setup
 - prime worktrees
-- change all 'v' keymaps to 'x'
 - pickers
     * [ ] dont show bufferline
     * [ ] command history exe vs go to cmdline vs go to q:
@@ -29,6 +27,7 @@
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds
+- grug setup
 - bufferline
     * [ ] groups
     * [ ] dynamic sizing (fit bufferline to filename?)

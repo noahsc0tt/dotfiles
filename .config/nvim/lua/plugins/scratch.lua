@@ -34,7 +34,7 @@ return {
                         {
                             cmd = "<CMD>RunShellCurrentLine<CR>",
                             key = "<C-r>",
-                            modes = { "n", "i", "v" },
+                            modes = { "n", "i", "x" },
                         },
                     },
                 },

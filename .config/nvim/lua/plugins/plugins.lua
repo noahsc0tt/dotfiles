@@ -77,4 +77,10 @@ return {
         config = true,
     },
 
+    {
+        'anuvyklack/keymap-amend.nvim',
+        enabled = false,
+        lazy = false,
+    }
+
 }

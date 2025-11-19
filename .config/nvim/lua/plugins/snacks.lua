@@ -50,7 +50,7 @@ return {
                         {
                             icon = " ",
                             key = "f",
-                            desc = "Create Scratch File",
+                            desc = "New Scratch File",
                             action = function()
                                 vim.cmd("Scratch")
                                 vim.defer_fn(function()
@@ -102,7 +102,7 @@ return {
                         },
                         {
                             icon = " ",
-                            key = "v",
+                            key = "x",
                             desc = "Save Session",
                             action = function()
                                 vim.cmd("AutoSession save")
@@ -354,10 +354,62 @@ return {
                 layout = {
                     cycle = true,
                     fullscreen = true,
-                    preset = "ivy",
-                    -- preset = function()
-                    --     return vim.o.columns >= 120 and "ivy" or "vertical"
-                    -- end,
+                    preset = function()
+                        return vim.o.columns >= 120 and "clean" or "horizontal"
+                    end,
+                },
+                layouts = {
+                    clean = {
+                        layout = {
+                            box = "vertical",
+                            backdrop = false,
+                            row = -1,
+                            width = vim.o.columns,
+                            height = vim.o.lines,
+                            col = 0,
+                            border = "top",
+                            title = " {title} {live} {flags}",
+                            title_pos = "left",
+                            { win = "input", height = 1, border = "bottom" },
+                            {
+                                box = "horizontal",
+                                { win = "list",    border = "none" },
+                                { win = "preview", title = "{preview}", width = 0.6, border = "left" },
+                            },
+                        },
+                    },
+                    horizontal = {
+                        layout = {
+                            backdrop = false,
+                            width = 0.5,
+                            min_width = 80,
+                            height = 0.8,
+                            min_height = 30,
+                            box = "vertical",
+                            border = false,
+                            title = "{title} {live} {flags}",
+                            title_pos = "left",
+                            { win = "preview", title = "{preview}", height = 0.5,                     border = "top" },
+                            { win = "input",   height = 1,          title = "{title} {live} {flags}", border = "top" },
+                            { win = "list",    border = "top" },
+                        },
+                    },
+                    middle = {
+                        hidden = { "preview" },
+                        layout = {
+                            backdrop = false,
+                            row = 0.42,
+                            col = 0.3,
+                            width = 0.4,
+                            min_width = 80,
+                            height = 0.55,
+                            border = false,
+                            box = "vertical",
+                            { win = "preview", title = "{preview}", border = true },
+                            { win = "input",   height = 1,          border = true, title = "{title} {live} {flags}", title_pos = "center" },
+                            { win = "list",    border = "rounded" },
+                        },
+                    },
                 },
                 ---@class snacks.picker.matcher.Config
                 matcher = {
@@ -917,7 +969,7 @@ return {
                 notify_end = true,              -- show a notification when reaching the end
                 foldopen = true,                -- open folds after jumping
                 jumplist = true,                -- set jump point before jumping
-                modes = { "n", "i", "c", "v" }, -- modes to show references
+                modes = { "n", "i", "c", "x" }, -- modes to show references
                 filter = function(buf)          -- what buffers to enable `snacks.words`
                     return vim.g.snacks_words ~= false and vim.b[buf].snacks_words ~= false
                 end,
@@ -961,6 +1013,43 @@ return {
                 },
             },
             styles = {
+                input = {
+                    backdrop = false,
+                    position = "float",
+                    border = true,
+                    title_pos = "center",
+                    height = 1,
+                    width = 60,
+                    noautocmd = true,
+                    relative = "editor",
+                    row = vim.o.lines / 2 - 2,
+                    -- relative = "cursor",
+                    -- row = -3,
+                    -- col = 0,
+                    wo = {
+                        winhighlight =
+                        "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
+                        cursorline = false,
+                    },
+                    bo = {
+                        filetype = "snacks_input",
+                        buftype = "prompt",
+                    },
+                    --- buffer local variables
+                    b = {
+                        completion = false, -- disable blink completions in input
+                    },
+                    keys = {
+                        n_esc = { "<esc>", { "cmp_close", "cancel" }, mode = "n", expr = true },
+                        i_esc = { "<esc>", { "cmp_close", "stopinsert" }, mode = "i", expr = true },
+                        i_cr = { "<cr>", { "cmp_accept", "confirm" }, mode = { "i", "n" }, expr = true },
+                        i_tab = { "<tab>", { "cmp_select_next", "cmp" }, mode = "i", expr = true },
+                        i_ctrl_w = { "<c-w>", "<c-s-w>", mode = "i", expr = true },
+                        i_up = { "<C-p>", { "hist_up" }, mode = { "i", "n" } },
+                        i_down = { "<C-n>", { "hist_down" }, mode = { "i", "n" } },
+                        q = "cancel",
+                    },
+                },
                 -- picker = {
                 --     width = vim.o.columns,
                 --     height = vim.o.lines,
@@ -1035,11 +1124,11 @@ return {
                 end,
                 desc = "Buffers"
             },
-            { "<leader>s", function() require('snacks').picker.grep({ layout = { preset = "vertical", } }) end, desc = "Grep" },
-            { "<leader>c", function() require('snacks').picker.command_history() end,                           desc = "Command History" },
-            { "<leader>n", function() require('snacks').picker.notifications() end,                             desc = "Notification History" },
+            { "<leader>s", function() require('snacks').picker.grep({ layout = { preset = "horizontal", } }) end, desc = "Grep" },
+            { "<leader>c", function() require('snacks').picker.command_history() end,                             desc = "Command History" },
+            { "<leader>n", function() require('snacks').picker.notifications() end,                               desc = "Notification History" },
             -- find
-            { "<leader>f", function() require("snacks").picker.files() end,                                     desc = "Find Files", },
+            { "<leader>f", function() require("snacks").picker.files() end,                                       desc = "Find Files", },
             {
                 "<leader>ad",
                 function()
@@ -1076,18 +1165,18 @@ return {
                 end,
                 desc = "Git Branches"
             },
-            { "<leader>gl",  function() require('snacks').picker.git_log() end,                                       desc = "Git Log" },
-            { "<leader>gL",  function() require('snacks').picker.git_log_line() end,                                  desc = "Git Log Line" },
-            { "<leader>gs",  function() require('snacks').picker.git_status() end,                                    desc = "Git Status" },
-            { "<leader>gS",  function() require('snacks').picker.git_stash() end,                                     desc = "Git Stash" },
-            { "<leader>gd",  function() require('snacks').picker.git_diff() end,                                      desc = "Git Diff (Hunks)" },
-            { "<leader>gf",  function() require('snacks').picker.git_log_file() end,                                  desc = "Git Log File" },
-            { "<leader>gr",  function() require('snacks').picker.git_grep({ layout = { preset = "vertical", } }) end, desc = "Git Grep" },
+            { "<leader>gl",  function() require('snacks').picker.git_log() end,                                         desc = "Git Log" },
+            { "<leader>gL",  function() require('snacks').picker.git_log_line() end,                                    desc = "Git Log Line" },
+            { "<leader>gs",  function() require('snacks').picker.git_status() end,                                      desc = "Git Status" },
+            { "<leader>gS",  function() require('snacks').picker.git_stash() end,                                       desc = "Git Stash" },
+            { "<leader>gd",  function() require('snacks').picker.git_diff() end,                                        desc = "Git Diff (Hunks)" },
+            { "<leader>gf",  function() require('snacks').picker.git_log_file() end,                                    desc = "Git Log File" },
+            { "<leader>gr",  function() require('snacks').picker.git_grep({ layout = { preset = "horizontal", } }) end, desc = "Git Grep" },
             -- gh
-            { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                                      desc = "GitHub Issues (open)" },
-            { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end,                     desc = "GitHub Issues (all)" },
-            { "<leader>gp",  function() require('snacks').picker.gh_pr() end,                                         desc = "GitHub Pull Requests (open)" },
-            { "<leader>gap", function() require('snacks').picker.gh_pr({ state = "all" }) end,                        desc = "GitHub Pull Requests (all)" },
+            { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                                        desc = "GitHub Issues (open)" },
+            { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end,                       desc = "GitHub Issues (all)" },
+            { "<leader>gp",  function() require('snacks').picker.gh_pr() end,                                           desc = "GitHub Pull Requests (open)" },
+            { "<leader>gap", function() require('snacks').picker.gh_pr({ state = "all" }) end,                          desc = "GitHub Pull Requests (all)" },
             -- Grep
             {
                 "/",
@@ -1098,7 +1187,7 @@ return {
                         layout = {
                             fullscreen = true,
                             preview = "top",
-                            preset = "vertical",
+                            preset = "horizontal",
                         },
                         jump = { match = true },
                         -- allow any window to be used as the main window
@@ -1114,30 +1203,29 @@ return {
                 end,
                 desc = "Fuzzy search"
             },
-            { "<leader>S",         function() require('snacks').picker.grep_buffers({ layout = { preset = "vertical", } }) end, desc = "Grep Open Buffers" },
-            { "<leader>as",        function() require('snacks').picker.grep_word({ layout = { preset = "vertical", } }) end,    desc = "Visual selection or word", mode = { "n", "x" } },
+            { "<leader>S",         function() require('snacks').picker.grep_buffers({ layout = { preset = "horizontal", } }) end,             desc = "Grep Open Buffers" },
+            { "<leader>as",        function() require('snacks').picker.grep_word({ layout = { preset = "horizontal", } }) end,                desc = "Visual selection or word", mode = { "n", "x" } },
             -- search
-            { '<leader>ap',        function() require('snacks').picker.registers() end,                                         desc = "Registers" },
-            { '<leader>a/',        function() require('snacks').picker.search_history() end,                                    desc = "Search History" },
-            { "<leader>aa",        function() require('snacks').picker.autocmds() end,                                          desc = "Autocmds" },
-            { "<leader>c",         function() require('snacks').picker.command_history() end,                                   desc = "Command History" },
-            { "<leader>:",         function() require('snacks').picker.commands() end,                                          desc = "Commands" },
+            { '<leader>ap',        function() require('snacks').picker.registers() end,                                                       desc = "Registers" },
+            { '<leader>a/',        function() require('snacks').picker.search_history() end,                                                  desc = "Search History" },
+            { "<leader>c",         function() require('snacks').picker.command_history() end,                                                 desc = "Command History" },
+            { "<leader>:",         function() require('snacks').picker.commands() end,                                                        desc = "Commands" },
             -- { "<leader>sd",      function() require('snacks').picker.diagnostics() end,                             desc = "Diagnostics" },
             -- { "<leader>sD",      function() require('snacks').picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
-            { "<leader>ah",        function() require('snacks').picker.help() end,                                              desc = "Help Pages" },
-            { "<leader>aH",        function() require('snacks').picker.highlights() end,                                        desc = "Highlights" },
-            { "<leader>ae",        function() require('snacks').picker.icons() end,                                             desc = "Icons" },
-            { "<leader>aj",        function() require('snacks').picker.jumps() end,                                             desc = "Jumps" },
-            { "<leader>ak",        function() require('snacks').picker.keymaps() end,                                           desc = "Keymaps" },
-            { "<leader>al",        function() require('snacks').picker.loclist() end,                                           desc = "Location List" },
-            { "<leader>`",         function() require('snacks').picker.marks() end,                                             desc = "Marks" },
-            { "<leader>am",        function() require('snacks').picker.man() end,                                               desc = "Man Pages" },
-            { "<leader>az",        function() require('snacks').picker.zoxide() end,                                            desc = "Search for Plugin Spec" },
-            { "<leader>aq",        function() require('snacks').picker.qflist() end,                                            desc = "Quickfix List" },
-            { "<leader>A",         function() require('snacks').picker.resume() end,                                            desc = "Resume" },
-            { "<leader>u",         function() require('snacks').picker.undo() end,                                              desc = "Undo History" },
-            { "<leader>a<leader>", function() require('snacks').picker.pickers() end,                                           desc = "Snacks Pickers" },
-            { "<C-=>",             function() require('snacks').picker.spelling() end,                                          desc = "Snacks Pickers" },
+            { "<leader>ah",        function() require('snacks').picker.help() end,                                                            desc = "Help Pages" },
+            { "<leader>aH",        function() require('snacks').picker.highlights() end,                                                      desc = "Highlights" },
+            { "<leader>ae",        function() require('snacks').picker.icons() end,                                                           desc = "Icons" },
+            { "<leader>aj",        function() require('snacks').picker.jumps() end,                                                           desc = "Jumps" },
+            { "<leader>ak",        function() require('snacks').picker.keymaps() end,                                                         desc = "Keymaps" },
+            { "<leader>al",        function() require('snacks').picker.loclist() end,                                                         desc = "Location List" },
+            { "<leader>`",         function() require('snacks').picker.marks() end,                                                           desc = "Marks" },
+            { "<leader>am",        function() require('snacks').picker.man() end,                                                             desc = "Man Pages" },
+            { "<leader>az",        function() require('snacks').picker.zoxide() end,                                                          desc = "Search for Plugin Spec" },
+            { "<leader>aq",        function() require('snacks').picker.qflist() end,                                                          desc = "Quickfix List" },
+            { "<leader>A",         function() require('snacks').picker.resume() end,                                                          desc = "Resume" },
+            { "<leader>u",         function() require('snacks').picker.undo() end,                                                            desc = "Undo History" },
+            { "<leader>a<leader>", function() require('snacks').picker.pickers() end,                                                         desc = "Snacks Pickers" },
+            { "<C-=>",             function() require('snacks').picker.spelling({ layout = { preset = "middle", fullscreen = false, } }) end, desc = "Snacks Pickers" },
         },
 
     },

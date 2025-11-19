@@ -23,12 +23,12 @@ return {
                 if vim.list_contains({ "d", "y", "c", }, ctx.operator) then
                     return true
                 end
-                return vim.list_contains({ "<C-V>", "V", "v" }, ctx.mode)
+                return vim.list_contains({ "<C-V>", "V", "x" }, ctx.mode)
             end,
         },
 
         keys = {
-            { "<C-S-/>", "<cmd>WhichKey<CR>", mode = { "n", "i", "v", } },
+            { "<C-S-/>", "<cmd>WhichKey<CR>", mode = { "n", "i", "x", } },
         }
     }
 }
