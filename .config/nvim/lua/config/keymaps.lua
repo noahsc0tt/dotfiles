@@ -83,8 +83,8 @@ vim.keymap.set('o', '_', '^', { noremap = true })
 vim.keymap.set({ 'n', 'x' }, 'g_', 'g^', { noremap = true })
 
 -- Splitting and joining lines
-vim.keymap.set("n", "<leader>j", "a<Cr><Esc>k$")
-vim.keymap.set("n", "<leader>k", "J")
+vim.keymap.set("n", "J", "a<Cr><Esc>k$")
+vim.keymap.set("n", "K", "J")
 
 -- Undo and Redo
 vim.keymap.set("n", "U", "<C-r>")

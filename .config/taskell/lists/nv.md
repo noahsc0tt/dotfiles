@@ -22,7 +22,6 @@
     * [ ] incoming/outcoming calls
     * [ ] lazygit fullscreen
 - folke/snacks
-    * [ ] move layout editing to an actual config (so that lazy can update)
     * [ ] gh
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)

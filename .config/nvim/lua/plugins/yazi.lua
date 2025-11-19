@@ -29,7 +29,7 @@ return {
         },
         keys = {
             {
-                "J",
+                "<leader>j",
                 "<cmd>Yazi<cr>",
                 mode = { "n", "x", },
                 desc = "Open yazi",

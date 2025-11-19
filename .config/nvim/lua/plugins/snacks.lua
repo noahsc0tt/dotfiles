@@ -353,13 +353,14 @@ return {
                 limit_live = 10000,
                 layout = {
                     cycle = true,
-                    fullscreen = true,
+                    -- fullscreen = true,
                     preset = function()
                         return vim.o.columns >= 120 and "clean" or "horizontal"
                     end,
                 },
                 layouts = {
                     clean = {
+                        fullscreen = true,
                         layout = {
                             box = "vertical",
                             backdrop = false,
@@ -379,6 +380,7 @@ return {
                         },
                     },
                     horizontal = {
+                        fullscreen = true,
                         layout = {
                             backdrop = false,
                             width = 0.5,
@@ -395,20 +397,22 @@ return {
                         },
                     },
                     middle = {
+                        fullscreen = false,
+                        backdrop = false,
                         hidden = { "preview" },
                         layout = {
                             backdrop = false,
                             row = 0.42,
-                            col = 0.3,
                             width = 0.4,
-                            min_width = 80,
                             height = 0.55,
-                            border = false,
                             box = "vertical",
-                            { win = "preview", title = "{preview}", border = true },
-                            { win = "input",   height = 1,          border = true, title = "{title} {live} {flags}", title_pos = "center" },
-                            { win = "list",    border = "rounded" },
-                        },
+                            border = true,
+                            title = "{title}",
+                            title_pos = "center",
+                            { win = "input",   height = 1,          border = "bottom" },
+                            { win = "list",    border = "none" },
+                            { win = "preview", title = "{preview}", height = 0.4,     border = "top" },
+                        }
                     },
                 },
                 ---@class snacks.picker.matcher.Config
