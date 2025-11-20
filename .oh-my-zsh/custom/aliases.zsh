@@ -44,6 +44,7 @@ alias grtk="git reset --keep"
 alias gus="git restore --staged"
 alias gusa="git restore --staged ."
 alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias gst="git stash"
 function gs() {
   local root
   root=$(git rev-parse --show-toplevel)
@@ -489,3 +490,4 @@ alias kl="kalker"
 
 alias rbk="rubiks -clsti"
 
+alias scratch="cd ~/.scratch/scratch.nvim/"

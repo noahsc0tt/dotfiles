@@ -7,6 +7,7 @@ return {
     opts = {
         backend = { "snacks", },
         snacks = {
+            layout = { preset = "clean" },
         },
     },
     keys = {

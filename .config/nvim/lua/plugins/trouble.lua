@@ -52,8 +52,8 @@ return {
                 ["<esc>"] = "cancel",
                 ["<S-CR>"] = "jump",
                 ["<2-leftmouse>"] = "jump",
-                ["<c-s>"] = "jump_split",
-                ["<c-v>"] = "jump_vsplit",
+                ["<c-d>"] = "jump_split",
+                ["<c-l>"] = "jump_vsplit",
                 -- go down to next item (accepts count)
                 -- j = "next",
                 ["}"] = "next",

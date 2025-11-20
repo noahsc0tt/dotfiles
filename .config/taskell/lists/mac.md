@@ -1,12 +1,12 @@
 ## To Do
 
 - youtube music background
+- sticky keys
 - password manager
     * [ ] pass/gopass
     * [ ] passpie
     * [ ] lastpass-cli
     * [ ] bitwarden
-- raycast open in min
 - simplebar
 - navigate menu bar and cc with keyboard
 - tiling window manager

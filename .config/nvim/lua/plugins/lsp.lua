@@ -3,11 +3,12 @@ return {
         "neovim/nvim-lspconfig",
         lazy = false,
         dependencies = {
-            { "ms-jpq/coq_nvim",       branch = "coq" },
-            { "ms-jpq/coq.artifacts",  branch = "artifacts" },
-
+            { 'saghen/blink.cmp' },
+            -- { "ms-jpq/coq_nvim",       branch = "coq" },
+            -- { "ms-jpq/coq.artifacts",  branch = "artifacts" },
+            --
             -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-            { 'ms-jpq/coq.thirdparty', branch = "3p" }
+            -- { 'ms-jpq/coq.thirdparty', branch = "3p" }
             -- - shell repl
             -- - nvim lua api
             -- - scientific calculator
@@ -15,35 +16,36 @@ return {
             -- - etc
 
         },
-        init = function()
-            vim.g.coq_settings = {
-                auto_start = 'shut-up',
-                completion = {
-                    always = false,
-                    sticky_manual = false,
-
-                },
-                display = {
-                    preview = {
-                        border = { "", "", "", "", "", "", "", "" }
-                    },
-                    statusline = { helo = false }
-                },
-                keymap = {
-                    recommended = true,
-                    pre_select = true,
-                    jump_to_mark = '<C-m>',
-                    manual_complete = '<C-Space>',
-                    bigger_preview = '<C-k>',
-                },
-            }
-        end,
+        -- init = function()
+        --     vim.g.coq_settings = {
+        --         auto_start = 'shut-up',
+        --         completion = {
+        --             always = false,
+        --             sticky_manual = false,
+        --
+        --         },
+        --         display = {
+        --             preview = {
+        --                 border = { "", "", "", "", "", "", "", "" }
+        --             },
+        --             statusline = { helo = false }
+        --         },
+        --         keymap = {
+        --             recommended = true,
+        --             pre_select = true,
+        --             jump_to_mark = '<C-m>',
+        --             manual_complete = '<C-Space>',
+        --             bigger_preview = '<C-k>',
+        --         },
+        --     }
+        -- end,
         config = function()
             vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/mason/bin:" .. vim.env.PATH
-            local coq = require "coq" -- add this
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+            -- local coq = require "coq" -- add this
 
             vim.lsp.enable('lua_ls')
-            vim.lsp.config('lua_ls', coq.lsp_ensure_capabilities({
+            vim.lsp.config('lua_ls', {
                 -- root_dir = require('lspconfig.util').root_pattern(
                 --         '.luarc.json', '.luacheckrc', '.stylua.toml', 'lua/', '.git'
                 --     ),
@@ -54,9 +56,10 @@ return {
                         },
                     },
                 },
-            }))
+                capabilities = capabilities,
+            })
             vim.lsp.enable('basedpyright')
-            vim.lsp.config('basedpyright', coq.lsp_ensure_capabilities({
+            vim.lsp.config('basedpyright', {
                 settings = {
                     basedpyright = {
                         python = {
@@ -69,29 +72,33 @@ return {
                             reportPrivateUsage = true,
                         },
                     }
-                }
-            }))
+                },
+                capabilities = capabilities,
+            })
             vim.lsp.enable('jdtls')
-            vim.lsp.config('jdtls', coq.lsp_ensure_capabilities({
+            vim.lsp.config('jdtls', {
                 cmd_env = {
                     JAVA_HOME = "/opt/homebrew/opt/openjdk",
                     PATH = "/opt/homebrew/opt/openjdk/bin:" .. vim.env.PATH,
                 },
-            }))
+                capabilities = capabilities,
+            })
             vim.lsp.enable('bashls')
-            vim.lsp.config('bashls', coq.lsp_ensure_capabilities({ filetypes = { "sh", "zsh", "bash" } }))
+            vim.lsp.config('bashls', { filetypes = { "sh", "zsh", "bash" }, capabilities = capabilities, })
             vim.lsp.enable('eslint')
             vim.lsp.enable('clangd')
             vim.lsp.enable('ruby-lsp')
-            vim.lsp.config('ruby-lsp', coq.lsp_ensure_capabilities({
+            vim.lsp.config('ruby-lsp', {
                 cmd = { "ruby-lsp" },
                 filetypes = { "ruby" },
-            }))
+                capabilities = capabilities,
+            })
             vim.lsp.enable('hls')
-            vim.lsp.config('hls', coq.lsp_ensure_capabilities({
+            vim.lsp.config('hls', {
                 cmd = { "haskell-language-server-wrapper", "--lsp" },
                 filetypes = { "haskell", "lhaskell" },
-            }))
+                capabilities = capabilities,
+            })
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('jsonls')
 
@@ -110,29 +117,29 @@ return {
         keys = {
             -- Diagnostic actions
             -- { "<leader>ld", vim.diagnostic.setloclist,   mode = "n", desc = "Open diagnostics" },
-            { "gp",         vim.diagnostic.goto_prev,    mode = "n", desc = "Previous diagnostic" },
-            { "gn",         vim.diagnostic.goto_next,    mode = "n", desc = "Next diagnostic" },
-            { "<leader>ld", vim.diagnostic.open_float,   mode = "n", desc = "Open diagnostic float" },
-            { "gd",          function() require('snacks').picker.lsp_definitions() end,       desc = "Goto Definition" },
-            { "gD",          function() require('snacks').picker.lsp_declarations() end,      desc = "Goto Declaration" },
-            { "gr",   function() require('snacks').picker.lsp_references() end,        nowait = true,                     desc = "References" },
-            { "<leader>li",  function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
-            { "gI",  function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
-            { "gt",          function() require('snacks').picker.lsp_type_definitions() end,  desc = "Goto Type Definition" },
+            { "gp",         vim.diagnostic.goto_prev,                                        mode = "n",                    desc = "Previous diagnostic" },
+            { "gn",         vim.diagnostic.goto_next,                                        mode = "n",                    desc = "Next diagnostic" },
+            { "<leader>ld", vim.diagnostic.open_float,                                       mode = "n",                    desc = "Open diagnostic float" },
+            { "gd",         function() require('snacks').picker.lsp_definitions() end,       desc = "Goto Definition" },
+            { "gD",         function() require('snacks').picker.lsp_declarations() end,      desc = "Goto Declaration" },
+            { "gr",         function() require('snacks').picker.lsp_references() end,        nowait = true,                 desc = "References" },
+            { "<leader>li", function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
+            { "gI",         function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
+            { "gt",         function() require('snacks').picker.lsp_type_definitions() end,  desc = "Goto Type Definition" },
             { "gc",         function() require('snacks').picker.lsp_incoming_calls() end,    desc = "Calls Incoming" },
             { "gC",         function() require('snacks').picker.lsp_outgoing_calls() end,    desc = "Calls Outgoing" },
-            { "<leader>ls",  function() require('snacks').picker.lsp_symbols() end,           desc = "LSP Symbols" },
-            { "<leader>lS",  function() require('snacks').picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
-            { "<leader>l,",  function() require('snacks').picker.lsp_config() end, desc = "LSP Info" },
+            { "<leader>ls", function() require('snacks').picker.lsp_symbols() end,           desc = "LSP Symbols" },
+            { "<leader>lS", function() require('snacks').picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+            { "<leader>l,", function() require('snacks').picker.lsp_config() end,            desc = "LSP Info" },
 
             -- Code actions
             -- { "gd",         vim.lsp.buf.definition,      mode = "n", desc = "Go to definition" },
             -- { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
             -- { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
-            { "<leader>lh", vim.lsp.buf.signature_help,  mode = "n", desc = "Signature help" },
-            { "<leader>lk", vim.lsp.buf.hover,           mode = "n", desc = "Hover documentation" },
-            { "<C-k>",      vim.lsp.buf.hover,           mode = "i", desc = "Hover documentation" },
+            { "<leader>lh", vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
+            { "<leader>lk", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
+            { "<C-k>",      vim.lsp.buf.hover,                                               mode = "i",                    desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {

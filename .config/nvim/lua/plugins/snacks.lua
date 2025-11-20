@@ -2,6 +2,7 @@ return {
 
     {
         "folke/snacks.nvim",
+        enabled = true,
         priority = 1000,
         lazy = false,
         cond = not vim.g.started_by_firenvim,
@@ -520,7 +521,7 @@ return {
                             ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
                             ["<c-.>"] = { "toggle_hidden", mode = { "i", "n" } },
                             ["<a-a>"] = { "toggle_ignored", mode = { "i", "n" } },
-                            ["<c-x>"] = { "toggle_regex", mode = { "i", "n" } },
+                            ["<c-v>"] = { "toggle_regex", mode = { "i", "n" } },
                             ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
                             ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
                             ["<a-g>"] = { "picker_grep", mode = { "i", "n" } },
@@ -880,8 +881,7 @@ return {
             },
             scroll = { enabled = false },
             statuscolumn = { enabled = false },
-            --     left = {},  -- priority of signs on the left (high to low)
-            --     "git"
+            --     left = {"git"},  -- priority of signs on the left (high to low)
             --     right = { "sign", "mark", "fold", }, -- priority of signs on the right (high to low)
             --     folds = {
             --         open = false,    -- show open fold icons
@@ -892,12 +892,16 @@ return {
             --         patterns = { "GitSign", "MiniDiffSign" },
             --     },
             --     refresh = 50, -- refresh at most every 50ms
+            -- },
             terminal = {
                 bo = {
                     filetype = "snacks_terminal",
                 },
                 wo = {},
                 stack = true, -- when enabled, multiple split windows with the same position will be stacked together (useful for terminals)
+                init = function(self, buf, win)
+                    vim.bo[buf].buflisted = true
+                end,
                 keys = {
                     q = "hide",
                     gf = function(self)

@@ -1,15 +1,15 @@
 ## To Do
 
 - plugins
-    * [ ] vim-visual-multi
-    * [ ] gitsigns/vimgitgutter
     * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
+    * [ ] gitsigns/vimgitgutter
+    * [ ] vim-visual-multi
     * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] dap (debugging)
+    * [ ] coc for lsp
     * [ ] arrow
     * [ ] keymap amend
     * [ ] edgy (snacks.terminal)
-    * [ ] coc for lsp
     * [ ] mini.nvim
     * [ ] conform
     * [ ] cloak
@@ -17,12 +17,16 @@
     * [ ] nvim silicon
 - prime worktrees
 - pickers
+    * [ ] taskell
     * [ ] dont show bufferline
     * [ ] command history exe vs go to cmdline vs go to q:
     * [ ] incoming/outcoming calls
     * [ ] lazygit fullscreen
 - folke/snacks
     * [ ] gh
+    * [ ] make terminal appear as a buffer
+    * [ ] toggle
+    * [ ] start explorer in insert
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds

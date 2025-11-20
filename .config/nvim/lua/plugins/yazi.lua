@@ -13,7 +13,7 @@ return {
                 open_file_in_vertical_split = "<c-l>",
                 open_file_in_horizontal_split = "<c-d>",
                 open_file_in_tab = "<c-s>",
-                grep_in_directory = "s",
+                grep_in_directory = "<c-s-s>",
                 replace_in_directory = "<c-r>",
                 -- cycle_open_buffers = "<tab>",
                 copy_relative_path_to_selected_files = "<c-y>",

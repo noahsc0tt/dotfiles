@@ -174,7 +174,7 @@ return {
                     -- hide after jump when not using jump labels
                     autohide = false,
                     -- show jump labels
-                    jump_labels = true,
+                    jump_labels = false,
                     -- set to `false` to use the current line only
                     multi_line = true,
                     -- When using jump labels, don't use these keys
@@ -275,7 +275,7 @@ return {
                 desc = "Select with treesitter"
             },
             { "<C-f>",   mode = { "n", "x", "i", "o" }, function() require("flash").jump() end,                    desc = "Flash jump" },
-            { "<C-S-/>",   mode = { "n", "x", "i", "o" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
+            -- { "<C-S-/>",   mode = { "n", "x", "i", "o" }, function() require("flash").jump({ search = { forward = false } }) end,                    desc = "Flash jump" },
             { "<C-S-Space>", mode = { "n", "x", "i", "o" }, function() require("flash").jump({ continue = true }) end, desc = "Flash continue" },
             {
                 "<C-S-w>",

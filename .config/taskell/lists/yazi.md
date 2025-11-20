@@ -1,5 +1,6 @@
 ## To Do
 
+- c-space to accept in insert
 - hints (like c-f)
 - nv
     * [ ] match binds to snacks picker

@@ -56,16 +56,8 @@ return {
 
     {
         'romariorobby/taskell.nvim',
-        enabled = false,
-        lazy = true,
-        event = "VeryLazy",
-        cond = not vim.g.started_by_firenvim,
-    },
-
-    {
-        "aznhe21/actions-preview.nvim",
-        lazy = true,
-        event = "VeryLazy",
+        enabled = true,
+        cmd = 'Taskell',
         cond = not vim.g.started_by_firenvim,
     },
 
