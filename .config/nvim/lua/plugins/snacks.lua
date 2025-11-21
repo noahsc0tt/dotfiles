@@ -65,6 +65,7 @@ return {
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         -- { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                         { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
+                        { icon = "󰥌 ", key = "t", desc = "Open Taskell List", action = ":TaskellSearch", },
                         {
                             icon = "󰒑 ",
                             key = "x",
@@ -741,25 +742,27 @@ return {
                     extmarks = false, -- show extmarks errors
                 },
                 actions = {
-                    flash = function(picker)
-                        require("flash").jump({
-                            pattern = "^",
-                            label = { after = { 0, 0 } },
-                            search = {
-                                mode = "search",
-                                exclude = {
-                                    function(win)
-                                        return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~=
-                                            "snacks_picker_list"
-                                    end,
+                    {
+                        flash = function(picker)
+                            require("flash").jump({
+                                pattern = "^",
+                                label = { after = { 0, 0 } },
+                                search = {
+                                    mode = "search",
+                                    exclude = {
+                                        function(win)
+                                            return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~=
+                                                "snacks_picker_list"
+                                        end,
+                                    },
                                 },
-                            },
-                            action = function(match)
-                                local idx = picker.list:row2idx(match.pos[1])
-                                picker.list:_move(idx, true, true)
-                            end,
-                        })
-                    end,
+                                action = function(match)
+                                    local idx = picker.list:row2idx(match.pos[1])
+                                    picker.list:_move(idx, true, true)
+                                end,
+                            })
+                        end,
+                    },
                 },
                 explorer = {
                     finder = "explorer",
@@ -894,28 +897,10 @@ return {
             --     refresh = 50, -- refresh at most every 50ms
             -- },
             terminal = {
-                bo = {
-                    filetype = "snacks_terminal",
-                },
-                wo = {},
-                stack = true, -- when enabled, multiple split windows with the same position will be stacked together (useful for terminals)
-                init = function(self, buf, win)
-                    vim.bo[buf].buflisted = true
-                end,
-                keys = {
-                    q = "hide",
-                    gf = function(self)
-                        local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
-                        if f == "" then
-                            vim.notify("No file under cursor", vim.log.levels.WARN)
-                        else
-                            self:hide()
-                            vim.schedule(function()
-                                vim.cmd("e " .. f)
-                            end)
-                        end
-                    end,
-                },
+                -- start_insert = true,
+                -- auto_insert = true,
+                -- auto_close = true,
+                interactive = true,
             },
             toggle = { enabled = true },
             win = {
@@ -1133,7 +1118,6 @@ return {
                 desc = "Buffers"
             },
             { "<leader>s", function() require('snacks').picker.grep({ layout = { preset = "horizontal", } }) end, desc = "Grep" },
-            { "<leader>c", function() require('snacks').picker.command_history() end,                             desc = "Command History" },
             { "<leader>n", function() require('snacks').picker.notifications() end,                               desc = "Notification History" },
             -- find
             { "<leader>f", function() require("snacks").picker.files() end,                                       desc = "Find Files", },
@@ -1158,7 +1142,6 @@ return {
                 "<leader>gb",
                 function()
                     require('snacks').picker.git_branches({
-
                         win = {
                             input = {
                                 keys = {
@@ -1216,7 +1199,7 @@ return {
             -- search
             { '<leader>ap',        function() require('snacks').picker.registers() end,                                                       desc = "Registers" },
             { '<leader>a/',        function() require('snacks').picker.search_history() end,                                                  desc = "Search History" },
-            { "<leader>c",         function() require('snacks').picker.command_history() end,                                                 desc = "Command History" },
+            { "<leader>c",         function() require('snacks').picker.command_history({ layout = { preset = "middle" } }) end,               desc = "Command History" },
             { "<leader>:",         function() require('snacks').picker.commands() end,                                                        desc = "Commands" },
             -- { "<leader>sd",      function() require('snacks').picker.diagnostics() end,                             desc = "Diagnostics" },
             -- { "<leader>sD",      function() require('snacks').picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
@@ -1234,6 +1217,9 @@ return {
             { "<leader>u",         function() require('snacks').picker.undo() end,                                                            desc = "Undo History" },
             { "<leader>a<leader>", function() require('snacks').picker.pickers() end,                                                         desc = "Snacks Pickers" },
             { "<C-=>",             function() require('snacks').picker.spelling({ layout = { preset = "middle", fullscreen = false, } }) end, desc = "Snacks Pickers" },
+
+
+            { "<leader>N",         function() require('snacks').notifier.hide() end,                                                          desc = "Close all notifications",  mode = "n" },
         },
 
     },

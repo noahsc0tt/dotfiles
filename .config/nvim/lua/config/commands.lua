@@ -1,10 +1,10 @@
 -- Relaod nvim config
 vim.api.nvim_create_user_command("Ld", function()
-  for _, f in ipairs(vim.fn.glob("/Users/nscott/.config/nvim/after/**/*.lua", true, true)) do
-    dofile(f)
-  end
-  dofile("/Users/nscott/.config/nvim/init.lua")
-  vim.notify("Neovim config reloaded")
+    for _, f in ipairs(vim.fn.glob("/Users/nscott/.config/nvim/after/**/*.lua", true, true)) do
+        dofile(f)
+    end
+    dofile("/Users/nscott/.config/nvim/init.lua")
+    vim.notify("Neovim config reloaded")
 end, {})
 
 vim.api.nvim_create_user_command("DimToggle", function()
@@ -16,12 +16,32 @@ vim.api.nvim_create_user_command("DimToggle", function()
     end
 end, {})
 
+vim.api.nvim_create_user_command("TaskellSearch", function()
+    require("snacks").picker.files({
+        dirs = { vim.fn.expand("~/.config/taskell/lists") }, -- search only in this folder
+        hidden = false,                                      -- show hidden files?
+        ignored = false,                                     -- respect .gitignore?
+        follow = false,                                      -- follow symlinks
+        ft = "md",                                           -- only Markdown files
+        confirm = function(picker, item)
+            picker:close()
+            if item then
+                vim.schedule(function()
+                    local path = type(item) == "string" and item or item.path or item.text
+                    vim.cmd("Taskell " .. vim.fn.fnameescape(path))
+                end)
+            end
+        end,
+    })
+end, {})
+
+
 -- Autocommands
 
 -- Auto save on buffer leave
 vim.api.nvim_create_autocmd("BufLeave", {
-  pattern = "*",
-  command = "silent! wa",
+    pattern = "*",
+    command = "silent! wa",
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -47,7 +67,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --     if d == "" then d = vim.fn.getcwd() end
 --     return d
 -- end
--- 
+--
 -- local function buf_dir_complete(arglead)
 --     local matches = vim.fn.getcompletion(buf_dir() .. "/" .. arglead, "file")
 --     return vim.tbl_map(function(p)
@@ -64,17 +84,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --     end
 -- end
 
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        local msg = "Recording @" .. vim.fn.reg_recording()
+        require('snacks').notify(msg, {
+            timeout = false,
+            title = "Macro",
+        })
+    end,
+})
 
-vim.api.nvim_create_user_command("LspRestart", function()
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
-        client.stop()
-    end
-
-    -- reload lsp.lua configuration:help cterm-colors
-    local ok, _ = pcall(dofile, vim.fn.stdpath("config") .. "/after/plugin/lsp.lua")
-    if not ok then
-        print("Failed to reload lsp.lua")
-    else
-        print("LSP restarted")
-    end
-end, { force = true })
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    callback = function()
+        require('snacks').notifier.hide()
+        -- require('snacks').notify("Stopped recording", { title = "Macro" })
+    end,
+})

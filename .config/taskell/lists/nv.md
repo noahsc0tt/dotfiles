@@ -1,10 +1,10 @@
 ## To Do
 
+- prime worktrees
 - plugins
-    * [ ] nvim-cmp, cpm-nvim-lsp, blink-cmp
-    * [ ] gitsigns/vimgitgutter
-    * [ ] vim-visual-multi
     * [ ] luasnip, cmp_luasnip, friendly-snippet
+    * [ ] vim-visual-multi
+    * [ ] gitsigns/vimgitgutter
     * [ ] dap (debugging)
     * [ ] coc for lsp
     * [ ] arrow
@@ -15,32 +15,30 @@
     * [ ] cloak
     * [ ] sayonara
     * [ ] nvim silicon
-- prime worktrees
 - pickers
-    * [ ] taskell
     * [ ] dont show bufferline
     * [ ] command history exe vs go to cmdline vs go to q:
     * [ ] incoming/outcoming calls
-    * [ ] lazygit fullscreen
 - folke/snacks
     * [ ] gh
-    * [ ] make terminal appear as a buffer
+    * [ ] lazygit & cmd terminals fullscren
     * [ ] toggle
+    * [ ] make terminal appear as a buffer
     * [ ] start explorer in insert
     * [ ] explore explorer
     * [ ] remove terminal title (with edgy)
     * [ ] tree keybinds
 - grug setup
+- fold gutter indicators (snacks/statuscolumn but less fat)
 - bufferline
     * [ ] groups
     * [ ] dynamic sizing (fit bufferline to filename?)
-    * [ ] colors
 - dont load origami for text files
-- fold gutter indicators (snacks/statuscolumn but less fat)
 - %s functions
-    * [ ] (ci) swapping
-- make q: type buffers appear small (focus)
+    * [ ] (case insensitive) swapping
+    * [ ] \V and \v searches (and swaps)
 - highlight matching braces different colors? like vscode
+- make q: type buffers appear small (focus)
 - proper reload config plugin/function that avoids ftplugin problems
 - local vs global marks
 - able to add  zf manually
@@ -54,8 +52,6 @@
     * [ ] skittynotes
 - lualine
     * [ ] path trimming
-    * [ ] show macro recording
-    * [ ] operator pending mode showing keys
 - clients
     * [ ] neovide for neovim app
     * [ ] firenvim

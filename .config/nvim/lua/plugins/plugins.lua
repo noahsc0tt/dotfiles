@@ -23,7 +23,7 @@ return {
 
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        enabled = false,
+        enabled = true,
         dependencies = {
             { "nvim-lua/plenary.nvim", branch = "master" },
         },

@@ -5,7 +5,7 @@ return {
         event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
+            -- "rcarriga/nvim-notify",
         },
         cond = not vim.g.started_by_firenvim,
         opts = {
@@ -104,7 +104,7 @@ return {
                 -- event is always "notify" and kind can be any log level as a string
                 -- The default routes will forward notifications to nvim-notify
                 -- Benefit of using Noice for this is the routing and consistent history view
-                enabled = true,
+                enabled = false,
                 view = "notify",
                 replace = false,
                 merge = false,
@@ -205,25 +205,25 @@ return {
                     opts = { skip = true },
                 },
                 -- Hide search count messages (e.g. "3/5")
-                -- {
-                --     filter = { event = "msg_show", kind = "search_count" },
-                --     opts = { skip = true },
-                -- },
-                -- Show macro recording notifications
                 {
-                    view = "notify",
-                    filter = {
-                        event = "msg_showmode",
-                        find = "recording",
-                    },
+                    filter = { event = "msg_show", kind = "search_count" },
+                    opts = { skip = true },
                 },
+                -- Show macro recording notifications
+                -- {
+                --     view = "notify",
+                --     filter = {
+                --         event = "msg_showmode",
+                --         find = "recording",
+                --     },
+                -- },
             },
             status = {}, --- @see section on statusline components
             format = {}, --- @see section on formatting
         },
         keys = {
 
-            { "<leader>N", function() vim.cmd("Noice dismiss") end, desc = "Close all notifications", mode = "n" },
+            -- { "<leader>N", function() vim.cmd("Noice dismiss") end, desc = "Close all notifications", mode = "n" },
 
             { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, desc = "Execute in command mode", mode = "c" },
         },
