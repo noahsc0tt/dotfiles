@@ -3,6 +3,7 @@
 - prime worktrees
 - plugins
     * [ ] luasnip, cmp_luasnip, friendly-snippet
+    * [ ] pdfreader.nvim
     * [ ] vim-visual-multi
     * [ ] gitsigns/vimgitgutter
     * [ ] dap (debugging)
@@ -18,7 +19,7 @@
 - pickers
     * [ ] dont show bufferline
     * [ ] command history exe vs go to cmdline vs go to q:
-    * [ ] incoming/outcoming calls
+    * [ ] incoming/outcoming calls (fix gc vs gcc too)
 - folke/snacks
     * [ ] gh
     * [ ] lazygit & cmd terminals fullscren

@@ -1,9 +1,9 @@
 ## To Do
 
-- screensaver randomiser in bash
+- screensaver randomiser
+    * [ ] install script
+    * [ ] background color setting? or prompt on install?
     * [ ] terminal-screensaver on gh by some asian guy for timeout and stuff
-- cli scramble in ruby
-    > see chat for randint
 - sudoku
     * [ ] deploy
     * [ ] use error messages not alerts for validation

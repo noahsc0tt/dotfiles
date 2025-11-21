@@ -56,7 +56,7 @@ return {
 
     {
         'romariorobby/taskell.nvim',
-        enabled = true,
+        enabled = false,
         cmd = 'Taskell',
         cond = not vim.g.started_by_firenvim,
     },

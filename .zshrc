@@ -5,7 +5,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export MANCOLOR
-export MANPAGER="less -sR"
+export MANPAGER="sh -c 'col -bx | bat --paging=always -l man'"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
@@ -161,6 +161,9 @@ eval "$(pyenv virtualenv-init -)"
 
 export COLORTERM=truecolor
 export TERM=xterm-256color
+export GROFF_BINPATH="/opt/homebrew/opt/groff/bin"
+export MANROFFOPT="-c"      # enable color
+export GROFF_SGR=1          # force ANSI SGR color
 
 export CLICOLOR_FORCE=1
 export FORCE_COLOR=1

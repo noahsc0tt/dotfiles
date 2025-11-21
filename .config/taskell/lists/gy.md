@@ -1,12 +1,11 @@
 ## To Do
 
-- square corners
-- cursor free
+- cursor free (like vim normal terminal mode)
 - renaming windows custom
+- square corners
 - disable middle click paste
-- text movement like nvim normal mode
-- no color on man pages unlike iterm
 - copy prompt and stdout on click like iterm
+- no color on man pages unlike iterm
 - quick term
     * [ ] pop to window
     * [ ] different terms from different sides

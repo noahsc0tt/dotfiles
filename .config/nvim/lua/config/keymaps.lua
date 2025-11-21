@@ -174,3 +174,6 @@ vim.keymap.del('n', 'grr')
 vim.keymap.del({ 'n', 'x'}, 'gra')
 vim.keymap.del('n', 'gri')
 vim.keymap.del('n', 'grt')
+
+--NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
+vim.keymap.del('n', 'gcc')

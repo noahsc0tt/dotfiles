@@ -1,5 +1,6 @@
 ## To Do
 
+- drag arrows w cmd-click (useful for qute and ghostty)
 - youtube music background
 - sticky keys
 - password manager

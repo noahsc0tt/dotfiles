@@ -74,7 +74,7 @@
     music (cmd open -a "Youtube Music")
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
-    preview (cmd open -a "Preview")
+    sioyek (cmd open -a "sioyek")
     nvim (cmd open -a "Neovide")
     yazi (cmd open -a "Yazi")
     word (cmd open -a "Microsoft Word")
@@ -137,7 +137,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayer app
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    @qute    @word    @mail    @preview    @chatgpt    @music    @timetable    @iterm    @outlook    @min    _    _
+  _    @qute    @word    @mail    @sioyek    @chatgpt    @music    @timetable    @iterm    @outlook    @min    _    _
   _   @act-mon    @settings    d    @finder    @ghostty    h    @intellij    k    @lastpass    @shift    @apply    \ ret  
   _     _   @yazi    @plaintext    @craft    @vivaldi    b    @nvim    @marta    ,    .    /    up   rsft
   _   _  _ _           _             _ _ _    _    _

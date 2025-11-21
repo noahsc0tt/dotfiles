@@ -231,13 +231,22 @@ alias gy="ghostty"
 alias gydoc="ghostty +show-config --docs --default"
 
 alias tkl="ls $HOME/.config/taskell/lists/"
+alias td="taskell $HOME/.config/taskell/lists/td.md"
+# function tkn() {
+#   if [ $# -eq 0 ]; then
+#     taskell
+#   else
+#     taskell "$HOME/.config/taskell/lists/${*}.md"
+#   fi
+# } 
 function tk() {
-  if [ $# -eq 0 ]; then
-    taskell
-  else
-    taskell "$HOME/.config/taskell/lists/${*}.md"
-  fi
-} 
+    local dir="$HOME/.config/taskell/lists"
+    local file
+
+    file=$(ls -1 "$dir" 2>/dev/null | fzf --preview="bat $dir/{}") || return
+
+    taskell "$dir/$file"
+}
 
 
 alias cpd="cp -R"
@@ -293,8 +302,6 @@ function dir () {
 	fi
 }
 
-alias d="web_search duckduckgo"
-
 alias zt="zathura"
 
 alias v="vim"
@@ -312,7 +319,7 @@ alias nvd="neovide --frame buttonless --title-hidden"
 alias fzn="fzf --preview-window hidden"
 
 function c() {
-  cd "$(fd -t d | fzf)" || return
+  cd "$(fd -t d -L | fzf)" || return
 }
 
 function dh() {
@@ -323,14 +330,13 @@ function fa() {
   alias | fzf --preview-window hidden
 }
 
-function ff() {
-  fd -t f | fzf
+function f() {
+  fd -t f -L | fzf
 }
 
-function fdr() {
-  fd -t d | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
+function d() {
+  fd -t d -L | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
 }
-alias fj=fdr
 
 function fm() {
   man -k . |
@@ -357,7 +363,6 @@ function fh() {
 function ch() {
   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden | pbcopy
 }
-alias fcl='print -z -- "$(fzf)"'
 
 alias osa="osascript -e"
 
@@ -491,3 +496,7 @@ alias kl="kalker"
 alias rbk="rubiks -clsti"
 
 alias scratch="cd ~/.scratch/scratch.nvim/"
+
+function feed() {
+  print -z "$(cat $@)"
+}

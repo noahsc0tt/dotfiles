@@ -27,8 +27,8 @@ vim.api.nvim_create_user_command("TaskellSearch", function()
             picker:close()
             if item then
                 vim.schedule(function()
-                    local path = type(item) == "string" and item or item.path or item.text
-                    vim.cmd("Taskell " .. vim.fn.fnameescape(path))
+                    local path = vim.fn.fnameescape(type(item) == "string" and item or item.path or item.text)
+                    require('snacks').terminal("taskell " .. path, { win = { layout = { fullscreen = true } } })
                 end)
             end
         end,

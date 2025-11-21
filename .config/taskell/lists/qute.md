@@ -1,16 +1,13 @@
 ## To Do
 
-- load times
-- pdf viewer
 - dont flash cursor in normal mode
-- tab colors
 - scroll instantly like vimium
-- dont automatically leave insert mode. only manually esc
-- undo --window keybind (U?)
+- load times (esp gh)
 - logo
 - nerdfonts
 - adblock
-- grey theme
+- pdf viewer
+- undo --window keybind (U?)
 - copy confirm remove
 - statusbar
 
