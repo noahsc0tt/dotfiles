@@ -230,23 +230,29 @@ alias kac="/usr/local/bin/kanata -c /Users/nscott/.config/kanata/kanata.kbd --ch
 alias gy="ghostty"
 alias gydoc="ghostty +show-config --docs --default"
 
-alias tkl="ls $HOME/.config/taskell/lists/"
+# alias tkl="ls $HOME/.config/taskell/lists/"
 alias td="taskell $HOME/.config/taskell/lists/td.md"
-# function tkn() {
-#   if [ $# -eq 0 ]; then
-#     taskell
-#   else
-#     taskell "$HOME/.config/taskell/lists/${*}.md"
-#   fi
-# } 
+
 function tk() {
+  if [ $# -eq 0 ]; then
     local dir="$HOME/.config/taskell/lists"
     local file
 
     file=$(ls -1 "$dir" 2>/dev/null | fzf --preview="bat $dir/{}") || return
 
     taskell "$dir/$file"
-}
+  else
+    taskell "$HOME/.config/taskell/lists/${*}.md"
+  fi
+} 
+# function tk() {
+#     local dir="$HOME/.config/taskell/lists"
+#     local file
+#
+#     file=$(ls -1 "$dir" 2>/dev/null | fzf --preview="bat $dir/{}") || return
+#
+#     taskell "$dir/$file"
+# }
 
 
 alias cpd="cp -R"
@@ -301,8 +307,6 @@ function dir () {
 		dirs -v | head -n 10
 	fi
 }
-
-alias zt="zathura"
 
 alias v="vim"
 alias n="nvim"
@@ -476,7 +480,7 @@ alias jr="jrnl"
 alias jre="jrnl --edit"
 alias jrt="jrnl -on today --format short | tac"
 alias jry="jrnl -on yesterday --format short | tac"
-alias jrl="jrnl -n 100000 --format short | tac"
+alias jrl="jrnl -n 100000 --format short | tac | bat"
 alias jrf="jrnl -n 100000 --format short | tac | fzf --preview-window hidden"
 function jrtg() {
   jrnl -n 100000 --format short | rg "@$1"
@@ -500,3 +504,5 @@ alias scratch="cd ~/.scratch/scratch.nvim/"
 function feed() {
   print -z "$(cat $@)"
 }
+
+alias pdf="sioyek"

@@ -104,16 +104,18 @@ vim.keymap.set("c", "<C-g>h", "<Left>")
 vim.keymap.set("c", "<C-g>l", "<Right>")
 
 -- Vim stuff
-vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>")
-vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>")
-vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>")
-vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>")
+vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>", { desc = "Disable search highlight" })
+vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>", { desc = "Enable search highlight" })
+vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
+vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>", { desc = "Edit buffer" })
 vim.keymap.set("n", "<leader>os", function()
     vim.cmd("so")
-    vim.notify("Sourced file")
+    require('snacks').notify.info("Sourced file")
 end, { desc = "Source file" })
-vim.keymap.set("n", "<leader>ol", ":Ld<CR>")
-vim.keymap.set("n", "<leader>oy", ":%y+<CR>")
+vim.keymap.set("n", "<leader>ol", ":Ld<CR>", { desc = "Reload config" })
+vim.keymap.set("n", "<leader>oy", ":%y+<CR>", { desc = "Yank whole file to clipboard" })
+vim.keymap.set("n", "<leader>o=", function() vim.opt.spell = true; require('snacks').notify.info('Spelling enabled') end, { desc = "Enable spelling" })
+vim.keymap.set("n", "<leader>o+", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
 
 -- Scrolling
 vim.keymap.set({ "n", "x", "c" }, "<C-n>", "2<C-e>")
@@ -177,3 +179,4 @@ vim.keymap.del('n', 'grt')
 
 --NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
 vim.keymap.del('n', 'gcc')
+

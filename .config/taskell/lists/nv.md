@@ -45,7 +45,6 @@
 - able to add  zf manually
 - browser in nv
 - notes
-    * [ ] skittynotes
     * [ ] outline.nv
     * [ ] marksman
     * [ ] telekasten.nvim

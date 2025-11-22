@@ -14,8 +14,12 @@
     * [ ] gx
     * [ ] code blocks hide filetype
     * [ ] render basic `code` obviously somehow
+- plugins
+    * [ ] typstar
+    * [ ] outline
+    * [ ] symbols
+    * [ ] math-conceal
 - folding not including bullet points
-- code blocks hide filetype
 - default font
     * [ ] jetbrains for code, something else nice for text
     * [ ] size

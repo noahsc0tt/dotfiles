@@ -1118,7 +1118,7 @@ return {
                 desc = "Buffers"
             },
             { "<leader>s", function() require('snacks').picker.grep({ layout = { preset = "horizontal", } }) end, desc = "Grep" },
-            { "<leader>n", function() require('snacks').picker.notifications() end,                               desc = "Notification History" },
+            { "<leader>an", function() require('snacks').picker.notifications() end,                               desc = "Notification History" },
             -- find
             { "<leader>f", function() require("snacks").picker.files() end,                                       desc = "Find Files", },
             {
@@ -1218,8 +1218,7 @@ return {
             { "<leader>a<leader>", function() require('snacks').picker.pickers() end,                                                         desc = "Snacks Pickers" },
             { "<C-=>",             function() require('snacks').picker.spelling({ layout = { preset = "middle", fullscreen = false, } }) end, desc = "Snacks Pickers" },
 
-
-            { "<leader>N",         function() require('snacks').notifier.hide() end,                                                          desc = "Close all notifications",  mode = "n" },
+            { "<leader>n",         function() require('snacks').notifier.hide() end,                                                          desc = "Close all notifications",  mode = "n" },
         },
 
     },
