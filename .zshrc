@@ -5,7 +5,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export MANCOLOR
-export MANPAGER="sh -c 'col -bx | bat --paging=always -l man'"
+export MANPAGER="less -sR"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"

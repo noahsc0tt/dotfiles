@@ -448,15 +448,13 @@ alias pipes="pipes.sh"
 alias aqua="asciiquarium"
 alias space="gh screensaver -s starfield -- --speed 10"
 alias fireworks="gh screensaver -s fireworks"
-alias bubbles="ttysvr -b 1a1b26 bubbles"
-alias dvd="ttysvr -b 1a1b26 logo dvd"
+alias life='go-life'
 alias fire="tarts fire"
 alias blank="tarts blank"
 alias donut="tarts donut"
+alias bubbles="ttysvr -b 24283b bubbles"
+alias dvd="ttysvr -b 24283b logo dvd"
 alias clock="termsaver clock" 
-
-alias lss="alias | rg -P '^(?!ssc|lss).*(cbonsai|cmatrix|tarts|pipes.sh|asciiquarium|screensaver|ttysvr)' | sd '=.*' ''"
-alias ssc="alias | rg -P --color=never '^(?!ssc|lss).*(cbonsai|cmatrix|tarts|pipes.sh|asciiquarium|screensaver|ttysvr)'"
 
 function typeout() {
   termsaver programmer -p "$*"

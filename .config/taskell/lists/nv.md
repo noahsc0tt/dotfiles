@@ -2,36 +2,38 @@
 
 - prime worktrees
 - plugins
-    * [ ] luasnip, cmp_luasnip, friendly-snippet
-    * [ ] pdfreader.nvim
     * [ ] vim-visual-multi
     * [ ] gitsigns/vimgitgutter
+    * [ ] mini.nvim
+    * [ ] luasnip, cmp_luasnip, friendly-snippet
     * [ ] dap (debugging)
     * [ ] coc for lsp
-    * [ ] arrow
     * [ ] keymap amend
     * [ ] edgy (snacks.terminal)
-    * [ ] mini.nvim
-    * [ ] conform
+    * [ ] arrow
     * [ ] cloak
+    * [ ] conform
     * [ ] sayonara
     * [ ] nvim silicon
-- pickers
-    * [ ] dont show bufferline
-    * [ ] command history exe vs go to cmdline vs go to q:
-    * [ ] incoming/outcoming calls (fix gc vs gcc too)
-- folke/snacks
+- snacks
+    * [ ] path truncation
+    * [ ] notes show name (not date) in picker
+    * [ ] fzf notes
+    * [ ] command history picker exe vs go to cmdline vs go to :q
+    * [ ] pickers dont show bufferline
+    * [ ] (in|out)coming calls picker
     * [ ] gh
-    * [ ] lazygit & cmd terminals fullscren
+    * [ ] fullscreen snacks terminals
     * [ ] toggle
-    * [ ] make terminal appear as a buffer
+    * [ ] make terminals appear as  buffers in list
+    * [ ] remove terminal title (with edgy)
     * [ ] start explorer in insert
     * [ ] explore explorer
-    * [ ] remove terminal title (with edgy)
-    * [ ] tree keybinds
 - grug setup
+- remove other md renderer
 - fold gutter indicators (snacks/statuscolumn but less fat)
 - bufferline
+    * [ ] no show on dashboard
     * [ ] groups
     * [ ] dynamic sizing (fit bufferline to filename?)
 - dont load origami for text files

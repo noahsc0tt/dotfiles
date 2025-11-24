@@ -6,7 +6,7 @@ return {
 
             { "<leader>oa", function() require('opencode').ask("@this: ", { submit = true }) end, desc = "Ask opencode", mode = { "n", "x" } },
 
-            { "<leader>op", function() require('opencode').select() end, desc = "Execute opencode action…", mode = { "n", "x" } },
+            { "<leader>oC", function() require('opencode').select() end, desc = "Execute opencode action…", mode = { "n", "x" } },
 
             { "gO", function() require('opencode').prompt("@this") end, desc = "Add to opencode", mode = { "n", "x" } },
 
