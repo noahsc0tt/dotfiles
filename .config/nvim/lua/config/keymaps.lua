@@ -108,14 +108,17 @@ vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>", { desc = "Disable s
 vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>", { desc = "Enable search highlight" })
 vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
 vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>", { desc = "Edit buffer" })
+vim.keymap.set("n", "<leader>on", "<cmd>enew<CR>", { desc = "New buffer" })
+vim.keymap.set("n", "<leader>ot", "<cmd>term<CR>", { desc = "New terminal" })
 vim.keymap.set("n", "<leader>os", function()
     vim.cmd("so")
     require('snacks').notify.info("Sourced file")
 end, { desc = "Source file" })
-vim.keymap.set("n", "<leader>ol", ":Ld<CR>", { desc = "Reload config" })
 vim.keymap.set("n", "<leader>oy", ":%y+<CR>", { desc = "Yank whole file to clipboard" })
-vim.keymap.set("n", "<leader>o=", function() vim.opt.spell = true; require('snacks').notify.info('Spelling enabled') end, { desc = "Enable spelling" })
-vim.keymap.set("n", "<leader>o+", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
+vim.keymap.set("n", "z=", function() vim.opt.spell = true; require('snacks').notify.info('Spelling enabled') end, { desc = "Enable spelling" })
+vim.keymap.set("n", "z_", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
+vim.keymap.set("n", "zw", function() vim.opt.wrap = true; require('snacks').notify.info('Wrap enabled') end, { desc = "Enable word wrap" })
+vim.keymap.set("n", "zW", function() vim.opt.wrap = false; require('snacks').notify.info('Wrap disabled') end, { desc = "Disable word wrap" })
 
 -- Scrolling
 vim.keymap.set({ "n", "x", "c" }, "<C-n>", "2<C-e>")
@@ -180,3 +183,4 @@ vim.keymap.del('n', 'grt')
 --NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
 vim.keymap.del('n', 'gcc')
 
+vim.keymap.set("i", "<C-S-T>", "<C-d>", { desc = "Delete indent" })

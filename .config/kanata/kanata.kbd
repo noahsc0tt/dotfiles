@@ -75,7 +75,7 @@
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
     sioyek (cmd open -a "sioyek")
-    nvim (cmd open -a "Neovide")
+    nvim (multi lctl lmet lsft `)
     yazi (cmd open -a "Yazi")
     word (cmd open -a "Microsoft Word")
     plaintext (cmd open -a "Plain Text Editor")
@@ -130,7 +130,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
  _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
  _   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
- _   `   S-`    S-`    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
+ _   `   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
 

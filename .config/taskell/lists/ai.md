@@ -1,5 +1,6 @@
 ## To Do
 
+- elia for chatgpt
 - oc.nv stop popup permission
 - oc
     * [ ] make layout nicer: clearer message start/end, etc

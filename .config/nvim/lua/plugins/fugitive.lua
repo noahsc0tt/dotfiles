@@ -1,6 +1,7 @@
 return {
     {
         "tpope/vim-fugitive",
+        enabled = false,
         cond = not vim.g.started_by_firenvim,
         config = function()
             vim.g.fugitive_mergediff = 1

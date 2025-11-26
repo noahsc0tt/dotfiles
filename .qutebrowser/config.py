@@ -493,7 +493,7 @@ config.bind('H', 'tab-move -')
 config.bind('L', 'tab-move +')
 config.bind('h', 'back')
 config.bind('l', 'forward')
-config.bind('W', 'wq')
+config.bind('W', 'open -w')
 config.bind('Q', 'q')
 config.bind('E', 'wqa')
 config.bind('<Ctrl-d>', 'scroll-page 0 0.5')
@@ -502,6 +502,7 @@ config.bind(',dm', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('gr', 'spawn --userscript readability-js')
 config.bind('gw', 'tab-give')
 config.bind('go', 'scroll-to-perc 0')
+config.bind('<Ctrl-f>', 'fullscreen')
 
 
 

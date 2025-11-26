@@ -17,3 +17,5 @@ else
     bat --style=rule,snip {};
 fi
 '"
+
+export FZF_COMPLETION_TRIGGER='~~'

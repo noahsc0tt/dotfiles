@@ -1,6 +1,7 @@
 return {
     {
         "OXY2DEV/markview.nvim",
+        enabled = true,
         lazy = false,
         ft = { "markdown", "typst" },
 
@@ -71,19 +72,19 @@ return {
                     heading_4 = {
                         style = "icon",
 
-                        icon = "󰎲       ",
+                        icon = "        ",
                         hl = "MarkviewHeading4",
                     },
                     heading_5 = {
                         style = "icon",
 
-                        icon = "󰼓         ",
+                        icon = "          ",
                         hl = "MarkviewHeading5",
                     },
                     heading_6 = {
                         style = "icon",
 
-                        icon = "󰎴          ",
+                        icon = "           ",
                         hl = "MarkviewHeading6",
                     }
                 },
@@ -115,7 +116,7 @@ return {
                     marker_minus = {
                         add_padding = true,
 
-                        text = "⁃",
+                        text = "",
                         hl = "MarkviewListItemMinus"
                     },
 
@@ -132,7 +133,7 @@ return {
                 },
 
                 math_blocks = {
-                    enable = true,
+                    enable = false,
 
                     text = " 󰪚 Math ",
                     pad_amount = 3,
@@ -143,7 +144,7 @@ return {
                 },
 
                 math_spans = {
-                    enable = true,
+                    enable = false,
 
                     padding_left = "",
                     padding_right = "",
@@ -203,19 +204,19 @@ return {
                 },
 
                 subscripts = {
-                    enable = true,
+                    enable = false,
 
                     hl = "MarkviewSubscript"
                 },
 
                 superscripts = {
-                    enable = true,
+                    enable = false,
 
                     hl = "MarkviewSuperscript"
                 },
 
                 symbols = {
-                    enable = true,
+                    enable = false,
 
                     hl = "Special"
                 },
@@ -365,6 +366,9 @@ return {
                     },
                 }
             },
+            markdown = {
+                enable = false,
+            }
         },
         keys = {
             { "zt", "<cmd>Markview enable<CR>",  mode = "n", desc = "Enable Markview" },

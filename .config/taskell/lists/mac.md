@@ -1,6 +1,9 @@
 ## To Do
 
 - drag arrows w cmd-click (useful for qute and ghostty)
+- lunchy
+- user-startup
+- awesome-mac (and ios)
 - youtube music background
 - sticky keys
 - password manager
@@ -17,7 +20,6 @@
 - launch apps without windows at startup
 - zoom differnet modes (check accesibility)
 - apptivate
-- launchctl manager for agents and daemons
 - virtual pip display
 
 ## Doing

@@ -187,6 +187,7 @@ return {
     },
     {
         "pxwg/math-conceal.nvim",
+        enabled = true,
         event = "VeryLazy",
         build = "make lua51",
         main = "math-conceal",

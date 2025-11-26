@@ -22,7 +22,7 @@
     * [ ] command history picker exe vs go to cmdline vs go to :q
     * [ ] pickers dont show bufferline
     * [ ] (in|out)coming calls picker
-    * [ ] gh
+    * [ ] gh (personal access token), maybe replace with pream-team
     * [ ] fullscreen snacks terminals
     * [ ] toggle
     * [ ] make terminals appear as  buffers in list

@@ -1,14 +1,16 @@
- # Path to your Oh My Zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 export EDITOR=nvim
 export VISUAL=nvim
 
 export MANCOLOR
-export MANPAGER="less -sR"
+export MANPAGER="bat --style=rule,snip"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
+
+export PATH="/Users/nscott/.local/bin:$PATH"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -47,22 +49,22 @@ HIST_STAMPS="dd.mm.yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 plugins=(
-    git
+    git # is this really needed with gitfast?
     fzf-tab
     web-search
-    copybuffer
+    copybuffer # no clue
     zsh-autosuggestions
     fast-syntax-highlighting
-    history-substring-search
-    alias-finder
-    dirhistory
+    # history-substring-search
+    alias-finder # not sure what this does
+    # dirhistory
     gitfast
-    gitignore
+    gitignore # dont know
     copypath
     copyfile
     last-working-dir
-    command-not-found
-    sudo
+    # command-not-found
+    # sudo # need new keybinds
     zsh-vi-mode
 )
 
@@ -131,6 +133,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(atuin init zsh)"
+eval "$(mcfly init zsh)"
 
 flip() {
   eval "$(thefuck --alias flip)"
@@ -148,6 +151,7 @@ export NODE_PATH=$NODE_PATH:$(npm root -g)
 export PATH="$HOME/.ghcup/bin:$PATH"
 
 export PATH=$PATH:/usr/local/go
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/Users/nscott/.cargo/bin
 
 # pyenv setup
@@ -172,3 +176,8 @@ export FORCE_COLOR=1
 # export PATH="$JAVA_HOME/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+fpath+=~/.zfunc;
+
+# Following line was automatically added by arttime installer
+export MANPATH=/Users/nscott/.local/share/man:$MANPATH

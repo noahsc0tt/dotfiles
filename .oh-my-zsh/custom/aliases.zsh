@@ -21,10 +21,12 @@ alias ipy="ipython -i"
 
 alias ts="ts-node"
 
-alias frg="rg -F"
-alias erg="rg -P"
-alias rgnc="rg --color=never"
-alias rgnr="rg -d 1"
+alias ripgrep="rg"
+alias frg="rga -F"
+alias erg="rga -P"
+alias rf="rga-fzf"
+alias rgnc="rga --color=never"
+alias rg.="rga -d 1"
 
 alias ga="git add"
 alias gA="git add -A"
@@ -158,11 +160,15 @@ function ls() {
   lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
 }
 
+function lsf() {
+  lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | fzf
+}
+
 function lst() {
   lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
 }
 
-function lsf() {
+function lsc() {
   lsd --color=always --group-directories-first --literal --no-symlink "$@" | bat
 }
 
@@ -317,7 +323,7 @@ alias nf="NO_AUTOSESSION=1 nvim +Telescope\\ find_files"
 alias ng="NO_AUTOSESSION=1 nvim +Telescope\\ git_files"
 alias no="NO_AUTOSESSION=1 nvim +Telescope\\ oldfiles"
 alias ns="NO_AUTOSESSION=1 nvim +Telescope\\ live_grep"
-alias nvd="neovide --frame buttonless --title-hidden"
+alias nvd="neohub --opts --frame buttonless --title-hidden"
 
 
 alias fzn="fzf --preview-window hidden"
@@ -412,6 +418,8 @@ function batn() {
     command bat --style=rule,snip,numbers
   fi
 }
+alias b="bat"
+alias bn="batn"
 
 alias lc="lolcat -f"
 function lb() {
@@ -446,7 +454,11 @@ alias rain="tarts matrix"
 alias glitch="cmatrix -b -c"
 alias pipes="pipes.sh"
 alias aqua="asciiquarium"
-alias space="gh screensaver -s starfield -- --speed 10"
+alias stars="gh screensaver -s starfield -- --speed 10"
+alias sound="cava"
+alias space="astroterm -c -u -m -s 1001 -f 60 --city=London"
+alias tower="arttime -t '\"The name of the LORD is a strong tower; the righteous run to it and are safe.\" - Proverbs 18:10' -a castle3 --ac 4 --tc 2 --nolearn"
+alias asciiart="arttime -t '\"The name of the LORD is a strong tower; the righteous run to it and are safe.\" - Proverbs 18:10' --random --ac 4 --tc 2 --nolearn"
 alias fireworks="gh screensaver -s fireworks"
 alias life='go-life'
 alias fire="tarts fire"
@@ -455,6 +467,7 @@ alias donut="tarts donut"
 alias bubbles="ttysvr -b 24283b bubbles"
 alias dvd="ttysvr -b 24283b logo dvd"
 alias clock="termsaver clock" 
+alias starwars="termsaver starwars"
 
 function typeout() {
   termsaver programmer -p "$*"
@@ -464,13 +477,14 @@ function message() {
   gh screensaver -smarquee -- --message="$*"
 }
 
-alias text="figlet"
-function ltext() {
+alias text="termsaver randtxt -w '\"The name of the LORD is a strong tower; the righteous run to it and are safe.\" - Proverbs 18:10'"
+
+function lfiglet() {
   figlet "$*" | lolcat -f
 }
 
 alias cow="cowsay -r"
-alias cowtext="figlet | cowsay -r -n"
+alias cowfiglet="figlet | cowsay -r -n"
 
 alias send="croc"
 
@@ -480,16 +494,13 @@ alias jrt="jrnl -on today --format short | tac"
 alias jry="jrnl -on yesterday --format short | tac"
 alias jrl="jrnl -n 100000 --format short | tac | bat"
 alias jrf="jrnl -n 100000 --format short | tac | fzf --preview-window hidden"
-function jrtg() {
+function jrg() {
   jrnl -n 100000 --format short | rg "@$1"
 }
 
-alias weather="curl wttr.in/\?FQ0"
-alias wth="curl wttr.in/\?FQ0"
-alias weathert="curl wttr.in/\?F1"
-alias wtht="curl wttr.in/\?F1"
-alias weathera="curl wttr.in/\?F"
-alias wtha="curl wttr.in/\?F"
+alias weather="clear && curl wttr.in/London\?F"
+alias weathernow="curl wttr.in/London\?FQ0"
+alias weathertoday="curl wttr.in/London\?F1"
 
 alias system="fastfetch"
 
@@ -503,4 +514,29 @@ function feed() {
   print -z "$(cat $@)"
 }
 
-alias pdf="sioyek"
+alias pdf="hygg"
+alias pdfview="fancy-cat"
+
+alias snake="sssnake -m normal"
+alias sssnake="sssnake -m screensaver"
+
+alias ig="instagram chat start"
+alias wh="nchat"
+
+function typing() {
+  if [ $# -eq 0 ]; then
+    ttyper
+  else
+    typtea start --lang "$@"
+  fi
+}
+
+alias yt="gophertube"
+
+alias web="cha"
+alias book="(cd ~/Library/Books && bookokrat)"
+alias cal="calcure"
+
+alias paint="textual-paint"
+
+alias markdown="glow"
