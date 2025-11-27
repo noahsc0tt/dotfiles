@@ -22,6 +22,7 @@
     * [ ] passwords: source-cred-cmd, outgoing-cred-cmd
 - awesome-tuis
     * [ ] ttyper config
+    * [ ] terminal-yt
     * [ ] proctmux (process multiplexer)
     * [ ] productivity-timer
     * [ ] gocheat (cheatsheet)

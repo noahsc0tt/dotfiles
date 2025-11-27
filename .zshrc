@@ -7,6 +7,7 @@ export VISUAL=nvim
 export MANCOLOR
 export MANPAGER="bat --style=rule,snip"
 
+export PATH="/opt/homebrew/opt:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
 

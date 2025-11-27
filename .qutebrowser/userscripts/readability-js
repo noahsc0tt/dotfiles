@@ -1,0 +1,286 @@
+#!/opt/homebrew/bin/node
+//
+// # Description
+//
+// Summarize the current page in a new tab, by processing it with the standalone readability
+// library used for Firefox Reader View.
+//
+// # Prerequisites
+//
+//   - NODE_PATH might be required to point to your global node libraries:
+//     export NODE_PATH=$NODE_PATH:$(npm root -g)
+//   - Mozilla's readability library (npm install -g https://github.com/mozilla/readability.git)
+//     NOTE: You might have to *login* as root for a system-wide installation to work (e.g. sudo -s)
+//   - jsdom (npm install -g jsdom)
+//   - qutejs (npm install -g qutejs)
+//
+// # Usage
+//
+// :spawn --userscript readability-js
+//
+// One may wish to define an easy to type command alias in Qutebrowser's configuration file:
+// c.aliases = {"readability" : "spawn --userscript readability-js", ...}
+
+const globalModulesPath = "/opt/homebrew/lib/node_modules"
+const { Readability } = require(`${globalModulesPath}/@mozilla/readability`)
+const qute = require(`${globalModulesPath}/qutejs`)
+const { JSDOM } = require(`${globalModulesPath}/jsdom`)
+const fs = require("fs")
+const path = require("path")
+const util = require("util")
+const https = require("https")
+const http = require("http")
+
+const HEADER = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, text/html, charset=UTF-8" http-equiv="Content-Type">
+    </meta>
+    <title>%s</title>
+ <style type="text/css">
+        body {
+            margin: 0;
+            padding: 60px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #3c4043;
+            background: #f8f9fa;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 673px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.25;
+            margin: 32px 0 16px 0;
+            color: #202124;
+            letter-spacing: -0.5px;
+        }
+        h2 {
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin: 28px 0 12px 0;
+            color: #202124;
+            letter-spacing: -0.25px;
+        }
+        h3 {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.35;
+            margin: 24px 0 8px 0;
+            color: #202124;
+        }
+        h4 {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin: 20px 0 6px 0;
+            color: #202124;
+        }
+        h5 {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 18px 0 4px 0;
+            color: #202124;
+        }
+        h6 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.45;
+            margin: 16px 0 4px 0;
+            color: #5f6368;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        p {
+            margin: 0 0 16px 0;
+            color: #3c4043;
+            font-size: 18px;
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        blockquote {
+            margin: 24px 0;
+            padding: 16px 20px;
+            border-left: 4px solid #dadce0;
+            background: #ffffff;
+            color: #5f6368;
+            font-style: italic;
+            border-radius: 0 4px 4px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 24px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        li {
+            margin: 8px 0;
+            color: #3c4043;
+        }
+        code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+            font-size: 16px;
+            color: #d93025;
+            border: 1px solid #e8eaed;
+        }
+        pre {
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #e8eaed;
+            margin: 24px 0;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: #3c4043;
+            border: none;
+        }
+    </style>
+    <!-- This icon is licensed under the Mozilla Public License 2.0 (available at: https://www.mozilla.org/en-US/MPL/2.0/).
+    The original icon can be found here: https://dxr.mozilla.org/mozilla-central/source/browser/themes/shared/reader/readerMode.svg -->
+    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI2NHB4IiB2ZXJzaW9uPSIxLjEiI
+    HZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iI2ZmZiI+CjxwYXRoIGQ9Im01MiAwaC00
+    MGMtNC40MiAwLTggMy41OC04IDh2NDhjMCA0LjQyIDMuNTggOCA4IDhoNDBjNC40MiAwIDgtMy41OCA4LTh2LTQ4YzAtNC40Mi0zLjU4LTgtOC04em0wIDU
+    yYzAgMi4yMS0xLjc5IDQtNCA0aC0zMmMtMi4yMSAwLTQtMS43OS00LTR2LTQwYzAtMi4yMSAxLjc5LTQgNC00aDMyYzIuMjEgMCA0IDEuNzkgNCA0em0tMT
+    AtMzZoLTIwYy0xLjExIDAtMiAwLjg5NS0yIDJzMC44OTUgMiAyIDJoMjBjMS4xMSAwIDItMC44OTUgMi0ycy0wLjg5NS0yLTItMnptMCA4aC0yMGMtMS4xM
+    SAwLTIgMC44OTUtMiAyczAuODk1IDIgMiAyaDIwYzEuMTEgMCAyLTAuODk1IDItMnMtMC44OTUtMi0yLTJ6bTAgOGgtMjBjLTEuMTEgMC0yIDAuODk1LTIg
+    MnMwLjg5NSAyIDIgMmgyMGMxLjExIDAgMi0wLjg5NSAyLTJzLTAuODk1LTItMi0yem0tMTIgOGgtOGMtMS4xMSAwLTIgMC44OTUtMiAyczAuODk1IDIgMiA
+    yaDhjMS4xMSAwIDItMC44OTUgMi0ycy0wLjg5NS0yLTItMnoiIGZpbGw9IiNmZmYiLz4KPC9nPgo8L3N2Zz4K"/>
+</head>`
+const scriptsDir = path.join(process.env.QUTE_DATA_DIR, "userscripts")
+const tmpFile = path.join(scriptsDir, "/readability.html")
+const domOpts = {
+    url: process.env.QUTE_URL,
+    contentType: "text/html; charset=utf-8",
+}
+
+if (!fs.existsSync(scriptsDir)) {
+    fs.mkdirSync(scriptsDir)
+}
+
+async function downloadAndEmbedImages(content, baseUrl) {
+    const imgRegex = /<img[^>]+src="([^"]+)"[^>]*>/gi
+    let match
+    const imagePromises = []
+    const imageReplacements = new Map()
+
+    while ((match = imgRegex.exec(content)) !== null) {
+        const [fullMatch, src] = match
+
+        if (src.startsWith("data:") || imageReplacements.has(src)) {
+            continue
+        }
+
+        let absoluteUrl
+        try {
+            if (src.startsWith("http://") || src.startsWith("https://")) {
+                absoluteUrl = src
+            } else {
+                absoluteUrl = new URL(src, baseUrl).href
+            }
+        } catch (e) {
+            continue
+        }
+
+        const promise = new Promise((resolve) => {
+            const client = absoluteUrl.startsWith("https:") ? https : http
+            const req = client.get(absoluteUrl, { timeout: 5000 }, (res) => {
+                if (res.statusCode !== 200) {
+                    resolve()
+                    return
+                }
+
+                const chunks = []
+                res.on("data", (chunk) => chunks.push(chunk))
+                res.on("end", () => {
+                    const buffer = Buffer.concat(chunks)
+                    const contentType =
+                        res.headers["content-type"] || "image/jpeg"
+                    const base64 = buffer.toString("base64")
+                    const dataUrl = `data:${contentType};base64,${base64}`
+                    imageReplacements.set(src, dataUrl)
+                    resolve()
+                })
+            })
+            req.on("error", () => resolve())
+            req.on("timeout", () => {
+                req.destroy()
+                resolve()
+            })
+        })
+
+        imagePromises.push(promise)
+    }
+
+    await Promise.all(imagePromises)
+
+    // Replace all image URLs with data URLs
+    for (const [originalSrc, dataUrl] of imageReplacements) {
+        content = content.replace(
+            new RegExp(
+                `src="${originalSrc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`,
+                "g"
+            ),
+            `src="${dataUrl}"`
+        )
+    }
+
+    return content
+}
+
+JSDOM.fromFile(process.env.QUTE_HTML, domOpts).then(async (dom) => {
+    let reader = new Readability(dom.window.document)
+    let article = reader.parse()
+
+    // Download and embed images
+    article.content = await downloadAndEmbedImages(
+        article.content,
+        process.env.QUTE_URL
+    )
+
+    let content =
+        util.format(HEADER, article.title) +
+        '<div class="container">' +
+        article.content +
+        "</div>"
+
+    fs.writeFile(tmpFile, content, (err) => {
+        if (err) {
+            qute.messageError([`"${err}"`])
+            return 1
+        }
+        // Success
+        qute.open(["-b", "-r", tmpFile])
+
+        const fifo = process.env.QUTE_FIFO
+        if (fifo) {
+            fs.appendFileSync(fifo, "tab-close\n")
+        }
+    })
+})
+
