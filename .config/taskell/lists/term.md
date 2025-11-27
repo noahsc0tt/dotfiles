@@ -1,5 +1,6 @@
 ## To Do
 
+- epr epub bible
 - fzf
     * [ ] check github for opts
     * [ ] replace aliases with television
@@ -20,6 +21,10 @@
 - aerc
     * [ ] oama auth
     * [ ] passwords: source-cred-cmd, outgoing-cred-cmd
+- awesome-cli
+    * [ ] journalot
+    * [ ] ttscoff/doing
+    * [ ] boilr
 - awesome-tuis
     * [ ] ttyper config
     * [ ] terminal-yt

@@ -468,6 +468,7 @@ alias bubbles="ttysvr -b 24283b bubbles"
 alias dvd="ttysvr -b 24283b logo dvd"
 alias clock="termsaver clock" 
 alias starwars="termsaver starwars"
+alias ss="~/dev/github/noahsc0tt/random-tty-screensaver/random-screensaver.sh"
 
 function typeout() {
   termsaver programmer -p "$*"
@@ -540,3 +541,21 @@ alias cal="calcure"
 alias paint="textual-paint"
 
 alias markdown="glow"
+
+function verse() {
+  bible "$*" --only-verses
+}
+
+alias ze="zoxide edit"
+
+alias gi="add-gitignore"
+
+function idea() {
+  if [[ $# -eq 0 ]]; then
+    eureka 2>/dev/null
+  else
+    eureka "$@"
+  fi
+}
+
+alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
