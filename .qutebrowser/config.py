@@ -317,6 +317,8 @@ c.colors.tabs.selected.even.bg = base00
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
+c.content.pdfjs = False
+
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
 # including IndexedDB, DOM storage, filesystem API, service workers, and
@@ -438,6 +440,9 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///Users/n
 #   - false
 #   - ask
 config.set('content.notifications.enabled', False, 'https://www.youtube.com')
+
+c.url.start_pages = ["https://web.tabliss.io/"]
+c.url.default_page = "https://web.tabliss.io/"
 
 # Custom configurations
 c.colors.webpage.preferred_color_scheme = 'dark'

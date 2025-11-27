@@ -22,6 +22,7 @@ alias ipy="ipython -i"
 alias ts="ts-node"
 
 alias ripgrep="rg"
+alias rg="rga"
 alias frg="rga -F"
 alias erg="rga -P"
 alias rf="rga-fzf"
@@ -237,18 +238,17 @@ alias gy="ghostty"
 alias gydoc="ghostty +show-config --docs --default"
 
 # alias tkl="ls $HOME/.config/taskell/lists/"
-alias td="taskell $HOME/.config/taskell/lists/td.md"
 
 function tk() {
+  local dir="$HOME/.scratch/taskell/"
   if [ $# -eq 0 ]; then
-    local dir="$HOME/.config/taskell/lists"
     local file
 
     file=$(ls -1 "$dir" 2>/dev/null | fzf --preview="bat $dir/{}") || return
 
     taskell "$dir/$file"
   else
-    taskell "$HOME/.config/taskell/lists/${*}.md"
+    taskell "${dir}${*}.md"
   fi
 } 
 # function tk() {
@@ -540,7 +540,7 @@ alias cal="calcure"
 
 alias paint="textual-paint"
 
-alias markdown="glow"
+alias markdown="frogmouth"
 
 function verse() {
   bible "$*" --only-verses

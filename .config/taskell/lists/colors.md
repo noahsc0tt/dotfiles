@@ -1,6 +1,0 @@
-## To Do
-
-- fzf
-
-## Doing
-

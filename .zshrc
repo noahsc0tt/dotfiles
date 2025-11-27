@@ -134,7 +134,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(atuin init zsh)"
-eval "$(mcfly init zsh)"
 
 flip() {
   eval "$(thefuck --alias flip)"
