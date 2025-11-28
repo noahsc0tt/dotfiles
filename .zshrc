@@ -10,6 +10,7 @@ export MANPAGER="bat --style=rule,snip"
 export PATH="/opt/homebrew/opt:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
 export PATH="/Users/nscott/.local/bin:$PATH"
 
@@ -50,11 +51,12 @@ HIST_STAMPS="dd.mm.yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 plugins=(
+    git-open
     forgit
     q
     k
     h
-    # git # is this really needed with gitfast?
+    git # is this really needed with gitfast?
     fzf-tab
     # web-search
     copybuffer # no clue
@@ -72,6 +74,8 @@ plugins=(
     # sudo # need new keybinds
     zsh-vi-mode
 )
+
+PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
 
 #colorize
 #safe-paste

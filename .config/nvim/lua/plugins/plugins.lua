@@ -23,7 +23,7 @@ return {
 
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        enabled = true,
+        enabled = false,
         dependencies = {
             { "nvim-lua/plenary.nvim", branch = "master" },
         },
@@ -63,7 +63,7 @@ return {
 
     {
         "xzbdmw/colorful-menu.nvim",
-        enabled = false,
+        enabled = true,
         lazy = true,
         event = "VeryLazy",
         config = true,

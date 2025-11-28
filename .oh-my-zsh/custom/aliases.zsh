@@ -38,7 +38,7 @@ function lg() {
 
 alias ga="git add"
 alias gA="git add -A"
-alias gca="git commit --amend -m"
+alias gca="git commit --amend"
 alias gcm="git commit -m"
 alias gcam="git add -A && git commit -m"
 alias gch="git checkout"
@@ -67,12 +67,25 @@ function gsv() {
 }
 alias gsw="git switch"
 alias gd="git diff"
+alias grmt="git remote add origin"
 
 alias glf="forgit::log"
 alias gsf="forgit::show"
 alias gbdf="forgit::branch::delete"
 alias gstf="forgit::stash::show"
 alias grsf="forgit::checkout::file"
+alias gcf="forgit::checkout::commit"
+alias grtf="forgit::checkout::commit"
+alias gcln="forgit::clean"
+alias gcpf="forgit::cherry::pick::from::branch"
+alias grbf="forgit::rebase"
+alias grlf="forgit::reflog"
+alias gblf="forgit::blame"
+
+alias gop="git open"
+alias gstats="git quick-stats"
+
+alias grp="gita"
 
 function fzg() {
   local root file
@@ -353,9 +366,10 @@ function dh() {
   cd "$(dirs -pl | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {} || ls --color=always {}')" || return
 }
 
-function fa() {
-  alias | fzf --preview-window hidden
-}
+# function fa() {
+#   alias | fzf --preview-window hidden
+# }
+alias fa="tv alias"
 
 function f() {
   fd -t f -L | fzf
@@ -372,23 +386,24 @@ function fm() {
   fzf --delimiter=$'\t' --with-nth=1 --preview 'man {1}' | \
   cut -f1 | xargs -r man
 }
+# alias fm="tv man-pages"
 
-function ft() {
-  local sel
-  sel=$(tldr -l | fzf --preview 'tldr {}') || return
-  tldr -C "$sel" | bat
-}
+# function ft() {
+#   local sel
+#   sel=$(tldr -l | fzf --preview 'tldr {}') || return
+#   tldr -C "$sel" | bat
+# }
+alias ft="tv tldr"
+
+alias fe="tv env"
+alias fr="tv git-repos"
 
 function fb() {
   brew search "" | fzf --preview 'brew info {}' | xargs brew install
 }
 
-function fh() {
+function h() {
   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
-}
-
-function ch() {
-  atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden | pbcopy
 }
 
 alias osa="osascript -e"
@@ -404,7 +419,7 @@ fzf --ansi --disabled --query "$INITIAL_QUERY" \
 }
 
 alias quit="kill"
-alias kill="kill -9"
+alias k="fkill"
 
 alias np="nvimpager"
 
@@ -438,28 +453,27 @@ function batn() {
 alias b="bat"
 alias bn="batn"
 
-alias lc="lolcat -f"
 function lb() {
   if [ -t 0 ]; then
     # stdin is not connected, arguments are files
-    bat --style=header-filename,rule,snip "$@" | lolcat -f | bat --style=header-filename,rule,snip
+    bat --style=header-filename,rule,snip "$@" | lc -f | bat --style=header-filename,rule,snip
   else
     # stdin is being piped in
-     bat --style=rule,snip "$@" | lolcat -f | bat --style=rule,snip
+     bat --style=rule,snip "$@" | lc -f | bat --style=rule,snip
   fi
 }
 
 function lbn() {
   if [ -t 0 ]; then
     #stdin is not connected, arguments are files
-    bat --style=header-filename,rule,snip,numbers "$@" | lolcat -f | bat --style=header-filename,rule,snip,numbers
+    bat --style=header-filename,rule,snip,numbers "$@" | lc -f | bat --style=header-filename,rule,snip,numbers
   else
     # stdin is being piped in
-     bat "$@" | lolcat -f | bat --style=rule,snip,numbers
+     bat "$@" | lc -f | bat --style=rule,snip,numbers
   fi
 }
 function lh() {
-  "$*" -h | lolcat -f | bat --style=rule,snip
+  "$*" -h | lc -f | bat --style=rule,snip
 }
 
 alias disk="dust -rC"
@@ -498,7 +512,7 @@ function message() {
 alias text="termsaver randtxt -w '\"The name of the LORD is a strong tower; the righteous run to it and are safe.\" - Proverbs 18:10'"
 
 function lfiglet() {
-  figlet "$*" | lolcat -f
+  figlet "$*" | lc -f
 }
 
 alias cow="cowsay -r"
@@ -552,7 +566,6 @@ function typing() {
 alias yt="gophertube"
 
 alias web="cha"
-alias book="(cd ~/Library/Books && bookokrat)"
 alias cal="calcure"
 
 alias paint="textual-paint"
@@ -560,7 +573,7 @@ alias paint="textual-paint"
 alias markdown="frogmouth"
 
 function verse() {
-  bible "$*" --only-verses
+  verses "$*" --only-verses
 }
 
 alias ze="zoxide edit"
@@ -581,7 +594,7 @@ alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
 
 alias '$'=''
 
-alias tree="gtree"
+alias mdtree="gtree"
 
 alias math="mdlt"
 
@@ -597,7 +610,7 @@ function pretty() {
 
 alias pomo="arttime -k timer.pomodoro4etc"
 
-alias clean="rm ~/.zcompdump* && exec zsh"
+alias clean="rm ~/.zcompdump* && source ~/.zshrc && exec zsh"
 
 alias ddg="ddgr"
 
@@ -611,10 +624,29 @@ alias oil="edir -t -i -a -g -X"
 
 alias bar="spark"
 
-alias rnm="slugify"
+alias clean-rename="slugify"
+alias rnm="repren"
 
 function wh() {
   whence "$@"
   which "$@"
   where "$@"
 }
+
+alias overflow="rebound"
+
+alias ping="prettyping"
+
+alias range="rng"
+
+alias wifi="wifi-wand"
+
+alias json="jo"
+
+alias convert="bitwise"
+
+alias sudoku="nudoku"
+
+alias o="ok 1"
+
+alias highlight="h"

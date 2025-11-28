@@ -180,7 +180,7 @@ vim.keymap.del({ 'n', 'x'}, 'gra')
 vim.keymap.del('n', 'gri')
 vim.keymap.del('n', 'grt')
 
---NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
-vim.keymap.del('n', 'gcc')
+-- --NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
+-- vim.keymap.del('n', 'gcc')
 
 vim.keymap.set("i", "<C-S-T>", "<C-d>", { desc = "Delete indent" })
