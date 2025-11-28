@@ -21,13 +21,20 @@ alias ipy="ipython -i"
 
 alias ts="ts-node"
 
-alias ripgrep="rg"
 alias rg="rga"
 alias frg="rga -F"
 alias erg="rga -P"
-alias rf="rga-fzf"
 alias rgnc="rga --color=never"
 alias rg.="rga -d 1"
+function lg() {
+	RG_PREFIX="rga --files-with-matches"
+  FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+    fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+      --phony -q "$1" \
+      --bind "change:reload:$RG_PREFIX {q}" \
+      --preview-window="70%:wrap"
+}
+
 
 alias ga="git add"
 alias gA="git add -A"
@@ -61,6 +68,12 @@ function gsv() {
 alias gsw="git switch"
 alias gd="git diff"
 
+alias glf="forgit::log"
+alias gsf="forgit::show"
+alias gbdf="forgit::branch::delete"
+alias gstf="forgit::stash::show"
+alias grsf="forgit::checkout::file"
+
 function fzg() {
   local root file
   root=$(git rev-parse --show-toplevel)
@@ -71,30 +84,31 @@ function fzg() {
   [ -n "$file" ] && echo "$root/$file"
 }
 
-function gswf() {
-  local branch
-  branch=$(
-    git branch --all \
-      | grep -v HEAD \
-      | sed 's/^[* ]*//' \
-      | sed 's#remotes/[^/]*/##' \
-      | sort -u \
-      | fzf --preview-window hidden
-  )
-  [ -n "$branch" ] && git switch "$branch"
-}
+# function gswf() {
+#   local branch
+#   branch=$(
+#     git branch --all \
+#       | grep -v HEAD \
+#       | sed 's/^[* ]*//' \
+#       | sed 's#remotes/[^/]*/##' \
+#       | sort -u \
+#       | fzf --preview 'git log --oneline --graph --decorate --show-signature --color=always {}'
+#   )
+#   [ -n "$branch" ] && git switch "$branch"
+# }
+alias gswf="forgit::checkout::branch"
+
+# function grmf() {
+#   local root file
+#   root=$(git rev-parse --show-toplevel)
+#   file=$(
+#     git -C "$root" ls-files \
+#       | fzf --preview "bat {}"
+#   )
+#   [ -n "$file" ] && git -C "$root" rm $file
+# }
 
 function grmf() {
-  local root file
-  root=$(git rev-parse --show-toplevel)
-  file=$(
-    git -C "$root" ls-files \
-      | fzf --preview "bat {}"
-  )
-  [ -n "$file" ] && git -C "$root" rm $file
-}
-
-function grmcf() {
   local root file
   root=$(git rev-parse --show-toplevel)
   file=$(
@@ -104,15 +118,16 @@ function grmcf() {
   [ -n "$file" ] && git -C "$root" rm --cached $file
 }
 
-function gaf() {
-  local root files
-  root=$(git rev-parse --show-toplevel)
-  files=$(
-    git -C "$root" ls-files -m -o --exclude-standard \
-      | fzf -m --preview "git -C '$root' diff --color=always -- {} | delta"
-  )
-  [ -n "$files" ] && git -C "$root" add $files
-}
+# function gaf() {
+#   local root files
+#   root=$(git rev-parse --show-toplevel)
+#   files=$(
+#     git -C "$root" ls-files -m -o --exclude-standard \
+#       | fzf -m --preview "git -C '$root' diff --color=always -- {} | delta"
+#   )
+#   [ -n "$files" ] && git -C "$root" add $files
+# }
+alias gaf="forgit::add"
 
 function gdf() {
   local root file
@@ -124,17 +139,18 @@ function gdf() {
   [ -n "$file" ] && git -C "$root" diff $file
 }
 
-function gusf() {
-  local root files
-  root=$(git rev-parse --show-toplevel)
-  files=$(
-    git -C "$root" diff --cached --name-only \
-      | fzf -m --preview "git -C '$root' diff --cached --color=always -- {} | delta"
-  )
-  [ -n "$files" ] && git -C "$root" restore --staged $files
-}
+# function gusf() {
+#   local root files
+#   root=$(git rev-parse --show-toplevel)
+#   files=$(
+#     git -C "$root" diff --cached --name-only \
+#       | fzf -m --preview "git -C '$root' diff --cached --color=always -- {} | delta"
+#   )
+#   [ -n "$files" ] && git -C "$root" restore --staged $files
+# }
+alias gusf="forgit::reset::head"
 
-alias rename="printf \"\033]0;%s\007\""
+alias ttytle="printf \"\033]0;%s\007\""
 
 alias speedtest="networkQuality"
 
@@ -303,7 +319,7 @@ alias meth="sudo pmset -a disablesleep 1"
 alias melatonin="sudo pmset -a disablesleep 0"
 alias rehab="sudo pmset -g assertions | bat"
 
-alias lg="lazygit"
+alias gz="lazygit"
 
 alias dirhistory="dirs -v"
 function dir () {
@@ -327,6 +343,7 @@ alias nvd="neohub --opts --frame buttonless --title-hidden"
 
 
 alias fzn="fzf --preview-window hidden"
+alias fv="fpp"
 
 function c() {
   cd "$(fd -t d -L | fzf)" || return
@@ -522,7 +539,7 @@ alias snake="sssnake -m normal"
 alias sssnake="sssnake -m screensaver"
 
 alias ig="instagram chat start"
-alias wh="nchat"
+alias whatsapp="nchat"
 
 function typing() {
   if [ $# -eq 0 ]; then
@@ -559,3 +576,45 @@ function idea() {
 }
 
 alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
+
+alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
+
+alias '$'=''
+
+alias tree="gtree"
+
+alias math="mdlt"
+
+alias cheat="navi"
+
+alias count="scc"
+
+alias fu="find-up --all"
+
+function pretty() {
+  tte --input-file "$@" random_effect
+}
+
+alias pomo="arttime -k timer.pomodoro4etc"
+
+alias clean="rm ~/.zcompdump* && exec zsh"
+
+alias ddg="ddgr"
+
+function how() {
+  how2 "$@" 2>/dev/null
+}
+
+alias gls="k -h"
+
+alias oil="edir -t -i -a -g -X"
+
+alias bar="spark"
+
+alias rnm="slugify"
+
+function wh() {
+  whence "$@"
+  which "$@"
+  where "$@"
+}

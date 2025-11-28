@@ -50,9 +50,13 @@ HIST_STAMPS="dd.mm.yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 plugins=(
-    git # is this really needed with gitfast?
+    forgit
+    q
+    k
+    h
+    # git # is this really needed with gitfast?
     fzf-tab
-    web-search
+    # web-search
     copybuffer # no clue
     zsh-autosuggestions
     fast-syntax-highlighting
@@ -121,10 +125,9 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export CARAPACE_BRIDGES='zsh,inshellisense' # optional
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-source <(carapace _carapace)
-zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+source <(cod init $$ zsh)
+
+source /Users/nscott/.oh-my-zsh/custom/plugins/ok-bash/ok.sh
 
 
 source $ZSH/oh-my-zsh.sh
@@ -134,6 +137,8 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(atuin init zsh)"
+
+eval "$(navi widget zsh)"
 
 flip() {
   eval "$(thefuck --alias flip)"
@@ -181,3 +186,7 @@ fpath+=~/.zfunc;
 
 # Following line was automatically added by arttime installer
 export MANPATH=/Users/nscott/.local/share/man:$MANPATH
+
+# source ~/.aliasme/aliasme.sh
+
+source ~/.config/up/up.sh

@@ -13,6 +13,7 @@
 	insteadOf = https://github.com/
 [init]
 	default = branch
+	defaultBranch = main
 [core]
 	editor = nvim
     pager = delta
