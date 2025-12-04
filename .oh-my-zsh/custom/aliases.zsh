@@ -26,13 +26,16 @@ alias frg="rga -F"
 alias erg="rga -P"
 alias rgnc="rga --color=never"
 alias rg.="rga -d 1"
-function lg() {
+function rf() {
 	RG_PREFIX="rga --files-with-matches"
-  FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+  # FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
     fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
       --phony -q "$1" \
       --bind "change:reload:$RG_PREFIX {q}" \
       --preview-window="70%:wrap"
+}
+function lg() {
+  sk --ansi -i -c 'rg --color=always --line-number "{}"'
 }
 
 
@@ -54,6 +57,7 @@ alias grtk="git reset --keep"
 alias gus="git restore --staged"
 alias gusa="git restore --staged ."
 alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
+alias gin="git init"
 alias gst="git stash"
 function gs() {
   local root
@@ -346,77 +350,54 @@ function dir () {
 alias v="vim"
 alias n="nvim"
 alias nv="NO_AUTOSESSION=1 nvim"
-# alias nd='NO_AUTOSESSION=1 nvim "+lua Snacks.dashboard()"'
 alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
-alias nf="NO_AUTOSESSION=1 nvim +Telescope\\ find_files"
-alias ng="NO_AUTOSESSION=1 nvim +Telescope\\ git_files"
-alias no="NO_AUTOSESSION=1 nvim +Telescope\\ oldfiles"
-alias ns="NO_AUTOSESSION=1 nvim +Telescope\\ live_grep"
+alias nf='NO_AUTOSESSION=1 nvim "$(tv files)"'
 alias nvd="neohub --opts --frame buttonless --title-hidden"
-
 
 alias fzn="fzf --preview-window hidden"
 alias fv="fpp"
 
 function c() {
-  cd "$(fd -t d -L | fzf)" || return
+  cd "$(tv dirs)" || return
 }
 
 function dh() {
-  cd "$(dirs -pl | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {} || ls --color=always {}')" || return
+  cd "$(dirs -pl | tv -p 'lsd --color=always --group-directories-first -1 --literal --no-symlink {} || ls --color=always {}')" || return
 }
 
-# function fa() {
-#   alias | fzf --preview-window hidden
-# }
+alias f="tv files"
 alias fa="tv alias"
+alias d="tv dirs"
 
-function f() {
-  fd -t f -L | fzf
-}
-
-function d() {
-  fd -t d -L | fzf --preview 'lsd --color=always --group-directories-first -1 --literal --no-symlink {}'
-}
-
-function fm() {
-  man -k . |
-  sed -E 's/ *\([^)]+\)//' | \
-  awk -F' - ' 'BEGIN{OFS="\t"} {print $1, ($2 ? $2 : "")}' | \
-  fzf --delimiter=$'\t' --with-nth=1 --preview 'man {1}' | \
-  cut -f1 | xargs -r man
-}
-# alias fm="tv man-pages"
-
-# function ft() {
-#   local sel
-#   sel=$(tldr -l | fzf --preview 'tldr {}') || return
-#   tldr -C "$sel" | bat
+# function fm() {
+#   man -k . |
+#   sed -E 's/ *\([^)]+\)//' | \
+#   awk -F' - ' 'BEGIN{OFS="\t"} {print $1, ($2 ? $2 : "")}' | \
+#   fzf --delimiter=$'\t' --with-nth=1 --preview 'man {1}' | \
+#   cut -f1 | xargs -r man
 # }
+alias fm="tv man-pages"
 alias ft="tv tldr"
-
 alias fe="tv env"
 alias fr="tv git-repos"
 
 function fb() {
-  brew search "" | fzf --preview 'brew info {}' | xargs brew install
+  brew search "" | tv -p 'brew info {}' | xargs brew install
 }
 
-function h() {
-  atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
+# function h() {
+#   atuin search | tac | awk '{for(i=3;i<NF;i++) printf "%s%s", $i, (i==NF-1?ORS:OFS)}' | fzf --preview-window hidden
+# }
+function hl() {
+    h -i "$@"
 }
+function pf() {
+    h -i fail pass
+}
+#alias h="tv zsh-history"
+alias h='print -z "$(tv zsh-history)"'
 
 alias osa="osascript -e"
-
-function lrg() {
-RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-INITIAL_QUERY="${*:-}"
-fzf --ansi --disabled --query "$INITIAL_QUERY" \
-    --bind "start:reload:$RG_PREFIX {q}" \
-    --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
-    --delimiter : \
-    --preview 'bat --color=always {1} --highlight-line {2}'
-}
 
 alias quit="kill"
 alias k="fkill"
@@ -650,3 +631,16 @@ alias sudoku="nudoku"
 alias o="ok 1"
 
 alias highlight="h"
+
+alias chess="chess-tui -e /opt/homebrew/bin/stockfish"
+
+alias maps="mapscii"
+
+alias sshell="storm"
+
+alias mas="appstore"
+
+alias spreadsheet="sc-im"
+
+alias t="tv"
+alias tn="tv --hide-preview"

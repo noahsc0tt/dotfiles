@@ -128,6 +128,7 @@ autoload -U colors && colors
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.sk.zsh ] && source ~/.sk.zsh
 
 source <(cod init $$ zsh)
 

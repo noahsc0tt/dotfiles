@@ -95,10 +95,11 @@ keymap = [
 	{ on = [ "m", "n" ], run = "linemode none",        desc = "Show none" },
 
 	# Copy
-	{ on = [ "c", "p" ], run = "copy path",             desc = "Copy the file path" },
-	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
-	{ on = [ "c", "f" ], run = "copy filename",         desc = "Copy the filename" },
-	{ on = [ "c", "n" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+	{ on = [ "c", "h" ], run = "copy path",             desc = "Copy the file path" },
+	{ on = [ "c", "d" ], run = "copy dirname",          desc = "Copy the current directory path" },
+	{ on = [ "c", "n" ], run = "copy filename",         desc = "Copy the filename" },
+	{ on = [ "c", "x" ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+	{ on = [ "c", "f" ], run = "shell 'copyfile'", desc = "Copy the file contents" },
 
 	# Filter
 	{ on = "i", run = ["filter --smart", "arrow top"], desc = "Filter files" },
