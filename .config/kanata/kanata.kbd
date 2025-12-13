@@ -73,6 +73,7 @@
     outlook (cmd open -a "Microsoft Outlook")
     music (cmd open -a "Pear Desktop")
     youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
+    eqmac (cmd open -a "eqMac")
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
     sioyek (cmd open -a "sioyek")
@@ -113,10 +114,10 @@
 (deflayer base
   esc    brdn   brup   _   _   _   _   prev   pp   next   mute  vold  volu
   (layer-switch src)   1    2    3    4    5    6    7    8    9    0    -    =    bspc
-    @navly    q    w    e    r    t    y    u    i    o    p    @launch ]
+    @navly    q    w    e    r    t    y    u    i    o    p    @launch caps
     @ctrl   a    s    d    f    g    h    j    k    l    @shift    @apply    \ ret
     @srcly   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
-    fn     @shift2  caps    @symly        spc             @numly ralt left    down    right
+    fn     @shift2  rmet    @symly        spc             @numly ralt left    down    right
 )
 
 (deflayer src
@@ -140,10 +141,10 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayer app
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    _    @youtube    @timetable    @iterm    @outlook    @min    _    _
+  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @eqmac    @youtube    @timetable    @iterm    @outlook    @min    _    _
   _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @music    @qute    @lastpass    @shift    @apply    \ ret  
   _     _   _   @plaintext    @craft    @vivaldi    b    @nvim    @marta    @settings    .    /    up   rsft
-  _   _  _ _           (multi @launchmod spc)             _ _ _    _    _
+  _   _  _ _           (multi @launchmod spc)         @win-nav     _ _    _    _
 )
 
 (deflayermap window
@@ -158,9 +159,6 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     o o
     n n
     m m
-)
-
-(deflayermap launch
 )
 
 (defalias
@@ -182,8 +180,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     f @malttab
     d @mallttab
 
-    ; @win-nav
-    [ @media-nav
+    ; @media-nav
 )
 
 (deflayermap media

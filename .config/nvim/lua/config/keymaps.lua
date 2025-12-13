@@ -174,11 +174,11 @@ vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })
 vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 
 -- Removing lsp defaults
-vim.keymap.del('n', 'grn')
-vim.keymap.del('n', 'grr')
-vim.keymap.del({ 'n', 'x'}, 'gra')
-vim.keymap.del('n', 'gri')
-vim.keymap.del('n', 'grt')
+-- vim.keymap.del('n', 'grn')
+-- vim.keymap.del('n', 'grr')
+-- vim.keymap.del({ 'n', 'x'}, 'gra')
+-- vim.keymap.del('n', 'gri')
+-- vim.keymap.del('n', 'grt')
 
 -- --NOTE: Conflict with lsp incoming calls, temporary solution is to just use visual line mode
 -- vim.keymap.del('n', 'gcc')
@@ -186,3 +186,4 @@ vim.keymap.del('n', 'grt')
 vim.keymap.set("i", "<C-,>", "<C-d>", { desc = "Delete indent" })
 vim.keymap.set("i", "<C-.>", "<C-t>", { desc = "Indent" })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word" })
+vim.keymap.set("i", "<C-w>", "<Esc><C-w>", { desc = "Window" })

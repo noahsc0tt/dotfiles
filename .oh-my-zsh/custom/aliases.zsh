@@ -377,7 +377,9 @@ alias d="tv dirs"
 #   cut -f1 | xargs -r man
 # }
 alias fm="tv man-pages"
-alias ft="tv tldr"
+function ft() {
+  tv tldr | xargs tldr
+}
 alias fe="tv env"
 alias fr="tv git-repos"
 
