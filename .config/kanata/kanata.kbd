@@ -99,6 +99,8 @@
 
     srcly (tap-hold-press $tap-time $hold-time lrld (layer-toggle src))
     win (tap-hold-press $tap-time $hold-time _ @winmod)
+    win-nav (tap-hold-press $tap-time $hold-time bspc (multi @winmod (layer-toggle window)))
+    media-nav (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
     apply (tap-hold-press $tap-time $hold-time C-c (layer-toggle app))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
@@ -111,10 +113,10 @@
 (deflayer base
   esc    brdn   brup   _   _   _   _   prev   pp   next   mute  vold  volu
   (layer-switch src)   1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
-  @ctrl   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
-  @medialy   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
-  fn     @shift2  @win    @symly        spc             @numly ralt left    down    right
+    @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
+    @ctrl   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
+    caps   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
+    fn     @shift2  @win    @symly        spc             @numly ralt left    down    right
 )
 
 (deflayer src
@@ -145,6 +147,17 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 )
 
 (deflayermap window
+    h h
+    j j
+    k k
+    l l
+    f f
+    d d
+    u u
+    i i
+    o o
+    n n
+    m m
 )
 
 (deflayermap launch
@@ -169,7 +182,8 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     f @malttab
     d @mallttab
 
-    ; @win
+    ; @win-nav
+    [ @media-nav
 )
 
 (deflayermap media
