@@ -91,7 +91,7 @@
     launchmod (multi lctl lmet lsft)
     winmod (multi lalt lmet lsft)
 
-    launch (tap-hold-press $tap-time $hold-time (multi @launchmod nubs) @launchmod)
+    launch (tap-hold-press $tap-time $hold-time C-c @launchmod)
     shift (tap-hold-press $tap-time 250 bspc lsft)
     shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
@@ -102,7 +102,7 @@
     win-nav (tap-hold-press $tap-time $hold-time bspc (multi @winmod (layer-toggle window)))
     media-nav (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
-    apply (tap-hold-press $tap-time $hold-time C-c (layer-toggle app))
+    apply (tap-hold-press $tap-time $hold-time (multi @launchmod nubs) (layer-toggle app))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
     medialy (tap-hold-press $tap-time $hold-time caps (layer-toggle media))
     numly (tap-hold-press $tap-time $hold-time ret (layer-toggle num))
@@ -113,10 +113,10 @@
 (deflayer base
   esc    brdn   brup   _   _   _   _   prev   pp   next   mute  vold  volu
   (layer-switch src)   1    2    3    4    5    6    7    8    9    0    -    =    bspc
-    @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
-    @ctrl   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
-    caps   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
-    fn     @shift2  @win    @symly        spc             @numly ralt left    down    right
+    @navly    q    w    e    r    t    y    u    i    o    p    @launch ]
+    @ctrl   a    s    d    f    g    h    j    k    l    @shift    @apply    \ ret
+    @srcly   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
+    fn     @shift2  caps    @symly        spc             @numly ralt left    down    right
 )
 
 (deflayer src
@@ -143,7 +143,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    _    @youtube    @timetable    @iterm    @outlook    @min    _    _
   _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @music    @qute    @lastpass    @shift    @apply    \ ret  
   _     _   _   @plaintext    @craft    @vivaldi    b    @nvim    @marta    @settings    .    /    up   rsft
-  _   _  _ _           (multi @winmod spc)             _ _ _    _    _
+  _   _  _ _           (multi @launchmod spc)             _ _ _    _    _
 )
 
 (deflayermap window
