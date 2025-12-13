@@ -1218,7 +1218,7 @@ return {
             { "<leader>A",         function() require('snacks').picker.resume() end,                                                          desc = "Resume" },
             { "<leader>u",         function() require('snacks').picker.undo() end,                                                            desc = "Undo History" },
             { "<leader>a<leader>", function() require('snacks').picker.pickers() end,                                                         desc = "Snacks Pickers" },
-            { "<C-=>",             function() require('snacks').picker.spelling({ layout = { preset = "middle", fullscreen = false, } }) end, desc = "Snacks Pickers" },
+            { "<C-=>",             function() require('snacks').picker.spelling({ layout = { preset = "middle", fullscreen = false, } }) end, desc = "Snacks Pickers", mode = { "n", "i" } },
 
             { "<leader>n",         function() require('snacks').notifier.hide() end,                                                          desc = "Close all notifications",  mode = "n" },
         },

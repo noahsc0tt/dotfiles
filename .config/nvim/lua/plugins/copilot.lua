@@ -1,7 +1,7 @@
 return {
     {
-"zbirenbaum/copilot.lua",
-  -- dependencies = { "copilotlsp-nvim/copilot-lsp", },
+        "zbirenbaum/copilot.lua",
+        -- dependencies = { "copilotlsp-nvim/copilot-lsp", },
         event = "InsertEnter",
 
         opts = {
@@ -12,85 +12,84 @@ return {
                 ["yaml"] = false,
                 ["toml"] = false,
                 ["csv"] = false,
-                ["txt"] = false,
+                ["text"] = false,
             },
-  panel = {
-    enabled = true,
-    auto_refresh = false,
-    keymap = {
-      jump_prev = "[[",
-      jump_next = "]]",
-      accept = "<CR>",
-      refresh = "gr",
-      open = "<C-i><C-f>"
-    },
-    layout = {
-      position = "bottom", -- | top | left | right | bottom |
-      ratio = 0.4
-    },
-  },
-  suggestion = {
-    enabled = true,
-    auto_trigger = true,
-    hide_during_completion = true,
-    debounce = 75,
-    trigger_on_accept = true,
-    keymap = {
-      accept = "<C-f>",
-      accept_word = "<C-i><C-w>",
-      accept_line = "<C-i><C-l>",
-      next = "<C-i><C-n>",
-      prev = "<C-i><C-p>",
-        dismiss = "<C-S-f>",
-    },
-  },
-  nes = {
-    enabled = false,
-    keymap = {
-      accept_and_goto = false,
-      accept = false,
-      dismiss = false,
-    },
-  },
-  auth_provider_url = nil, -- URL to authentication provider, if not "https://github.com/"
-  logger = {
-    file = vim.fn.stdpath("log") .. "/copilot-lua.log",
-    file_log_level = vim.log.levels.OFF,
-    print_log_level = vim.log.levels.OFF,
-    trace_lsp = "off", -- "off" | "messages" | "verbose"
-    trace_lsp_progress = false,
-    log_lsp_messages = false,
-  },
-  copilot_node_command = 'node', -- Node.js version must be > 22
-  workspace_folders = {},
-  copilot_model = "",
-  disable_limit_reached_message = false,  -- Set to `true` to suppress completion limit reached popup
-  root_dir = function()
-    return vim.fs.dirname(vim.fs.find(".git", { upward = true })[1])
-  end,
-  should_attach = function(_, _)
-    if not vim.bo.buflisted then
-      -- logger.debug("not attaching, buffer is not 'buflisted'")
-      return false
-    end
+            panel = {
+                enabled = true,
+                auto_refresh = false,
+                keymap = {
+                    jump_prev = "[[",
+                    jump_next = "]]",
+                    accept = "<CR>",
+                    refresh = "gr",
+                    open = "<C-i><C-f>"
+                },
+                layout = {
+                    position = "bottom", -- | top | left | right | bottom |
+                    ratio = 0.4
+                },
+            },
+            suggestion = {
+                enabled = true,
+                auto_trigger = true,
+                hide_during_completion = true,
+                debounce = 75,
+                trigger_on_accept = true,
+                keymap = {
+                    accept = "<C-f>",
+                    accept_word = "<C-i><C-w>",
+                    accept_line = "<C-i><C-l>",
+                    next = "<C-i><C-n>",
+                    prev = "<C-i><C-p>",
+                    dismiss = "<C-S-f>",
+                },
+            },
+            nes = {
+                enabled = false,
+                keymap = {
+                    accept_and_goto = false,
+                    accept = false,
+                    dismiss = false,
+                },
+            },
+            auth_provider_url = nil, -- URL to authentication provider, if not "https://github.com/"
+            logger = {
+                file = vim.fn.stdpath("log") .. "/copilot-lua.log",
+                file_log_level = vim.log.levels.OFF,
+                print_log_level = vim.log.levels.OFF,
+                trace_lsp = "off", -- "off" | "messages" | "verbose"
+                trace_lsp_progress = false,
+                log_lsp_messages = false,
+            },
+            copilot_node_command = 'node', -- Node.js version must be > 22
+            workspace_folders = {},
+            copilot_model = "",
+            disable_limit_reached_message = false, -- Set to `true` to suppress completion limit reached popup
+            root_dir = function()
+                return vim.fs.dirname(vim.fs.find(".git", { upward = true })[1])
+            end,
+            should_attach = function(_, _)
+                if not vim.bo.buflisted then
+                    -- logger.debug("not attaching, buffer is not 'buflisted'")
+                    return false
+                end
 
-    if vim.bo.buftype ~= "" then
-      -- logger.debug("not attaching, buffer 'buftype' is " .. vim.bo.buftype)
-      return false
-    end
+                if vim.bo.buftype ~= "" then
+                    -- logger.debug("not attaching, buffer 'buftype' is " .. vim.bo.buftype)
+                    return false
+                end
 
-    return true
-  end,
-  server = {
-    type = "nodejs", -- "nodejs" | "binary"
-    custom_server_filepath = nil,
-  },
-  server_opts_overrides = {},
-},
+                return true
+            end,
+            server = {
+                type = "nodejs", -- "nodejs" | "binary"
+                custom_server_filepath = nil,
+            },
+            server_opts_overrides = {},
+        },
         keys = {
-        { "<C-i><C-t>", function() require("copilot.suggestion").toggle_auto_trigger() end, mode = "i"},
+            { "<C-i><C-t>", function() require("copilot.suggestion").toggle_auto_trigger() end, mode = "i" },
         },
 
     },
 }
-

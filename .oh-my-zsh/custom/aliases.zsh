@@ -544,7 +544,8 @@ function typing() {
   fi
 }
 
-alias yt="gophertube"
+alias gyt="/Users/nscott/dev/github/other/GopherTube/gophertube"
+alias yt="/Users/nscott/dev/scripts/youtube.sh"
 
 alias web="cha"
 alias cal="calcure"
@@ -572,6 +573,8 @@ function idea() {
 alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
 
 alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
+
+alias bible="cd /Users/nscott/dev/github/noahsc0tt/bible && python -m bible.main"
 
 alias '$'=''
 

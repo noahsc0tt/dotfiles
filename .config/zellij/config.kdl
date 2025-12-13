@@ -31,9 +31,10 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "tab"; }
         bind "Ctrl r" { SwitchToMode "resize"; }
         bind "Ctrl m" { SwitchToMode "move"; }
-        bind "Ctrl /" { SwitchToMode "scroll"; }
+        bind "Ctrl esc" { SwitchToMode "scroll"; }
         bind "Ctrl f" { ToggleFloatingPanes; SwitchToMode "normal";  }
         bind "Ctrl s" { SwitchToMode "normal"; }
+        bind "Ctrl /" { EditScrollback; }
     }
     tab {
         bind "1" { GoToTab 1; SwitchToMode "normal"; }

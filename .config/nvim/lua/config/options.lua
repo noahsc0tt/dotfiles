@@ -16,8 +16,11 @@ vim.opt.smartindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.smartcase = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
+-- vim.opt.guicursor = "n-v-c:block,i:block-blinkon0"
+
 vim.opt.mouse = "a"
 vim.keymap.set({"n", "i", "x"}, "<MiddleMouse>", "<Nop>")
 
@@ -45,7 +48,6 @@ vim.opt.guifont = { "JetBrainsMonoNL Nerd Font", ":h16" }
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 
 -- for opencode
 vim.o.autoread = true

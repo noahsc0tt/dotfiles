@@ -71,7 +71,8 @@
     lastpass (cmd open -a "LastPass")
     mail (cmd open -a "Mail")
     outlook (cmd open -a "Microsoft Outlook")
-    music (cmd open -a "Youtube Music")
+    music (cmd open -a "Pear Desktop")
+    youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
     sioyek (cmd open -a "sioyek")
@@ -111,8 +112,8 @@
   esc    brdn   brup   _   _   _   _   prev   pp   next   mute  vold  volu
   (layer-switch src)   1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @navly    q    w    e    r    t    y    u    i    o    p    @apply @srcly
-  @cmd   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
-  @medialy   @ctrl    z    x    c    v    b    n    m    ,    .    /    up   rsft
+  @ctrl   a    s    d    f    g    h    j    k    l    @shift    @launch    \ ret
+  @medialy   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
   fn     @shift2  @win    @symly        spc             @numly ralt left    down    right
 )
 
@@ -137,10 +138,10 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayer app
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    @qute    @word    @mail    @sioyek    @chatgpt    @music    @timetable    @iterm    @outlook    @min    _    _
-  _   @act-mon    @settings    d    @finder    @ghostty    h    @intellij    k    @lastpass    @shift    @apply    \ ret  
-  _     _   @yazi    @plaintext    @craft    @vivaldi    b    @nvim    @marta    ,    .    /    up   rsft
-  _   _  _ _           _             _ _ _    _    _
+  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    _    @youtube    @timetable    @iterm    @outlook    @min    _    _
+  _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @music    @qute    @lastpass    @shift    @apply    \ ret  
+  _     _   _   @plaintext    @craft    @vivaldi    b    @nvim    @marta    @settings    .    /    up   rsft
+  _   _  _ _           (multi @winmod spc)             _ _ _    _    _
 )
 
 (deflayermap window
@@ -149,15 +150,26 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayermap launch
 )
 
+(defalias
+    mallttab (multi @winmod [)
+    malttab (multi @winmod ])
+)
+
 (deflayermap nav
     h left
     j down
     k up
     l right
+
     w @mword
     b @mback
     p @mbtab
     n @mftab
+
+    f @malttab
+    d @mallttab
+
+    ; @win
 )
 
 (deflayermap media
