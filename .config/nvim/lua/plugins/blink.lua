@@ -30,22 +30,22 @@ return {
                 preset = 'none',
 
                 ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                ['<C-Esc>'] = { 'hide', 'fallback' },
+                ['<C-BS>'] = { 'hide', 'fallback' },
                 ['<C-c>'] = { 'cancel', 'fallback' },
-                ['<C-s>'] = { 'accept', 'fallback' },
+                ['<C-f>'] = { 'accept', 'fallback' },
 
                 ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-h>'] = { 'snippet_backward', 'fallback' },
 
                 ['<Up>'] = { 'select_prev', 'fallback' },
                 ['<Down>'] = { 'select_next', 'fallback' },
-                ['<C-p>'] = { 'select_prev', 'fallback' },
-                ['<C-n>'] = { 'show_and_insert_or_accept_single', 'select_next', 'fallback' },
+                ['<C-k>'] = { 'select_prev', 'fallback' },
+                ['<C-j>'] = { 'show_and_insert_or_accept_single', 'select_next', 'fallback' },
 
                 ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
 
-                ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+                ['<C-S-Space>'] = { 'show_signature', 'hide_signature', 'fallback' },
             },
 
             appearance = {
@@ -58,7 +58,7 @@ return {
                 documentation = { auto_show = false },
                 menu = {
                     -- Don't automatically show the completion menu
-                    auto_show = false,
+                    auto_show = true,
                 },
             },
 

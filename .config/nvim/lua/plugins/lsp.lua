@@ -137,7 +137,8 @@ return {
             -- { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
             -- { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
-            { "<leader>lh", vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
+            { "<leader>?", vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
+            { "<C-S-/>", vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
             { "<leader>lk", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
             { "<C-k>",      vim.lsp.buf.hover,                                               mode = "i",                    desc = "Hover documentation" },
 

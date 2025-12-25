@@ -28,7 +28,7 @@ return {
         },
 
         keys = {
-            { "<C-S-/>", "<cmd>WhichKey<CR>", mode = { "n", "i", "x", } },
+            { "<C-S-/>", "<cmd>WhichKey<CR>", mode = { "n", "x", } },
         }
     }
 }

@@ -36,12 +36,12 @@ return {
                 debounce = 75,
                 trigger_on_accept = true,
                 keymap = {
-                    accept = "<C-f>",
+                    accept = "<C-l>",
                     accept_word = "<C-i><C-w>",
                     accept_line = "<C-i><C-l>",
                     next = "<C-i><C-n>",
                     prev = "<C-i><C-p>",
-                    dismiss = "<C-S-f>",
+                    dismiss = "<C-i><C-d>",
                 },
             },
             nes = {

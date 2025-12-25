@@ -61,6 +61,7 @@
 
 (defalias
     qute (cmd open -a "qutebrowser")
+    notebook (cmd open -a "NotebookLM")
     marta (cmd open -a "Marta")
     iterm (cmd open -a "iTerm")
     ghostty (cmd open -a "Ghostty")
@@ -74,6 +75,7 @@
     music (cmd open -a "Pear Desktop")
     youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
     eqmac (cmd open -a "eqMac")
+    tor (cmd open -a "Tor Browser")
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
     sioyek (cmd open -a "sioyek")
@@ -141,10 +143,10 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayer app
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @eqmac    @youtube    @timetable    @iterm    @outlook    @min    _    _
-  _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @music    @qute    @lastpass    @shift    @apply    \ ret  
-  _     _   _   @plaintext    @craft    @vivaldi    b    @nvim    @marta    @settings    .    /    up   rsft
-  _   _  _ _           (multi @launchmod spc)         @win-nav     _ _    _    _
+  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @tor    @youtube    @timetable    @iterm    @outlook    @min    _    _
+  _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @lastpass    @shift    @apply    \ ret  
+  _     _   _   @plaintext    @craft    @vivaldi    @notebook    @nvim    @marta    @settings    .    /    up   rsft
+  _   _  _ @win-nav           (multi @launchmod spc)         @eqmac _ _    _    _
 )
 
 (deflayermap window

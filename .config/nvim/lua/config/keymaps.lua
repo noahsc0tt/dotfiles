@@ -150,13 +150,13 @@ vim.keymap.set('n', 'zT', function()
     end
 end, { silent = true })
 
-vim.keymap.set({"n", "t"}, "<C-s>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
-vim.keymap.set({"n", "t"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t"}, "<C-j>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "New Terminal" })
 
 
 -- Windows
 
-vim.keymap.set('n', '<C-w><C-f>', function()
+vim.keymap.set('n', '<C-s><C-f>', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local cfg = vim.api.nvim_win_get_config(win)
     if cfg.relative ~= '' then
@@ -186,4 +186,5 @@ vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 vim.keymap.set("i", "<C-,>", "<C-d>", { desc = "Delete indent" })
 vim.keymap.set("i", "<C-.>", "<C-t>", { desc = "Indent" })
 vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word" })
-vim.keymap.set("i", "<C-w>", "<Esc><C-w>", { desc = "Window" })
+vim.keymap.set("i", "<C-s>", "<Esc><C-w>", { desc = "Window" })
+vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
