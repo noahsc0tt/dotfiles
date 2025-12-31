@@ -161,6 +161,9 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     o o
     n n
     m m
+    ; ;
+    , ,
+    . .
 )
 
 (defalias

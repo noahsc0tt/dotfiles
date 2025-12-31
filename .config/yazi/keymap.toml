@@ -30,7 +30,7 @@ keymap = [
 	{ on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "g", "o" ], run = "arrow top", desc = "Go to top" },
+	{ on = "g", run = "arrow top", desc = "Go to top" },
 	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
 
 	# Navigation

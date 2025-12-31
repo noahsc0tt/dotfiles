@@ -12,6 +12,8 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
+export PATH="/Library/TeX/texbin:$PATH"
+
 export PATH="/Users/nscott/.local/bin:$PATH"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -170,6 +172,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+export DOTNET_ROOT=/usr/local/share/dotnet
+export PATH=$PATH:$DOTNET_ROOT
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
