@@ -30,7 +30,7 @@ return {
                 preset = 'none',
 
                 ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                ['<C-BS>'] = { 'hide', 'fallback' },
+                ['<C-Esc>'] = { 'hide', 'fallback' },
                 ['<C-c>'] = { 'cancel', 'fallback' },
                 ['<C-f>'] = { 'accept', 'fallback' },
 
