@@ -4,45 +4,10 @@ return {
         lazy = false,
         dependencies = {
             { 'saghen/blink.cmp' },
-            -- { "ms-jpq/coq_nvim",       branch = "coq" },
-            -- { "ms-jpq/coq.artifacts",  branch = "artifacts" },
-            --
-            -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-            -- { 'ms-jpq/coq.thirdparty', branch = "3p" }
-            -- - shell repl
-            -- - nvim lua api
-            -- - scientific calculator
-            -- - comment banner
-            -- - etc
-
         },
-        -- init = function()
-        --     vim.g.coq_settings = {
-        --         auto_start = 'shut-up',
-        --         completion = {
-        --             always = false,
-        --             sticky_manual = false,
-        --
-        --         },
-        --         display = {
-        --             preview = {
-        --                 border = { "", "", "", "", "", "", "", "" }
-        --             },
-        --             statusline = { helo = false }
-        --         },
-        --         keymap = {
-        --             recommended = true,
-        --             pre_select = true,
-        --             jump_to_mark = '<C-m>',
-        --             manual_complete = '<C-Space>',
-        --             bigger_preview = '<C-k>',
-        --         },
-        --     }
-        -- end,
         config = function()
             vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/mason/bin:" .. vim.env.PATH
             local capabilities = require('blink.cmp').get_lsp_capabilities()
-            -- local coq = require "coq" -- add this
 
             vim.lsp.enable('lua_ls')
             vim.lsp.config('lua_ls', {
@@ -101,6 +66,7 @@ return {
             })
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('jsonls')
+            vim.lsp.enable('omnisharp')
 
             vim.diagnostic.config({
                 virtual_text = true,
@@ -137,10 +103,10 @@ return {
             -- { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
             -- { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
-            { "<leader>?", vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
-            { "<C-S-/>", vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
+            { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
+            { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
             { "<leader>lk", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
-            { "<C-k>",      vim.lsp.buf.hover,                                               mode = "i",                    desc = "Hover documentation" },
+            { "<C-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },                    desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {

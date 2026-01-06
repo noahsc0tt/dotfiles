@@ -7,7 +7,7 @@ return {
             vim.opt.foldlevelstart = 99
         end,
         opts = {
-            useLspFoldsWithTreesitterFallback = true,
+            useLspFoldsWithTreesitterFallback = { enabled = true },
             pauseFoldsOnSearch = true,
             foldtext = {
                 enabled = true,
@@ -26,7 +26,7 @@ return {
             },
             foldKeymaps = {
                 setup = true, -- modifies `h`, `l`, and `$`
-                hOnlyOpensOnFirstColumn = false,
+                closeOnlyOnFirstColumn = false,
             },
         }
     },

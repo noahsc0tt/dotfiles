@@ -1,0 +1,34 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "theme": "tokyonight_storm",
+    "autoupdate": true,
+    "keybinds": {},
+    "model": "github-copilot/claude-opus-4.5",
+    "small_model": "github-copilot/claude-haiku-4.5",
+    "instructions": [
+        "When writing or modifying code, do not add unnecessary comments. Avoid comments that merely restate what the code does, add filler phrases, or inject personality. Comments should only be used when they provide genuine value: explaining non-obvious intent, documenting complex business logic, or clarifying unavoidable workarounds. Let clear code speak for itself."
+    ],
+    "agent": {
+        "build": {
+            "permission": {
+                "edit": "ask",
+                "read": "allow",
+                "write": "ask",
+                "execute": "ask",
+                "delete": "ask",
+                "list": "allow",
+                "bash": {
+                    "*": "ask",
+                    "git status": "allow",
+                    "git diff": "allow",
+                    "git log": "allow",
+                    "ls": "allow",
+                    "pwd": "allow",
+                    "grep": "allow",
+                    "cd": "allow"
+                },
+                "webfetch": "ask"
+            }
+        }
+    }
+}

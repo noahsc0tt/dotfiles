@@ -189,11 +189,9 @@ return {
         "pxwg/math-conceal.nvim",
         enabled = true,
         event = "VeryLazy",
-        build = "make lua51",
         main = "math-conceal",
-        --- @type LaTeXConcealOptions
+        build = "cargo build --release && cp target/release/liblookup_conceal.dylib lua/lookup_conceal.so",
         opts = {
-            enabled = true,
             conceal = {
                 "greek",
                 "script",
@@ -202,7 +200,7 @@ return {
                 "delim",
                 "phy",
             },
-            ft = { "*.tex", "*.md", "*.typ" },
+            ft = { "plaintex", "tex", "context", "bibtex", "markdown", "typst" },
         },
     }
 }

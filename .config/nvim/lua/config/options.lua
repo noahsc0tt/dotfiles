@@ -54,3 +54,6 @@ vim.o.autoread = true
 
 -- for autosession
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- math conceal
+vim.opt.conceallevel = 1
