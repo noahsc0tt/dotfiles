@@ -192,3 +192,4 @@ vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word" })
 vim.keymap.set("i", "<C-s>", "<Esc><C-w>", { desc = "Window" })
 vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
 
+vim.keymap.set("n", "<Del>", "lxh")

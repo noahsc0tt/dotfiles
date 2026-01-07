@@ -24,7 +24,7 @@ return {
         event = "VeryLazy",
         enabled = true,
         opts = {
-            preferred_picker = "snacks",
+            preferred_picker = 'snacks',
             preferred_completion = 'blink', -- 'blink', 'nvim-cmp','vim_complete' if nil, it will use the best available completion
             default_global_keymaps = true, -- If false, disables all default global keymaps
             default_mode = 'plan', -- 'build' or 'plan' or any custom configured. @see [OpenCode Agents](https://opencode.ai/docs/modes/)
@@ -93,7 +93,7 @@ return {
                 },
                 session_picker = {
                     rename_session = { '<C-r>' }, -- Rename selected session in the session picker
-                    delete_session = { '<C-d>' }, -- Delete selected session in the session picker
+                    delete_session = { '<C-BS>' }, -- Delete selected session in the session picker
                     new_session = { '<C-n>' }, -- Create and switch to a new session in the session picker
                 },
                 timeline_picker = {
