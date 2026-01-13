@@ -41,12 +41,13 @@ function lg() {
 
 alias ga="git add"
 alias gA="git add -A"
-alias gca="git commit --amend"
+alias gcam="git commit --amend"
 alias gcm="git commit -m"
-alias gcam="git add -A && git commit -m"
+alias gca="git add -A && git commit"
+alias gcA="git add -A && git commit -m"
 alias gch="git checkout"
-alias gl="git log --oneline --graph --decorate --show-signature"
-alias glv="git log --graph --decorate --show-signature"
+alias gl="git log --oneline --graph --decorate"
+alias glv="git log --graph --decorate"
 alias gpsu='git push --set-upstream origin $(git_current_branch)'
 alias gpl="git pull"
 alias grm="git rm --cached"
@@ -85,6 +86,11 @@ alias gcpf="forgit::cherry::pick::from::branch"
 alias grbf="forgit::rebase"
 alias grlf="forgit::reflog"
 alias gblf="forgit::blame"
+
+function gback() {
+  local n=${1:-1}
+  git switch --detach "HEAD~$n"
+}
 
 alias gop="git open"
 alias gstats="git quick-stats"
@@ -352,7 +358,13 @@ alias n="nvim"
 alias nv="NO_AUTOSESSION=1 nvim"
 alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
 alias nf='NO_AUTOSESSION=1 nvim "$(tv files)"'
-alias nvd="neohub --opts --frame buttonless --title-hidden"
+function nvd(){
+  open -a "NeoHub"
+  (
+    cd ~/.temp
+    neohub --opts --frame buttonless --title-hidden
+  )
+}
 
 alias fzn="fzf --preview-window hidden"
 alias fv="fpp"
@@ -647,5 +659,4 @@ alias mas="appstore"
 
 alias spreadsheet="sc-im"
 
-alias t="tv"
 alias tn="tv --hide-preview"

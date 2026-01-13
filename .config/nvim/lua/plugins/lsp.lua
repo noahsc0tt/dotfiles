@@ -9,7 +9,6 @@ return {
             vim.env.PATH = vim.env.HOME .. "/.local/share/nvim/mason/bin:" .. vim.env.PATH
             local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-            vim.lsp.enable('lua_ls')
             vim.lsp.config('lua_ls', {
                 -- root_dir = require('lspconfig.util').root_pattern(
                 --         '.luarc.json', '.luacheckrc', '.stylua.toml', 'lua/', '.git'
@@ -23,7 +22,8 @@ return {
                 },
                 capabilities = capabilities,
             })
-            vim.lsp.enable('basedpyright')
+            vim.lsp.enable('lua_ls')
+
             vim.lsp.config('basedpyright', {
                 settings = {
                     basedpyright = {
@@ -40,7 +40,8 @@ return {
                 },
                 capabilities = capabilities,
             })
-            vim.lsp.enable('jdtls')
+            vim.lsp.enable('basedpyright')
+
             vim.lsp.config('jdtls', {
                 cmd_env = {
                     JAVA_HOME = "/opt/homebrew/opt/openjdk",
@@ -48,25 +49,47 @@ return {
                 },
                 capabilities = capabilities,
             })
-            vim.lsp.enable('bashls')
+            vim.lsp.enable('jdtls')
+
             vim.lsp.config('bashls', { filetypes = { "sh", "zsh", "bash" }, capabilities = capabilities, })
-            vim.lsp.enable('eslint')
-            vim.lsp.enable('clangd')
+            vim.lsp.enable('bashls')
+
             vim.lsp.enable('ruby-lsp')
             vim.lsp.config('ruby-lsp', {
                 cmd = { "ruby-lsp" },
                 filetypes = { "ruby" },
                 capabilities = capabilities,
             })
-            vim.lsp.enable('hls')
+
             vim.lsp.config('hls', {
                 cmd = { "haskell-language-server-wrapper", "--lsp" },
                 filetypes = { "haskell", "lhaskell" },
                 capabilities = capabilities,
             })
+            vim.lsp.enable('hls')
+
+            vim.lsp.enable('eslint')
+            vim.lsp.enable('clangd')
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('jsonls')
             vim.lsp.enable('omnisharp')
+
+            vim.lsp.config('ltex_ls_plus', {
+                filetypes = { "text", "markdown", "tex", "typst" },
+                settings = {
+                    ltex = {
+                        language = "en-GB",
+                    },
+                },
+            })
+            vim.lsp.enable('ltex_ls_plus')
+
+            vim.lsp.config("tinymist", {
+                cmd = { "tinymist" },
+                filetypes = { "typst" },
+                root_markers = { "typst.toml", ".git" },
+            })
+            vim.lsp.enable("tinymist")
 
             vim.diagnostic.config({
                 virtual_text = true,
@@ -106,7 +129,7 @@ return {
             { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
             { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
             { "<leader>lk", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
-            { "<C-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },                    desc = "Hover documentation" },
+            { "<C-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {

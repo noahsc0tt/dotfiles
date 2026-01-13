@@ -35,18 +35,18 @@ return {
                     -- ['<leader>oi'] = { 'open_input' },      -- Opens and focuses on input window on insert mode
                     ['<leader>on'] = { 'open_input_new_session' }, -- Opens and focuses on input window on insert mode. Creates a new session
                     -- ['<leader>oo'] = { 'open_output' },     -- Opens and focuses on output window
-                    ['<leader>oc'] = { 'toggle_focus' },    -- Toggle focus between opencode and last window
+                    ['<leader>oj'] = { 'toggle_focus' },    -- Toggle focus between opencode and last window
                     ['<leader>ot'] = { 'timeline' },        -- Display timeline picker to navigate/undo/redo/fork messages
                     ['<leader>oq'] = { 'close' },           -- Close UI windows
                     ['<leader>os'] = { 'select_session' },  -- Select and load a opencode session
                     ['<leader>oR'] = { 'rename_session' },  -- Rename current session
-                    ['<leader>op'] = { 'configure_provider' }, -- Quick provider and model switch from predefined list
+                    ['<leader>om'] = { 'configure_provider' }, -- Quick provider and model switch from predefined list
                     ['<leader>o='] = { 'toggle_zoom' },     -- Zoom in/out on the Opencode windows
                     ['<leader>ov'] = { 'paste_image' },     -- Paste image from clipboard into current session
                     ['<leader>od'] = { 'diff_open' },       -- Opens a diff tab of a modified file since the last opencode prompt
                     ['<leader>o]'] = { 'diff_next' },       -- Navigate to next file diff
                     ['<leader>o['] = { 'diff_prev' },       -- Navigate to previous file diff
-                    ['<leader>oC'] = { 'diff_close' },      -- Close diff view tab and return to normal editing
+                    ['<leader>oc'] = { 'diff_close' },      -- Close diff view tab and return to normal editing
                     ['<leader>ora'] = { 'diff_revert_all_last_prompt' }, -- Revert all file changes since the last opencode prompt
                     ['<leader>ort'] = { 'diff_revert_this_last_prompt' }, -- Revert current file changes since the last opencode prompt
                     ['<leader>orA'] = { 'diff_revert_all' }, -- Revert all file changes since the last opencode session

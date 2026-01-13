@@ -66,6 +66,7 @@
     iterm (cmd open -a "iTerm")
     ghostty (cmd open -a "Ghostty")
     act-mon (cmd open -a "Activity Monitor")
+    alacritty (cmd open -a "Alacritty")
     craft (cmd open -a "Craft")
     chatgpt (cmd open -a "ChatGPT")
     finder (cmd open -a "Finder")
@@ -144,7 +145,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
   (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @tor    @youtube    @timetable    @iterm    @outlook    @min    _    _
-  _   @act-mon    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @lastpass    @shift    @apply    \ ret  
+  _   @alacritty    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @lastpass    @shift    @apply    \ ret  
   _     _   _   @plaintext    @craft    @vivaldi    @notebook    @nvim    @marta    @settings    .    /    up   rsft
   _   _  _ @win-nav           (multi @launchmod spc)         @eqmac _ _    _    _
 )
