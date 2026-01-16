@@ -41,10 +41,10 @@ function lg() {
 
 alias ga="git add"
 alias gA="git add -A"
-alias gcam="git commit --amend"
-alias gcm="git commit -m"
-alias gca="git add -A && git commit"
-alias gcA="git add -A && git commit -m"
+alias gcam="git commit --amend --verbose"
+alias gcAm="git add -A && git commit --amend --verbose"
+alias gcm="git commit -m --verbose"
+alias gca="git add -A && git commit --verbose"
 alias gch="git checkout"
 alias gl="git log --oneline --graph --decorate"
 alias glv="git log --graph --decorate"
@@ -558,7 +558,6 @@ function typing() {
   fi
 }
 
-alias gyt="/Users/nscott/dev/github/other/GopherTube/gophertube"
 alias yt="/Users/nscott/dev/scripts/youtube.sh"
 
 alias web="cha"
@@ -587,6 +586,10 @@ function idea() {
 alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
 
 alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
+
+alias zja="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -a"
+alias zjk="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -k"
+alias zjd="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -d"
 
 alias bible="cd /Users/nscott/dev/github/noahsc0tt/bible && python -m bible.main"
 

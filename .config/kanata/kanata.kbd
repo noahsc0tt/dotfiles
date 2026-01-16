@@ -73,7 +73,7 @@
     lastpass (cmd open -a "LastPass")
     mail (cmd open -a "Mail")
     outlook (cmd open -a "Microsoft Outlook")
-    music (cmd open -a "Pear Desktop")
+    music (cmd open -a "YouTube Music")
     youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
     eqmac (cmd open -a "eqMac")
     tor (cmd open -a "Tor Browser")

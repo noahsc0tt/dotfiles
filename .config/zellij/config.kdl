@@ -33,7 +33,7 @@ keybinds clear-defaults=true {
         bind "Ctrl m" { SwitchToMode "move"; }
         bind "Ctrl esc" { SwitchToMode "scroll"; }
         bind "Ctrl f" { ToggleFloatingPanes; SwitchToMode "normal";  }
-        bind "Ctrl s" { SwitchToMode "normal"; }
+        bind "Ctrl h" { SwitchToMode "normal"; }
         bind "Ctrl /" { EditScrollback; }
     }
     tab {
@@ -166,43 +166,43 @@ keybinds clear-defaults=true {
             ToggleFocusFullscreen
             SwitchToMode "normal"
         }
-        bind "Ctrl l" { SwitchToMode "locked"; }
+        bind "Ctrl Shift z" { SwitchToMode "locked"; }
         bind "e" { Quit; }
         bind "Ctrl e" { Quit; }
     }
-   // nvim
-    shared_except "locked" {
-        bind "Ctrl h" {
-            MessagePlugin location="nvim" {
-                name "move_focus";
-                payload "left";
-                move_mod "ctrl";
-            };
-        }
-        bind "Ctrl j" {
-            MessagePlugin location="nvim" {
-                name "move_focus";
-                payload "down";
-                move_mod "ctrl";
-            };
-        }
-
-        bind "Ctrl k" {
-            MessagePlugin location="nvim" {
-                name "move_focus";
-                payload "up";
-                move_mod "ctrl";
-            };
-        }
-
-        bind "Ctrl l" {
-            MessagePlugin location="nvim" {
-                name "move_focus";
-                payload "right";
-                move_mod "ctrl";
-            };
-        }
-    }
+   // // nvim
+   //  shared_except "locked" {
+   //      bind "Ctrl h" {
+   //          MessagePlugin location="nvim" {
+   //              name "move_focus";
+   //              payload "left";
+   //              move_mod "ctrl";
+   //          };
+   //      }
+   //      bind "Ctrl j" {
+   //          MessagePlugin location="nvim" {
+   //              name "move_focus";
+   //              payload "down";
+   //              move_mod "ctrl";
+   //          };
+   //      }
+   //
+   //      bind "Ctrl k" {
+   //          MessagePlugin location="nvim" {
+   //              name "move_focus";
+   //              payload "up";
+   //              move_mod "ctrl";
+   //          };
+   //      }
+   //
+   //      bind "Ctrl l" {
+   //          MessagePlugin location="nvim" {
+   //              name "move_focus";
+   //              payload "right";
+   //              move_mod "ctrl";
+   //          };
+   //      }
+   //  }
     // global bindings
     shared_except "locked" {
         // bind "Ctrl f" {
@@ -216,8 +216,8 @@ keybinds clear-defaults=true {
         // }
         bind "Ctrl ," { PreviousSwapLayout; }
         bind "Ctrl ." { NextSwapLayout; }
-        bind "Ctrl Shift k" { GoToPreviousTab; }
-        bind "Ctrl Shift j" { GoToNextTab; }
+        // bind "Ctrl Shift k" { GoToPreviousTab; }
+        // bind "Ctrl Shift j" { GoToNextTab; }
     }
     // shared_except "locked" "move" {
     //     bind "Ctrl m" { SwitchToMode "move"; }
@@ -232,7 +232,7 @@ keybinds clear-defaults=true {
     //     bind "Ctrl t" { SwitchToMode "tab"; }
     // }
     shared_except "locked" "pane" {
-        bind "Ctrl s" { SwitchToMode "pane"; }
+        bind "Ctrl h" { SwitchToMode "pane"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
