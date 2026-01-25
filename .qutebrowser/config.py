@@ -471,7 +471,7 @@ c.content.blocking.adblock.lists = [
     "https://secure.fanboy.co.nz/fanboy-social.txt",
 ]
 c.content.blocking.whitelist = ["github.com"]
-c.content.cookies.accept = "no-3rdparty"
+c.content.cookies.accept = "all"
 c.content.webrtc_ip_handling_policy = "disable-non-proxied-udp"
 c.content.geolocation = False
 c.content.media.audio_capture = False
@@ -489,28 +489,77 @@ c.editor.command = [ "/opt/homebrew/bin/neovide", "--frame", "buttonless", "--ti
 
 # Bindings for normal mode
 config.bind('<Ctrl-c>', 'clear-keychain ;; search')
+
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
-config.bind('gc', 'tab-clone')
+
+config.bind('C', 'tab-clone')
+
 config.bind('sh', 'history')
 config.bind('sH', 'open -t qute://history/')
+
 config.bind('H', 'tab-move -')
 config.bind('L', 'tab-move +')
+
 config.bind('h', 'back')
 config.bind('l', 'forward')
+
 config.bind('W', 'open -w')
 config.bind('Q', 'q')
 config.bind('E', 'wqa')
+
 config.bind('<Ctrl-d>', 'scroll-page 0 0.5')
 config.bind('<Ctrl-u>', 'scroll-page 0 -0.5')
+
+config.bind('<Ctrl-o>', 'open -t')
+
+config.bind('<Ctrl-e>', 'edit-text', mode='insert')
+config.bind('<Ctrl-e>', 'edit-url', mode='normal')
+config.bind('<Ctrl-e>', 'cmd-edit', mode='command')
+
 config.bind(',d', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('gr', 'spawn --userscript readability-js')
+config.bind('Y', 'open !yt')
 config.bind('gh', 'open https://github.com/noahsc0tt')
 config.bind('gH', 'open -t https://github.com/noahsc0tt')
+config.bind('I', 'spawn sh -c "open -a IINA \\"{url}\\""')
 config.bind(',l', 'spawn --userscript qute-lastpass')
+
+config.bind('p', 'open -- {clipboard}')
+config.bind('P', 'open -t -- {clipboard}')
+
 config.bind('gw', 'tab-give')
 config.bind('go', 'scroll-to-perc 0')
 config.bind('<Ctrl-f>', 'fullscreen')
+config.bind(',s', 'config-source')
+config.bind(',b', 'cmd-set-text :bookmark-del ')
 
+config.bind('`', 'mode-enter jump_mark')
+config.bind('m', 'set-mark')
 
+config.bind('<Ctrl-m>', 'cmd-set-text :quickmark-add ')
+config.bind('<Ctrl-b>', 'cmd-set-text :quickmark-load ')
+config.bind('<Ctrl-Shift-b>', 'cmd-set-text :quickmark-load -t ')
 
+config.bind('M', 'cmd-set-text :bookmark-add ')
+config.bind('b', 'cmd-set-text :bookmark-load ')
+config.bind('B', 'cmd-set-text :bookmark-load -t ')
+
+config.bind('<Ctrl-e>', 'prompt-fileselect-external', mode='prompt')
+config.bind('<Ctrl-Backspace>', 'rl-filename-rubout', mode='prompt')
+config.bind('<Ctrl-p>', 'prompt-open-download --pdfjs', mode='prompt')
+config.bind('<Ctrl-f>', 'prompt-open-download', mode='prompt')
+config.bind('<Ctrl-k>', 'prompt-item-focus prev', mode='prompt')
+config.bind('<Ctrl-j>', 'prompt-item-focus next', mode='prompt')
+
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+
+config.bind('f', 'prompt-accept yes', mode='yesno')
+config.bind('F', 'prompt-accept --save yes', mode='yesno')
+config.bind('j', 'prompt-accept no', mode='yesno')
+config.bind('J', 'prompt-accept --save no', mode='yesno')
+
+c.fileselect.handler = 'external'
+c.fileselect.single_file.command = ['yazi', '--chooser-file', '{}']
+c.fileselect.multiple_files.command = ['yazi', '--chooser-file', '{}']

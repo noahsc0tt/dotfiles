@@ -18,7 +18,7 @@ return {
                 -- cycle_open_buffers = "<tab>",
                 copy_relative_path_to_selected_files = "<c-y>",
                 send_to_quickfix_list = "<c-q>",
-                change_working_directory = "w",
+                change_working_directory = "<c-w>",
                 open_and_pick_window = "<c-o>",
             },
 
@@ -35,13 +35,13 @@ return {
                 desc = "Open yazi",
             },
             {
-                "<C-,>",
+                "<leader><C-j>",
                 "<cmd>Yazi cwd<cr>",
                 mode = { "n", "x", },
                 desc = "Open yazi at cwd",
             },
             {
-                "<C-.>",
+                "<leader>J",
                 "<cmd>Yazi toggle<cr>",
                 mode = { "n", "x", },
                 desc = "Resume yazi",

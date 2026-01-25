@@ -53,6 +53,7 @@ return {
             end,
         }
     },
+
     {
         "HakonHarnes/img-clip.nvim",
         lazy = true,
@@ -131,12 +132,7 @@ return {
                 },
 
                 typst = {
-                    template = [[
-                    #figure(
-                        image("$FILE_PATH", width: 80%),
-                        caption: [$CURSOR],
-                    ) <fig-$LABEL>
-                    ]], ---@type string | fun(context: table): string
+                    template = [[ #figure( image("$FILE_PATH", width: 80%), caption: [$CURSOR],) <fig-$LABEL> ]], ---@type string | fun(context: table): string
                 },
 
                 rst = {

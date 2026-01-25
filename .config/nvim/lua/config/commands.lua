@@ -16,6 +16,11 @@ vim.api.nvim_create_user_command("DimToggle", function()
     end
 end, {})
 
+
+vim.api.nvim_create_user_command("Calc", function()
+    vim.cmd("nvumi")
+end, {})
+
 vim.api.nvim_create_user_command("TaskellSearch", function()
     require("snacks").picker.files({
         dirs = { vim.fn.expand("/Users/nscott/.scratch/taskell") }, -- search only in this folder

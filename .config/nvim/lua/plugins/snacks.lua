@@ -64,8 +64,10 @@ return {
                         -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         -- { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = "󰑕 ", key = "o", desc = "Oil", action = ":Oil", },
+                        { icon = "󰥌 ", key = "t", desc = "Taskell", action = ":TaskellSearch", },
+                        { icon = " ", key = "c", desc = "Calculator", action = ":Nvumi", },
                         { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
-                        { icon = "󰥌 ", key = "t", desc = "Open Taskell List", action = ":TaskellSearch", },
                         {
                             icon = "󰒑 ",
                             key = "x",
@@ -112,8 +114,8 @@ return {
                         },
                         {
                             icon = "󱕗 ",
-                            key = "q",
-                            desc = "Quit and Delete Session",
+                            key = "d",
+                            desc = "Delete Session",
                             action = function()
                                 vim.cmd("AutoSession delete")
                                 vim.cmd("qa!")
@@ -122,18 +124,14 @@ return {
                     },
                 },
                 sections = {
-                    { section = "header" },
-                    {
-                        pane = 2,
-                        section = "terminal",
-                        cmd = "colorscript -e square",
-                        height = 5,
-                        padding = 3,
-                    },
-                    { pane = 2, icon = "󰪻 ", title = "Recent Working Directory Files", section = "recent_files", cwd = true, indent = 2, padding = 1, hl_current_line = false },
-                    { pane = 2, icon = "󱋢 ", title = "Recent Global Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
-                    --{ pane = 2, icon = "󰪻 ", title = "Projects", section = "projects", indent = 2, padding = 1, hl_current_line = false },
-                    { pane = 2, section = "keys", gap = 0, padding = 1, hl_current_line = false },
+                    -- { section = "header" },
+                    -- {
+                    --     pane = 2,
+                    --     section = "terminal",
+                    --     cmd = "colorscript -e square",
+                    --     height = 5,
+                    --     padding = 3,
+                    -- },
                     {
                         pane = 1,
                         icon = " ",
@@ -148,24 +146,31 @@ return {
                         section = "terminal",
                         cmd = "lsd --color=always --group-directories-first -1 --literal --no-symlink",
                         autokey = true,
+                        gap = 1,
                         indent = 2,
                         padding = 1,
                         hl_current_line = false
                     },
-                    {
-                        pane = 1,
-                        icon = " ",
-                        title = "Git Status",
-                        section = "terminal",
-                        enabled = function()
-                            return require("snacks").git.get_root() ~= nil
-                        end,
-                        cmd = "git -C \"$(git rev-parse --show-toplevel)\" status -sb --renames --find-renames",
-                        indent = 2,
-                        padding = 1,
-                        hl_current_line = false
-                    },
-                    { pane = 1, section = "startup" },
+
+                    { pane = 2, section = "keys", gap = 1, padding = 1, hl_current_line = false },
+                    -- { pane = 1, icon = "󰪻 ", title = "Recent Working Directory Files", section = "recent_files", cwd = true, indent = 2, padding = 1, hl_current_line = false },
+                    -- { pane = 1, icon = "󱋢 ", title = "Recent Global Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
+
+                    --{ pane = 2, icon = "󰪻 ", title = "Projects", section = "projects", indent = 2, padding = 1, hl_current_line = false },
+                    -- {
+                    --     pane = 1,
+                    --     icon = " ",
+                    --     title = "Git Status",
+                    --     section = "terminal",
+                    --     enabled = function()
+                    --         return require("snacks").git.get_root() ~= nil
+                    --     end,
+                    --     cmd = "git -C \"$(git rev-parse --show-toplevel)\" status -sb --renames --find-renames",
+                    --     indent = 2,
+                    --     padding = 1,
+                    --     hl_current_line = false
+                    -- },
+                    -- { pane = 1, section = "startup" },
                 },
             },
             dim = {
@@ -1080,7 +1085,8 @@ return {
         },
         keys = {
             { "zd",         function() require('snacks').dashboard() end,      desc = "Toggle Dashboard" },
-            { "zs",         function() vim.cmd("DimToggle") end,               desc = "Toggle dim" },
+            { "zs",         function() require('snacks').dim.enable() end,               desc = "Enable dim" },
+            { "zS",         function() require('snacks').dim.disable() end,               desc = "Disable dim" },
             { "<leader>.",  function() require('snacks').explorer.open() end,  desc = "Open File Tree" },
 
             -- git

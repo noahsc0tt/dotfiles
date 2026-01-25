@@ -128,8 +128,8 @@ return {
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
             { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
             { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
-            { "<leader>lk", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
-            { "<C-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
+            { "<leader>k", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
+            { "<M-C-S-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {

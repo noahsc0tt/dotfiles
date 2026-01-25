@@ -1,8 +1,8 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR="env NO_AUTOSESSION=1 nvim"
+export VISUAL="env NO_AUTOSESSION=1 nvim"
 
 export MANCOLOR
 export MANPAGER="bat --style=rule,snip"

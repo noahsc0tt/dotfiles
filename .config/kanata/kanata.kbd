@@ -76,6 +76,7 @@
     music (cmd open -a "YouTube Music")
     youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
     eqmac (cmd open -a "eqMac")
+    iina (cmd open -a "IINA")
     tor (cmd open -a "Tor Browser")
     vivaldi (cmd open -a "Vivaldi")
     settings (cmd open -a "Settings")
@@ -145,7 +146,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
   (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @tor    @youtube    @timetable    @iterm    @outlook    @min    _    _
-  _   @alacritty    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @lastpass    @shift    @apply    \ ret  
+  _   @alacritty    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @iina    @shift    @apply    \ ret  
   _     _   _   @plaintext    @craft    @vivaldi    @notebook    @nvim    @marta    @settings    .    /    up   rsft
   _   _  _ @win-nav           (multi @launchmod spc)         @eqmac _ _    _    _
 )
@@ -194,7 +195,9 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   j brup
   g bldn
   h blup
-  ; (layer-toggle fine)
+  lmet (layer-toggle fine)
+  rmet (layer-toggle fine)
+  m mute
   d vold
   k volu
   s prev

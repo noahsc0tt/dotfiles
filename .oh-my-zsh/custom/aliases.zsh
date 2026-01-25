@@ -195,73 +195,35 @@ alias exe="chmod +x"
 alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 
-unalias ls
-function ls() {
+unalias l
+function l() {
   lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
 }
 
-function lsf() {
-  lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | fzf
-}
-
-function lst() {
-  lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
-}
-
-function lsc() {
-  lsd --color=always --group-directories-first --literal --no-symlink "$@" | bat
-}
-
-unalias lsa
-function lsa() {
+unalias la
+function la() {
   lsd -A --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
 }
 
-function lsaf() {
-  lsd -A --color=always --group-directories-first --literal --no-symlink "$@" | bat
-}
-
-function lsat() {
-  lsd -A --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
-}
-
-function lsi() {
+function li() {
   lsd -l --date=relative --color=always --group-directories-first -1 \
       --literal --no-symlink --blocks name,date,size,permission --header \
       "$@" | bat
 }
 
-function lsai() {
-  lsd -A -l --date=relative --color=always --group-directories-first -1 \
-       --literal --no-symlink --blocks name,date,size,permission --header \
-       "$@" | bat
+alias lsc="lsd --color=always --group-directories-first --literal --no-symlink"
+
+function lt() {
+  lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
 }
 
-function lsaif() {
-  lsd -A -l --date=relative --color=always --group-directories-first \
-       --literal --no-symlink --blocks name,date,size,permission --header \
-       "$@" | bat
-}
-
-function lsg() {
-	 if [[ $# -ge 2 && -d $1 ]] ; then
-	 	ls "$1" | command rg -i --color=auto "${@:2}"
-	 else
-	 	ls . | command rg -i --color=auto "$@"
-	 fi	 
-}
-
-function lsag() {
-	 if [[ $# -ge 2 && -d $1 ]] ; then
-	 	ls -a "$1" | command rg -i --color=auto "${@:2}"
-	 else
-	 	ls -a . | command rg -i --color=auto "$@"
-	 fi	 
+function lat() {
+  lsd -A --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
 }
 
 alias ghcp="gh copilot"
 
-function y() {
+function j() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
@@ -591,7 +553,7 @@ alias zja="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -a"
 alias zjk="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -k"
 alias zjd="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -d"
 
-alias bible="cd /Users/nscott/dev/github/noahsc0tt/bible && python -m bible.main"
+alias bible="(cd /Users/nscott/dev/github/noahsc0tt/bible && python -m bible.main)"
 
 alias '$'=''
 
@@ -663,3 +625,11 @@ alias mas="appstore"
 alias spreadsheet="sc-im"
 
 alias tn="tv --hide-preview"
+
+alias kan="NO_AUTOSESSION=1 nvim /Users/nscott/dotfiles/.config/kanata/kanata.kbd"
+alias qute="NO_AUTOSESSION=1 nvim /Users/nscott/.qutebrowser/config.py"
+alias yazi="NO_AUTOSESSION=1 nvim /Users/nscott/.config/yazi/keymap.toml"
+
+alias iina="/Applications/IINA.app/Contents/MacOS/iina-cli"
+
+alias cargo-up="cargo install-update -a"

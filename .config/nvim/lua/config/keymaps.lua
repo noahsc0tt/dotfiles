@@ -86,8 +86,8 @@ vim.keymap.set('o', '_', '^', { noremap = true })
 vim.keymap.set({ 'n', 'x' }, 'g_', 'g^', { noremap = true })
 
 -- Splitting and joining lines
-vim.keymap.set("n", "J", "a<Cr><Esc>k$")
-vim.keymap.set("n", "K", "J")
+vim.keymap.set("n", "<C-j>", "a<Cr><Esc>k$")
+vim.keymap.set("n", "<C-k>", "J")
 
 -- Undo and Redo
 vim.keymap.set("n", "U", "<C-r>")
@@ -122,6 +122,10 @@ vim.keymap.set("n", "z=", function() vim.opt.spell = true; require('snacks').not
 vim.keymap.set("n", "z_", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
 vim.keymap.set("n", "zw", function() vim.opt.wrap = true; require('snacks').notify.info('Wrap enabled') end, { desc = "Enable word wrap" })
 vim.keymap.set("n", "zW", function() vim.opt.wrap = false; require('snacks').notify.info('Wrap disabled') end, { desc = "Disable word wrap" })
+vim.keymap.set("n", "zb", function() vim.b.completion = true; require('snacks').notify.info('Completions enabled') end, { desc = "Enable word wrap" })
+vim.keymap.set("n", "zB", function() vim.b.completion = false; require('snacks').notify.info('Completions disabled') end, { desc = "Disable completions" })
+
+vim.keymap.set("n", "<C-.>", "yyp$", { desc = "Duplicate line" })
 
 -- Scrolling
 vim.keymap.set({ "n", "x", "c" }, "<C-n>", "2<C-e>")
@@ -153,8 +157,8 @@ vim.keymap.set('n', 'zT', function()
     end
 end, { silent = true })
 
-vim.keymap.set({"n", "t"}, "<C-j>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
-vim.keymap.set({"n", "t"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "New Terminal" })
+vim.keymap.set({"n", "t", "i"}, "<C-Space>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
+vim.keymap.set({"n", "t", "i"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "New Terminal" })
 
 
 -- Windows
@@ -196,3 +200,9 @@ vim.keymap.set("n", "f", "<C-f>", { desc = "Flash" })
 vim.keymap.set("n", "<C-f>", "f", { desc = "Forward in-line search" })
 
 vim.keymap.set("n", "<Del>", "lxh")
+
+vim.keymap.set("n", "<C-S-.>", ">>")
+vim.keymap.set("n", "<C-S-,>", "<<")
+
+-- vim.keymap.set("n", "0", "_")
+-- vim.keymap.set("n", "_", "0")

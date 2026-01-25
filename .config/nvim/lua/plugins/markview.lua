@@ -105,24 +105,22 @@ return {
 
                     indent_size = function(buffer)
                         if type(buffer) ~= "number" then
-                            return vim.bo.shiftwidth or 4;
+                            return vim.bo.shiftwidth/2 or 2;
                         end
 
                         --- Use 'shiftwidth' value.
-                        return vim.bo[buffer].shiftwidth or 4;
+                        return vim.bo[buffer].shiftwidth/2 or 2;
                     end,
-                    shift_width = 4,
+                    shift_width = 2,
 
                     marker_minus = {
                         add_padding = true,
-
                         text = "",
                         hl = "MarkviewListItemMinus"
                     },
 
                     marker_plus = {
                         add_padding = true,
-
                         text = "%d)",
                         hl = "MarkviewListItemPlus"
                     },

@@ -33,8 +33,11 @@ return {
             },
         },
         keys = {
+            { 'J',   function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
             { '<C-S-j>',   function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
+            { 'K',   function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },
             { '<C-S-k>',   function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },
+            { '<C-S-Space>', '<C-^>',                                       desc = 'Most recent buffer' },
             { '<C-S-d>',   function() require('snacks').bufdelete() end,   desc = 'Delete buffer' },
             { '<leader>d', function() vim.cmd('bdelete!') end,             desc = 'Force delete buffer' },
             {
@@ -53,9 +56,10 @@ return {
             { '<C-S-l>', function() require('bufferline').move(1) end,  desc = 'Move buffer right' },
             { '<M-a>',   '<cmd>BufferLinePick<CR>',                     desc = 'Buffer picker' },
             { '<M-BS>',  '<cmd>BufferLinePickClose<CR>',                desc = 'Close buffer picker' },
-            { '<C-S-p>', '<C-^>',                                       desc = 'Most recent buffer' },
+
             -- Tabs
             { '<M-s>',   function() vim.cmd('tab split') end,           desc = 'New tab' },
+            { '<M-f>',   function() vim.cmd('tab split') end,           desc = 'New tab' },
             { '<M-d>',   function() vim.cmd('tabclose') end,            desc = 'Close tab' },
             { '<M-h>',   function() vim.cmd('tabmove -1') end,          desc = 'Move tab left' },
             { '<M-l>',   function() vim.cmd('tabmove +1') end,          desc = 'Move tab right' },

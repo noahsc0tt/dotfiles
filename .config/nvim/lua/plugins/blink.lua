@@ -29,7 +29,7 @@ return {
             keymap = {
                 preset = 'none',
 
-                ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+                ['<C-d>'] = { 'show_documentation', 'hide_documentation' },
                 ['<C-Esc>'] = { 'hide', 'fallback' },
                 ['<C-c>'] = { 'cancel', 'fallback' },
                 ['<C-f>'] = { 'accept', 'fallback' },
@@ -42,8 +42,8 @@ return {
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'show_and_insert_or_accept_single', 'select_next', 'fallback' },
 
-                ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-                ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+                ['<C-p>'] = { 'scroll_documentation_up', 'fallback' },
+                ['<C-n>'] = { 'scroll_documentation_down', 'fallback' },
 
                 ['<C-S-Space>'] = { 'show_signature', 'hide_signature', 'fallback' },
             },
