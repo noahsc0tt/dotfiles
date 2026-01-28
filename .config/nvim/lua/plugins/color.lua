@@ -8,11 +8,12 @@ return {
             -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
             -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
             -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#24283b", })
+            --
+            -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#24283b", })
 
-            vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#82A1F1" })
-            vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#82A1F1" })
-            vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#af6be0", bold = true })
+            -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#82A1F1" })
+            -- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#af6be0" })
+            vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#82A1F1", bold = false })
 
             -- local transparent_groups = {
             --     "BufferLineFill",

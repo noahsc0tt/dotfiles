@@ -87,7 +87,7 @@ vim.keymap.set({ 'n', 'x' }, 'g_', 'g^', { noremap = true })
 
 -- Splitting and joining lines
 vim.keymap.set("n", "<C-j>", "a<Cr><Esc>k$")
-vim.keymap.set("n", "<C-k>", "J")
+vim.keymap.set("n", "<C-k>", "Jh")
 
 -- Undo and Redo
 vim.keymap.set("n", "U", "<C-r>")
@@ -110,6 +110,8 @@ vim.keymap.set("c", "<C-g>l", "<Right>")
 vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>", { desc = "Disable search highlight" })
 vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>", { desc = "Enable search highlight" })
 vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
+vim.keymap.set("n", "<leader>or", ":Lazy reload ", { desc = "Lazy relaod" })
+vim.keymap.set("n", "<leader>od", "<cmd>bufdo bdelete<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>", { desc = "Edit buffer" })
 vim.keymap.set("n", "<leader>on", "<cmd>enew<CR>", { desc = "New buffer" })
 vim.keymap.set("n", "<leader>ot", "<cmd>term<CR>", { desc = "New terminal" })
@@ -118,6 +120,9 @@ vim.keymap.set("n", "<leader>os", function()
     require('snacks').notify.info("Sourced file")
 end, { desc = "Source file" })
 vim.keymap.set("n", "<leader>oy", ":%y+<CR>", { desc = "Yank whole file to clipboard" })
+
+
+-- z stuff
 vim.keymap.set("n", "z=", function() vim.opt.spell = true; require('snacks').notify.info('Spelling enabled') end, { desc = "Enable spelling" })
 vim.keymap.set("n", "z_", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
 vim.keymap.set("n", "zw", function() vim.opt.wrap = true; require('snacks').notify.info('Wrap enabled') end, { desc = "Enable word wrap" })
@@ -203,6 +208,9 @@ vim.keymap.set("n", "<Del>", "lxh")
 
 vim.keymap.set("n", "<C-S-.>", ">>")
 vim.keymap.set("n", "<C-S-,>", "<<")
+
+
+-- vim.keymap.set("n", "<BS>", function() vim.cmd("q") end, { desc = "Quit" })
 
 -- vim.keymap.set("n", "0", "_")
 -- vim.keymap.set("n", "_", "0")

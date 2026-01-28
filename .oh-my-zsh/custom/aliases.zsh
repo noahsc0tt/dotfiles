@@ -26,7 +26,7 @@ alias frg="rga -F"
 alias erg="rga -P"
 alias rgnc="rga --color=never"
 alias rg.="rga -d 1"
-function rf() {
+function lg() {
 	RG_PREFIX="rga --files-with-matches"
   # FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
     fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
@@ -34,9 +34,9 @@ function rf() {
       --bind "change:reload:$RG_PREFIX {q}" \
       --preview-window="70%:wrap"
 }
-function lg() {
-  sk --ansi -i -c 'rg --color=always --line-number "{}"'
-}
+# function lg() {
+#   sk --ansi -i -c 'rg --color=always --line-number "{}"'
+# }
 
 
 alias ga="git add"
@@ -211,6 +211,12 @@ function li() {
       "$@" | bat
 }
 
+function lai() {
+  lsd -A -l --date=relative --color=always --group-directories-first -1 \
+      --literal --no-symlink --blocks name,date,size,permission --header \
+      "$@" | bat
+}
+
 alias lsc="lsd --color=always --group-directories-first --literal --no-symlink"
 
 function lt() {
@@ -322,6 +328,7 @@ alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
 alias nf='NO_AUTOSESSION=1 nvim "$(tv files)"'
 function nvd(){
   open -a "NeoHub"
+  sleep 0.1
   (
     cd ~/.temp
     neohub --opts --frame buttonless --title-hidden
@@ -604,7 +611,9 @@ alias range="rng"
 
 alias wifi="wifi-wand"
 
-alias json="jo"
+alias jsonout="jo"
+alias jsonin="jid"
+alias jsonin="jless"
 
 alias convert="bitwise"
 
@@ -633,3 +642,7 @@ alias yazi="NO_AUTOSESSION=1 nvim /Users/nscott/.config/yazi/keymap.toml"
 alias iina="/Applications/IINA.app/Contents/MacOS/iina-cli"
 
 alias cargo-up="cargo install-update -a"
+
+alias zshell="zsh -f"
+
+alias tmi="timew"

@@ -1,5 +1,4 @@
 return {
-
     {
         "folke/snacks.nvim",
         enabled = true,
@@ -65,6 +64,7 @@ return {
                         -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         -- { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                         { icon = "󰑕 ", key = "o", desc = "Oil", action = ":Oil", },
+                        { icon = " ", key = "g", desc = "Grug", action = ":GrugFarWithin", },
                         { icon = "󰥌 ", key = "t", desc = "Taskell", action = ":TaskellSearch", },
                         { icon = " ", key = "c", desc = "Calculator", action = ":Nvumi", },
                         { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
@@ -144,7 +144,7 @@ return {
                             return table.concat(t, "/")
                         end)(),
                         section = "terminal",
-                        cmd = "lsd --color=always --group-directories-first -1 --literal --no-symlink",
+                        cmd = "lsd --tree --color=always --group-directories-first -1 --literal --no-symlink",
                         autokey = true,
                         gap = 1,
                         indent = 2,
@@ -247,7 +247,7 @@ return {
                     },
                 },
                 scope = {
-                    enabled = true, -- enable highlighting the current scope
+                    enabled = false, -- enable highlighting the current scope
                     priority = 200,
                     char = "│",
                     underline = false,    -- underline the start of the scope
@@ -1140,7 +1140,7 @@ return {
                 end,
                 desc = "Find Directories",
             },
-            { "<leader>a,", function() require('snacks').picker.files({ cwd = vim.fn.stdpath("config") }) end,                 desc = "Find Config File" },
+            { "<leader>,", function() require('snacks').picker.files({ cwd = vim.fn.stdpath("config") }) end,                 desc = "Find Config File" },
             { "<leader>a.", function() require('snacks').picker.files({ hidden = true, ignored = true, follow = false, }) end, desc = "Find Hidden Files" },
             { "<leader>ag", function() require('snacks').picker.git_files() end,                                               desc = "Find Git Files" },
             -- { "<leader>fp",      function() require('snacks').picker.projects() end,                                desc = "Projects" },

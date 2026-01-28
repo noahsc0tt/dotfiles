@@ -13,7 +13,7 @@ return {
                 ["toml"] = false,
                 ["csv"] = false,
                 ["text"] = false,
-                ["jrnl"] = false,
+                ["journal"] = false,
             },
             panel = {
                 enabled = true,
