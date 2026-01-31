@@ -62,7 +62,7 @@ plugins=(
     fzf-tab
     # web-search
     copybuffer # no clue
-    zsh-autosuggestions
+    # zsh-autosuggestions
     fast-syntax-highlighting
     # history-substring-search
     alias-finder # not sure what this does

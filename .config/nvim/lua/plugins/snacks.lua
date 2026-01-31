@@ -993,13 +993,13 @@ return {
                 },
                 win = { style = "zen" },
                 --- Callback when the window is opened.
-                on_open = function(win)
-                    vim.cmd("DimToggle")
-                end,
-                --- Callback when the window is closed.
-                on_close = function(win)
-                    vim.cmd("DimToggle")
-                end,
+                -- on_open = function(win)
+                --     vim.cmd("DimToggle")
+                -- end,
+                -- --- Callback when the window is closed.
+                -- on_close = function(win)
+                --     vim.cmd("DimToggle")
+                -- end,
                 --- Options for the `require('snacks').zen.zoom()`
                 zoom = {
                     toggles = {},

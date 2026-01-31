@@ -3,7 +3,7 @@
     "theme": "tokyonight_storm",
     "autoupdate": true,
     "keybinds": {},
-    "model": "opencode/glm-4.7-free",
+    "model": "opencode/big-pickle",
     "small_model": "opencode/gpt-5-nano",
     "instructions": [
         "When writing or modifying code, do not add unnecessary comments. Avoid comments that merely restate what the code does, add filler phrases, or inject personality. Comments should only be used when they provide genuine value: explaining non-obvious intent, documenting complex business logic, or clarifying unavoidable workarounds. Let clear code speak for itself."

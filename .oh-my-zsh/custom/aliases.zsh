@@ -26,7 +26,7 @@ alias frg="rga -F"
 alias erg="rga -P"
 alias rgnc="rga --color=never"
 alias rg.="rga -d 1"
-function lg() {
+function s() {
 	RG_PREFIX="rga --files-with-matches"
   # FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
     fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
@@ -38,6 +38,7 @@ function lg() {
 #   sk --ansi -i -c 'rg --color=always --line-number "{}"'
 # }
 
+# alias lg='k'
 
 alias ga="git add"
 alias gA="git add -A"
@@ -48,6 +49,7 @@ alias gca="git add -A && git commit --verbose"
 alias gch="git checkout"
 alias gl="git log --oneline --graph --decorate"
 alias glv="git log --graph --decorate"
+alias gls="git ls-files"
 alias gpsu='git push --set-upstream origin $(git_current_branch)'
 alias gpl="git pull"
 alias grm="git rm --cached"
@@ -220,11 +222,11 @@ function lai() {
 alias lsc="lsd --color=always --group-directories-first --literal --no-symlink"
 
 function lt() {
-  lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
+  lsd --tree --color=always --group-directories-first --literal --no-symlink "$@" | bat
 }
 
 function lat() {
-  lsd -A --tree --color=always --group-directories-first --literal --no-symlink "$@" | less -R | bat
+  lsd -A --tree --color=always --group-directories-first --literal --no-symlink "$@" | bat
 }
 
 alias ghcp="gh copilot"
@@ -272,7 +274,7 @@ alias cpd="cp -R"
 alias cph="copypath"
 alias cpf="copyfile"
 function cpy() {
-  tee >(pbcopy)
+  tee >(pbcopy) 2>(pbcopy)
 }
 alias pst="pbpaste"
 
@@ -378,7 +380,7 @@ function pf() {
     h -i fail pass
 }
 #alias h="tv zsh-history"
-alias h='print -z "$(tv zsh-history)"'
+alias ch='print -z "$(tv zsh-history)"'
 
 alias osa="osascript -e"
 
@@ -568,8 +570,13 @@ alias mdtree="gtree"
 
 alias math="mdlt"
 
-alias cheat="navi"
-
+# alias cheat="navi"
+function cheat() {
+  local selection
+  selection=$(curl -s 'cheat.sh/:list' | fzf --preview="curl -s 'cheat.sh/{}' | bat --style=rule,snip")
+  [[ -n "$selection" ]] && curl -s "cheat.sh/$selection" | bat --style=rule,snip
+}
+  
 alias count="scc"
 
 alias fu="find-up --all"
@@ -582,13 +589,9 @@ alias pomo="arttime -k timer.pomodoro4etc"
 
 alias clean="rm ~/.zcompdump* && source ~/.zshrc && exec zsh"
 
-alias ddg="ddgr"
-
 function how() {
   how2 "$@" 2>/dev/null
 }
-
-alias gls="k -h"
 
 alias oil="edir -t -i -a -g -X"
 
@@ -646,3 +649,7 @@ alias cargo-up="cargo install-update -a"
 alias zshell="zsh -f"
 
 alias tmi="timew"
+
+function ddg() {
+  ddg "$@" | sed 's/^.*|//' 's/|.*$//' | fzf --preview 'echo {} | xargs -I % sh -c "ddgr -j 1 %"'
+}

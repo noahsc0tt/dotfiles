@@ -225,9 +225,9 @@ keybinds clear-defaults=true {
     shared_except "locked" "session" {
         bind "Ctrl z" { SwitchToMode "session"; }
     }
-    // shared_except "locked" "scroll" "search" {
-    //     bind "Ctrl /" { SwitchToMode "scroll"; }
-    // }
+    shared_except "locked" "scroll" "search" {
+        bind "Ctrl /" { SwitchToMode "scroll"; }
+    }
     // shared_except "locked" "tab" {
     //     bind "Ctrl t" { SwitchToMode "tab"; }
     // }

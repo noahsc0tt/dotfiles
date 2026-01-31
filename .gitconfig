@@ -17,6 +17,7 @@
 [core]
 	editor = nvim
     pager = delta
+	excludesfile = /Users/nscott/.gitignore_global
 [pull]
 	rebase = true
 [interactive]

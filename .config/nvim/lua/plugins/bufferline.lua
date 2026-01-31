@@ -33,9 +33,9 @@ return {
             },
         },
         keys = {
-            { 'J',   function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
+            -- { '<C-j>',   function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
             { '<C-S-j>',   function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
-            { 'K',   function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },
+            -- { '<C-k>',   function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },
             { '<C-S-k>',   function() require('bufferline').cycle(-1) end, desc = 'Prev buffer' },
             { '<C-S-Space>', '<C-^>',                                       desc = 'Most recent buffer' },
             { '<C-S-d>',   function() require('snacks').bufdelete() end,   desc = 'Delete buffer' },
