@@ -15,7 +15,7 @@
 	default = branch
 	defaultBranch = main
 [core]
-	editor = nvim
+    editor = NO_AUTOSESSION=1 nvim
     pager = delta
 	excludesfile = /Users/nscott/.gitignore_global
 [pull]

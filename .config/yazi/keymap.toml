@@ -63,7 +63,6 @@ keymap = [
 
 	# Operation
 	{ on = "<Enter>",         run = "open",                        desc = "Open selected files" },
-	{ on = "<Space>",         run = "open",                        desc = "Open selected files" },
 	{ on = "o",         run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "y",         run = "yank --cut",                  desc = "Move selected files" },
 { on = "Y",         run = "yank",                        desc = "Yank selected files" },
