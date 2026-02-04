@@ -41,7 +41,7 @@ vim.keymap.set({ "n", "x" }, "<leader>P", "\"+P")
 -- Writing and quitting
 vim.keymap.set("n", "<leader>w", function()
     if vim.bo.buftype == "" and vim.bo.modifiable and vim.bo.modified and not vim.bo.readonly then
-        vim.cmd("w")
+        vim.cmd("wa")
     end
 end)
 vim.keymap.set("n", "<leader>W", function()

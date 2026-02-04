@@ -593,7 +593,7 @@ function how() {
   how2 "$@" 2>/dev/null
 }
 
-alias oil="edir -t -i -a -g -X"
+alias oil="edir -t -i -a -X"
 
 alias bar="spark"
 
