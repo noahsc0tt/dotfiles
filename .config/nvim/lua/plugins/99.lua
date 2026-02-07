@@ -12,7 +12,7 @@ return {
             _99.setup({
                 logger = {
                     level = _99.DEBUG,
-                    path = "/tmp/" .. basename .. ".99.debug",
+                    path = "/Users/nscott/.temp/" .. basename .. ".99.debug",
                     print_on_error = true,
                 },
 
@@ -43,7 +43,7 @@ return {
 
                     --- What autocomplete do you use.  We currently only
                     --- support cmp right now
-                    source = "cmp",
+                    source = "none",
                 },
 
                 --- WARNING: if you change cwd then this is likely broken

@@ -200,3 +200,5 @@ export MANPATH=/Users/nscott/.local/share/man:$MANPATH
 # source ~/.aliasme/aliasme.sh
 
 source ~/.config/up/up.sh
+
+# setopt nocorrect

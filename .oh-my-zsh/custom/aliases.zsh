@@ -310,7 +310,7 @@ alias hn="scutil --get LocalHostName"
 
 alias meth="sudo pmset -a disablesleep 1"
 alias melatonin="sudo pmset -a disablesleep 0"
-alias rehab="sudo pmset -g assertions | bat"
+alias rehab="sudo pmset -g assertions | rg '^\s+\w+\s+\d$'"
 
 alias gz="lazygit"
 
@@ -624,8 +624,6 @@ alias sudoku="nudoku"
 
 alias o="ok 1"
 
-alias highlight="h"
-
 alias chess="chess-tui -e /opt/homebrew/bin/stockfish"
 
 alias maps="mapscii"
@@ -650,6 +648,9 @@ alias zshell="zsh -f"
 
 alias tmi="timew"
 
-function ddg() {
-  ddg "$@" | sed 's/^.*|//' 's/|.*$//' | fzf --preview 'echo {} | xargs -I % sh -c "ddgr -j 1 %"'
+function lock() {
+  age -p -o "$1.lock" "$1"
+}
+function unlock() {
+  age -d "$1" | less
 }
