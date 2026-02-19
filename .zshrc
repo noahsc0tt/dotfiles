@@ -5,7 +5,7 @@ export EDITOR="env NO_AUTOSESSION=1 nvim"
 export VISUAL="env NO_AUTOSESSION=1 nvim"
 
 export MANCOLOR
-export MANPAGER="bat --style=rule,snip"
+export MANPAGER="less -R"
 
 export PATH="/opt/homebrew/opt:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
@@ -202,3 +202,7 @@ export MANPATH=/Users/nscott/.local/share/man:$MANPATH
 source ~/.config/up/up.sh
 
 # setopt nocorrect
+
+function zvm_after_init() {
+  zvm_bindkey viins '^H' backward-delete-word
+}

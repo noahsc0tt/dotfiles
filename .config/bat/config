@@ -1,4 +1,5 @@
---color=always
 --tabs=4
 --style=header-filename,rule,snip
+--nonprintable-notation=unicode
+--force-colorization
 --set-terminal-title

@@ -35,7 +35,7 @@ return {
                     -- ['<leader>oi'] = { 'open_input' },      -- Opens and focuses on input window on insert mode
                     ['<leader>on'] = { 'open_input_new_session' }, -- Opens and focuses on input window on insert mode. Creates a new session
                     -- ['<leader>oo'] = { 'open_output' },     -- Opens and focuses on output window
-                    ['<leader>oe'] = { 'toggle_focus' },    -- Toggle focus between opencode and last window
+                    ['<leader>oj'] = { 'toggle_focus' },    -- Toggle focus between opencode and last window
                     ['<leader>ot'] = { 'timeline' },        -- Display timeline picker to navigate/undo/redo/fork messages
                     ['<leader>oq'] = { 'close' },           -- Close UI windows
                     -- ['<leader>os'] = { 'select_session' },  -- Select and load a opencode session

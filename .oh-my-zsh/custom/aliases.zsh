@@ -62,10 +62,27 @@ alias gusa="git restore --staged ."
 alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias gin="git init"
 alias gst="git stash"
+
+alias gwtl="git worktree list"
+alias gwtp="git worktree prune"
+alias gwtr="git worktree repair"
+function gswt() {
+  cd "$(git worktree list \
+    | awk '{ gsub(/[\[\]]/, "", $3); print $3 "\t" $1 }' \
+    | fzf --delimiter='\t' --with-nth=1 --preview-window hidden\
+    | cut -f2
+  )"
+}
+alias gwts="gswt"
+
 function gs() {
   local root
   root=$(git rev-parse --show-toplevel)
-  git -C "$root" status -sb --renames --find-renames
+  if [ -n "$1" ]; then
+    git -C "$root" show --name-only --pretty=oneline "$1"
+  else
+    git -C "$root" status -sb --renames --find-renames
+  fi
 }
 function gsv() {
   local root
@@ -316,7 +333,7 @@ alias gz="lazygit"
 
 alias dirhistory="dirs -v"
 function dir () {
-	if [[ -n $1 ]] then
+	if [[ -n $1 ]]; then
 		dirs "$@"
 	else
 		dirs -v | head -n 10
@@ -383,9 +400,6 @@ function pf() {
 alias ch='print -z "$(tv zsh-history)"'
 
 alias osa="osascript -e"
-
-alias quit="kill"
-alias k="fkill"
 
 alias np="nvimpager"
 
@@ -587,7 +601,7 @@ function pretty() {
 
 alias pomo="arttime -k timer.pomodoro4etc"
 
-alias clean="rm ~/.zcompdump* && source ~/.zshrc && exec zsh"
+alias clean="yes | rm ~/.zcompdump* && source ~/.zshrc && exec zsh"
 
 function how() {
   how2 "$@" 2>/dev/null
@@ -654,3 +668,11 @@ function lock() {
 function unlock() {
   age -d "$1" | less
 }
+
+alias ni="npm install"
+alias nrd="npm run dev"
+alias nrb="npm run build"
+alias nrl="npm run lint"
+alias nrt="npm run test"
+
+alias tc="typst compile"

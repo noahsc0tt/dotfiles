@@ -58,6 +58,7 @@ return {
         "HakonHarnes/img-clip.nvim",
         lazy = true,
         event = "VeryLazy",
+        ft = { "markdown", "typst", "text" },
         opts = {
             default = {
                 -- file and directory options

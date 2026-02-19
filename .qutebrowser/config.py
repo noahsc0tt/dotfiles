@@ -519,9 +519,12 @@ config.bind('<Ctrl-e>', 'cmd-edit', mode='command')
 
 config.bind(',d', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('gr', 'spawn --userscript readability-js')
-config.bind('Y', 'open !yt')
+
 config.bind('gh', 'open https://github.com/noahsc0tt')
 config.bind('gH', 'open -t https://github.com/noahsc0tt')
+config.bind('gy', 'open https://www.youtube.com/')
+config.bind('gY', 'open -t https://www.youtube.com/')
+
 config.bind('I', 'spawn sh -c "open -a IINA \\"{url}\\""')
 config.bind(',l', 'spawn --userscript qute-lastpass')
 
