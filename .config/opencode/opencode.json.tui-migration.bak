@@ -1,6 +1,8 @@
 {
     "$schema": "https://opencode.ai/config.json",
+    "theme": "tokyonight_storm",
     "autoupdate": true,
+    "keybinds": {},
     "model": "opencode/minimax-m2.5-free",
     "small_model": "opencode/gpt-5-nano",
     "instructions": [

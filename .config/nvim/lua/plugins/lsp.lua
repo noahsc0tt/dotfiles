@@ -106,8 +106,8 @@ return {
         keys = {
             -- Diagnostic actions
             -- { "<leader>ld", vim.diagnostic.setloclist,   mode = "n", desc = "Open diagnostics" },
-            { "gp",         vim.diagnostic.goto_prev,                                        mode = "n",                    desc = "Previous diagnostic" },
-            { "gn",         vim.diagnostic.goto_next,                                        mode = "n",                    desc = "Next diagnostic" },
+            { "gp",         function() vim.diagnostic.jump({ count = -1 }) end,                         mode = "n",                    desc = "Previous diagnostic" },
+            { "gn",         function() vim.diagnostic.jump({ count = 1 }) end,                         mode = "n",                    desc = "Next diagnostic" },
             { "<leader>ld", vim.diagnostic.open_float,                                       mode = "n",                    desc = "Open diagnostic float" },
             { "gd",         function() require('snacks').picker.lsp_definitions() end,       desc = "Goto Definition" },
             { "gD",         function() require('snacks').picker.lsp_declarations() end,      desc = "Goto Declaration" },
@@ -128,7 +128,7 @@ return {
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
             { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
             { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
-            { "<C-k>", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
+            { "<leader>k", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
             { "<M-C-S-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)

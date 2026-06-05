@@ -63,17 +63,27 @@ alias gr='cd "$(git rev-parse --show-toplevel || echo .)"'
 alias gin="git init"
 alias gst="git stash"
 
-alias gwtl="git worktree list"
-alias gwtp="git worktree prune"
-alias gwtr="git worktree repair"
-function gswt() {
-  cd "$(git worktree list \
-    | awk '{ gsub(/[\[\]]/, "", $3); print $3 "\t" $1 }' \
-    | fzf --delimiter='\t' --with-nth=1 --preview-window hidden\
-    | cut -f2
-  )"
-}
-alias gwts="gswt"
+alias wtl="wt list"
+alias wta="wt switch -c"
+alias wts="wt switch"
+alias wtr="wt remove"
+alias wtrf="wt remove --force"
+alias wtrd="wt remove -D"
+alias wtm="wt merge"
+
+alias gclb="git clone --bare"
+
+# alias gwtl="git worktree list"
+# alias gwtp="git worktree prune"
+# alias gwtr="git worktree repair"
+# function gswt() {
+#   cd "$(git worktree list \
+#     | awk '{ gsub(/[\[\]]/, "", $3); print $3 "\t" $1 }' \
+#     | fzf --delimiter='\t' --with-nth=1 --preview-window hidden\
+#     | cut -f2
+#   )"
+# }
+# alias gwts="gswt"
 
 function gs() {
   local root
@@ -219,6 +229,11 @@ function l() {
   lsd --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
 }
 
+unalias ls
+function ls() {
+  lsd --color=always --group-directories-first --literal --no-symlink "$@"
+}
+
 unalias la
 function la() {
   lsd -A --color=always --group-directories-first -1 --literal --no-symlink "$@" | bat
@@ -291,7 +306,7 @@ alias cpd="cp -R"
 alias cph="copypath"
 alias cpf="copyfile"
 function cpy() {
-  tee >(pbcopy) 2>(pbcopy)
+  tee >(pbcopy) | bat -l sh
 }
 alias pst="pbpaste"
 
@@ -320,7 +335,6 @@ function raw() {
     echo "Downloaded $filename"
 }
 
-
 alias sshturn="sudo systemsetup -setremotelogin"
 alias sshcheck="sudo systemsetup -getremotelogin"
 alias hn="scutil --get LocalHostName"
@@ -344,14 +358,10 @@ alias v="vim"
 alias n="nvim"
 alias nv="NO_AUTOSESSION=1 nvim"
 alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
-alias nf='NO_AUTOSESSION=1 nvim "$(tv files)"'
+alias nf='NO_AUTOSESSION=1 nvim "$(fzf)"'
 function nvd(){
-  open -a "NeoHub"
-  sleep 0.1
-  (
     cd ~/.temp
     neohub --opts --frame buttonless --title-hidden
-  )
 }
 
 alias fzn="fzf --preview-window hidden"
@@ -365,7 +375,7 @@ function dh() {
   cd "$(dirs -pl | tv -p 'lsd --color=always --group-directories-first -1 --literal --no-symlink {} || ls --color=always {}')" || return
 }
 
-alias f="tv files"
+alias F="fzf"
 alias fa="tv alias"
 alias d="tv dirs"
 
@@ -403,7 +413,8 @@ alias osa="osascript -e"
 
 alias np="nvimpager"
 
-alias cl="printf '\033[H\033[J'"
+#alias cl="printf '\033[H\033[J'"
+alias cl="cd ~; clear"
 alias tp="tput reset"
 
 alias oc="opencode"
@@ -533,7 +544,7 @@ alias snake="sssnake -m normal"
 alias sssnake="sssnake -m screensaver"
 
 alias ig="instagram chat start"
-alias whatsapp="nchat"
+alias whats="nchat"
 
 function typing() {
   if [ $# -eq 0 ]; then
@@ -636,7 +647,7 @@ alias convert="bitwise"
 
 alias sudoku="nudoku"
 
-alias o="ok 1"
+alias o="open"
 
 alias chess="chess-tui -e /opt/homebrew/bin/stockfish"
 
@@ -676,3 +687,23 @@ alias nrl="npm run lint"
 alias nrt="npm run test"
 
 alias tc="typst compile"
+alias gbls="git branch -a"
+
+alias op="open"
+alias opa="open -a"
+
+alias ghd="gh dash"
+
+alias f="fg"
+
+alias p="bat --paging=always"
+
+alias fey="feynman"
+
+alias track="python3 ~/Documents/mh/track/track.py"
+
+alias def="rdict search"
+
+alias sql="fselect"
+
+alias wiki="wiki-tui"

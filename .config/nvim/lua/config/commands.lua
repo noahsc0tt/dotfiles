@@ -24,22 +24,25 @@ end, {})
 vim.api.nvim_create_user_command("TaskellSearch", function()
     require("snacks").picker.files({
         dirs = { vim.fn.expand("/Users/nscott/.scratch/taskell") }, -- search only in this folder
-        hidden = false,                                      -- show hidden files?
-        ignored = false,                                     -- respect .gitignore?
-        follow = false,                                      -- follow symlinks
-        ft = "md",                                           -- only Markdown files
+        hidden = false,                                             -- show hidden files?
+        ignored = false,                                            -- respect .gitignore?
+        follow = false,                                             -- follow symlinks
+        ft = "md",                                                  -- only Markdown files
         confirm = function(picker, item)
             picker:close()
             if item then
                 vim.schedule(function()
                     local path = vim.fn.fnameescape(type(item) == "string" and item or item.path or item.text)
-                    require('snacks').terminal("taskell " .. path, { win = { layout = { fullscreen = true } } })
+                    require('snacks').terminal.open("taskell " .. path, { win = { layout = { fullscreen = true } } })
                 end)
             end
         end,
     })
 end, {})
 
+vim.api.nvim_create_user_command("Dash", function()
+    require('snacks').terminal.open("gh dash", { win = { layout = { fullscreen = true } } })
+end, {})
 
 -- Autocommands
 

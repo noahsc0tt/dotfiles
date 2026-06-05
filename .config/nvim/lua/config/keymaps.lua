@@ -1,13 +1,3 @@
--- FREE:
--- <S-Cr>
--- <S-space>
--- <BS>
--- <S-BS>
--- <Del>
--- <Tab>
--- <S-Tab>
--- 0
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -49,7 +39,7 @@ vim.keymap.set("n", "<leader>W", function()
         vim.cmd("wq")
     end
 end)
-vim.keymap.set("n", "<leader>q", function()
+vim.keymap.set("n", "<leader>d", function()
     vim.cmd("q")
 end)
 vim.keymap.set("n", "<C-q>", function()
@@ -197,12 +187,9 @@ vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 
 vim.keymap.set("i", "<C-,>", "<C-d>", { desc = "Delete indent" })
 vim.keymap.set("i", "<C-.>", "<C-t>", { desc = "Indent" })
-vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word" })
+vim.keymap.set({"i","c"}, "<C-BS>", "<C-w>", { desc = "Delete word" })
 vim.keymap.set("i", "<C-s>", "<Esc><C-w>", { desc = "Window" })
 vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
-
-vim.keymap.set("n", "f", "<C-f>", { desc = "Flash" })
-vim.keymap.set("n", "<C-f>", "f", { desc = "Forward in-line search" })
 
 vim.keymap.set("n", "<Del>", "lxh")
 
@@ -214,3 +201,5 @@ vim.keymap.set("n", "<C-S-,>", "<<")
 
 -- vim.keymap.set("n", "0", "_")
 -- vim.keymap.set("n", "_", "0")
+
+vim.keymap.set({"n", "v", "i"}, "<C-S-v>", "<C-v>")

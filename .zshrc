@@ -1,11 +1,25 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;31m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[1;33;44m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[4;1;32m'
+export LESS_TERMCAP_mr=$'\e[7m'
+export LESS_TERMCAP_mh=$'\e[2m'
+export LESS_TERMCAP_ZN=$'\e[74m'
+export LESS_TERMCAP_ZV=$'\e[75m'
+export LESS_TERMCAP_ZO=$'\e[73m'
+export LESS_TERMCAP_ZW=$'\e[75m'
+export MANPAGER='less'
 export EDITOR="env NO_AUTOSESSION=1 nvim"
 export VISUAL="env NO_AUTOSESSION=1 nvim"
 
 export MANCOLOR
-export MANPAGER="less -R"
+export MANPAGER="less"
 
 export PATH="/opt/homebrew/opt:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
@@ -15,6 +29,8 @@ export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 
 export PATH="/Users/nscott/.local/bin:$PATH"
+
+export PATH="/Users/nscott/.mint/bin:$PATH"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -109,7 +125,7 @@ alt-u:preview-half-page-up,\
 alt-d:preview-half-page-down,\
 alt-up:preview-top,\
 alt-down:preview-bottom,\
-alt-enter:become(nvim {+})' \
+alt-f:become(nvim {+})' \
 --preview '
 if [[ -d {} ]]; then
     lsd --color=always --group-directories-first -1 --literal --no-symlink {};
@@ -130,7 +146,7 @@ autoload -U colors && colors
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.sk.zsh ] && source ~/.sk.zsh
+# [ -f ~/.sk.zsh ] && source ~/.sk.zsh
 
 source <(cod init $$ zsh)
 
@@ -206,3 +222,5 @@ source ~/.config/up/up.sh
 function zvm_after_init() {
   zvm_bindkey viins '^H' backward-delete-word
 }
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

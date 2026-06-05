@@ -66,7 +66,6 @@ return {
                 keyword = { range = 'full' },
                 documentation = { auto_show = false },
                 menu = {
-                    -- Don't automatically show the completion menu
                     auto_show = true,
                 },
             },
@@ -84,7 +83,7 @@ return {
             -- See the fuzzy documentation for more information
             fuzzy = { implementation = "prefer_rust_with_warning" },
 
-            signature = { enabled = true },
+            signature = { enabled = false },
 
             cmdline = {
                 keymap = { preset = 'inherit' },

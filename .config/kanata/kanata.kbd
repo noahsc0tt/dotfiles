@@ -86,17 +86,18 @@
     word (cmd open -a "Microsoft Word")
     plaintext (cmd open -a "Plain Text Editor")
     timetable (cmd open -a "UCL Timetable")
+    messages (cmd open -a "Messages")
+    utm (cmd open -a "UTM Virtual Machine")
     min (cmd open -a "Min")
     intellij (cmd open -a "IntelliJ IDEA Community Edition")
 )
 
 
 (defalias
-    hypmod (multi lctl lalt lmet lsft)
-    launchmod (multi lctl lmet lsft)
+    hyperkey (multi lctl lalt lmet lsft)
     winmod (multi lalt lmet lsft)
 
-    launch (tap-hold-press $tap-time $hold-time C-c @launchmod)
+    launch (tap-hold-press $tap-time $hold-time (multi @hyperkey `) @hyperkey)
     shift (tap-hold-press $tap-time 250 bspc lsft)
     shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
@@ -107,7 +108,7 @@
     win-nav (tap-hold-press $tap-time $hold-time bspc (multi @winmod (layer-toggle window)))
     media-nav (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
-    apply (tap-hold-press $tap-time $hold-time (multi @launchmod nubs) (layer-toggle app))
+    apply (tap-hold-press $tap-time $hold-time (multi @hyperkey nubs) (layer-toggle app))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
     medialy (tap-hold-press $tap-time $hold-time caps (layer-toggle media))
     numly (tap-hold-press $tap-time $hold-time ret (layer-toggle num))
@@ -145,10 +146,10 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
 (deflayer app
   _    _   _   _   _   _   _   _   _   _   _  _  _
   _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  (multi @winmod tab)    (multi lmet q)    (multi lmet w)    @mail    @finder    @tor    @youtube    @timetable    @iterm    @outlook    @min    _    _
-  _   @alacritty    @settings    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @iina    @shift    @apply    \ ret  
-  _     _   _   @plaintext    @craft    @vivaldi    @notebook    @nvim    @marta    @settings    .    /    up   rsft
-  _   _  _ @win-nav           (multi @launchmod spc)         @eqmac _ _    _    _
+  (multi @winmod tab)    (multi rmet ralt rctl q)    (multi rmet ralt rctl w)    @mail    @finder    @marta    @youtube    @utm    @iterm    @outlook    @min    _    _
+  _   @alacritty    @sioyek    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @iina    (multi lmet q)    @apply    \ ret  
+  _     _   _   @plaintext    @craft    @vivaldi    @tor    @nvim    @messages    @settings    .    /    up   rsft
+  _   _  _ @win-nav           _         @eqmac _ _    _    _
 )
 
 (deflayermap window
@@ -168,11 +169,6 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     . .
 )
 
-(defalias
-    mallttab (multi @winmod [)
-    malttab (multi @winmod ])
-)
-
 (deflayermap nav
     h left
     j down
@@ -183,9 +179,6 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     b @mback
     p @mbtab
     n @mftab
-
-    f @malttab
-    d @mallttab
 
     ; @media-nav
 )
@@ -239,6 +232,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   l 9
   ; 0
   lmet _
+  caps bspc
 )
 
 

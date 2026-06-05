@@ -19,9 +19,9 @@
     pager = delta
 	excludesfile = /Users/nscott/.gitignore_global
 [pull]
-	rebase = true
+	rebase = false
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = diffnav
 [delta]
     features = tokyonight_storm
     navigate = true  # use n and N to move between diff sections
@@ -33,3 +33,7 @@
 	protocol = ssh
 [mergetool]
 	prompt = false
+[pager]
+	diff = delta
+; [remote "origin"]
+	; fetch = +refs/heads/*:refs/remotes/origin/*

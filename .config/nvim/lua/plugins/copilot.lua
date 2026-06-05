@@ -6,7 +6,6 @@ return {
 
         opts = {
             filetypes = {
-                ["TelescopePrompt"] = false,
                 ["markdown"] = false,
                 ["typst"] = false,
                 ["yaml"] = false,
@@ -32,7 +31,7 @@ return {
             },
             suggestion = {
                 enabled = true,
-                auto_trigger = true,
+                auto_trigger = false,
                 hide_during_completion = true,
                 debounce = 75,
                 trigger_on_accept = true,

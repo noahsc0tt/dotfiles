@@ -7,7 +7,7 @@ opts = {
     -- choose between "single", "rounded", "bold" and "double".
     -- Or pass a table like this: { "─", "│", "┌", "┐", "└", "┘" },
     border = "bold",
-    excluded_ft = { "Lazy", "TelescopePrompt", "mason" },
+    excluded_ft = { "Lazy", "mason" },
     highlight = nil, -- nil|string|function. See the docs's Highlights section
     animate = {
         enabled = false, -- false to disable, or choose a option below (e.g. "shift") and set option for it if needed

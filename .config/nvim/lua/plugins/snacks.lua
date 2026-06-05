@@ -65,6 +65,7 @@ return {
                         -- { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                         { icon = "󰑕 ", key = "o", desc = "Oil", action = ":Oil", },
                         { icon = " ", key = "g", desc = "Grug", action = ":GrugFarWithin", },
+                        { icon = " ", key = "h", desc = "GitHub", action = ":Dash", },
                         { icon = "󰥌 ", key = "t", desc = "Taskell", action = ":TaskellSearch", },
                         { icon = " ", key = "c", desc = "Calculator", action = ":Nvumi", },
                         { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
@@ -132,27 +133,27 @@ return {
                     --     height = 5,
                     --     padding = 3,
                     -- },
-                    {
-                        pane = 1,
-                        icon = " ",
-                        title = (function()
-                            local p = vim.fn.system("pwd"):gsub("\n", "")
-                            local t = {}
-                            for i = 1, 3 do
-                                t[4 - i] = vim.fs.basename(p); p = vim.fs.dirname(p)
-                            end
-                            return table.concat(t, "/")
-                        end)(),
-                        section = "terminal",
-                        cmd = "lsd --tree --color=always --group-directories-first -1 --literal --no-symlink",
-                        autokey = true,
-                        gap = 1,
-                        indent = 2,
-                        padding = 1,
-                        hl_current_line = false
-                    },
+                    -- {
+                    --     pane = 1,
+                    --     icon = " ",
+                    --     title = (function()
+                    --         local p = vim.fn.system("pwd"):gsub("\n", "")
+                    --         local t = {}
+                    --         for i = 1, 3 do
+                    --             t[4 - i] = vim.fs.basename(p); p = vim.fs.dirname(p)
+                    --         end
+                    --         return table.concat(t, "/")
+                    --     end)(),
+                    --     section = "terminal",
+                    --     cmd = "lsd --tree --color=always --group-directories-first -1 --literal --no-symlink",
+                    --     autokey = true,
+                    --     gap = 1,
+                    --     indent = 2,
+                    --     padding = 1,
+                    --     hl_current_line = false
+                    -- },
 
-                    { pane = 2, section = "keys", gap = 1, padding = 1, hl_current_line = false },
+                    { section = "keys", gap = 1, padding = 1, hl_current_line = false },
                     -- { pane = 1, icon = "󰪻 ", title = "Recent Working Directory Files", section = "recent_files", cwd = true, indent = 2, padding = 1, hl_current_line = false },
                     -- { pane = 1, icon = "󱋢 ", title = "Recent Global Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
 
@@ -175,7 +176,7 @@ return {
             },
             dim = {
                 scope = {
-                    min_size = 5,
+                    min_size = 10,
                     max_size = 20,
                     siblings = true,
                 },
@@ -884,6 +885,7 @@ return {
                                 end,
                                 desc = "Source buffer",
                                 mode = { "n", "x" },
+                                 
                             },
                         },
                     },
@@ -1095,10 +1097,11 @@ return {
             { "<leader>gz", function() require('snacks').lazygit.open() end,   desc = "Lazygit" },
 
             -- lsp reference jumping
-            { "<M-S-k>",    function() require('snacks').words.jump(-1) end,   desc = "Previous LSP Reference" },
-            { "<M-S-j>",    function() require('snacks').words.jump() end,     desc = "Next LSP Reference" },
+            { "<C-k>",    function() require('snacks').words.jump(-1) end,   desc = "Previous LSP Reference" },
+            { "<C-j>",    function() require('snacks').words.jump() end,     desc = "Next LSP Reference" },
 
-            { "<C-S-f>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
+            { "<M-f>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
+            { "<M-a>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
 
             --            -- Top Pickers & Explorer
             { "<leader>aF", function() require('snacks').picker.smart() end,   desc = "Smart Find Files" },

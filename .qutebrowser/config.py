@@ -1,5 +1,4 @@
 # type: ignore
-# userscripts in ~/Library/Application Support/qutebrowser/userscripts/
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Scheme name: 0x96f
@@ -319,6 +318,10 @@ config.load_autoconfig(False)
 
 c.content.pdfjs = False
 
+# c.messages.timeout = 0
+config.bind('<Esc>', 'clear-messages', mode='normal')
+config.bind('<Esc>', 'download-clear', mode='normal')
+
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
 # including IndexedDB, DOM storage, filesystem API, service workers, and
@@ -371,6 +374,8 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 # read from JavaScript is always the global value.
 # Type: String
 config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
+
+c.content.javascript.clipboard = "access"
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -485,7 +490,14 @@ c.fonts.web.family.fixed = 'JetBrainsMonoNL Nerd Font Mono'
 c.fonts.web.family.sans_serif = 'Cantarell'
 c.fonts.default_size = "14px"
 
-c.editor.command = [ "/opt/homebrew/bin/neovide", "--frame", "buttonless", "--title-hidden", "{file}" ]
+c.editor.command = [
+    "env",
+    "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
+    "/opt/homebrew/bin/neovide",
+    "--frame", "buttonless",
+    "--title-hidden",
+    "{file}"
+]
 
 # Bindings for normal mode
 config.bind('<Ctrl-c>', 'clear-keychain ;; search')
@@ -493,10 +505,10 @@ config.bind('<Ctrl-c>', 'clear-keychain ;; search')
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
 
-config.bind('C', 'tab-clone')
+config.bind('c', 'tab-clone')
 
-config.bind('sh', 'history')
-config.bind('sH', 'open -t qute://history/')
+config.bind('gs', 'history')
+config.bind('gS', 'open -t qute://history/')
 
 config.bind('H', 'tab-move -')
 config.bind('L', 'tab-move +')
@@ -505,8 +517,11 @@ config.bind('h', 'back')
 config.bind('l', 'forward')
 
 config.bind('W', 'open -w')
-config.bind('Q', 'q')
-config.bind('E', 'wqa')
+config.bind('q', 'q')
+config.bind('D', 'tab-only')
+config.bind('e', 'wqa')
+
+config.bind('Q', 'macro-record')
 
 config.bind('<Ctrl-d>', 'scroll-page 0 0.5')
 config.bind('<Ctrl-u>', 'scroll-page 0 -0.5')
@@ -517,6 +532,8 @@ config.bind('<Ctrl-e>', 'edit-text', mode='insert')
 config.bind('<Ctrl-e>', 'edit-url', mode='normal')
 config.bind('<Ctrl-e>', 'cmd-edit', mode='command')
 
+config.bind('s', 'hint all tab-fg', mode='normal')
+
 config.bind(',d', 'config-cycle colors.webpage.darkmode.enabled')
 config.bind('gr', 'spawn --userscript readability-js')
 
@@ -524,6 +541,10 @@ config.bind('gh', 'open https://github.com/noahsc0tt')
 config.bind('gH', 'open -t https://github.com/noahsc0tt')
 config.bind('gy', 'open https://www.youtube.com/')
 config.bind('gY', 'open -t https://www.youtube.com/')
+config.bind('gt', 'open https://timetable.ucl.ac.uk/my-timetable')
+config.bind('gT', 'open -t https://timetable.ucl.ac.uk/my-timetable')
+config.bind('gd', 'open http://localhost:5173/')
+config.bind('gD', 'open -t http://localhost:5173/')
 
 config.bind('I', 'spawn sh -c "open -a IINA \\"{url}\\""')
 config.bind(',l', 'spawn --userscript qute-lastpass')
@@ -535,18 +556,18 @@ config.bind('gw', 'tab-give')
 config.bind('go', 'scroll-to-perc 0')
 config.bind('<Ctrl-f>', 'fullscreen')
 config.bind(',s', 'config-source')
-config.bind(',b', 'cmd-set-text :bookmark-del ')
+config.bind(',b', 'cmd-set-text -s :bookmark-del ')
 
 config.bind('`', 'mode-enter jump_mark')
 config.bind('m', 'set-mark')
 
-config.bind('<Ctrl-m>', 'cmd-set-text :quickmark-add ')
-config.bind('<Ctrl-b>', 'cmd-set-text :quickmark-load ')
-config.bind('<Ctrl-Shift-b>', 'cmd-set-text :quickmark-load -t ')
+config.bind('<Ctrl-m>', 'cmd-set-text -s :quickmark-add ')
+config.bind('<Ctrl-b>', 'cmd-set-text -s :quickmark-load ')
+config.bind('<Ctrl-Shift-b>', 'cmd-set-text -s :quickmark-load -t ')
 
-config.bind('M', 'cmd-set-text :bookmark-add ')
-config.bind('b', 'cmd-set-text :bookmark-load ')
-config.bind('B', 'cmd-set-text :bookmark-load -t ')
+config.bind('M', 'cmd-set-text -s :bookmark-add ')
+config.bind('b', 'cmd-set-text -s :bookmark-load ')
+config.bind('B', 'cmd-set-text -s :bookmark-load -t ')
 
 config.bind('<Ctrl-e>', 'prompt-fileselect-external', mode='prompt')
 config.bind('<Ctrl-Backspace>', 'rl-filename-rubout', mode='prompt')
@@ -558,11 +579,27 @@ config.bind('<Ctrl-j>', 'prompt-item-focus next', mode='prompt')
 config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
 
+config.bind('<Ctrl-h>', 'back -t')
+config.bind('<Ctrl-l>', 'forward -t')
+
 config.bind('f', 'prompt-accept yes', mode='yesno')
 config.bind('F', 'prompt-accept --save yes', mode='yesno')
 config.bind('j', 'prompt-accept no', mode='yesno')
 config.bind('J', 'prompt-accept --save no', mode='yesno')
 
-c.fileselect.handler = 'external'
-c.fileselect.single_file.command = ['yazi', '--chooser-file', '{}']
-c.fileselect.multiple_files.command = ['yazi', '--chooser-file', '{}']
+config.bind('1', 'tab-focus 1')
+config.bind('2', 'tab-focus 2')
+config.bind('3', 'tab-focus 3')
+config.bind('4', 'tab-focus 4')
+config.bind('5', 'tab-focus 5')
+config.bind('6', 'tab-focus 6')
+config.bind('7', 'tab-focus 7')
+config.bind('8', 'tab-focus 8')
+config.bind('a', 'hint links tab-bg --rapid')
+config.bind('<Ctrl-Space>', 'tab-focus last')
+# config.bind('d', 'tab-close ;; tab-focus last ')
+config.bind('U', 'cmd-set-text -s :undo ')
+
+# c.fileselect.handler = 'external'
+# c.fileselect.single_file.command = ['yazi', '--chooser-file', '{}']
+# c.fileselect.multiple_files.command = ['yazi', '--chooser-file', '{}']

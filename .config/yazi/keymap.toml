@@ -85,7 +85,7 @@ keymap = [
 	{ on = "S",         run = "search --via=fd",             desc = "Search by fd" },
 	{ on = "s",         run = "search --via=rg",             desc = "Search by ripgrep" },
 	{ on = "<Esc>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "f",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = "/",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 	{ on = "z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Linemode
@@ -107,7 +107,7 @@ keymap = [
 	{ on = "i", run = ["filter --smart", "arrow top"], desc = "Filter files" },
 
 	# Find
-	{ on = "/", run = "find --smart",            desc = "Find next file" },
+	{ on = "f", run = "find --smart",            desc = "Find next file" },
 	{ on = "<Down>", run = "find_arrow",              desc = "Next found" },
 	{ on = "<Up>", run = "find_arrow --previous",   desc = "Previous found" },
 
@@ -138,6 +138,7 @@ keymap = [
 	# Tabs
 	{ on = "N", run = "tab_create --current", desc = "New tab" },
 	{ on = "<A-s>", run = "tab_create --current", desc = "New tab" },
+	{ on = "<A-n>", run = "tab_create --current", desc = "New tab" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },

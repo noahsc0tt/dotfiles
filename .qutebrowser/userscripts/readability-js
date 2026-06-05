@@ -275,12 +275,8 @@ JSDOM.fromFile(process.env.QUTE_HTML, domOpts).then(async (dom) => {
             return 1
         }
         // Success
-        qute.open(["-b", "-r", tmpFile])
+        qute.open(["-t", tmpFile])
 
-        const fifo = process.env.QUTE_FIFO
-        if (fifo) {
-            fs.appendFileSync(fifo, "tab-close\n")
-        }
     })
 })
 
