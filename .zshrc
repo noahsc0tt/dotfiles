@@ -224,3 +224,7 @@ function zvm_after_init() {
 }
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# temp fix for bash: warning: setlocale: LC_ALL: cannot change locale (en_GB-u-hc-h23-u-ca-gregory-u-nu-latn): Invalid argument
+
+unset LC_ALL
