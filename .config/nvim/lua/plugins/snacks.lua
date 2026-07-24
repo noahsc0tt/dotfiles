@@ -1100,8 +1100,7 @@ return {
             { "<C-k>",    function() require('snacks').words.jump(-1) end,   desc = "Previous LSP Reference" },
             { "<C-j>",    function() require('snacks').words.jump() end,     desc = "Next LSP Reference" },
 
-            { "<M-f>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
-            { "<M-a>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
+            { "<C-S-f>",    function() require('snacks').zen.zoom() end,       desc = "Toggle fullscreen" },
 
             --            -- Top Pickers & Explorer
             { "<leader>aF", function() require('snacks').picker.smart() end,   desc = "Smart Find Files" },

@@ -92,15 +92,12 @@ vim.keymap.set("x", ">", ">gv")
 -- Command mode
 vim.keymap.set("c", "<C-a>", "<C-b>")
 
--- Insert mode
-vim.keymap.set("c", "<C-g>h", "<Left>")
-vim.keymap.set("c", "<C-g>l", "<Right>")
-
 -- Vim stuff
 vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>", { desc = "Disable search highlight" })
 vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>", { desc = "Enable search highlight" })
 vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
-vim.keymap.set("n", "<leader>or", ":Lazy reload ", { desc = "Lazy relaod" })
+vim.keymap.set("n", "<leader>or", "<cmd>restart<CR>", { desc = "Lazy reload" })
+vim.keymap.set("n", "<leader>oR", ":Lazy reload ", { desc = "Lazy reload" })
 vim.keymap.set("n", "<leader>od", "<cmd>bufdo bdelete<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>", { desc = "Edit buffer" })
 vim.keymap.set("n", "<leader>on", "<cmd>enew<CR>", { desc = "New buffer" })

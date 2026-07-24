@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "projectRoot": "/Users/nscott/dotfiles",
+  "generatedAt": "2026-07-22T18:33:31.361Z",
+  "seq": 0,
+  "files": {},
+  "symbols": {},
+  "reverseDeps": {},
+  "cachedExports": [],
+  "projectRulesScan": {
+    "rules": [],
+    "hasCustomRules": false
+  },
+  "startupScan": {
+    "cwd": "/Users/nscott/dotfiles/.config/nvim/lua/plugins",
+    "scanRoot": "/Users/nscott/dotfiles",
+    "projectRoot": "/Users/nscott/dotfiles",
+    "canWarmCaches": true,
+    "sourceFileCount": 5
+  },
+  "languageProfile": {
+    "present": {
+      "jsts": true,
+      "python": true,
+      "go": false,
+      "rust": false,
+      "cxx": false,
+      "cmake": false,
+      "fish": false,
+      "shell": false,
+      "json": false,
+      "markdown": false,
+      "css": false,
+      "yaml": false,
+      "sql": false,
+      "ruby": false,
+      "html": false,
+      "docker": false,
+      "php": false,
+      "powershell": false,
+      "prisma": false,
+      "csharp": false,
+      "fsharp": false,
+      "java": false,
+      "kotlin": false,
+      "swift": false,
+      "dart": false,
+      "lua": false,
+      "zig": false,
+      "haskell": false,
+      "elixir": false,
+      "gleam": false,
+      "ocaml": false,
+      "clojure": false,
+      "terraform": false,
+      "nix": false,
+      "toml": false
+    },
+    "configured": {},
+    "counts": {
+      "jsts": 4,
+      "python": 1
+    },
+    "detectedKinds": [
+      "jsts",
+      "python"
+    ]
+  },
+  "conventions": {
+    "frameworks": [],
+    "testRunners": [],
+    "buildTools": [],
+    "agentDocs": []
+  }
+}

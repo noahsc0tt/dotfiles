@@ -68,6 +68,7 @@ return {
             })
             vim.lsp.enable('hls')
 
+            vim.lsp.enable('gopls')
             vim.lsp.enable('eslint')
             vim.lsp.enable('clangd')
             vim.lsp.enable('ts_ls')
@@ -128,7 +129,7 @@ return {
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
             { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
             { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
-            { "<leader>k", vim.lsp.buf.hover,                                               mode = "n",                    desc = "Hover documentation" },
+            { "<leader>k", require("noice.lsp").hover,                                               mode = "n",                    desc = "Hover documentation" },
             { "<M-C-S-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
