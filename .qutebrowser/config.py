@@ -559,7 +559,7 @@ config.bind(',s', 'config-source')
 config.bind(',b', 'cmd-set-text -s :bookmark-del ')
 
 config.bind('`', 'mode-enter jump_mark')
-config.bind('m', 'set-mark')
+config.bind('m', 'cmd-set-text -s :set-mark ')
 
 config.bind('<Ctrl-m>', 'cmd-set-text -s :quickmark-add ')
 config.bind('<Ctrl-b>', 'cmd-set-text -s :quickmark-load ')

@@ -138,7 +138,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _    _   _   _   _   _   _   _   _   _   _  _  _
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
  _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
- _   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
+ bspc   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
  _   `   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
@@ -188,8 +188,8 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   j brup
   g bldn
   h blup
-  lmet (layer-toggle fine)
-  rmet (layer-toggle fine)
+  lctl (layer-toggle fine)
+  rctl (layer-toggle fine)
   m mute
   d vold
   k volu
