@@ -98,9 +98,10 @@
     winmod (multi lalt lmet lsft)
 
     launch (tap-hold-press $tap-time $hold-time (multi @hyperkey `) @hyperkey)
-    shift (tap-hold-press $tap-time 250 bspc lsft)
+    shift (tap-hold-press $tap-time 250 bspc (multi lsft (layer-while-held shft)))
     shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
+    ctrlbk (tap-hold-press $tap-time $hold-time bspc lctl)
     cmd (tap-hold-press $tap-time $hold-time del lmet)
 
     srcly (tap-hold-press $tap-time $hold-time lrld (layer-toggle src))
@@ -122,7 +123,7 @@
     @navly    q    w    e    r    t    y    u    i    o    p    @launch caps
     @ctrl   a    s    d    f    g    h    j    k    l    @shift    @apply    \ ret
     @srcly   @cmd    z    x    c    v    b    n    m    ,    .    /    up   rsft
-    fn     @shift2  rmet    @symly        spc             @numly ralt left    down    right
+    fn     @shift2  ralt    @symly        spc             @numly ralt left    down    right
 )
 
 (deflayer src
@@ -150,6 +151,10 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   _   @alacritty    @sioyek    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @iina    (multi lmet q)    @apply    \ ret  
   _     _   _   @plaintext    @craft    @vivaldi    @tor    @nvim    @messages    @settings    .    /    up   rsft
   _   _  _ @win-nav           _         @eqmac _ _    _    _
+)
+
+(deflayermap shft
+  caps @ctrlbk
 )
 
 (deflayermap window

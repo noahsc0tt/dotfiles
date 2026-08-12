@@ -491,9 +491,8 @@ c.fonts.web.family.sans_serif = 'Cantarell'
 c.fonts.default_size = "14px"
 
 c.editor.command = [
-    "env",
-    "PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin",
     "/opt/homebrew/bin/neovide",
+    "--neovim-bin", "/opt/homebrew/bin/nvim",
     "--frame", "buttonless",
     "--title-hidden",
     "{file}"
