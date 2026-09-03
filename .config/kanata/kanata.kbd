@@ -55,6 +55,7 @@
 (defalias
     mback (multi lalt left)
     mword (multi lalt right)
+    mdelword (multi lalt bspc)
     mftab (multi lctl tab)
     mbtab (multi lctl lsft tab)
 )
@@ -185,7 +186,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     p @mbtab
     n @mftab
 
-    ; @media-nav
+    ; (tap-hold-press $tap-time $hold-time @mdelword @media-nav)
 )
 
 (deflayermap media
