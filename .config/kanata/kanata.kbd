@@ -140,8 +140,8 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _    _   _   _   _   _   _   _   _   _   _  _  _
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
  _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
- bspc   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    ;    _    _   _
- _   `   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
+ bspc   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    (tap-hold-press $tap-time $hold-time ; (multi lalt lsft (layer-toggle src)))    _    _   _
+ _   (tap-hold-press $tap-time $hold-time ` (multi lalt lmet (layer-toggle src)))   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
 
@@ -194,8 +194,8 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   j brup
   g bldn
   h blup
-  lctl (layer-toggle fine)
-  rctl (layer-toggle fine)
+  lmet (layer-toggle fine)
+  rmet (layer-toggle fine)
   m mute
   d vold
   k volu
@@ -240,7 +240,6 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
   lmet _
   caps bspc
 )
-
 
 (defchordsv2
   (lmet rmet) lalt $chord-time all-released ()
