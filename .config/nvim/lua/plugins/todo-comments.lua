@@ -68,8 +68,8 @@ return {
             },
         },
         keys = {
-            { "]#",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            { "[#",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            { "]#",         function() require("todo-comments").jump_next() end, mode = { 'n', 'v' }, desc = "Next todo comment" },
+            { "[#",         function() require("todo-comments").jump_prev() end, mode = { 'n', 'v' }, desc = "Previous todo comment" },
             { "<leader>#", function() require("snacks").picker.todo_comments() end,        desc = "Search todo comments" },
         }
 

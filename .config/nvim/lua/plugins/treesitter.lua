@@ -2,37 +2,44 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
-        build = function()
-            require("nvim-treesitter.install").update({ with_sync = true })()
+        build = ":TSUpdate",
+        config = function()
+            local langs = { "c", "cpp", "lua", "vim", "vimdoc", "query", "markdown",
+                "markdown_inline", "javascript", "typescript", "python", "html", "css",
+                "json", "c_sharp", "java", "haskell", "razor", "typst", "sql" }
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = langs,
+                callback = function()
+                    if vim.bo.filetype == "razor" then
+                        vim.treesitter.start(0, "html")
+                    else
+                        vim.treesitter.start()
+                    end
+                end,
+            })
+
+            local installed = require("nvim-treesitter").get_installed()
+            local missing = vim.tbl_filter(function(l)
+                return not vim.list_contains(installed, l)
+            end, langs)
+            if #missing > 0 then
+                require("nvim-treesitter").install(missing):wait(300000)
+            end
         end,
-        event = { "BufReadPost", "BufNewFile" },
-
-        opts = {
-            -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-            ensure_installed = {
-                "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "javascript", "c", "c_sharp",
-                "python", "java", "haskell", "typescript", "html", "css", "json"
-            },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-
-            indentation = {
-                enable = true,
-            },
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-            auto_install = true,
-
-            highlight = {
-                enable = true,
-
-                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-                -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                -- Instead of true it can also be a list of languages
-                additional_vim_regex_highlighting = false,
-            },
-        }
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        ft = "cshtml",
+        config = function()
+            require('nvim-ts-autotag').setup({
+                opts = {
+                    -- Defaults
+                    enable_close = false,        -- Auto close tags
+                    enable_rename = true,        -- Auto rename pairs of tags
+                    enable_close_on_slash = true -- Auto close on trailing </
+                }
+            })
+        end
     },
 }

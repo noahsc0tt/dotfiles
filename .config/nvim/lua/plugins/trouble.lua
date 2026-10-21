@@ -1,3 +1,5 @@
+local symbols_statusline ---@type { get: fun(): string, has: fun(): boolean }?
+
 return {
     {
         "folke/trouble.nvim",
@@ -228,6 +230,30 @@ return {
                 "<leader>lf",
                 "<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
                 desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>F",
+                function()
+                    symbols_statusline = symbols_statusline or require("trouble").statusline({
+                        mode = "lsp_document_symbols",
+                        groups = {},
+                        title = false,
+                        filter = { range = true },
+                        format = "{kind_icon}{symbol.name}",
+                    })
+                    vim.defer_fn(function()
+                        local chunks = {}
+                        for plain, group, text in symbols_statusline.get():gmatch("(.-)%%%#([^#]+)#([^%%]*)%%%*") do
+                            if plain ~= "" then
+                                chunks[#chunks + 1] = { "\n" }
+                            end
+                            chunks[#chunks + 1] = { text, group }
+                        end
+                        require("noice.ui.state").clear("msg_show")
+                        vim.api.nvim_echo(#chunks > 0 and chunks or { { "No enclosing symbol" } }, false, {})
+                    end, 30)
+                end,
+                desc = "Show current symbol",
             },
         },
     }

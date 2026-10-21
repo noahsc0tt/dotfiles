@@ -1,13 +1,13 @@
 return {
-{
-    'saghen/blink.compat',
-    -- use v2.* for blink.cmp v1.*
-    version = '2.*',
-    -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
-    lazy = true,
-    -- make sure to set opts so that lazy.nvim calls blink.compat's setup
-    opts = {},
-  },
+    {
+        'saghen/blink.compat',
+        -- use v2.* for blink.cmp v1.*
+        version = '2.*',
+        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+        lazy = true,
+        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+        opts = {},
+    },
     {
         'saghen/blink.cmp',
         enabled = true,
@@ -74,6 +74,17 @@ return {
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
+                per_filetype = {
+                    sql = { 'snippets', 'lsp', 'dbee', 'dadbod', 'buffer' },
+                },
+                providers = {
+                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                    dbee = {
+                        name = "Dbee",
+                        module = "cmp-dbee.blink",
+                        score_offset = -3,
+                    },
+                },
             },
 
             -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -116,5 +127,12 @@ return {
             }
         },
         opts_extend = { "sources.default" },
-    }
+    },
+    {
+        "zacharyeller13/blink-cmp-dbee",
+        branch = "feat/blink.cmp",
+        dependencies = { { "kndndrj/nvim-dbee" } },
+        ft = "sql",
+        opts = {},
+    },
 }

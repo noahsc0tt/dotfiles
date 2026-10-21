@@ -23,7 +23,7 @@ end, {})
 
 vim.api.nvim_create_user_command("TaskellSearch", function()
     require("snacks").picker.files({
-        dirs = { vim.fn.expand("/Users/nscott/.scratch/taskell") }, -- search only in this folder
+        dirs = { vim.fn.expand("~/.scratch/taskell") }, -- search only in this folder
         hidden = false,                                             -- show hidden files?
         ignored = false,                                            -- respect .gitignore?
         follow = false,                                             -- follow symlinks

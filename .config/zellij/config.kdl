@@ -1,13 +1,17 @@
 // modes
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl l" { SwitchToMode "normal"; }
+        bind "Ctrl Alt l" { SwitchToMode "normal"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
         bind "down" { MoveFocus "down"; }
         bind "up" { MoveFocus "up"; }
         bind "right" { MoveFocus "right"; }
+        bind "Ctrl h" { MoveFocus "left"; SwitchToMode "normal"; }
+        bind "Ctrl j" { MoveFocus "down"; SwitchToMode "normal"; }
+        bind "Ctrl k" { MoveFocus "up"; SwitchToMode "normal"; }
+        bind "Ctrl l" { MoveFocus "right"; SwitchToMode "normal"; }
         bind "H" { MoveFocus "left"; SwitchToMode "normal"; }
         bind "J" { MoveFocus "down"; SwitchToMode "normal"; }
         bind "K" { MoveFocus "up"; SwitchToMode "normal"; }
@@ -15,11 +19,12 @@ keybinds clear-defaults=true {
         bind "l" { NewPane "right"; SwitchToMode "normal"; }
         bind "j" { NewPane "down"; SwitchToMode "normal"; }
         bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
+        bind "Ctrl s" { NewPane "stacked"; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "x" { CloseFocus; }
         bind "Ctrl d" { CloseFocus; SwitchToMode "normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+        bind "Ctrl f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         // bind "f" { LaunchOrFocusPlugin "ff" {
         //     in_place true
         //     move_to_focused_tab true
@@ -28,12 +33,12 @@ keybinds clear-defaults=true {
         // }
         bind "i" { TogglePanePinned; SwitchToMode "normal"; }
         bind "n" { NewPane; SwitchToMode "normal"; }
-        bind "Ctrl t" { SwitchToMode "tab"; }
+        bind "r" { SwitchToMode "resize"; }
         bind "Ctrl r" { SwitchToMode "resize"; }
+        bind "m" { SwitchToMode "move"; }
         bind "Ctrl m" { SwitchToMode "move"; }
         bind "Ctrl esc" { SwitchToMode "scroll"; }
-        bind "Ctrl f" { ToggleFloatingPanes; SwitchToMode "normal";  }
-        bind "Ctrl h" { SwitchToMode "normal"; }
+        bind "f" { ToggleFloatingPanes; SwitchToMode "normal";  }
         bind "Ctrl /" { EditScrollback; }
     }
     tab {
@@ -46,17 +51,31 @@ keybinds clear-defaults=true {
         bind "7" { GoToTab 7; SwitchToMode "normal"; }
         bind "8" { GoToTab 8; SwitchToMode "normal"; }
         bind "9" { GoToTab 9; SwitchToMode "normal"; }
+        bind "Ctrl 1" { GoToTab 1; SwitchToMode "normal"; }
+        bind "Ctrl 2" { GoToTab 2; SwitchToMode "normal"; }
+        bind "Ctrl 3" { GoToTab 3; SwitchToMode "normal"; }
+        bind "Ctrl 4" { GoToTab 4; SwitchToMode "normal"; }
+        bind "Ctrl 5" { GoToTab 5; SwitchToMode "normal"; }
+        bind "Ctrl 6" { GoToTab 6; SwitchToMode "normal"; }
+        bind "Ctrl 7" { GoToTab 7; SwitchToMode "normal"; }
+        bind "Ctrl 8" { GoToTab 8; SwitchToMode "normal"; }
+        bind "Ctrl 9" { GoToTab 9; SwitchToMode "normal"; }
         bind "h" { BreakPaneLeft; SwitchToMode "normal"; }
         bind "l" { BreakPaneRight; SwitchToMode "normal"; }
+        bind "K" { MoveTab "Left"; }
+        bind "J" { MoveTab "Right"; }
         bind "H" { MoveTab "Left"; }
         bind "L" { MoveTab "Right"; }
         bind "b" { BreakPane; SwitchToMode "normal"; }
-        bind "j" { GoToNextTab; }
-        bind "k" { GoToPreviousTab; }
-        bind "n" { NewTab; }
+        bind "j" { GoToNextTab; SwitchToMode "normal"; }
+        bind "k" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "Ctrl j" { GoToNextTab; SwitchToMode "normal"; }
+        bind "Ctrl k" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "n" { NewTab; SwitchToMode "renametab"; TabNameInput 0; }
+        bind "Ctrl n" { NewTab; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "Ctrl r" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "normal"; }
-        bind "Ctrl t" { SwitchToMode "normal"; }
         bind "tab" { ToggleTab; }
         bind "d" { CloseTab; SwitchToMode "normal"; }
         bind "Ctrl d" { CloseTab; SwitchToMode "normal"; }
@@ -105,8 +124,9 @@ keybinds clear-defaults=true {
         bind "r" { SearchToggleOption "Wrap"; }
     }
     session {
-        bind "Ctrl z" { SwitchToMode "normal"; }
+        // bind "Ctrl z" { SwitchToMode "normal"; }
         // bind "Ctrl u" { ToggleUi }
+        bind "l" { SwitchToMode "locked"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 kiosk true
@@ -132,7 +152,16 @@ keybinds clear-defaults=true {
             ToggleFocusFullscreen
             SwitchToMode "normal"
         }
-        bind "h" {
+        bind "Ctrl f" {
+            LaunchOrFocusPlugin location="favs" {
+                kiosk true
+                in_place true
+                move_to_focused_tab true
+            }
+            ToggleFocusFullscreen
+            SwitchToMode "normal"
+        }
+        bind "f" {
             LaunchOrFocusPlugin location="favs" {
                 kiosk true
                 in_place true
@@ -160,13 +189,12 @@ keybinds clear-defaults=true {
                 
                 show_resurrectable_sessions true
                 
-                base_paths "/Users/nscott|/Users/nscott/UCL-OneDrive/University|/Users/nscott/Documents"
+                base_paths "~|~/UCL-OneDrive/University|~/Documents|/mnt/c/Users/NoahScott/|/home/noahscott/.config|/mnt/c/Users/NoahScott/dev"
 
             }
             ToggleFocusFullscreen
             SwitchToMode "normal"
         }
-        bind "Ctrl Shift z" { SwitchToMode "locked"; }
         bind "e" { Quit; }
         bind "Ctrl e" { Quit; }
     }
@@ -204,7 +232,7 @@ keybinds clear-defaults=true {
    //      }
    //  }
     // global bindings
-    shared_except "locked" {
+    // shared_except "locked" {
         // bind "Ctrl f" {
         //     LaunchOrFocusPlugin "ff" {
         //         kiosk true
@@ -214,25 +242,25 @@ keybinds clear-defaults=true {
         //     ToggleFocusFullscreen
         //     SwitchToMode "normal"
         // }
-        bind "Ctrl ," { PreviousSwapLayout; }
-        bind "Ctrl ." { NextSwapLayout; }
+        // bind "Ctrl ," { PreviousSwapLayout; }
+        // bind "Ctrl ." { NextSwapLayout; }
         // bind "Ctrl Shift k" { GoToPreviousTab; }
         // bind "Ctrl Shift j" { GoToNextTab; }
-    }
+    // }
     // shared_except "locked" "move" {
     //     bind "Ctrl m" { SwitchToMode "move"; }
     // }
     shared_except "locked" "session" {
-        bind "Ctrl z" { SwitchToMode "session"; }
+        bind "Ctrl w" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" "search" {
         bind "Ctrl /" { SwitchToMode "scroll"; }
     }
-    // shared_except "locked" "tab" {
-    //     bind "Ctrl t" { SwitchToMode "tab"; }
-    // }
+    shared_except "locked" "tab" {
+        bind "Ctrl e" { SwitchToMode "tab"; }
+    }
     shared_except "locked" "pane" {
-        bind "Ctrl h" { SwitchToMode "pane"; }
+        bind "Ctrl r" { SwitchToMode "pane"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
@@ -244,6 +272,7 @@ keybinds clear-defaults=true {
         bind "d" { CloseFocus; SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
+        bind "e" { EditScrollback; SwitchToMode "normal"; }
         bind "PageDown" { PageScrollDown; }
         bind "PageUp" { PageScrollUp; }
         bind "left" { PageScrollUp; }
@@ -304,15 +333,15 @@ keybinds clear-defaults=true {
 // Plugin aliases - can be used to change the implementation of Zellij
 // changing these requires a restart to take effect
 plugins {
-    nvim location="file:/Users/nscott/.config/zellij/plugins/vim-zellij-navigator.wasm"
-    zsm location="file:/Users/nscott/.config/zellij/plugins/zsm.wasm"
-    favs location="file:/Users/nscott/.config/zellij/plugins/zellij-favs.wasm"
-    ff location="file:/Users/nscott/.config/zellij/plugins/monocle.wasm"
-    room location="file:/Users/nscott/.config/zellij/plugins/room.wasm"
+    // nvim location="file:~/.config/zellij/plugins/vim-zellij-navigator.wasm"
+    zsm location="file:~/.config/zellij/plugins/zsm.wasm"
+    favs location="file:~/.config/zellij/plugins/zellij-favs.wasm"
+    ff location="file:~/.config/zellij/plugins/monocle.wasm"
+    room location="file:~/.config/zellij/plugins/room.wasm"
 
     about location="zellij:about"
-    compact-bar location="zellij:compact-bar" {
-        tooltip "Ctrl Shift t"
+    compact-bar location="file:~/.config/zellij/plugins/tab-bar.wasm" {
+        show_tab_indices true
     }
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {
@@ -332,7 +361,7 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-    nvim
+    zsm
     favs
 }
 web_client {
@@ -366,15 +395,15 @@ theme "tokyonight_storm"
 // 
 // default_cwd "/tmp"
  
+// The folder in which Zellij will look for layouts
+// (Requires restart)
+// 
+ layout_dir "/home/noahscott/.config/zellij/layouts"
+
 // The name of the default layout to load on startup
 // Default: "default"
 // 
 default_layout "clean"
- 
-// The folder in which Zellij will look for layouts
-// (Requires restart)
-// 
- layout_dir "/Users/nscott/dotfiles/.config/zellij/layouts"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
