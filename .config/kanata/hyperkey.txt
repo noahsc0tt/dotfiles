@@ -1,10 +1,13 @@
 typewhisper t
-chatgpt g
+# chatgpt g
 homerow j
-neru f,space
+neru f,space,s
 xnip x
 maccy v
 boringnotch n
-ice m
+ice m,z?
 raycast `
+ocr o
 ghostty §
+vorssaint p,tab,r,m
+aerospace layer
