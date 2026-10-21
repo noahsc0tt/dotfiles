@@ -581,7 +581,7 @@ function idea() {
 
 alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
 
-alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
+# alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
 
 alias zja="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -a"
 alias zjk="/Users/nscott/dev/github/noahsc0tt/fuzzellij/fuzzellij.sh -k"
@@ -655,7 +655,7 @@ alias maps="mapscii"
 
 alias sshell="storm"
 
-alias mas="appstore"
+# alias mas="appstore"
 
 alias spreadsheet="sc-im"
 
@@ -707,3 +707,5 @@ alias def="rdict search"
 alias sql="fselect"
 
 alias wiki="wiki-tui"
+
+alias bt="but tui"
