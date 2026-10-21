@@ -3,7 +3,7 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'folke/trouble.nvim',
+      -- 'folke/trouble.nvim',
     },
     cond = not vim.g.started_by_firenvim,
 
@@ -48,7 +48,7 @@ return {
         lualine_a = { },
         lualine_b = {'filename'}, --'branch'
         lualine_c = { '' }, --'diagnostics'
-        lualine_x = { 'diff'},
+        lualine_x = {'diff'},
         lualine_y = {},
         lualine_z = {},
       }

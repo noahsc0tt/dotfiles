@@ -9,54 +9,25 @@ return {
                 'quickfix',
                 'prompt',
             },
-            cursor_follows_swapped_bufs = true,
+            swap = {
+                -- follow the buffer into its new window
+                move_cursor = true,
+            },
         },
         keys = {
 
-            { "<C-s><C-h>",   function() require('smart-splits').move_cursor_left() end,  mode = { "n", } },
-            { "<C-s><C-j>",   function() require('smart-splits').move_cursor_down() end,  mode = { "n", } },
-            { "<C-s><C-k>",   function() require('smart-splits').move_cursor_up() end,    mode = { "n", } },
-            { "<C-s><C-l>",   function() require('smart-splits').move_cursor_right() end, mode = { "n", } },
-            { "<C-S-h>", function() require('smart-splits').resize_left(4) end,      mode = "n" },
-            { "<C-S-l>", function() require('smart-splits').resize_right(4) end,     mode = "n" },
-            { "<C-S-j>", function() require('smart-splits').resize_down(4) end,      mode = "n" },
-            { "<C-S-k>", function() require('smart-splits').resize_up(4) end,        mode = "n" },
-            {
-                "zH",
-                function()
-                    local pos = vim.api.nvim_win_get_cursor(0)
-                    require("smart-splits").swap_buf_left()
-                    vim.api.nvim_win_set_cursor(0, pos)
-                end,
-                mode = "n"
-            },
-            {
-                "zJ",
-                function()
-                    local pos = vim.api.nvim_win_get_cursor(0)
-                    require("smart-splits").swap_buf_down()
-                    vim.api.nvim_win_set_cursor(0, pos)
-                end,
-                mode = "n"
-            },
-            {
-                "zK",
-                function()
-                    local pos = vim.api.nvim_win_get_cursor(0)
-                    require("smart-splits").swap_buf_up()
-                    vim.api.nvim_win_set_cursor(0, pos)
-                end,
-                mode = "n"
-            },
-            {
-                "zL",
-                function()
-                    local pos = vim.api.nvim_win_get_cursor(0)
-                    require("smart-splits").swap_buf_right()
-                    vim.api.nvim_win_set_cursor(0, pos)
-                end,
-                mode = "n"
-            },
+            { "<C-s><C-h>", function() require('smart-splits').move_cursor_left() end,  mode = { "n", } },
+            { "<C-s><C-j>", function() require('smart-splits').move_cursor_down() end,  mode = { "n", } },
+            { "<C-s><C-k>", function() require('smart-splits').move_cursor_up() end,    mode = { "n", } },
+            { "<C-s><C-l>", function() require('smart-splits').move_cursor_right() end, mode = { "n", } },
+            { "<C-S-h>",    function() require('smart-splits').resize_left(4) end,      mode = "n" },
+            { "<C-S-l>",    function() require('smart-splits').resize_right(4) end,     mode = "n" },
+            { "<C-S-j>",    function() require('smart-splits').resize_down(4) end,      mode = "n" },
+            { "<C-S-k>",    function() require('smart-splits').resize_up(4) end,        mode = "n" },
+            { "zH", function() require("smart-splits").swap_buf_left() end, mode = "n" },
+            { "zJ", function() require("smart-splits").swap_buf_down() end, mode = "n" },
+            { "zK", function() require("smart-splits").swap_buf_up() end, mode = "n" },
+            { "zL", function() require("smart-splits").swap_buf_right() end, mode = "n" },
         }
 
     },

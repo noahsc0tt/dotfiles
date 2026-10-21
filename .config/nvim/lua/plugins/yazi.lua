@@ -18,7 +18,7 @@ return {
                 -- cycle_open_buffers = "<tab>",
                 copy_relative_path_to_selected_files = "<c-y>",
                 send_to_quickfix_list = "<c-q>",
-                change_working_directory = "<c-w>",
+                change_working_directory = "<c-.>",
                 open_and_pick_window = "<c-o>",
             },
 

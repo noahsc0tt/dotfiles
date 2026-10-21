@@ -1,5 +1,5 @@
-vim.filetype.add({
-  extension = {
-    json = "jsonc",
-  },
-})
+vim.filetype.add({ extension = { json = "jsonc", }, })
+vim.filetype.add({ extension = { cshtml = "razor" } })
+vim.filetype.add({ extension = { dump = "bash" } })
+vim.filetype.add({ extension = { cs = "c_sharp" } })
+vim.treesitter.language.register("razor", "razor")

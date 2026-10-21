@@ -184,7 +184,7 @@ return {
     },
     {
         "pxwg/math-conceal.nvim",
-        enabled = true,
+        enabled = false,
         event = "VeryLazy",
         main = "math-conceal",
         build = "cargo build --release && cp target/release/liblookup_conceal.dylib lua/lookup_conceal.so",

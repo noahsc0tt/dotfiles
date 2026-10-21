@@ -1,6 +1,7 @@
 return {
     {
         "theprimeagen/harpoon",
+        enabled = false,
         cmd = "Harpoon",
         cond = not vim.g.started_by_firenvim,
         keys = {

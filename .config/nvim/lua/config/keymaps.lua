@@ -96,7 +96,10 @@ vim.keymap.set("c", "<C-a>", "<C-b>")
 vim.keymap.set("n", "<leader>oH", "<cmd>set nohlsearch<CR>", { desc = "Disable search highlight" })
 vim.keymap.set("n", "<leader>oh", "<cmd>set hlsearch<CR>", { desc = "Enable search highlight" })
 vim.keymap.set("n", "<leader>oz", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
-vim.keymap.set("n", "<leader>or", "<cmd>restart<CR>", { desc = "Lazy reload" })
+vim.keymap.set("n", "<leader>or", function()
+    vim.cmd("restart")
+    vim.cmd("AutoSession save")
+end, { desc = "Restart nvim" })
 vim.keymap.set("n", "<leader>oR", ":Lazy reload ", { desc = "Lazy reload" })
 vim.keymap.set("n", "<leader>od", "<cmd>bufdo bdelete<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", "<leader>oe", "<cmd>edit<CR>", { desc = "Edit buffer" })
@@ -110,12 +113,88 @@ vim.keymap.set("n", "<leader>oy", ":%y+<CR>", { desc = "Yank whole file to clipb
 
 
 -- z stuff
-vim.keymap.set("n", "z=", function() vim.opt.spell = true; require('snacks').notify.info('Spelling enabled') end, { desc = "Enable spelling" })
-vim.keymap.set("n", "z_", function() vim.opt.spell = false; require('snacks').notify.info('Spelling disabled') end, { desc = "Disable spelling" })
-vim.keymap.set("n", "zw", function() vim.opt.wrap = true; require('snacks').notify.info('Wrap enabled') end, { desc = "Enable word wrap" })
-vim.keymap.set("n", "zW", function() vim.opt.wrap = false; require('snacks').notify.info('Wrap disabled') end, { desc = "Disable word wrap" })
-vim.keymap.set("n", "zb", function() vim.b.completion = true; require('snacks').notify.info('Completions enabled') end, { desc = "Enable word wrap" })
-vim.keymap.set("n", "zB", function() vim.b.completion = false; require('snacks').notify.info('Completions disabled') end, { desc = "Disable completions" })
+vim.keymap.set("n", "z=", function()
+    vim.opt.spell = true; require('snacks').notify.info('Spelling enabled')
+end, { desc = "Enable spelling" })
+vim.keymap.set("n", "z_", function()
+    vim.opt.spell = false; require('snacks').notify.info('Spelling disabled')
+end, { desc = "Disable spelling" })
+vim.keymap.set("n", "zw", function()
+    vim.opt.wrap = true; require('snacks').notify.info('Wrap enabled')
+end, { desc = "Enable word wrap" })
+vim.keymap.set("n", "zW", function()
+    vim.opt.wrap = false; require('snacks').notify.info('Wrap disabled')
+end, { desc = "Disable word wrap" })
+vim.keymap.set("n", "zb", function()
+    vim.b.completion = true; require('snacks').notify.info('Completions enabled')
+end, { desc = "Enable word wrap" })
+vim.keymap.set("n", "zB", function()
+    vim.b.completion = false; require('snacks').notify.info('Completions disabled')
+end, { desc = "Disable completions" })
+
+-- Dashboard keys (zd)
+-- vim.keymap.del("n", "zd")
+vim.keymap.set("n", "zdn", function()
+    require('snacks').input.input({ prompt = "Title: " }, function(value)
+        local name = os.date("%Y-%m-%d_%H-%M-%S") .. value
+        require("snacks").scratch.open({ name = name })
+    end)
+end, { desc = "New Note" })
+vim.keymap.set("n", "zdN", function()
+    require('snacks').picker.scratch({
+        win = {
+            input = {
+                keys = {
+                    ["<C-BS>"] = { "scratch_delete", mode = { "n", "i" } },
+                    ["<C-n>"] = { "scratch_new", mode = { "n", "i" } },
+                },
+            },
+        },
+    })
+end, { desc = "Search Notes" })
+vim.keymap.set("n", "zdf", function()
+    vim.cmd("Scratch")
+    vim.defer_fn(function()
+        local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+        vim.api.nvim_feedkeys(keys, "t", false)
+    end, 1)
+end, { desc = "New Scratch File" })
+vim.keymap.set("n", "zdF", ":ScratchOpen<CR>", { desc = "Search Scratch Files" })
+vim.keymap.set("n", "zdo", ":Oil<CR>", { desc = "Oil" })
+vim.keymap.set("n", "zdg", ":GrugFarWithin<CR>", { desc = "Grug" })
+vim.keymap.set("n", "zdh", ":Dash<CR>", { desc = "GitHub" })
+vim.keymap.set("n", "zdt", ":TaskellSearch<CR>", { desc = "Taskell" })
+vim.keymap.set("n", "zdc", ":Nvumi<CR>", { desc = "Calculator" })
+vim.keymap.set("n", "zdr", ":lsp restart<CR>", { desc = "Restart LSP" })
+vim.keymap.set("n", "zdx", function()
+    local bufnr = 0
+    local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+
+    if #clients > 0 then
+        for _, client in ipairs(clients) do
+            client.stop()
+        end
+        print("LSP detached")
+    else
+        print("No LSP attached")
+    end
+end, { desc = "Detach LSP" })
+vim.keymap.set("n", "zdi", function()
+    require('snacks').picker
+        .lsp_config()
+end, { desc = "LSP Info" })
+vim.keymap.set("n", "zdy", ":Screenkey<CR>", { desc = "Screenkey" })
+vim.keymap.set("n", "zds", ":AutoSession save<CR>", { desc = "Save Session" })
+vim.keymap.set("n", "zd/", ":AutoSession search<CR>", { desc = "Search Sessions" })
+vim.keymap.set("n", "zdd", function()
+    vim.cmd("AutoSession delete")
+    vim.cmd("qa!")
+end, { desc = "Delete Session" })
+
+
+
+
+vim.keymap.set("n", "gf", "gF", { desc = "Go to file" })
 
 vim.keymap.set("n", "<C-.>", "yyp$", { desc = "Duplicate line" })
 
@@ -126,7 +205,7 @@ vim.keymap.set({ "n", "x", "c" }, "<C-p>", "2<C-y>")
 -- Incrementing
 vim.keymap.set({ 'n', 'x' }, '+', '<C-a>', { desc = 'Increment', noremap = true })
 vim.keymap.set({ 'n', 'x' }, '-', '<C-x>', { desc = 'Decrement', noremap = true })
-vim.keymap.set({ 'n', 'x' }, '<S-+>', 'g<C-a>',{ desc = 'Sequential Increment', noremap = true })
+vim.keymap.set({ 'n', 'x' }, '<S-+>', 'g<C-a>', { desc = 'Sequential Increment', noremap = true })
 vim.keymap.set({ 'n', 'x' }, '<S-->', 'g<C-x>', { desc = 'Sequential Decrement', noremap = true })
 
 -- Folding
@@ -149,26 +228,30 @@ vim.keymap.set('n', 'zT', function()
     end
 end, { silent = true })
 
-vim.keymap.set({"n", "t", "i"}, "<C-Space>",  function() require('snacks').terminal.toggle() end, { desc = "Toggle Terminal" })
-vim.keymap.set({"n", "t", "i"}, "<C-S-s>",  function() require('snacks').terminal.open() end, { desc = "New Terminal" })
+vim.keymap.set({ "n", "t", "i" }, "<C-Space>", function() require('snacks').terminal.toggle() end,
+    { desc = "Toggle Terminal" })
+vim.keymap.set({ "n", "t", "i" }, "<C-S-s>", function() require('snacks').terminal.open() end, { desc = "New Terminal" })
 
 
 -- Windows
 
 vim.keymap.set('n', '<C-s><C-f>', function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local cfg = vim.api.nvim_win_get_config(win)
-    if cfg.relative ~= '' then
-      vim.api.nvim_set_current_win(win)
-      return
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local cfg = vim.api.nvim_win_get_config(win)
+        if cfg.relative ~= '' then
+            vim.api.nvim_set_current_win(win)
+            return
+        end
     end
-  end
-  vim.notify("No floating window found")
+    vim.notify("No floating window found")
 end, { desc = "Focus floating window" })
 
 
-vim.keymap.set({'n', 'x'}, '<leader>/', '/', { desc = "Search" })
+vim.keymap.set({ 'n', 'x' }, '<leader>/', '/', { desc = "Search" })
+vim.keymap.set({ 'n', 'x' }, '<leader>?', '?', { desc = "Search backwards" })
+
 vim.keymap.set('n', 'g/', 'gn', { desc = "Select next search result" })
+vim.keymap.set('n', 'g?', 'gN', { desc = "Select previous search result" })
 
 vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 
@@ -184,7 +267,7 @@ vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 
 vim.keymap.set("i", "<C-,>", "<C-d>", { desc = "Delete indent" })
 vim.keymap.set("i", "<C-.>", "<C-t>", { desc = "Indent" })
-vim.keymap.set({"i","c"}, "<C-BS>", "<C-w>", { desc = "Delete word" })
+vim.keymap.set({ "i", "c" }, "<C-BS>", "<C-S-W>", { desc = "Delete word" })
 vim.keymap.set("i", "<C-s>", "<Esc><C-w>", { desc = "Window" })
 vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
 
@@ -199,4 +282,4 @@ vim.keymap.set("n", "<C-S-,>", "<<")
 -- vim.keymap.set("n", "0", "_")
 -- vim.keymap.set("n", "_", "0")
 
-vim.keymap.set({"n", "v", "i"}, "<C-S-v>", "<C-v>")
+vim.keymap.set({ "n", "v", "i" }, "<C-S-v>", "<C-v>")

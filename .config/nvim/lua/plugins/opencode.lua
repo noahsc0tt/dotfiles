@@ -2,6 +2,7 @@ return {
     {
         "sudo-tee/opencode.nvim",
         lazy = true,
+        version = "*",
         event = "VeryLazy",
         enabled = false,
         opts = {
@@ -58,7 +59,7 @@ return {
                     ['[['] = { 'prev_message' },       -- Navigate to previous message in the conversation
                     -- ['<tab>'] = { 'toggle_pane', mode = { 'n', 'i' } }, -- Toggle between input and output panes
                     ['i'] = { 'focus_input', 'n' },    -- Focus on input window and enter insert mode at the end of the input from the output window
-                    ['<leader>oS'] = { 'select_child_session' }, -- Select and load a child session
+                    -- ['<leader>oS'] = { 'select_child_session' }, -- Select and load a child session
                     ['<leader>oD'] = { 'debug_message' }, -- Open raw message in new buffer for debugging
                     ['<leader>oO'] = { 'debug_output' }, -- Open raw output in new buffer for debugging
                     ['<leader>ods'] = { 'debug_session' }, -- Open raw session in new buffer for debugging

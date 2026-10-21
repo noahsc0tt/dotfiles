@@ -34,8 +34,19 @@ return {
             purge_after_minutes = nil, -- Sessions older than purge_after_minutes will be deleted asynchronously on startup, e.g. set to 14400 to delete sessions that haven't been accessed for more than 10 days, defaults to off (no purging), requires >= nvim 0.10
 
             -- Saving extra data
-            save_extra_data = nil, -- Function that returns extra data that should be saved with the session. Will be passed to restore_extra_data on restore
-            restore_extra_data = nil, -- Function called when there's extra data saved for a session
+            save_extra_cmds = {
+                function()
+                    local lines = {}
+                    for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+                        local ok, name = pcall(vim.api.nvim_tabpage_get_var, tab, 'name')
+                        if ok and name ~= '' then
+                            lines[#lines + 1] = ('call settabvar(%d, "name", %s)')
+                                :format(vim.api.nvim_tabpage_get_number(tab), vim.fn.string(name))
+                        end
+                    end
+                    return lines
+                end,
+            },
 
             -- Argument handling
             args_allow_single_directory = true, -- Follow normal session save/load logic if launched with a single directory as the only argument
