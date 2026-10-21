@@ -17,6 +17,7 @@ export LESS_TERMCAP_ZW=$'\e[75m'
 export MANPAGER='less'
 export EDITOR="env NO_AUTOSESSION=1 nvim"
 export VISUAL="env NO_AUTOSESSION=1 nvim"
+export BROWSER="open -a qutebrowser"
 
 export MANCOLOR
 export MANPAGER="less"
@@ -176,6 +177,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export NODE_PATH=$NODE_PATH:$(npm root -g)
 
+export PATH="/Users/nscott/.bun/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 

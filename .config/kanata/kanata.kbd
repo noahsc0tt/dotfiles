@@ -61,44 +61,8 @@
 )
 
 (defalias
-    qute (cmd open -a "qutebrowser")
-    notebook (cmd open -a "NotebookLM")
-    marta (cmd open -a "Marta")
-    iterm (cmd open -a "iTerm")
-    ghostty (cmd open -a "Ghostty")
-    act-mon (cmd open -a "Activity Monitor")
-    alacritty (cmd open -a "Alacritty")
-    craft (cmd open -a "Craft")
-    chatgpt (cmd open -a "ChatGPT")
-    finder (cmd open -a "Finder")
-    lastpass (cmd open -a "LastPass")
-    mail (cmd open -a "Mail")
-    outlook (cmd open -a "Microsoft Outlook")
-    music (cmd open -a "YouTube Music")
-    youtube (cmd /Users/nscott/dev/scripts/youtube.sh)
-    eqmac (cmd open -a "eqMac")
-    iina (cmd open -a "IINA")
-    tor (cmd open -a "Tor Browser")
-    vivaldi (cmd open -a "Vivaldi")
-    settings (cmd open -a "Settings")
-    sioyek (cmd open -a "sioyek")
-    nvim (multi lctl lmet lsft `)
-    yazi (cmd open -a "Yazi")
-    word (cmd open -a "Microsoft Word")
-    plaintext (cmd open -a "Plain Text Editor")
-    timetable (cmd open -a "UCL Timetable")
-    messages (cmd open -a "Messages")
-    utm (cmd open -a "UTM Virtual Machine")
-    min (cmd open -a "Min")
-    intellij (cmd open -a "IntelliJ IDEA Community Edition")
-)
+    launchkey (multi lalt lmet lctl)
 
-
-(defalias
-    hyperkey (multi lctl lalt lmet lsft)
-    winmod (multi lalt lmet lsft)
-
-    launch (tap-hold-press $tap-time $hold-time (multi @hyperkey `) @hyperkey)
     shift (tap-hold-press $tap-time 250 bspc (multi lsft (layer-while-held shft)))
     shift2 (tap-hold-press $tap-time 250 _ lsft)
     ctrl (tap-hold-press $tap-time $hold-time lsft lctl)
@@ -106,17 +70,13 @@
     cmd (tap-hold-press $tap-time $hold-time del lmet)
 
     srcly (tap-hold-press $tap-time $hold-time lrld (layer-toggle src))
-    win (tap-hold-press $tap-time $hold-time _ @winmod)
-    win-nav (tap-hold-press $tap-time $hold-time bspc (multi @winmod (layer-toggle window)))
     media-nav (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
-    apply (tap-hold-press $tap-time $hold-time (multi @hyperkey nubs) (layer-toggle app))
+    apply (tap-hold-press $tap-time $hold-time (multi @launchkey nubs) (multi lalt lmet))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
-    medialy (tap-hold-press $tap-time $hold-time caps (layer-toggle media))
     numly (tap-hold-press $tap-time $hold-time ret (layer-toggle num))
+    launch (tap-hold-press $tap-time $hold-time (multi @launchkey `) (multi @launchkey (layer-toggle launch)))
 )
-
-
 
 (deflayer base
   esc    brdn   brup   _   _   _   _   prev   pp   next   mute  vold  volu
@@ -136,6 +96,12 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  fn   lctl  lalt lmet           spc             rmet ralt left    down    right
  )
 
+(deflayermap launch
+    q (cmd open -g "raycast://extensions/mackopes/quit-applications/index")
+    w (cmd open -g "raycast://extensions/raycast/navigation/switch-windows")
+    lmet (unmod (lctl lalt lsft) q)
+)
+
 (deflayer sym
  _    _   _   _   _   _   _   _   _   _   _  _  _
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
@@ -144,15 +110,6 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _   (tap-hold-press $tap-time $hold-time ` (multi lalt lmet (layer-toggle src)))   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
-
-(deflayer app
-  _    _   _   _   _   _   _   _   _   _   _  _  _
-  _   _    _    _    _    _    _    _    _    _    _    _    _    _
-  (multi @winmod tab)    (multi rmet ralt rctl q)    (multi rmet ralt rctl w)    @mail    @finder    @marta    @youtube    @utm    @iterm    @outlook    @min    _    _
-  _   @alacritty    @sioyek    @sioyek    @ghostty   @chatgpt    (multi lmet h)     @qute  @music      @iina    (multi lmet q)    @apply    \ ret  
-  _     _   _   @plaintext    @craft    @vivaldi    @tor    @nvim    @messages    @settings    .    /    up   rsft
-  _   _  _ @win-nav           _         @eqmac _ _    _    _
-)
 
 (deflayermap shft
   caps @ctrlbk

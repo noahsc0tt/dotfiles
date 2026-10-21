@@ -1,34 +1,107 @@
 {
     "$schema": "https://opencode.ai/config.json",
-    "autoupdate": true,
-    "model": "opencode/big-pickle",
-    "small_model": "opencode/gpt-5-nano",
+    "update": "auto",
+    "model": {
+        "providerID": "github-copilot",
+        "model": "auto"
+    },
     "instructions": [
-        "When writing or modifying code, do not add unnecessary comments. Avoid comments that merely restate what the code does, add filler phrases, or inject personality. Comments should only be used when they provide genuine value: explaining non-obvious intent, documenting complex business logic, or clarifying unavoidable workarounds. Let clear code speak for itself.",
+        "When writing or modifying code, do not add unnecessary comments. Avoid comments that merely restate what the code does, add filler phrases, or inject personality. Comments should only be used when they provide genuine value: explaining non-obvious intent, documenting complex business logic, or clarifying unavoidable workarounds.",
         "~/.agents/skills/caveman/SKILL.md"
     ],
-    "agent": {
-        "build": {
-            "permission": {
-                "edit": "ask",
-                "apply_patch": "ask",
-                "read": "allow",
-                "write": "ask",
-                "execute": "ask",
-                "delete": "ask",
-                "list": "allow",
-                "bash": {
-                    "*": "ask",
-                    "git status": "allow",
-                    "git diff": "allow",
-                    "git log": "allow",
-                    "ls": "allow",
-                    "pwd": "allow",
-                    "grep": "allow",
-                    "cd": "allow"
-                },
-                "webfetch": "ask"
+    "agents": {
+        "title": {
+            "model": {
+                "providerID": "opencode",
+                "model": "nemotron-3-ultra-free"
             }
+        },
+        "build": {
+            "permissions": [
+                {
+                    "action": "edit",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "apply_patch",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "read",
+                    "resource": "*",
+                    "effect": "allow"
+                },
+                {
+                    "action": "edit",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "execute",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "delete",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "list",
+                    "resource": "*",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "*",
+                    "effect": "ask"
+                },
+                {
+                    "action": "shell",
+                    "resource": "git status",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "git diff",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "git log",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "ls",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "pwd",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "grep",
+                    "effect": "allow"
+                },
+                {
+                    "action": "shell",
+                    "resource": "cd",
+                    "effect": "allow"
+                },
+                {
+                    "action": "webfetch",
+                    "resource": "*",
+                    "effect": "ask"
+                }
+            ]
         }
-    }
+    },
+    "plugins": [
+        "@opeoginni/opencode-copilot-auto@1.1.0"
+    ]
 }
