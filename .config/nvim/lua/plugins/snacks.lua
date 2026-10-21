@@ -7,172 +7,9 @@ return {
         cond = not vim.g.started_by_firenvim,
         opts = {
             animate = { enabled = true },
-            bigfile = { enabled = true },
-            dashboard = {
+            bigfile = {
                 enabled = true,
-                preset = {
-                    -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
-                    ---@type fun(cmd:string, opts:table)|nil
-                    pick = nil,
-                    -- Used by the `keys` section to show keymaps.
-                    -- Set your custom keymaps here.
-                    -- When using a function, the `items` argument are the default keymaps.
-                    keys = {
-                        -- { icon = "󱘟 ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-                        {
-                            icon = "󱞂 ",
-                            key = "n",
-                            desc = "New Note",
-                            action = function()
-                                require('snacks').input.input({ prompt = "Title: " }, function(value)
-                                    local name = os.date("%Y-%m-%d_%H-%M-%S") .. value
-                                    require("snacks").scratch.open({ name = name })
-                                end)
-                            end
-                        },
-                        {
-                            icon = "󱙔 ",
-                            key = "N",
-                            desc = "Search Notes",
-                            action = function()
-                                require('snacks').picker.scratch({
-                                    win = {
-                                        input = {
-                                            keys = {
-                                                ["<C-BS>"] = { "scratch_delete", mode = { "n", "i" } },
-                                                ["<C-n>"] = { "scratch_new", mode = { "n", "i" } },
-                                            },
-                                        },
-                                    },
-                                })
-                            end
-                        },
-                        {
-                            icon = " ",
-                            key = "f",
-                            desc = "New Scratch File",
-                            action = function()
-                                vim.cmd("Scratch")
-                                vim.defer_fn(function()
-                                    local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
-                                    vim.api.nvim_feedkeys(keys, "t", false)
-                                end, 1)
-                            end
-                        },
-                        { icon = "󰱽 ", key = "F", desc = "Search Scratch Files", action = ":ScratchOpen" },
-                        -- { icon = "󰨽 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-                        -- { icon = "󰱂 ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                        -- { icon = " ", key = ",", desc = "Open Config File", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-                        { icon = "󰑕 ", key = "o", desc = "Oil", action = ":Oil", },
-                        { icon = " ", key = "g", desc = "Grug", action = ":GrugFarWithin", },
-                        { icon = " ", key = "h", desc = "GitHub", action = ":Dash", },
-                        { icon = "󰥌 ", key = "t", desc = "Taskell", action = ":TaskellSearch", },
-                        { icon = " ", key = "c", desc = "Calculator", action = ":Nvumi", },
-                        { icon = "󱄌 ", key = "r", desc = "Restart LSP", action = ":LspRestart", },
-                        {
-                            icon = "󰒑 ",
-                            key = "x",
-                            desc = "Detach LSP",
-                            action = function()
-                                local bufnr = 0
-                                local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
-
-                                if #clients > 0 then
-                                    for _, client in ipairs(clients) do
-                                        client.stop()
-                                    end
-                                    print("LSP detached")
-                                else
-                                    print("No LSP attached")
-                                end
-                            end,
-                        },
-                        {
-                            icon = "󰒒 ",
-                            key = "i",
-                            desc = "LSP Info",
-                            action = function()
-                                require('snacks').picker
-                                    .lsp_config()
-                            end,
-                        },
-                        { icon = " ", key = "y", desc = "Screenkey", action = ":Screenkey", },
-                        {
-                            icon = " ",
-                            key = "s",
-                            desc = "Search Sessions",
-                            action = function()
-                                vim.cmd("AutoSession search")
-                            end
-                        },
-                        {
-                            icon = " ",
-                            key = "x",
-                            desc = "Save Session",
-                            action = function()
-                                vim.cmd("AutoSession save")
-                            end
-                        },
-                        {
-                            icon = "󱕗 ",
-                            key = "d",
-                            desc = "Delete Session",
-                            action = function()
-                                vim.cmd("AutoSession delete")
-                                vim.cmd("qa!")
-                            end
-                        },
-                    },
-                },
-                sections = {
-                    -- { section = "header" },
-                    -- {
-                    --     pane = 2,
-                    --     section = "terminal",
-                    --     cmd = "colorscript -e square",
-                    --     height = 5,
-                    --     padding = 3,
-                    -- },
-                    -- {
-                    --     pane = 1,
-                    --     icon = " ",
-                    --     title = (function()
-                    --         local p = vim.fn.system("pwd"):gsub("\n", "")
-                    --         local t = {}
-                    --         for i = 1, 3 do
-                    --             t[4 - i] = vim.fs.basename(p); p = vim.fs.dirname(p)
-                    --         end
-                    --         return table.concat(t, "/")
-                    --     end)(),
-                    --     section = "terminal",
-                    --     cmd = "lsd --tree --color=always --group-directories-first -1 --literal --no-symlink",
-                    --     autokey = true,
-                    --     gap = 1,
-                    --     indent = 2,
-                    --     padding = 1,
-                    --     hl_current_line = false
-                    -- },
-
-                    { section = "keys", gap = 1, padding = 1, hl_current_line = false },
-                    -- { pane = 1, icon = "󰪻 ", title = "Recent Working Directory Files", section = "recent_files", cwd = true, indent = 2, padding = 1, hl_current_line = false },
-                    -- { pane = 1, icon = "󱋢 ", title = "Recent Global Files", section = "recent_files", indent = 2, padding = 1, hl_current_line = false },
-
-                    --{ pane = 2, icon = "󰪻 ", title = "Projects", section = "projects", indent = 2, padding = 1, hl_current_line = false },
-                    -- {
-                    --     pane = 1,
-                    --     icon = " ",
-                    --     title = "Git Status",
-                    --     section = "terminal",
-                    --     enabled = function()
-                    --         return require("snacks").git.get_root() ~= nil
-                    --     end,
-                    --     cmd = "git -C \"$(git rev-parse --show-toplevel)\" status -sb --renames --find-renames",
-                    --     indent = 2,
-                    --     padding = 1,
-                    --     hl_current_line = false
-                    -- },
-                    -- { pane = 1, section = "startup" },
-                },
+                line_length = 10000
             },
             dim = {
                 scope = {
@@ -515,7 +352,7 @@ return {
                     input = {
                         keys = {
                             ["<C-c>"] = { "cancel", mode = { "n", "i" }, },
-                            ["<C-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
+                            ["<C-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
                             ["<CR>"] = { "confirm", mode = { "n", "i" } },
                             ["<c-space>"] = { "confirm", mode = { "n", "i" } },
                             ["<Down>"] = { "history_forward", mode = { "i", "n" } },
@@ -528,7 +365,7 @@ return {
                             ["<a-f>"] = { "toggle_follow", mode = { "i", "n" } },
                             ["<c-.>"] = { "toggle_hidden", mode = { "i", "n" } },
                             ["<a-a>"] = { "toggle_ignored", mode = { "i", "n" } },
-                            ["<c-v>"] = { "toggle_regex", mode = { "i", "n" } },
+                            ["<c-v>"] = { "regex_toggle", mode = { "i", "n" } },
                             ["<a-m>"] = { "toggle_maximize", mode = { "i", "n" } },
                             ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
                             ["<a-g>"] = { "picker_grep", mode = { "i", "n" } },
@@ -751,6 +588,15 @@ return {
                 },
                 actions = {
                     {
+                        -- `toggle_regex` only flips `picker.opts.regex`, which the matcher never
+                        -- reads (it reads `matcher.opts.regex`), so wire both matchers directly.
+                        regex_toggle = function(picker)
+                            picker.opts.regex = not picker.opts.regex
+                            for _, m in pairs({ picker.matcher, picker.list.matcher }) do
+                                m.opts.regex, m.pattern = picker.opts.regex, ""
+                            end
+                            picker:refresh()
+                        end,
                         flash = function(picker)
                             require("flash").jump({
                                 pattern = "^",
@@ -1086,15 +932,9 @@ return {
             },
         },
         keys = {
-            { "zd",         function() require('snacks').dashboard() end,      desc = "Toggle Dashboard" },
             { "zs",         function() require('snacks').dim.enable() end,               desc = "Enable dim" },
             { "zS",         function() require('snacks').dim.disable() end,               desc = "Disable dim" },
             { "<leader>.",  function() require('snacks').explorer.open() end,  desc = "Open File Tree" },
-
-            -- git
-            { "gh",         function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
-            { "<leader>go", function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
-            { "<leader>gz", function() require('snacks').lazygit.open() end,   desc = "Lazygit" },
 
             -- lsp reference jumping
             { "<C-k>",    function() require('snacks').words.jump(-1) end,   desc = "Previous LSP Reference" },
@@ -1147,7 +987,11 @@ return {
             { "<leader>ag", function() require('snacks').picker.git_files() end,                                               desc = "Find Git Files" },
             -- { "<leader>fp",      function() require('snacks').picker.projects() end,                                desc = "Projects" },
             { "<leader>ao", function() require('snacks').picker.recent() end,                                                  desc = "Old Files" },
+
             -- git
+            { "gh",         function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
+            { "<leader>go", function() require('snacks').gitbrowse.open() end, desc = "Open GitHub Repo" },
+            { "<leader>gz", function() require('snacks').lazygit.open() end,   desc = "Lazygit" },
             {
                 "<leader>gb",
                 function()
@@ -1173,6 +1017,8 @@ return {
             { "<leader>gd",  function() require('snacks').picker.git_diff() end,                                        desc = "Git Diff (Hunks)" },
             { "<leader>gf",  function() require('snacks').picker.git_log_file() end,                                    desc = "Git Log File" },
             { "<leader>gr",  function() require('snacks').picker.git_grep({ layout = { preset = "horizontal", } }) end, desc = "Git Grep" },
+            { "<leader>gj",  function() require('snacks').terminal.open("but tui", { win = { layout = { fullscreen = true } } }) end, desc = "Git Butler" },
+            { "<leader>gD",  function() require('snacks').terminal.open("gh dash", { win = { layout = { fullscreen = true } } }) end, desc = "GitHub Dash" },
             -- gh
             { "<leader>gi",  function() require('snacks').picker.gh_issue() end,                                        desc = "GitHub Issues (open)" },
             { "<leader>gai", function() require('snacks').picker.gh_issue({ state = "all" }) end,                       desc = "GitHub Issues (all)" },
@@ -1209,7 +1055,7 @@ return {
             -- search
             { '<leader>ap',        function() require('snacks').picker.registers() end,                                                       desc = "Registers" },
             { '<leader>a/',        function() require('snacks').picker.search_history() end,                                                  desc = "Search History" },
-            { "<leader>c",         function() require('snacks').picker.command_history({ layout = { preset = "middle" } }) end,               desc = "Command History" },
+            { "<leader>ac",         function() require('snacks').picker.command_history({ layout = { preset = "middle" } }) end,               desc = "Command History" },
             { "<leader>:",         function() require('snacks').picker.commands() end,                                                        desc = "Commands" },
             -- { "<leader>sd",      function() require('snacks').picker.diagnostics() end,                             desc = "Diagnostics" },
             -- { "<leader>sD",      function() require('snacks').picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },

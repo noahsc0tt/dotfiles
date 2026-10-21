@@ -7,8 +7,8 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = Noah Scott
-	email = noah.scott.24@ucl.ac.uk
+	name = NoahScottTeleios
+	email = noah.scott@teleios-systems.com
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [init]
@@ -34,6 +34,9 @@
 [mergetool]
 	prompt = false
 [pager]
-	diff = delta
+	diff = diffnav
 ; [remote "origin"]
 	; fetch = +refs/heads/*:refs/remotes/origin/*
+[diff]
+    algorithm = histogram
+    mnemonicPrefix = true

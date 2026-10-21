@@ -1,5 +1,16 @@
 return {
     {
+        "mason-org/mason.nvim",
+        cmd = "Mason",
+        config = true,
+        opts = {
+            registries = {
+                "github:mason-org/mason-registry",
+                "github:Crashdummyy/mason-registry",
+            }
+        }
+    },
+    {
         "neovim/nvim-lspconfig",
         lazy = false,
         dependencies = {
@@ -73,7 +84,17 @@ return {
             vim.lsp.enable('clangd')
             vim.lsp.enable('ts_ls')
             vim.lsp.enable('jsonls')
-            vim.lsp.enable('omnisharp')
+            vim.lsp.enable('html')
+
+            vim.lsp.config('sqls', { capabilities = capabilities })
+            vim.lsp.enable('sqls')
+            -- vim.lsp.enable('omnisharp')
+            --
+            -- vim.lsp.config('roslyn_ls', {
+            --     filetypes = { 'razor', }, --'cshtml' }
+            --     capabilities = capabilities
+            -- })
+            -- vim.lsp.enable('roslyn_ls')
 
             vim.lsp.config('ltex_ls_plus', {
                 filetypes = { "text", "markdown", "tex", "typst" },
@@ -94,7 +115,7 @@ return {
 
             vim.diagnostic.config({
                 virtual_text = true,
-                signs = true,
+                signs = false,
                 underline = true,
                 update_in_insert = false,
                 float = {
@@ -107,13 +128,12 @@ return {
         keys = {
             -- Diagnostic actions
             -- { "<leader>ld", vim.diagnostic.setloclist,   mode = "n", desc = "Open diagnostics" },
-            { "gp",         function() vim.diagnostic.jump({ count = -1 }) end,                         mode = "n",                    desc = "Previous diagnostic" },
-            { "gn",         function() vim.diagnostic.jump({ count = 1 }) end,                         mode = "n",                    desc = "Next diagnostic" },
+            { "gp",         function() vim.diagnostic.jump({ count = -1 }) end,              mode = "n",                    desc = "Previous diagnostic" },
+            { "gn",         function() vim.diagnostic.jump({ count = 1 }) end,               mode = "n",                    desc = "Next diagnostic" },
             { "<leader>ld", vim.diagnostic.open_float,                                       mode = "n",                    desc = "Open diagnostic float" },
             { "gd",         function() require('snacks').picker.lsp_definitions() end,       desc = "Goto Definition" },
             { "gD",         function() require('snacks').picker.lsp_declarations() end,      desc = "Goto Declaration" },
             { "gr",         function() require('snacks').picker.lsp_references() end,        nowait = true,                 desc = "References" },
-            { "<leader>li", function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
             { "gI",         function() require('snacks').picker.lsp_implementations() end,   desc = "Goto Implementation" },
             { "gt",         function() require('snacks').picker.lsp_type_definitions() end,  desc = "Goto Type Definition" },
             -- { "gc",         function() require('snacks').picker.lsp_incoming_calls() end,    desc = "Calls Incoming" },
@@ -127,10 +147,10 @@ return {
             -- { "gD",         vim.lsp.buf.declaration,     mode = "n", desc = "Go to declaration" },
             -- { "gt",         vim.lsp.buf.type_definition, mode = "n", desc = "Go to type definition" },
             -- { "<leader>li", vim.lsp.buf.implementation,  mode = "n", desc = "Go to implementation" },
-            { "<leader>?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
+            { "?",  vim.lsp.buf.signature_help,                                      mode = "n",                    desc = "Signature help" },
             { "<C-S-/>",    vim.lsp.buf.signature_help,                                      mode = "i",                    desc = "Signature help" },
-            { "<leader>k", require("noice.lsp").hover,                                               mode = "n",                    desc = "Hover documentation" },
-            { "<M-C-S-k>",      vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
+            { "<leader>k",  require("noice.lsp").hover,                                      mode = "n",                    desc = "Hover documentation" },
+            { "<M-C-S-k>",  vim.lsp.buf.hover,                                               mode = { "n", "i" },           desc = "Hover documentation" },
 
             -- require('snacks').keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
             {
@@ -150,7 +170,7 @@ return {
                     vim.diagnostic.config({
                         virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
                         underline = { severity = { min = vim.diagnostic.severity.ERROR } },
-                        signs = { severity = { min = vim.diagnostic.severity.ERROR } },
+                        signs = false,-- { severity = { min = vim.diagnostic.severity.ERROR } },
                         update_in_insert = false,
                         float = {
                             border = "rounded",
@@ -190,7 +210,7 @@ return {
                     vim.diagnostic.config({
                         virtual_text = false,
                         underline = true,
-                        signs = true,
+                        signs = false,
                         update_in_insert = false,
                         float = {
                             border = "rounded",
@@ -209,7 +229,7 @@ return {
                 function()
                     vim.diagnostic.config({
                         virtual_text = true,
-                        signs = true,
+                        signs = false,
                         underline = true,
                         update_in_insert = false,
                         float = {
@@ -225,5 +245,13 @@ return {
             },
 
         },
+    },
+    {
+        "seblyng/roslyn.nvim",
+        config = function()
+            vim.lsp.config("roslyn", {
+                filetypes = { "cs", "c_sharp", "razor" },
+            })
+        end,
     }
 }
