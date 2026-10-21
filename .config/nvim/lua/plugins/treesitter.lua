@@ -18,14 +18,6 @@ return {
                     end
                 end,
             })
-
-            local installed = require("nvim-treesitter.info").installed_parsers()
-            local missing = vim.tbl_filter(function(l)
-                return not vim.list_contains(installed, l)
-            end, langs)
-            if #missing > 0 then
-                require("nvim-treesitter.install").ensure_installed_sync(missing)
-            end
         end,
     },
     {
