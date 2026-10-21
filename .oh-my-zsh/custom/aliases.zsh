@@ -707,3 +707,5 @@ alias def="rdict search"
 alias sql="fselect"
 
 alias wiki="wiki-tui"
+
+alias bt="but tui"
