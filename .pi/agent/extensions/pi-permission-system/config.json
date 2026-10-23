@@ -1,0 +1,42 @@
+{
+  "permission": {
+    "*": "allow",
+    "write": {
+      "*": "ask"
+    },
+    "edit": {
+      "*": "ask"
+    },
+    "bash": {
+      "*": "ask",
+      "diff *": "allow",
+      "ls *": "allow",
+      "find *": "allow",
+      "fd *": "allow",
+      "rg *": "allow",
+      "grep *": "allow",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "nl *": "allow",
+      "pwd *": "allow",
+      "cd *": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "wc *": "allow",
+      "sort *": "allow",
+      "cut *": "allow",
+      "tree *": "allow",
+      "stat *": "allow",
+      "git show *": "allow",
+      "git rev-parse *": "allow",
+      "dirname *": "allow",
+      "basename *": "allow",
+      "realpath *": "allow",
+      "readlink *": "allow",
+      "which *" : "allow",
+      "man *" : "allow"
+    }
+  }
+}
