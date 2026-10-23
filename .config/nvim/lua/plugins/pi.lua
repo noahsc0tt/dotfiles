@@ -1,6 +1,6 @@
 return {
     "carderne/pi-nvim",
-    enabled = false,
+    enabled = true,
     opts = {
         set_default_keymaps = false
     },

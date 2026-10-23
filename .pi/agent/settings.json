@@ -1,0 +1,38 @@
+{
+  "autocompleteMaxVisible": 10,
+  "defaultProvider": "ollama-cloud",
+  "defaultModel": "gemma4:31b",
+  "defaultThinkingLevel": "high",
+  "doubleEscapeAction": "tree",
+  "extensions": [
+    "+builtin:mcp"
+  ],
+  "lastChangelogVersion": "1.4.0",
+  "packages": [
+    "npm:pi-caveman",
+    "npm:pi-ask-user",
+    "npm:pi-subagents",
+    "npm:pi-lens",
+    "npm:@plannotator/pi-extension",
+    {
+      "extensions": [
+        "-index.ts"
+      ],
+      "source": "npm:pi-mcp-adapter"
+    },
+    "npm:pi-markdown-preview",
+    "npm:pi-web-access",
+    "npm:pi-nvim",
+    "npm:pi-github-copilot-auto",
+    "npm:@gotgenes/pi-permission-system",
+    "npm:pi-ollama-cloud-link",
+    "npm:pi-antigravity"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "treeFilterMode": "default",
+  "steeringMode": "one-at-a-time",
+  "tuiMode": "fullscreen",
+  "fullscreenExitOutput": "transcript"
+}
