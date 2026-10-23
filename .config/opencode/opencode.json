@@ -3,8 +3,8 @@
     "update": "auto",
     "default_agent": "plan",
     "model": {
-        "providerID": "github-copilot",
-        "model": "auto"
+        "providerID": "opencode",
+        "model": "glm-5.3-flash"
     },
     "instructions": [
         "When writing or modifying code, do not add unnecessary comments. Avoid comments that merely restate what the code does, add filler phrases, or inject personality. Comments should only be used when they provide genuine value: explaining non-obvious intent, documenting complex business logic, or clarifying unavoidable workarounds.",
