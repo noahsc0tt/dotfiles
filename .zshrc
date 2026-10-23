@@ -132,7 +132,7 @@ alt-f:become(nvim {+})' \
 if [[ -d {} ]]; then
     lsd --color=always --group-directories-first -1 --literal --no-symlink {};
 else
-    bat {};
+    batcat {};
 fi
 '"
 
@@ -244,3 +244,15 @@ export PATH="$PATH:/home/noahscott/.dotnet/tools"
 
 # Added by GitButler installer
 eval "$(but completions zsh)"
+
+# ~/.zshrc: mark commands for tuios run (OSC 133)
+autoload -Uz add-zsh-hook
+_tuios_osc133_precmd()  { local s=$?; print -n "\e]133;D;$s\a\e]133;A\a"; }
+_tuios_osc133_preexec() { print -n "\e]133;C\a"; }
+add-zsh-hook precmd _tuios_osc133_precmd
+add-zsh-hook preexec _tuios_osc133_preexec
+PS1+=$'%{\e]133;B\a%}'
+
+# opencode
+export PATH=/home/noahscott/.opencode/bin:$PATH
+export PATH="$HOME/.npm-global/bin:$PATH"

@@ -1,0 +1,45 @@
+gui:
+  sidePanels:
+    - [status]
+    - [files, submodules]
+    - [commits, reflog]
+    - [branches, worktrees, remotes, tags]
+    - [stash]
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#ff9e64"
+      - "bold"
+    inactiveBorderColor:
+      - "#29a4bd"
+    searchingActiveBorderColor:
+      - "#ff9e64"
+      - "bold"
+    optionsTextColor:
+      - "#7aa2f7"
+    selectedLineBgColor:
+      - "#2e3c64"
+    cherryPickedCommitFgColor:
+      - "#7aa2f7"
+    cherryPickedCommitBgColor:
+      - "#bb9af7"
+    markedBaseCommitFgColor:
+      - "#7aa2f7"
+    markedBaseCommitBgColor:
+      - "#e0af68"
+    unstagedChangesColor:
+      - "#db4b4b"
+    defaultFgColor:
+      - "#c0caf5"
+    diffPaging: "always"
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never
+os:
+  edit: 'env NO_AUTOSESSION=1 nvim {{filename}}'
+  editAtLine: 'env NO_AUTOSESSION=1 nvim +{{line}} {{filename}}'
+  editAtLineAndWait: 'env NO_AUTOSESSION=1 nvim --wait +{{line}} {{filename}}'
+  editInTerminal: true
+  openDirInEditor: 'env NO_AUTOSESSION=1 nvim {{dir}}'
+  # shellFunctionsFile: ~/.oh-my-zsh/custom/aliases.zsh
