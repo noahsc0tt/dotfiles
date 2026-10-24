@@ -22,24 +22,24 @@ export BROWSER="open -a qutebrowser"
 export MANCOLOR
 export MANPAGER="less"
 
-# export PATH="/opt/homebrew/opt:$PATH"
-# export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-# export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
-# export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$(ruby -e 'puts Gem.bindir'):$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
 export PATH="/Library/TeX/texbin:$PATH"
 
-export PATH="~/.local/bin:$PATH"
+export PATH=~/.local/bin:$PATH
 
-export PATH="~/.mint/bin:$PATH"
+export PATH=~/.mint/bin:$PATH
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+export ZSH_THEME="robbyrussell"
 
-CASE_SENSITIVE="false"
+export CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+export HYPHEN_INSENSITIVE="true"
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -51,14 +51,14 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_LS_COLORS="true"
 export LS_COLORS="${LS_COLORS}:ow=01;34:tw=01;34"
 
-DISABLE_AUTO_TITLE="true"
+export DISABLE_AUTO_TITLE="true"
 
-ENABLE_CORRECTION="true"
+export ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-COMPLETION_WAITING_DOTS="true"
+export COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files under VCS as dirty.
 # This makes repository status check for large repositories much, much faster.
@@ -66,11 +66,11 @@ COMPLETION_WAITING_DOTS="true"
 
 # You can set one of the optional three formats:
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
+export HIST_STAMPS="dd.mm.yyyy"
 
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-plugins=(
+export plugins=(
     git-open
     forgit
     q
@@ -150,12 +150,12 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [ -f ~/.sk.zsh ] && source ~/.sk.zsh
 
-# source <(cod init $$ zsh)
+source <(cod init $$ zsh)
 
 # source ~/.oh-my-zsh/custom/plugins/ok-bash/ok.sh
 
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 eval "$(starship init zsh)"
 
@@ -163,14 +163,14 @@ eval "$(zoxide init zsh)"
 
 eval "$(atuin init zsh)"
 
-# eval "$(navi widget zsh)"
+eval "$(navi widget zsh)"
 
 flip() {
   eval "$(thefuck --alias flip)"
   flip "$@"
 }
 
-# eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #autoload -U promptinit &&promtinit
 #prompt fade red
@@ -186,12 +186,12 @@ export PATH=$PATH:/usr/local/go
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:~/.cargo/bin
 
-# # pyenv setup
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 export DOTNET_ROOT=/usr/local/share/dotnet
 export PATH=$PATH:$DOTNET_ROOT
@@ -207,8 +207,8 @@ export GROFF_SGR=1          # force ANSI SGR color
 export CLICOLOR_FORCE=1
 export FORCE_COLOR=1
 
-# export JAVA_HOME="/opt/homebrew/opt/openjdk"
-# export PATH="$JAVA_HOME/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
+export PATH="$JAVA_HOME/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -219,9 +219,9 @@ export MANPATH=~/.local/share/man:$MANPATH
 
 # source ~/.aliasme/aliasme.sh
 
-# source ~/.config/up/up.sh
+source ~/.config/up/up.sh
 
-# setopt nocorrect
+setopt nocorrect
 
 function zvm_after_init() {
   zvm_bindkey viins '^H' backward-delete-word
@@ -233,15 +233,16 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 
 # unset LC_ALL
 
-# vm
-export PATH=$PATH:/snap/bin
-export PATH=$PATH:~/.local/bin
-export PATH="$HOME/.dotnet:$PATH"
-export DOTNET_ROOT="$HOME/.dotnet"
-export PATH="$PATH:/home/noahscott/.dotnet/tools"
+# # vm
+# export PATH=$PATH:/snap/bin
+# export PATH=$PATH:~/.local/bin
+# export PATH="$HOME/.dotnet:$PATH"
+# export DOTNET_ROOT="$HOME/.dotnet"
+# export PATH="$PATH:/home/noahscott/.dotnet/tools"
+#
+# [ -f "/home/noahscott/.ghcup/env" ] && . "/home/noahscott/.ghcup/env" # ghcup-env
 
-[ -f "/home/noahscott/.ghcup/env" ] && . "/home/noahscott/.ghcup/env" # ghcup-env
-
+#
 # Added by GitButler installer
 eval "$(but completions zsh)"
 

@@ -1,7 +1,6 @@
 typewhisper t
 # chatgpt g
-homerow j
-neru f,space,s
+neru f,space,j,enter
 xnip x
 maccy v
 boringnotch n
