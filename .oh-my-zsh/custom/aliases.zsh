@@ -709,3 +709,7 @@ alias sql="fselect"
 alias wiki="wiki-tui"
 
 alias bt="but tui"
+
+alias down="aria2c"
+
+alias img="magick"
