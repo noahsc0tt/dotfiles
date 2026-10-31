@@ -72,7 +72,7 @@
     srcly (tap-hold-press $tap-time $hold-time lrld (layer-toggle src))
     media-nav (tap-hold-press $tap-time $hold-time _ (layer-toggle media))
     navly (tap-hold-press $tap-time $hold-time tab (layer-toggle nav))
-    apply (tap-hold-press $tap-time $hold-time (multi @launchkey nubs) (multi lalt lmet))
+    apply (tap-hold-press $tap-time $hold-time (multi @launchkey \) (multi lalt lmet))
     symly (tap-hold-press $tap-time $hold-time esc (layer-toggle sym))
     numly (tap-hold-press $tap-time $hold-time ret (layer-toggle num))
     launch (tap-hold-press $tap-time $hold-time (multi @launchkey `) (multi @launchkey (layer-toggle launch)))
@@ -100,6 +100,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
     q (cmd open -g "raycast://extensions/mackopes/quit-applications/index")
     w (cmd open -g "raycast://extensions/raycast/navigation/switch-windows")
     lmet (unmod (lctl lalt lsft) q)
+    d (unmod (lctl lalt lsft) q)
 )
 
 (deflayer sym
@@ -107,7 +108,7 @@ esc    brdn   brup   bldn    brdn  _   _   prev   pp   next   mute  vold  volu
  _   _    _    _    _    _    _    _    _    _    _    _    _    _
  _    S-1    S-2    S-3    S-4    S-5    S-6    S-7    S-8    S-/    S-p    \    _
  bspc   S-;    -    S-[    S-9    S--    =    S-0    S-]    S-=    (tap-hold-press $tap-time $hold-time ; (multi lalt lsft (layer-toggle src)))    _    _   _
- _   (tap-hold-press $tap-time $hold-time ` (multi lalt lmet (layer-toggle src)))   S-`    nubs    S-'    [    S-\    ]    '    S-,    S-.    _    _   _
+ _   (tap-hold-press $tap-time $hold-time ` (multi lalt lmet (layer-toggle src)))  `  S-`    S-\    S-'    [    ]    '    S-,    S-.    _    _   _
  _   _  _ _           _             _ _ _    _    _
  )
 

@@ -1,1 +1,4 @@
-https://dev.azure.com/teleios-systems-messagecentral/MessageCentral-Hub/ PBIs
+ layout https://my.moergo.com/glove80/#/my_layouts
+ PBIs https://dev.azure.com/teleios-systems-messagecentral/MessageCentral-Hub/
+flashing https://docs.moergo.com/glove80-user-guide/customizing-key-layout/#loading-new-zmk-firmware-onto-your-glove80
+preview https://id-preview-1--162b848f-caec-4678-9011-32b08737a94a.lovable.app/settings?tab=channels

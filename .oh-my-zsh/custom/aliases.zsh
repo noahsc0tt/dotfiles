@@ -5,8 +5,8 @@ alias srd="sudo rm -rf"
 # alias rmt="trash"
 alias cdtrash="cd /Users/nscott/Library/Mobile\ Documents/.Trash"
 
-alias config="NO_AUTOSESSION=1 nvim ~/.zshrc"
-alias con="NO_AUTOSESSION=1 nvim ~/.zshrc"
+alias config="NO_AUTOSESSION=1 nvim $HOME/.zshrc"
+alias con="NO_AUTOSESSION=1 nvim $HOME/.zshrc"
 alias aliases='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/aliases.zsh'
 alias al='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/aliases.zsh'
 alias keybinds='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/keybinds.zsh'
@@ -14,7 +14,7 @@ alias keybinds='NO_AUTOSESSION=1 nvim $ZSH_CUSTOM/keybinds.zsh'
 alias reload="exec zsh"
 alias rld="exec zsh"
 
-alias uni="z ~/UCL-OneDrive/University/second-year"
+alias uni="z $HOME/UCL-OneDrive/University/second-year"
 
 alias py="python"
 alias ipy="ipython -i"
@@ -360,7 +360,7 @@ alias nv="NO_AUTOSESSION=1 nvim"
 alias nt="NO_AUTOSESSION=1 nvim -c 'terminal'"
 alias nf='NO_AUTOSESSION=1 nvim "$(fzf)"'
 function nvd(){
-    cd ~/.temp
+    cd $HOME/.temp
     neohub --opts --frame buttonless --title-hidden
 }
 
@@ -414,14 +414,14 @@ alias osa="osascript -e"
 alias np="nvimpager"
 
 #alias cl="printf '\033[H\033[J'"
-alias cl="cd ~; clear"
+alias cl="cd; clear"
 alias tp="tput reset"
 
 alias oc="opencode"
 alias cpl="copilot"
 
-alias dot="cd ~/dotfiles"
-alias restow='(cd ~/dotfiles && stow -R .)'
+alias dot="cd $HOME/dotfiles"
+alias restow='(cd $HOME/dotfiles && stow -R .)'
 
 function bat() {
   if [ -t 0 ]; then
@@ -490,7 +490,7 @@ alias bubbles="ttysvr -b 24283b bubbles"
 alias dvd="ttysvr -b 24283b logo dvd"
 alias clock="termsaver clock" 
 alias starwars="termsaver starwars"
-alias ss="~/dev/github/noahsc0tt/random-tty-screensaver/random-screensaver.sh"
+alias ss="$HOME/dev/github/noahsc0tt/random-tty-screensaver/random-screensaver.sh"
 
 function typeout() {
   termsaver programmer -p "$*"
@@ -531,7 +531,7 @@ alias kl="kalker"
 
 alias rbk="rubiks -clsti"
 
-alias scratch="cd ~/.scratch/scratch.nvim/"
+alias scratch="cd $HOME/.scratch/scratch.nvim/"
 
 function feed() {
   print -z "$(cat $@)"
@@ -579,7 +579,7 @@ function idea() {
   fi
 }
 
-alias tm="~/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
+alias tm="$HOME/dev/github/noahsc0tt/ttyme-tracker/ttyme-tracker.sh"
 
 # alias lp="/Users/nscott/dev/github/noahsc0tt/fuzzpass/fuzzpass.sh"
 
@@ -612,7 +612,7 @@ function pretty() {
 
 alias pomo="arttime -k timer.pomodoro4etc"
 
-alias clean="yes | rm ~/.zcompdump* && source ~/.zshrc && exec zsh"
+alias clean="yes | rm $HOME/.zcompdump* && source $HOME/.zshrc && exec zsh"
 
 function how() {
   how2 "$@" 2>/dev/null
@@ -700,7 +700,7 @@ alias p="bat --paging=always"
 
 alias fey="feynman"
 
-alias track="python3 ~/Documents/mh/track/track.py"
+alias track="python3 $HOME/Documents/mh/track/track.py"
 
 alias def="rdict search"
 
@@ -713,3 +713,14 @@ alias bt="but tui"
 alias down="aria2c"
 
 alias img="magick"
+
+function stand() {
+  local f="$HOME/Documents/teleios/standup.txt"
+  cat >> "$f" <<EOF
+
+---
+
+
+EOF
+  nvim + "$f" -c 'startinsert'
+}
