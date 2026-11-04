@@ -26,7 +26,8 @@
     "npm:pi-github-copilot-auto",
     "npm:@gotgenes/pi-permission-system",
     "npm:pi-ollama-cloud-link",
-    "npm:pi-antigravity"
+    "npm:pi-antigravity",
+    "npm:pi-vim"
   ],
   "terminal": {
     "showTerminalProgress": true
