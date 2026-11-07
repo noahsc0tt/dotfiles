@@ -718,7 +718,7 @@ function stand() {
   local f="$HOME/Documents/teleios/standup.txt"
   cat >> "$f" <<EOF
 
----
+--- $(date +"%a %d %b")
 
 
 EOF
