@@ -235,7 +235,7 @@ vim.keymap.set({ "n", "t", "i" }, "<C-S-s>", function() require('snacks').termin
 
 -- Windows
 
-vim.keymap.set('n', '<C-s><C-f>', function()
+vim.keymap.set('n', '<C-w><C-f>', function()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         local cfg = vim.api.nvim_win_get_config(win)
         if cfg.relative ~= '' then
@@ -268,8 +268,8 @@ vim.keymap.set('n', 'gz', 'zz', { desc = "Centre this line" })
 vim.keymap.set("i", "<C-,>", "<C-d>", { desc = "Delete indent" })
 vim.keymap.set("i", "<C-.>", "<C-t>", { desc = "Indent" })
 vim.keymap.set({ "i", "c" }, "<C-BS>", "<C-S-W>", { desc = "Delete word" })
-vim.keymap.set("i", "<C-s>", "<Esc><C-w>", { desc = "Window" })
-vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
+vim.keymap.set("i", "<C-w>", "<Esc><C-w>", { desc = "Window" })
+-- vim.keymap.set("n", "<C-s>", "<C-w>", { desc = "Window" })
 
 vim.keymap.set("n", "<Del>", "lxh")
 

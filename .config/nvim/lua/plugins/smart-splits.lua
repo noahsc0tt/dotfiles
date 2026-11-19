@@ -16,10 +16,10 @@ return {
         },
         keys = {
 
-            { "<C-s><C-h>", function() require('smart-splits').move_cursor_left() end,  mode = { "n", } },
-            { "<C-s><C-j>", function() require('smart-splits').move_cursor_down() end,  mode = { "n", } },
-            { "<C-s><C-k>", function() require('smart-splits').move_cursor_up() end,    mode = { "n", } },
-            { "<C-s><C-l>", function() require('smart-splits').move_cursor_right() end, mode = { "n", } },
+            { "<C-w><C-h>", function() require('smart-splits').move_cursor_left() end,  mode = { "n", } },
+            { "<C-w><C-j>", function() require('smart-splits').move_cursor_down() end,  mode = { "n", } },
+            { "<C-w><C-k>", function() require('smart-splits').move_cursor_up() end,    mode = { "n", } },
+            { "<C-w><C-l>", function() require('smart-splits').move_cursor_right() end, mode = { "n", } },
             { "<C-S-h>",    function() require('smart-splits').resize_left(4) end,      mode = "n" },
             { "<C-S-l>",    function() require('smart-splits').resize_right(4) end,     mode = "n" },
             { "<C-S-j>",    function() require('smart-splits').resize_down(4) end,      mode = "n" },

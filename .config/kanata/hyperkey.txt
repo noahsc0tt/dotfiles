@@ -8,5 +8,5 @@ ice m,z?
 raycast `
 ocr o
 ghostty §
-vorssaint p,tab,r,m
+vorssaint s,tab,r,m
 aerospace layer
